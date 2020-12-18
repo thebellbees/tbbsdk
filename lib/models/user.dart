@@ -43,6 +43,14 @@ class User {
     return data;
   }
 
+  bool get isEmpty {
+    List values = [id, firstname, lastname, email, phone];
+    values.removeWhere((val) {
+      return val == null || val == '';
+    });
+    return values.isEmpty;
+  }
+
   @override
   toString() => this.toJson().toString();
 }

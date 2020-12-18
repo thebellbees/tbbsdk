@@ -6,8 +6,11 @@ import 'package:http/http.dart' as http;
 import 'package:flutter/widgets.dart';
 import 'package:tbbsdk/constants/constants.dart';
 import 'package:tbbsdk/models/access_token.dart';
+import 'package:tbbsdk/models/system_state.dart';
 import 'package:tbbsdk/models/tbb_response.dart';
+import 'package:tbbsdk/models/user.dart';
 import 'package:tbbsdk/tbb_error.dart';
+import 'package:tbbsdk/utilities/local_database.dart';
 
 /// A Calculator.
 class TBBSdk {
@@ -29,6 +32,11 @@ class TBBSdk {
   /// Parameter(Optional) [isDebug], tells the library if it should _printToLog debug logs.
   /// Useful if you are debuging or in development.
   bool isDebug;
+
+  LocalDatabaseService _localDatabaseService = new LocalDatabaseService();
+
+  LocalState _localState;
+  LocalState get localState => _localState;
 
   // Constructor
   TBBSdk({
@@ -80,6 +88,12 @@ class TBBSdk {
     //  Response
     if (_response.statusCode >= 200 && _response.statusCode < 300) {
       TBBResponse response = TBBResponse.fromJson(json.decode(_response.body));
+
+      // Setting Waiting for otp
+      if (response.data != null && response.data.phone != null) {
+        _localDatabaseService.putLocalState('otp_from', response.data.phone);
+      }
+
       return response;
     } else {
       throw new TBBError.fromJson(json.decode(_response.body));
@@ -98,20 +112,24 @@ class TBBSdk {
       body: body,
     );
 
-    //  response
+    //  Response
     if (_response.statusCode >= 200 && _response.statusCode < 300) {
       TBBResponse response = TBBResponse.fromJson(json.decode(_response.body));
+
+      // Setting Waiting for otp
+      if (response.data != null && response.data.phone != null) {
+        _localDatabaseService.putLocalState('otp_from', response.data.phone);
+      }
+
       return response;
     } else {
       throw new TBBError.fromJson(json.decode(_response.body));
     }
   }
 
-  Future<AccessToken> verifyAuthOtp(String phone, int otp) async {
+  Future<AccessToken> verifyAuthOtp(String phone, int otp, bool newUser) async {
     // body data
-    final body = {
-      'phone': phone,
-    };
+    final body = {'phone': phone, "newUser": newUser};
 
     // request
     final _response = await http.post(
@@ -128,10 +146,13 @@ class TBBSdk {
     }
   }
 
-  Future getUserInfo() async {
+  Future<User> getUserInfo() async {
     // body data
     final headers = {
-      'authorization': 'Bearer <access_id>',
+      'authorization':
+          'Bearer ' + await _localDatabaseService.getSecureAccess('access_id'),
+      'X-Refresh-Token':
+          await _localDatabaseService.getSecureAccess('refresh_id'),
     };
 
     // request
@@ -143,7 +164,7 @@ class TBBSdk {
     //  response
     if (_response.statusCode >= 200 && _response.statusCode < 300) {
       TBBResponse response = TBBResponse.fromJson(json.decode(_response.body));
-      return response;
+      return User.fromJson(json.decode(response.data));
     } else {
       throw new TBBError.fromJson(json.decode(_response.body));
     }
@@ -152,7 +173,8 @@ class TBBSdk {
   Future refreshAccessToken() async {
     // body data
     final headers = {
-      'X-Refresh-Token': '<refresh_id>',
+      'X-Refresh-Token':
+          await _localDatabaseService.getSecureAccess('refresh_id'),
     };
 
     // request
@@ -168,5 +190,27 @@ class TBBSdk {
     } else {
       throw new TBBError.fromJson(json.decode(_response.body));
     }
+  }
+
+  Future<LocalState> loadLocalState() async {
+    String accessId = await _localDatabaseService.getSecureAccess("access_id");
+    String refreshId =
+        await _localDatabaseService.getSecureAccess("refresh_id");
+    User user;
+
+    try {
+      user = await this.getUserInfo();
+    } catch (error) {
+      if (error is TBBError) {
+        //  Do something TBB Error
+      } else {
+        throw error;
+      }
+    }
+
+    _localState =
+        new LocalState(access_id: accessId, refresh_id: refreshId, user: user);
+
+    return this.localState;
   }
 }

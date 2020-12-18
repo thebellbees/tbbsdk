@@ -1,21 +1,47 @@
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class LocalDatabaseService {
-  final accessToken = new FlutterSecureStorage();
+  final secureStorage = new FlutterSecureStorage();
 
-  updateSecurityToken(String token) async {
-    await accessToken.write(key: 'access_token', value: token);
+  Future<dynamic> updateSecureAccess(Map<String, String> tokens) async {
+    if (tokens.isNotEmpty && tokens['access_id'].isNotEmpty) {
+      await secureStorage.write(key: 'access_id', value: tokens['access_id']);
+    }
+    if (tokens.isNotEmpty && tokens['refresh_id'].isNotEmpty) {
+      await secureStorage.write(key: 'refresh_id', value: tokens['refresh_id']);
+    }
   }
 
-  deleteAccessToken() async {
-    await accessToken.delete(key: 'access_token');
+  Future<dynamic> deleteSecureAccess(int code) async {
+    if (code >= 1) {
+      await secureStorage.delete(key: 'access_id');
+    }
+    if (code == 0) {
+      await secureStorage.delete(key: 'refresh_id');
+    }
   }
 
-  Future<String> getAccessToken() async {
-    String token = await accessToken.read(key: 'access_token');
+  Future<dynamic> putLocalState(String key, String value) async {
+    if (value == 0 || value == '0' || value.isEmpty) {
+      await secureStorage.delete(key: 'tbb_localstate.${key}');
+    } else {
+      await secureStorage.write(key: 'tbb_localstate.${key}', value: value);
+    }
+  }
+
+  Future<String> getSecureAccess(String key) async {
+    String token = await secureStorage.read(key: key);
     if (token == null) {
       token = '0';
     }
     return token;
+  }
+
+  Future<String> getLocalStateProp(String key) async {
+    String prop = await secureStorage.read(key: 'tbb_localstate.${key}');
+    if (prop == null) {
+      prop = '0';
+    }
+    return prop;
   }
 }
