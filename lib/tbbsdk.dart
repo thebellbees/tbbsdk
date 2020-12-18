@@ -113,11 +113,7 @@ class TBBSdk {
       'phone': phone,
     };
 
-    final _res = await http.get('https://reqres.in/api/users/2');
-    _printToLog(_res.body.toString());
-
     // request
-    _printToLog('processing => ' + this.baseUrl + API_PATH_OTP_VERIFY);
     final _response = await http.post(
       this.baseUrl + API_PATH_OTP_VERIFY,
       body: body,
@@ -126,10 +122,8 @@ class TBBSdk {
     //  response
     if (_response.statusCode >= 200 && _response.statusCode < 300) {
       TBBResponse response = TBBResponse.fromJson(json.decode(_response.body));
-      _printToLog('success');
       return AccessToken.fromJson(json.decode(response.data));
     } else {
-      _printToLog('error');
       throw new TBBError.fromJson(json.decode(_response.body));
     }
   }
