@@ -87,14 +87,19 @@ class TBBSdk {
 
     //  Response
     if (_response.statusCode >= 200 && _response.statusCode < 300) {
-      TBBResponse response = TBBResponse.fromJson(json.decode(_response.body));
+      try {
+        TBBResponse response =
+            TBBResponse.fromJson(json.decode(_response.body));
 
-      // Setting Waiting for otp
-      if (response.data != null && response.data.phone != null) {
-        _localDatabaseService.putLocalState('otp_from', response.data.phone);
+        // Setting Waiting for otp
+        if (response.data != null && response.data.phone != null) {
+          _localDatabaseService.putLocalState('otp_from', response.data.phone);
+        }
+
+        return response;
+      } catch (e) {
+        print("Catch Exception : ${e.toString()}");
       }
-
-      return response;
     } else {
       throw new TBBError.fromJson(json.decode(_response.body));
     }
