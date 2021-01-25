@@ -4,6 +4,7 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 import 'package:flutter/widgets.dart';
+import 'package:location/location.dart';
 import 'package:tbbsdk/constants/constants.dart';
 import 'package:tbbsdk/models/access_token.dart';
 import 'package:tbbsdk/models/system_state.dart';
@@ -136,9 +137,21 @@ class TBBSdk {
     }
   }
 
-  Future<AccessToken> verifyAuthOtp(String phone, int otp, bool newUser) async {
+  Future<AccessToken> verifyAuthOtp(String phone, int otp,
+      Map<String, String> coordinates, bool newUser) async {
+    final location = new Location();
+    final coordinates = await location.getLocation();
+
     // body data
-    final body = {'phone': phone, "newUser": newUser.toString()};
+    final body = {
+      'phone': phone,
+      "otp": otp.toString(),
+      "coordinates": {
+        "latitude": coordinates.latitude.toString(),
+        "longitude": coordinates.longitude.toString()
+      },
+      "newUser": newUser.toString()
+    };
 
     // request
     final _response = await http.post(
