@@ -218,4 +218,57 @@ class TBBSdk {
 
     return this.localState;
   }
+
+  Future<User> socialConnect(String socialPlatform, String username) async {
+    // body data
+    final headers = {
+      'authorization':
+          'Bearer ' + await _localDatabaseService.getSecureAccess('access_id'),
+      'username': await _localDatabaseService.getSecureAccess('refresh_id'),
+    };
+
+    final body = {
+      'platform': socialPlatform.toString(),
+      'username': username.toString(),
+    };
+
+    // request
+    final _response = await http.post(
+        this.baseUrl + API_PATH_CONNECT_WITH_SOCIAL,
+        headers: headers,
+        body: body);
+
+    //  response
+    if (_response.statusCode >= 200 && _response.statusCode < 300) {
+      TBBResponse response = TBBResponse.fromJson(json.decode(_response.body));
+      return User.fromJson(json.decode(response.data));
+    } else {
+      throw new TBBError.fromJson(json.decode(_response.body));
+    }
+  }
+
+  Future<User> userUpdate(User user) async {
+    // body data
+    final headers = {
+      'authorization':
+          'Bearer ' + await _localDatabaseService.getSecureAccess('access_id'),
+      'username': await _localDatabaseService.getSecureAccess('refresh_id'),
+    };
+
+    final body = user.toJson();
+
+    // request
+    final _response = await http.post(
+        this.baseUrl + API_PATH_CONNECT_WITH_SOCIAL,
+        headers: headers,
+        body: body);
+
+    //  response
+    if (_response.statusCode >= 200 && _response.statusCode < 300) {
+      TBBResponse response = TBBResponse.fromJson(json.decode(_response.body));
+      return User.fromJson(json.decode(response.data));
+    } else {
+      throw new TBBError.fromJson(json.decode(_response.body));
+    }
+  }
 }
