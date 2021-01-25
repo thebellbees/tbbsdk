@@ -73,6 +73,10 @@ class TBBSdk {
     _authToken = authToken;
   }
 
+  Future<TBBResponse> logout(String phone) async {
+    return await _localDatabaseService.flashSecureLocalState();
+  }
+
   Future<TBBResponse> registerWithPhone(String phone) async {
     // body data
     final body = {

@@ -5,10 +5,12 @@ class LocalDatabaseService {
 
   Future<dynamic> updateSecureAccess(Map<String, String> tokens) async {
     if (tokens.isNotEmpty && tokens['access_id'].isNotEmpty) {
-      await secureStorage.write(key: 'access_id', value: tokens['access_id']);
+      await secureStorage.write(
+          key: 'tbb_localstate.access_id', value: tokens['access_id']);
     }
     if (tokens.isNotEmpty && tokens['refresh_id'].isNotEmpty) {
-      await secureStorage.write(key: 'refresh_id', value: tokens['refresh_id']);
+      await secureStorage.write(
+          key: 'tbb_localstate.refresh_id', value: tokens['refresh_id']);
     }
   }
 
@@ -43,5 +45,9 @@ class LocalDatabaseService {
       prop = '0';
     }
     return prop;
+  }
+
+  Future<dynamic> flashSecureLocalState() async {
+    await secureStorage.deleteAll();
   }
 }
