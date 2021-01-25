@@ -137,8 +137,7 @@ class TBBSdk {
     }
   }
 
-  Future<AccessToken> verifyAuthOtp(String phone, int otp,
-      Map<String, String> coordinates, bool newUser) async {
+  Future<AccessToken> verifyAuthOtp(String phone, int otp, bool newUser) async {
     final location = new Location();
     final coordinates = await location.getLocation();
 
