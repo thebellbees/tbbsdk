@@ -138,7 +138,7 @@ class TBBSdk {
 
   Future<AccessToken> verifyAuthOtp(String phone, int otp, bool newUser) async {
     // body data
-    final body = {'phone': phone, "newUser": newUser};
+    final body = {'phone': phone, "newUser": newUser.toString()};
 
     // request
     final _response = await http.post(
