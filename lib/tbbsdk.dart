@@ -155,7 +155,7 @@ class TBBSdk {
     // request
     final _response = await http.post(
       this.baseUrl + API_PATH_OTP_VERIFY,
-      body: body,
+      body: body.toString(),
     );
 
     //  response
