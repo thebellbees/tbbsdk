@@ -6,7 +6,7 @@ class LocalState {
   String refresh_id;
   User user;
 
-  bool get loggedIn => user.isEmpty == false;
+  bool get loggedIn => user != null && user.isEmpty == false;
 
   Future<String> get otp_from async => await _getProp("otp_from");
 
