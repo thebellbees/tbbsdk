@@ -219,7 +219,7 @@ class TBBSdk {
     return this.localState;
   }
 
-  Future<User> socialConnect(String socialPlatform, String username) async {
+  Future<User> socialConnect({String socialPlatform, String username}) async {
     // body data
     final headers = {
       'authorization':
@@ -247,7 +247,7 @@ class TBBSdk {
     }
   }
 
-  Future<User> userUpdate(User user) async {
+  Future<User> userUpdate({User user}) async {
     // body data
     final headers = {
       'authorization':
@@ -267,6 +267,85 @@ class TBBSdk {
     if (_response.statusCode >= 200 && _response.statusCode < 300) {
       TBBResponse response = TBBResponse.fromJson(json.decode(_response.body));
       return User.fromJson(json.decode(response.data));
+    } else {
+      throw new TBBError.fromJson(json.decode(_response.body));
+    }
+  }
+
+  Future canAuthWith({String socialPlatform, String username}) async {
+    // body data
+    final headers = {
+      'authorization':
+          'Bearer ' + await _localDatabaseService.getSecureAccess('access_id'),
+      'username': await _localDatabaseService.getSecureAccess('refresh_id'),
+    };
+
+    final body = {"username": username};
+
+    // request
+    final _response = await http.post(
+        this.baseUrl + API_PATH_CAN_AUTH_WITH + "/$socialPlatform",
+        headers: headers,
+        body: body);
+
+    //  response
+    if (_response.statusCode >= 200 && _response.statusCode < 300) {
+      TBBResponse response = TBBResponse.fromJson(json.decode(_response.body));
+      return response.data;
+    } else {
+      throw new TBBError.fromJson(json.decode(_response.body));
+    }
+  }
+
+  // SERVICES FUNCTIONS
+
+  Future getServiceTypes({int limit, int offset}) async {
+    // body data
+    final headers = {
+      'authorization':
+          'Bearer ' + await _localDatabaseService.getSecureAccess('access_id'),
+      'X-Refresh-Token':
+          await _localDatabaseService.getSecureAccess('refresh_id'),
+    };
+
+    // request
+    final _response = await http.get(
+      this.baseUrl + API_PATH_SERVICES_TYPES + "?limit=$limit&offset=$offset",
+      headers: headers,
+    );
+
+    //  response
+    if (_response.statusCode >= 200 && _response.statusCode < 300) {
+      TBBResponse response = TBBResponse.fromJson(json.decode(_response.body));
+      return response.data;
+    } else {
+      throw new TBBError.fromJson(json.decode(_response.body));
+    }
+  }
+
+  Future availableService({int kilometer, int limit, int offset}) async {
+    // body data
+    final headers = {
+      'authorization':
+          'Bearer ' + await _localDatabaseService.getSecureAccess('access_id'),
+      'X-Refresh-Token':
+          await _localDatabaseService.getSecureAccess('refresh_id'),
+    };
+
+    final body = {
+      'km': kilometer.toString(),
+    };
+
+    // request
+    final _response = await http.post(
+        this.baseUrl + API_PATH_SERVICES_ALL + "?limit=$limit&offset=$offset",
+        headers: headers,
+        body: body);
+
+    //  response
+    if (_response.statusCode >= 200 && _response.statusCode < 300) {
+      TBBResponse response = TBBResponse.fromJson(json.decode(_response.body));
+      return response.data;
     } else {
       throw new TBBError.fromJson(json.decode(_response.body));
     }
