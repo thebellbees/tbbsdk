@@ -67,6 +67,15 @@ class TBBSdk {
     }
   }
 
+  // Debug API LOG
+  void _printHttpLog({http.Request request, body}) {
+    if (isDebug) {
+      _printToLog("${request.method.toUpperCase()} ${request.url.toString()}");
+      _printToLog(" Header : ${request.headers.toString()}");
+      _printToLog(" Body : $body");
+    }
+  }
+
   // Auth Token
   String _authToken;
   String get authToken => _authToken;
@@ -89,6 +98,8 @@ class TBBSdk {
       this.baseUrl + API_PATH_REGISTER_WITH_PHONE,
       body: body,
     );
+
+    _printHttpLog(request: _response.request, body: body);
 
     //  Response
     if (_response.statusCode >= 200 && _response.statusCode < 300) {
@@ -121,6 +132,8 @@ class TBBSdk {
       this.baseUrl + API_PATH_LOGIN_WITH_PHONE,
       body: body,
     );
+
+    _printHttpLog(request: _response.request, body: body);
 
     //  Response
     if (_response.statusCode >= 200 && _response.statusCode < 300) {
@@ -155,8 +168,10 @@ class TBBSdk {
     // request
     final _response = await http.post(
       this.baseUrl + API_PATH_OTP_VERIFY,
-      body: body.toString(),
+      body: body,
     );
+
+    _printHttpLog(request: _response.request, body: body);
 
     //  response
     if (_response.statusCode >= 200 && _response.statusCode < 300) {
@@ -182,6 +197,10 @@ class TBBSdk {
       headers: headers,
     );
 
+    _printHttpLog(
+      request: _response.request,
+    );
+
     //  response
     if (_response.statusCode >= 200 && _response.statusCode < 300) {
       TBBResponse response = TBBResponse.fromJson(json.decode(_response.body));
@@ -202,6 +221,10 @@ class TBBSdk {
     final _response = await http.post(
       this.baseUrl + API_PATH_REFRESH_TOKEN,
       headers: headers,
+    );
+
+    _printHttpLog(
+      request: _response.request,
     );
 
     //  response
@@ -254,6 +277,8 @@ class TBBSdk {
         headers: headers,
         body: body);
 
+    _printHttpLog(request: _response.request, body: body);
+
     //  response
     if (_response.statusCode >= 200 && _response.statusCode < 300) {
       TBBResponse response = TBBResponse.fromJson(json.decode(_response.body));
@@ -278,6 +303,8 @@ class TBBSdk {
         this.baseUrl + API_PATH_CONNECT_WITH_SOCIAL,
         headers: headers,
         body: body);
+
+    _printHttpLog(request: _response.request, body: body);
 
     //  response
     if (_response.statusCode >= 200 && _response.statusCode < 300) {
@@ -304,6 +331,8 @@ class TBBSdk {
         headers: headers,
         body: body);
 
+    _printHttpLog(request: _response.request, body: body);
+
     //  response
     if (_response.statusCode >= 200 && _response.statusCode < 300) {
       TBBResponse response = TBBResponse.fromJson(json.decode(_response.body));
@@ -328,6 +357,10 @@ class TBBSdk {
     final _response = await http.get(
       this.baseUrl + API_PATH_SERVICES_TYPES + "?limit=$limit&offset=$offset",
       headers: headers,
+    );
+
+    _printHttpLog(
+      request: _response.request,
     );
 
     //  response
@@ -357,6 +390,8 @@ class TBBSdk {
         this.baseUrl + API_PATH_SERVICES_ALL + "?limit=$limit&offset=$offset",
         headers: headers,
         body: body);
+
+    _printHttpLog(request: _response.request, body: body);
 
     //  response
     if (_response.statusCode >= 200 && _response.statusCode < 300) {
