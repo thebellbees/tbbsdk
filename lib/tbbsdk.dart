@@ -181,6 +181,9 @@ class TBBSdk {
       "newUser": newUser.toString()
     };
 
+    print(body);
+    _printToLog(body.toString());
+
     // request
     final _response = await http.post(
       this.baseUrl + API_PATH_OTP_VERIFY,
