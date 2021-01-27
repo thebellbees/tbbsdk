@@ -6,7 +6,7 @@ class TBBUser {
   String phone;
   bool enabled;
   String image;
-  List<Map<String, dynamic>> user_meta;
+  List<Map> user_meta;
 
   TBBUser(
       {this.id,

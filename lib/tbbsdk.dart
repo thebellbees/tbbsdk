@@ -198,7 +198,8 @@ class TBBSdk {
       var token = TBBAccessToken.fromJson(response.data);
 
       if (token != null) {
-        await _localDatabaseService.updateSecureAccess(token.toJson());
+        await _localDatabaseService.updateSecureAccess(
+            {"access_id": token.access_id, "refresh_id": token.refresh_id});
       }
 
       return token;
