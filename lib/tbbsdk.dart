@@ -122,7 +122,7 @@ class TBBSdk {
 
         return response;
       } catch (e) {
-        print("Catch Exception : ${e.toString()}");
+        print(e);
       }
     } else {
       throw new TBBError.fromJson(json.decode(_response.body));
