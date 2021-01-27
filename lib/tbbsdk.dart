@@ -76,11 +76,13 @@ class TBBSdk {
   }
 
   // Debug API LOG
-  void _printHttpLog({http.Request request, body}) {
+  void _printHttpLog({http.Response response, body}) {
     if (isDebug) {
-      _printToLog("${request.method.toUpperCase()} ${request.url.toString()}");
-      _printToLog(" Header : ${request.headers.toString()}");
+      _printToLog(
+          "${response.request.method.toUpperCase()} ${response.request.url.toString()}");
+      _printToLog(" Header : ${response.request.headers.toString()}");
       _printToLog(" Body : ${body.toString()}");
+      _printToLog(" Response : ${response.body}");
     }
   }
 
@@ -110,7 +112,7 @@ class TBBSdk {
       body: body,
     );
 
-    _printHttpLog(request: _response.request, body: body);
+    _printHttpLog(response: _response, body: body);
 
     //  Response
     if (_response.statusCode >= 200 && _response.statusCode < 300) {
@@ -119,9 +121,9 @@ class TBBSdk {
             TBBResponse.fromJson(json.decode(_response.body));
 
         // Setting Waiting for otp
-        if (response.data != null && response.data.phone != null) {
-          _localDatabaseService.putLocalState('otp_from', response.data.phone);
-        }
+        _localDatabaseService.putLocalState(
+            'otp_from', response.data.phone.toString());
+        if (response.data != null && response.data.phone != null) {}
 
         return response;
       } catch (e) {
@@ -146,7 +148,7 @@ class TBBSdk {
       body: body,
     );
 
-    _printHttpLog(request: _response.request, body: body);
+    _printHttpLog(response: _response, body: body);
 
     //  Response
     if (_response.statusCode >= 200 && _response.statusCode < 300) {
@@ -189,7 +191,7 @@ class TBBSdk {
       body: body,
     );
 
-    _printHttpLog(request: _response.request, body: body);
+    _printHttpLog(response: _response, body: body);
 
     //  response
     if (_response.statusCode >= 200 && _response.statusCode < 300) {
@@ -218,7 +220,7 @@ class TBBSdk {
     );
 
     _printHttpLog(
-      request: _response.request,
+      response: _response,
     );
 
     //  response
@@ -246,7 +248,7 @@ class TBBSdk {
     );
 
     _printHttpLog(
-      request: _response.request,
+      response: _response,
     );
 
     //  response
@@ -304,7 +306,7 @@ class TBBSdk {
         headers: headers,
         body: body);
 
-    _printHttpLog(request: _response.request, body: body);
+    _printHttpLog(response: _response, body: body);
 
     //  response
     if (_response.statusCode >= 200 && _response.statusCode < 300) {
@@ -333,7 +335,7 @@ class TBBSdk {
         headers: headers,
         body: body);
 
-    _printHttpLog(request: _response.request, body: body);
+    _printHttpLog(response: _response, body: body);
 
     //  response
     if (_response.statusCode >= 200 && _response.statusCode < 300) {
@@ -362,7 +364,7 @@ class TBBSdk {
         headers: headers,
         body: body);
 
-    _printHttpLog(request: _response.request, body: body);
+    _printHttpLog(response: _response, body: body);
 
     //  response
     if (_response.statusCode >= 200 && _response.statusCode < 300) {
@@ -393,7 +395,7 @@ class TBBSdk {
     );
 
     _printHttpLog(
-      request: _response.request,
+      response: _response,
     );
 
     //  response
@@ -426,7 +428,7 @@ class TBBSdk {
         headers: headers,
         body: body);
 
-    _printHttpLog(request: _response.request, body: body);
+    _printHttpLog(response: _response, body: body);
 
     //  response
     if (_response.statusCode >= 200 && _response.statusCode < 300) {
