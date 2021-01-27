@@ -164,7 +164,8 @@ class TBBSdk {
   }
 
   Future<TBBAccessToken> verifyAuthOtp(
-      String phone, int otp, bool newUser) async {
+      String phone, String otp, bool newUser) async {
+
     _printToLog("preparing Verify Auth OTP");
 
     final location = new Location();
