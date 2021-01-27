@@ -120,11 +120,6 @@ class TBBSdk {
         TBBResponse response =
             TBBResponse.fromJson(json.decode(_response.body));
 
-        // Setting Waiting for otp
-        _localDatabaseService.putLocalState(
-            'otp_from', response.data.phone.toString());
-        if (response.data != null && response.data.phone != null) {}
-
         return response;
       } catch (e) {
         print("Catch Exception : ${e.toString()}");
