@@ -173,7 +173,7 @@ class TBBSdk {
 
     // body data
     final body = {
-      'phone': phone,
+      'phone': phone.toString(),
       "otp": otp.toString(),
       "coordinates": {
         "latitude": coordinates.latitude.toString(),
