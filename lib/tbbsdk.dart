@@ -111,7 +111,7 @@ class TBBSdk {
       this.baseUrl + API_PATH_REGISTER_WITH_PHONE,
       body: body,
     );
-
+    print(_response.body);
     _printHttpLog(response: _response, body: body);
 
     //  Response
