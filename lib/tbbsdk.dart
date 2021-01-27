@@ -165,14 +165,13 @@ class TBBSdk {
 
   Future<TBBAccessToken> verifyAuthOtp(
       String phone, String otp, bool newUser) async {
-
     _printToLog("preparing Verify Auth OTP");
 
     final location = new Location();
     final coordinates = await location.getLocation();
 
     // body data
-    final body = {
+    final Map<String, dynamic> body = {
       'phone': phone.toString(),
       "otp": otp.toString(),
       "coordinates": {
