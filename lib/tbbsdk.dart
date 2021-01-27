@@ -109,7 +109,7 @@ class TBBSdk {
     // request
     final _response = await http.post(
       this.baseUrl + API_PATH_REGISTER_WITH_PHONE,
-      body: json.encode(body),
+      body: body,
     );
     print(_response.body);
     _printHttpLog(response: _response, body: body);
@@ -140,7 +140,7 @@ class TBBSdk {
     // request
     final _response = await http.post(
       this.baseUrl + API_PATH_LOGIN_WITH_PHONE,
-      body: json.encode(body),
+      body: body,
     );
 
     _printHttpLog(response: _response, body: body);
@@ -168,7 +168,7 @@ class TBBSdk {
     final coordinates = await location.getLocation();
 
     // body data
-    final Map<String, dynamic> body = {
+    final body = {
       'phone': phone.toString(),
       "otp": otp.toString(),
       "coordinates": {
@@ -183,7 +183,7 @@ class TBBSdk {
     // request
     final _response = await http.post(
       this.baseUrl + API_PATH_OTP_VERIFY,
-      body: json.encode(body),
+      body: body,
     );
 
     _printHttpLog(response: _response, body: body);
@@ -299,7 +299,7 @@ class TBBSdk {
     final _response = await http.post(
         this.baseUrl + API_PATH_CONNECT_WITH_SOCIAL,
         headers: headers,
-        body: json.encode(body));
+        body: body);
 
     _printHttpLog(response: _response, body: body);
 
@@ -328,7 +328,7 @@ class TBBSdk {
     final _response = await http.post(
         this.baseUrl + API_PATH_CONNECT_WITH_SOCIAL,
         headers: headers,
-        body: json.encode(body));
+        body: body);
 
     _printHttpLog(response: _response, body: body);
 
@@ -357,7 +357,7 @@ class TBBSdk {
     final _response = await http.post(
         this.baseUrl + API_PATH_CAN_AUTH_WITH + "/$socialPlatform",
         headers: headers,
-        body: json.encode(body));
+        body: body);
 
     _printHttpLog(response: _response, body: body);
 
@@ -421,7 +421,7 @@ class TBBSdk {
     final _response = await http.post(
         this.baseUrl + API_PATH_SERVICES_ALL + "?limit=$limit&offset=$offset",
         headers: headers,
-        body: json.encode(body));
+        body: body);
 
     _printHttpLog(response: _response, body: body);
 
