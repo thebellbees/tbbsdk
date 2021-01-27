@@ -171,10 +171,6 @@ class TBBSdk {
     final Map<String, dynamic> body = {
       'phone': phone.toString(),
       "otp": otp.toString(),
-      "coordinates": {
-        "latitude": coordinates.latitude.toString(),
-        "longitude": coordinates.longitude.toString()
-      },
       "newUser": newUser.toString()
     };
 
