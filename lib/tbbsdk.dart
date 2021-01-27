@@ -232,7 +232,7 @@ class TBBSdk {
     //  response
     if (_response.statusCode >= 200 && _response.statusCode < 300) {
       TBBResponse response = TBBResponse.fromJson(json.decode(_response.body));
-      return TBBUser.fromJson(json.decode(response.data));
+      return TBBUser.fromJson(response.data);
     } else {
       throw new TBBError.fromJson(json.decode(_response.body));
     }
@@ -317,7 +317,7 @@ class TBBSdk {
     //  response
     if (_response.statusCode >= 200 && _response.statusCode < 300) {
       TBBResponse response = TBBResponse.fromJson(json.decode(_response.body));
-      return TBBUser.fromJson(json.decode(response.data));
+      return TBBUser.fromJson(response.data);
     } else {
       throw new TBBError.fromJson(json.decode(_response.body));
     }
@@ -346,7 +346,7 @@ class TBBSdk {
     //  response
     if (_response.statusCode >= 200 && _response.statusCode < 300) {
       TBBResponse response = TBBResponse.fromJson(json.decode(_response.body));
-      return TBBUser.fromJson(json.decode(response.data));
+      return TBBUser.fromJson(response.data);
     } else {
       throw new TBBError.fromJson(json.decode(_response.body));
     }
