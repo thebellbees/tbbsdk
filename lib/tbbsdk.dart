@@ -150,9 +150,9 @@ class TBBSdk {
       TBBResponse response = TBBResponse.fromJson(json.decode(_response.body));
 
       // Setting Waiting for otp
-      if (response.data != null && response.data.phone != null) {
-        _localDatabaseService.putLocalState('otp_from', response.data.phone);
-      }
+      // if (response.data != null && response.data.phone != null) {
+      //   _localDatabaseService.putLocalState('otp_from', response.data.phone);
+      // }
 
       return response;
     } else {
