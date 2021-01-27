@@ -92,10 +92,13 @@ class TBBSdk {
   }
 
   Future<TBBResponse> logout(String phone) async {
+    _printToLog("user getting logged out");
     return await _localDatabaseService.flashSecureLocalState();
   }
 
   Future<TBBResponse> registerWithPhone(String phone) async {
+    _printToLog("preparing Register With Phone");
+
     // body data
     final body = {
       'phone': phone,
@@ -130,6 +133,8 @@ class TBBSdk {
   }
 
   Future<TBBResponse> authWithOtp(String phone) async {
+    _printToLog("preparing Auth With OTP");
+
     // body data
     final body = {
       'phone': phone,
@@ -160,6 +165,8 @@ class TBBSdk {
 
   Future<TBBAccessToken> verifyAuthOtp(
       String phone, int otp, bool newUser) async {
+    _printToLog("preparing Verify Auth OTP");
+
     final location = new Location();
     final coordinates = await location.getLocation();
 
@@ -192,6 +199,8 @@ class TBBSdk {
   }
 
   Future<TBBUser> getUserInfo() async {
+    _printToLog("preparing Get User Info");
+
     // body data
     final headers = {
       'authorization':
@@ -220,6 +229,8 @@ class TBBSdk {
   }
 
   Future refreshAccessToken() async {
+    _printToLog("preparing Refreshing Access Token");
+
     // body data
     final headers = {
       'X-Refresh-Token':
@@ -246,6 +257,8 @@ class TBBSdk {
   }
 
   Future<TBBLocalState> loadLocalState() async {
+    _printToLog("loading Local State");
+
     String accessId = await _localDatabaseService.getSecureAccess("access_id");
     String refreshId =
         await _localDatabaseService.getSecureAccess("refresh_id");
@@ -269,6 +282,8 @@ class TBBSdk {
 
   Future<TBBUser> socialConnect(
       {String socialPlatform, String username}) async {
+    _printToLog("preparing Social Connect");
+
     // body data
     final headers = {
       'authorization':
@@ -299,6 +314,8 @@ class TBBSdk {
   }
 
   Future<TBBUser> userUpdate({TBBUser user}) async {
+    _printToLog("preparing user update");
+
     // body data
     final headers = {
       'authorization':
@@ -326,6 +343,8 @@ class TBBSdk {
   }
 
   Future canAuthWith({String socialPlatform, String username}) async {
+    _printToLog("preparing can auth with");
+
     // body data
     final headers = {
       'authorization':
@@ -355,6 +374,8 @@ class TBBSdk {
   // SERVICES FUNCTIONS
 
   Future getServiceTypes({int limit, int offset}) async {
+    _printToLog("preparing get service types");
+
     // body data
     final headers = {
       'authorization':
@@ -383,6 +404,8 @@ class TBBSdk {
   }
 
   Future availableService({int kilometer, int limit, int offset}) async {
+    _printToLog("preparing getting list of available service");
+
     // body data
     final headers = {
       'authorization':
