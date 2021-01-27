@@ -16,10 +16,10 @@ class TBBLocalDatabaseService {
 
   Future<dynamic> deleteSecureAccess(int code) async {
     if (code >= 1) {
-      await secureStorage.delete(key: 'access_id');
+      await secureStorage.delete(key: 'tbb_localstate.access_id');
     }
     if (code == 0) {
-      await secureStorage.delete(key: 'refresh_id');
+      await secureStorage.delete(key: 'tbb_localstate.refresh_id');
     }
   }
 
