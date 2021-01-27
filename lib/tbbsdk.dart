@@ -109,7 +109,7 @@ class TBBSdk {
     // request
     final _response = await http.post(
       this.baseUrl + API_PATH_REGISTER_WITH_PHONE,
-      body: body,
+      body: json.encode(body),
     );
     print(_response.body);
     _printHttpLog(response: _response, body: body);
@@ -140,7 +140,7 @@ class TBBSdk {
     // request
     final _response = await http.post(
       this.baseUrl + API_PATH_LOGIN_WITH_PHONE,
-      body: body,
+      body: json.encode(body),
     );
 
     _printHttpLog(response: _response, body: body);
@@ -171,6 +171,10 @@ class TBBSdk {
     final Map<String, dynamic> body = {
       'phone': phone.toString(),
       "otp": otp.toString(),
+      "coordinates": {
+        "latitude": coordinates.latitude.toString(),
+        "longitude": coordinates.longitude.toString()
+      },
       "newUser": newUser.toString()
     };
 
@@ -179,7 +183,7 @@ class TBBSdk {
     // request
     final _response = await http.post(
       this.baseUrl + API_PATH_OTP_VERIFY,
-      body: body,
+      body: json.encode(body),
     );
 
     _printHttpLog(response: _response, body: body);
@@ -295,7 +299,7 @@ class TBBSdk {
     final _response = await http.post(
         this.baseUrl + API_PATH_CONNECT_WITH_SOCIAL,
         headers: headers,
-        body: body);
+        body: json.encode(body));
 
     _printHttpLog(response: _response, body: body);
 
@@ -324,7 +328,7 @@ class TBBSdk {
     final _response = await http.post(
         this.baseUrl + API_PATH_CONNECT_WITH_SOCIAL,
         headers: headers,
-        body: body);
+        body: json.encode(body));
 
     _printHttpLog(response: _response, body: body);
 
@@ -353,7 +357,7 @@ class TBBSdk {
     final _response = await http.post(
         this.baseUrl + API_PATH_CAN_AUTH_WITH + "/$socialPlatform",
         headers: headers,
-        body: body);
+        body: json.encode(body));
 
     _printHttpLog(response: _response, body: body);
 
@@ -417,7 +421,7 @@ class TBBSdk {
     final _response = await http.post(
         this.baseUrl + API_PATH_SERVICES_ALL + "?limit=$limit&offset=$offset",
         headers: headers,
-        body: body);
+        body: json.encode(body));
 
     _printHttpLog(response: _response, body: body);
 
