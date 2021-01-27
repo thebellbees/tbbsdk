@@ -32,7 +32,7 @@ class TBBLocalDatabaseService {
   }
 
   Future<String> getSecureAccess(String key) async {
-    String token = await secureStorage.read(key: key);
+    String token = await secureStorage.read(key: 'tbb_localstate.${key}');
     if (token == null) {
       token = '0';
     }
