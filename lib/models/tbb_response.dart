@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 class TBBResponse {
   String type;
   String resource;
@@ -17,7 +15,7 @@ class TBBResponse {
     type = json['type'];
     resource = json['resource'];
     message = json['message'];
-    data = json['data'] is String ? jsonDecode(json['data']) : json['data'];
+    data = json['data'];
   }
 
   Map<String, dynamic> toJson() {
