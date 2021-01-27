@@ -80,7 +80,7 @@ class TBBSdk {
     if (isDebug) {
       _printToLog("${request.method.toUpperCase()} ${request.url.toString()}");
       _printToLog(" Header : ${request.headers.toString()}");
-      _printToLog(" Body : $body");
+      _printToLog(" Body : ${body.toString()}");
     }
   }
 
@@ -180,9 +180,6 @@ class TBBSdk {
       },
       "newUser": newUser.toString()
     };
-
-    print(body);
-    _printToLog(body.toString());
 
     // request
     final _response = await http.post(
