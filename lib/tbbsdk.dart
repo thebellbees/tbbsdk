@@ -189,10 +189,10 @@ class TBBSdk {
     //  response
     if (_response.statusCode >= 200 && _response.statusCode < 300) {
       TBBResponse response = TBBResponse.fromJson(json.decode(_response.body));
-
+      print(response.toJson());
       // Setting Waiting for otp
       if (response.data != null && response.data.phone != null) {
-        _localDatabaseService.putLocalState('otp_from', response.data.phone);
+        _localDatabaseService.putLocalState('otp_from', '0');
       }
 
       return TBBAccessToken.fromJson(json.decode(response.data));
