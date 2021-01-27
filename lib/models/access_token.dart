@@ -1,6 +1,5 @@
-
-
 import 'package:tbbsdk/models/user.dart';
+import 'package:tbbsdk/tbbsdk.dart';
 
 class TBBAccessToken {
   String access_id;
@@ -25,7 +24,7 @@ class TBBAccessToken {
     authorize_type = json['authorize_type'];
     refresh_id = json['refresh_id'];
     user_id = json['user_id'];
-    user = json['user'];
+    user = TBBUser.fromJson(json['user']) ?? null;
   }
 
   Map<String, dynamic> toJson() {
