@@ -171,11 +171,9 @@ class TBBSdk {
     final body = {
       'phone': phone.toString(),
       "otp": otp.toString(),
-      // "coordinates": {
-      //   "latitude": coordinates.latitude.toString(),
-      //   "longitude": coordinates.longitude.toString()
-      // },
-      "newUser": newUser.toString()
+      "newUser": newUser.toString(),
+      "latitude": coordinates.latitude.toString(),
+      "longitude": coordinates.longitude.toString(),
     };
 
     _printToLog(body.toString());
