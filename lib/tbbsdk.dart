@@ -195,7 +195,7 @@ class TBBSdk {
         _localDatabaseService.putLocalState('otp_from', '0');
       }
 
-      var token = TBBAccessToken.fromJson(json.decode(response.data));
+      var token = TBBAccessToken.fromJson(response.data);
 
       if (token != null) {
         await _localDatabaseService.updateSecureAccess(token.toJson());
