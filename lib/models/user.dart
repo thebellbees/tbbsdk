@@ -1,4 +1,4 @@
-class User {
+class TBBUser {
   String id;
   String firstname;
   String lastname;
@@ -8,7 +8,7 @@ class User {
   String image;
   List<Map<String, dynamic>> user_meta;
 
-  User(
+  TBBUser(
       {this.id,
       this.firstname,
       this.lastname,
@@ -18,7 +18,7 @@ class User {
       this.image,
       this.user_meta});
 
-  User.fromJson(Map<String, dynamic> json) {
+  TBBUser.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     firstname = json['firstname'];
     lastname = json['lastname'];

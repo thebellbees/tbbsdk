@@ -2,15 +2,15 @@
 
 import 'package:tbbsdk/models/user.dart';
 
-class AccessToken {
+class TBBAccessToken {
   String access_id;
   String expires;
   String authorize_type;
   String refresh_id;
   String user_id;
-  User user;
+  TBBUser user;
 
-  AccessToken({
+  TBBAccessToken({
     this.access_id,
     this.expires,
     this.authorize_type,
@@ -19,7 +19,7 @@ class AccessToken {
     this.user,
   });
 
-  AccessToken.fromJson(Map<String, dynamic> json) {
+  TBBAccessToken.fromJson(Map<String, dynamic> json) {
     access_id = json['access_id'];
     expires = json['expires'];
     authorize_type = json['authorize_type'];

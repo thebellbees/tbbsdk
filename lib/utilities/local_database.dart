@@ -1,6 +1,6 @@
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
-class LocalDatabaseService {
+class TBBLocalDatabaseService {
   final secureStorage = new FlutterSecureStorage();
 
   Future<dynamic> updateSecureAccess(Map<String, String> tokens) async {

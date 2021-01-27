@@ -13,6 +13,14 @@ import 'package:tbbsdk/models/user.dart';
 import 'package:tbbsdk/tbb_error.dart';
 import 'package:tbbsdk/utilities/local_database.dart';
 
+// exports
+
+export './constants/constants.dart';
+export './models/access_token.dart' show TBBAccessToken;
+export './models/system_state.dart' show TBBLocalState;
+export './models/tbb_response.dart' show TBBResponse;
+export './models/user.dart' show TBBUser;
+
 /// A Calculator.
 class TBBSdk {
   /// Parameter, [baseUrl] is the base url of your site. For example, http://example.com or https://example.com.
@@ -34,10 +42,10 @@ class TBBSdk {
   /// Useful if you are debuging or in development.
   bool isDebug;
 
-  LocalDatabaseService _localDatabaseService = new LocalDatabaseService();
+  TBBLocalDatabaseService _localDatabaseService = new TBBLocalDatabaseService();
 
-  LocalState _localState;
-  LocalState get localState => _localState;
+  TBBLocalState _localState;
+  TBBLocalState get localState => _localState;
 
   // Constructor
   TBBSdk({
@@ -150,7 +158,8 @@ class TBBSdk {
     }
   }
 
-  Future<AccessToken> verifyAuthOtp(String phone, int otp, bool newUser) async {
+  Future<TBBAccessToken> verifyAuthOtp(
+      String phone, int otp, bool newUser) async {
     final location = new Location();
     final coordinates = await location.getLocation();
 
@@ -176,13 +185,13 @@ class TBBSdk {
     //  response
     if (_response.statusCode >= 200 && _response.statusCode < 300) {
       TBBResponse response = TBBResponse.fromJson(json.decode(_response.body));
-      return AccessToken.fromJson(json.decode(response.data));
+      return TBBAccessToken.fromJson(json.decode(response.data));
     } else {
       throw new TBBError.fromJson(json.decode(_response.body));
     }
   }
 
-  Future<User> getUserInfo() async {
+  Future<TBBUser> getUserInfo() async {
     // body data
     final headers = {
       'authorization':
@@ -204,7 +213,7 @@ class TBBSdk {
     //  response
     if (_response.statusCode >= 200 && _response.statusCode < 300) {
       TBBResponse response = TBBResponse.fromJson(json.decode(_response.body));
-      return User.fromJson(json.decode(response.data));
+      return TBBUser.fromJson(json.decode(response.data));
     } else {
       throw new TBBError.fromJson(json.decode(_response.body));
     }
@@ -236,11 +245,11 @@ class TBBSdk {
     }
   }
 
-  Future<LocalState> loadLocalState() async {
+  Future<TBBLocalState> loadLocalState() async {
     String accessId = await _localDatabaseService.getSecureAccess("access_id");
     String refreshId =
         await _localDatabaseService.getSecureAccess("refresh_id");
-    User user;
+    TBBUser user;
 
     try {
       user = await this.getUserInfo();
@@ -252,13 +261,14 @@ class TBBSdk {
       }
     }
 
-    _localState =
-        new LocalState(access_id: accessId, refresh_id: refreshId, user: user);
+    _localState = new TBBLocalState(
+        access_id: accessId, refresh_id: refreshId, user: user);
 
     return this.localState;
   }
 
-  Future<User> socialConnect({String socialPlatform, String username}) async {
+  Future<TBBUser> socialConnect(
+      {String socialPlatform, String username}) async {
     // body data
     final headers = {
       'authorization':
@@ -282,13 +292,13 @@ class TBBSdk {
     //  response
     if (_response.statusCode >= 200 && _response.statusCode < 300) {
       TBBResponse response = TBBResponse.fromJson(json.decode(_response.body));
-      return User.fromJson(json.decode(response.data));
+      return TBBUser.fromJson(json.decode(response.data));
     } else {
       throw new TBBError.fromJson(json.decode(_response.body));
     }
   }
 
-  Future<User> userUpdate({User user}) async {
+  Future<TBBUser> userUpdate({TBBUser user}) async {
     // body data
     final headers = {
       'authorization':
@@ -309,7 +319,7 @@ class TBBSdk {
     //  response
     if (_response.statusCode >= 200 && _response.statusCode < 300) {
       TBBResponse response = TBBResponse.fromJson(json.decode(_response.body));
-      return User.fromJson(json.decode(response.data));
+      return TBBUser.fromJson(json.decode(response.data));
     } else {
       throw new TBBError.fromJson(json.decode(_response.body));
     }
