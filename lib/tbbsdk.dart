@@ -7,6 +7,7 @@ import 'package:flutter/widgets.dart';
 import 'package:location/location.dart';
 import 'package:tbbsdk/constants/constants.dart';
 import 'package:tbbsdk/models/access_token.dart';
+import 'package:tbbsdk/models/helper_class.dart';
 import 'package:tbbsdk/models/system_state.dart';
 import 'package:tbbsdk/models/tbb_response.dart';
 import 'package:tbbsdk/models/user.dart';
@@ -20,6 +21,7 @@ export './models/access_token.dart' show TBBAccessToken;
 export './models/system_state.dart' show TBBLocalState;
 export './models/tbb_response.dart' show TBBResponse;
 export './models/user.dart' show TBBUser;
+export './models/helper_class.dart';
 
 /// A Calculator.
 class TBBSdk {
