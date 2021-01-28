@@ -21,7 +21,6 @@ export './models/access_token.dart' show TBBAccessToken;
 export './models/system_state.dart' show TBBLocalState;
 export './models/tbb_response.dart' show TBBResponse;
 export './models/user.dart' show TBBUser;
-export './models/helper_class.dart';
 
 /// A Calculator.
 class TBBSdk {
