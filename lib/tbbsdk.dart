@@ -323,23 +323,20 @@ class TBBSdk {
     }
   }
 
-  Future<TBBUser> userUpdate({TBBUser user}) async {
+  Future<TBBUser> userUpdate({TBBUserUpdate userData}) async {
     _printToLog("preparing user update");
 
     // body data
     final headers = {
       'authorization':
           'Bearer ' + await _localDatabaseService.getSecureAccess('access_id'),
-      'username': await _localDatabaseService.getSecureAccess('refresh_id'),
     };
 
-    final body = user.toJson();
+    final body = userData.toJson();
 
     // request
-    final _response = await http.post(
-        this.baseUrl + API_PATH_CONNECT_WITH_SOCIAL,
-        headers: headers,
-        body: body);
+    final _response = await http.post(this.baseUrl + API_PATH_INFO_UPDATE,
+        headers: headers, body: body);
 
     _printHttpLog(response: _response, body: body);
 
