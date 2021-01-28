@@ -100,39 +100,8 @@ class TBBSdk {
     return await _localDatabaseService.flashSecureLocalState();
   }
 
-  Future<TBBResponse> registerWithPhone(String phone) async {
-    _printToLog("preparing Register With Phone");
-
-    // body data
-    final body = {
-      'phone': phone,
-    };
-
-    // request
-    final _response = await http.post(
-      this.baseUrl + API_PATH_REGISTER_WITH_PHONE,
-      body: body,
-    );
-    print(_response.body);
-    _printHttpLog(response: _response, body: body);
-
-    //  Response
-    if (_response.statusCode >= 200 && _response.statusCode < 300) {
-      try {
-        TBBResponse response =
-            TBBResponse.fromJson(json.decode(_response.body));
-
-        return response;
-      } catch (e) {
-        print(e);
-      }
-    } else {
-      throw new TBBError.fromJson(json.decode(_response.body));
-    }
-  }
-
-  Future<TBBResponse> authWithOtp(String phone) async {
-    _printToLog("preparing Auth With OTP");
+  Future<TBBResponse> authWithPhone(String phone) async {
+    _printToLog("preparing Auth With Phone");
 
     // body data
     final body = {
@@ -149,14 +118,14 @@ class TBBSdk {
 
     //  Response
     if (_response.statusCode >= 200 && _response.statusCode < 300) {
-      TBBResponse response = TBBResponse.fromJson(json.decode(_response.body));
+      try {
+        TBBResponse response =
+            TBBResponse.fromJson(json.decode(_response.body));
 
-      // Setting Waiting for otp
-      if (response.data != null && response.data["phone"] != null) {
-        _localDatabaseService.putLocalState('otp_from', response.data["phone"]);
+        return response;
+      } catch (e) {
+        print(e);
       }
-
-      return response;
     } else {
       throw new TBBError.fromJson(json.decode(_response.body));
     }

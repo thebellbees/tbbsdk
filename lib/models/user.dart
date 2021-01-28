@@ -54,5 +54,3 @@ class TBBUser {
   @override
   toString() => this.toJson().toString();
 }
-
-
