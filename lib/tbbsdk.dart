@@ -337,7 +337,7 @@ class TBBSdk {
     final body = {
       'firstname': userData.firstname.toString(),
       'lastname': userData.lastname.toString(),
-      'email': userData.lastname.toString(),
+      'email': userData.email.toString(),
     };
 
     // request
