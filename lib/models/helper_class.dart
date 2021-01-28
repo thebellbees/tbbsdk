@@ -1,7 +1,7 @@
 class TBBUserUpdate {
-  String firstname;
-  String lastname;
-  String email;
+  String firstname = "";
+  String lastname = "";
+  String email = "";
 
   TBBUserUpdate({this.firstname, this.lastname, this.email});
 
