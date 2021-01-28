@@ -3,6 +3,8 @@ class TBBUserUpdate {
   String lastname;
   String email;
 
+  TBBUserUpdate({this.firstname, this.lastname, this.email});
+
   TBBUserUpdate.fromJson(Map<String, dynamic> json) {
     firstname = json['firstname'];
     lastname = json['lastname'];
