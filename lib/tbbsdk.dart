@@ -334,7 +334,11 @@ class TBBSdk {
           'Bearer ' + await _localDatabaseService.getSecureAccess('access_id'),
     };
 
-    final body = userData.toJson();
+    final body = {
+      'firstname': userData.firstname.toString(),
+      'lastname': userData.lastname.toString(),
+      'email': userData.lastname.toString(),
+    };
 
     // request
     final _response = await http.post(this.baseUrl + API_PATH_INFO_UPDATE,
