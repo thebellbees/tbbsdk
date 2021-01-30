@@ -9,13 +9,13 @@ class TBBUser {
   List user_meta;
 
   TBBUser(
-      {this.id,
-      this.firstname,
-      this.lastname,
-      this.email,
-      this.phone,
-      this.enabled,
-      this.image,
+      {this.id = "",
+      this.firstname = "",
+      this.lastname = "",
+      this.email = "",
+      this.phone = "",
+      this.enabled = false,
+      this.image = "",
       this.user_meta});
 
   TBBUser.fromJson(Map<String, dynamic> json) {
