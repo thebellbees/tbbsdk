@@ -54,15 +54,15 @@ class TBBSdk {
 
   // Constructor
   TBBSdk({
-    @required String appUrl,
-    @required String serverUrl,
+    @required String appServer,
+    @required String authServer,
     @required String consumerKey,
     @required String consumerSecret,
     String apiPath = DEFAULT_API_PATH,
     bool isDebug = false,
   }) {
-    this.appServer = appUrl;
-    this.authServer = serverUrl;
+    this.appServer = appServer;
+    this.authServer = authServer;
     this.consumerKey = consumerKey;
     this.consumerSecret = consumerSecret;
     this.apiPath = apiPath;
