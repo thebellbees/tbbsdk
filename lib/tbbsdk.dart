@@ -353,6 +353,41 @@ class TBBSdk {
     }
   }
 
+  Future<TBBResponse> authWithSocial({String idToken}) async {
+    _printToLog("preparing can auth with");
+
+    final location = new Location();
+    final coordinates = await location.getLocation();
+
+    // body data
+    final body = {
+      "idToken": idToken.toString(),
+      "latitude": coordinates.latitude.toString(),
+      "longitude": coordinates.longitude.toString(),
+    };
+
+    // body data
+    final headers = {
+      'authorization':
+          'Bearer ' + await _localDatabaseService.getSecureAccess('access_id'),
+      'username': await _localDatabaseService.getSecureAccess('refresh_id'),
+    };
+
+    // request
+    final _response = await http.post(this.baseUrl + API_PATH_AUTH_WITH_SOCIAL,
+        headers: headers, body: body);
+
+    _printHttpLog(response: _response, body: body);
+
+    //  response
+    if (_response.statusCode >= 200 && _response.statusCode < 300) {
+      TBBResponse response = TBBResponse.fromJson(json.decode(_response.body));
+      return response.data;
+    } else {
+      throw new TBBError.fromJson(json.decode(_response.body));
+    }
+  }
+
   // SERVICES FUNCTIONS
 
   Future getServiceTypes({int limit, int offset}) async {
