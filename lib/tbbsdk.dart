@@ -324,7 +324,8 @@ class TBBSdk {
     }
   }
 
-  Future<TBBResponse> authWithSocial({String platform, String username}) async {
+  Future<TBBAccessToken> authWithSocial(
+      {String platform, String username}) async {
     _printToLog("preparing can auth with");
 
     final location = new Location();
@@ -354,7 +355,15 @@ class TBBSdk {
     //  response
     if (_response.statusCode >= 200 && _response.statusCode < 300) {
       TBBResponse response = TBBResponse.fromJson(json.decode(_response.body));
-      return response;
+
+      var token = TBBAccessToken.fromJson(response.data);
+
+      if (token != null) {
+        await _localDatabaseService.updateSecureAccess(
+            {"access_id": token.access_id, "refresh_id": token.refresh_id});
+      }
+
+      return token;
     } else {
       throw new TBBError.fromJson(json.decode(_response.body));
     }
