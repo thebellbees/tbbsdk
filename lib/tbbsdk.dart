@@ -324,36 +324,7 @@ class TBBSdk {
     }
   }
 
-  Future canAuthWith({String socialPlatform, String username}) async {
-    _printToLog("preparing can auth with");
-
-    // body data
-    final headers = {
-      'authorization':
-          'Bearer ' + await _localDatabaseService.getSecureAccess('access_id'),
-      'username': await _localDatabaseService.getSecureAccess('refresh_id'),
-    };
-
-    final body = {"username": username};
-
-    // request
-    final _response = await http.post(
-        this.baseUrl + API_PATH_CAN_AUTH_WITH + "/$socialPlatform",
-        headers: headers,
-        body: body);
-
-    _printHttpLog(response: _response, body: body);
-
-    //  response
-    if (_response.statusCode >= 200 && _response.statusCode < 300) {
-      TBBResponse response = TBBResponse.fromJson(json.decode(_response.body));
-      return response.data;
-    } else {
-      throw new TBBError.fromJson(json.decode(_response.body));
-    }
-  }
-
-  Future<TBBResponse> authWithSocial({String idToken}) async {
+  Future<TBBResponse> authWithSocial({String platform, String username}) async {
     _printToLog("preparing can auth with");
 
     final location = new Location();
@@ -361,7 +332,8 @@ class TBBSdk {
 
     // body data
     final body = {
-      "idToken": idToken.toString(),
+      "platform": platform.toString(),
+      "username": username.toString(),
       "latitude": coordinates.latitude.toString(),
       "longitude": coordinates.longitude.toString(),
     };
