@@ -25,8 +25,11 @@ export './models/helper_class.dart';
 
 /// A Calculator.
 class TBBSdk {
-  /// Parameter, [baseUrl] is the base url of your site. For example, http://example.com or https://example.com.
-  String baseUrl;
+  /// Parameter, [appServer] is the base url of your site. For example, http://example.com or https://example.com.
+  String appServer;
+
+  /// Parameter, [authServer] is the base url of your site. For example, http://example.com or https://example.com.
+  String authServer;
 
   /// Parameter [consumerKey] is the consumer key provided by WooCommerce, e.g. `ck_12abc34n56j`.
   String consumerKey;
@@ -51,19 +54,22 @@ class TBBSdk {
 
   // Constructor
   TBBSdk({
-    @required String baseUrl,
+    @required String appUrl,
+    @required String serverUrl,
     @required String consumerKey,
     @required String consumerSecret,
     String apiPath = DEFAULT_API_PATH,
     bool isDebug = false,
   }) {
-    this.baseUrl = baseUrl;
+    this.appServer = appUrl;
+    this.authServer = serverUrl;
     this.consumerKey = consumerKey;
     this.consumerSecret = consumerSecret;
     this.apiPath = apiPath;
     this.isDebug = isDebug;
 
-    if (this.baseUrl.startsWith("https")) {
+    if (this.appServer.startsWith("https") &&
+        this.authServer.startsWith("https")) {
       this.isHttps = true;
     } else {
       this.isHttps = false;
@@ -110,7 +116,7 @@ class TBBSdk {
 
     // request
     final _response = await http.post(
-      this.baseUrl + API_PATH_LOGIN_WITH_PHONE,
+      this.authServer + API_PATH_LOGIN_WITH_PHONE,
       body: body,
     );
 
@@ -151,7 +157,7 @@ class TBBSdk {
 
     // request
     final _response = await http.post(
-      this.baseUrl + API_PATH_OTP_VERIFY,
+      this.authServer + API_PATH_OTP_VERIFY,
       body: body,
     );
 
@@ -192,7 +198,7 @@ class TBBSdk {
 
     // request
     final _response = await http.get(
-      this.baseUrl + API_PATH_GET_INFO,
+      this.authServer + API_PATH_GET_INFO,
       headers: headers,
     );
 
@@ -220,7 +226,7 @@ class TBBSdk {
 
     // request
     final _response = await http.post(
-      this.baseUrl + API_PATH_REFRESH_TOKEN,
+      this.authServer + API_PATH_REFRESH_TOKEN,
       headers: headers,
     );
 
@@ -279,7 +285,7 @@ class TBBSdk {
 
     // request
     final _response = await http.post(
-        this.baseUrl + API_PATH_CONNECT_WITH_SOCIAL,
+        this.authServer + API_PATH_CONNECT_WITH_SOCIAL,
         headers: headers,
         body: body);
 
@@ -310,7 +316,7 @@ class TBBSdk {
     };
 
     // request
-    final _response = await http.post(this.baseUrl + API_PATH_INFO_UPDATE,
+    final _response = await http.post(this.authServer + API_PATH_INFO_UPDATE,
         headers: headers, body: body);
 
     _printHttpLog(response: _response, body: body);
@@ -347,8 +353,10 @@ class TBBSdk {
     };
 
     // request
-    final _response = await http.post(this.baseUrl + API_PATH_AUTH_WITH_SOCIAL,
-        headers: headers, body: body);
+    final _response = await http.post(
+        this.authServer + API_PATH_AUTH_WITH_SOCIAL,
+        headers: headers,
+        body: body);
 
     _printHttpLog(response: _response, body: body);
 
@@ -384,7 +392,7 @@ class TBBSdk {
 
     // request
     final _response = await http.get(
-      this.baseUrl + API_PATH_SERVICES_TYPES + "?limit=$limit&offset=$offset",
+      this.appServer + API_PATH_SERVICES_TYPES + "?limit=$limit&offset=$offset",
       headers: headers,
     );
 
@@ -418,7 +426,7 @@ class TBBSdk {
 
     // request
     final _response = await http.post(
-        this.baseUrl + API_PATH_SERVICES_ALL + "?limit=$limit&offset=$offset",
+        this.appServer + API_PATH_SERVICES_ALL + "?limit=$limit&offset=$offset",
         headers: headers,
         body: body);
 
