@@ -379,7 +379,8 @@ class TBBSdk {
 
   // SERVICES FUNCTIONS
 
-  Future<List<TBBServiceTerm>> getServiceTypes({int limit, int offset}) async {
+  Future<List<TBBServiceTerm>> getServiceTypes(String type,
+      {int limit, int offset}) async {
     _printToLog("preparing get service types");
 
     // body data
@@ -392,7 +393,9 @@ class TBBSdk {
 
     // request
     final _response = await http.get(
-      this.appServer + API_PATH_SERVICES_TYPES + "?limit=$limit&offset=$offset",
+      this.appServer +
+          API_PATH_SERVICES_TYPES +
+          "/$type?limit=$limit&offset=$offset",
       headers: headers,
     );
 

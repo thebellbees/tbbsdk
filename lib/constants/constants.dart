@@ -11,5 +11,5 @@ const API_PATH_CONNECT_WITH_SOCIAL = "/users/social_connect";
 const API_PATH_AUTH_WITH_SOCIAL = "/auth/login_with_social";
 
 // App Server Endpoints
-const API_PATH_SERVICES_TYPES = "/services/types";
+const API_PATH_SERVICES_TYPES = "/services/groups";
 const API_PATH_SERVICES_ALL = "/services/all";
