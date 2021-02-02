@@ -41,8 +41,9 @@ class TBBStore {
     email = json['email'];
     address = json['address'];
     enabled = json['enabled'];
-    customer =
-        json['customer'] != null ? TBBCustomer.fromJson(json['customer']) : null;
+    customer = json['customer'] != null
+        ? TBBCustomer.fromJson(json['customer'])
+        : null;
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
     deletedAt = json['deleted_at'];

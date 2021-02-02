@@ -2,8 +2,8 @@ library tbbsdk;
 
 import 'dart:convert';
 
-import 'package:http/http.dart' as http;
 import 'package:flutter/widgets.dart';
+import 'package:http/http.dart' as http;
 import 'package:location/location.dart';
 import 'package:tbbsdk/constants/constants.dart';
 import 'package:tbbsdk/models/access_token.dart';
@@ -20,10 +20,10 @@ import 'package:tbbsdk/utilities/local_database.dart';
 
 export './constants/constants.dart';
 export './models/access_token.dart' show TBBAccessToken;
+export './models/helper_class.dart';
 export './models/system_state.dart' show TBBLocalState;
 export './models/tbb_response.dart' show TBBResponse;
 export './models/user.dart' show TBBUser;
-export './models/helper_class.dart';
 
 /// A Calculator.
 class TBBSdk {
@@ -52,6 +52,7 @@ class TBBSdk {
   TBBLocalDatabaseService _localDatabaseService = new TBBLocalDatabaseService();
 
   TBBLocalState _localState;
+
   TBBLocalState get localState => _localState;
 
   // Constructor
@@ -98,6 +99,7 @@ class TBBSdk {
 
   // Auth Token
   String _authToken;
+
   String get authToken => _authToken;
 
   Future<TBBResponse> logout(String phone) async {
@@ -105,12 +107,18 @@ class TBBSdk {
     return await _localDatabaseService.flashSecureLocalState();
   }
 
-  Future<TBBResponse> generateOtp(String phone) async {
+  Future<TBBResponse> generateOtp(String phone,
+      {bool retryVoice, bool retryText}) async {
     _printToLog("preparing Auth With Phone");
 
     // body data
     final body = {
       'phone': phone,
+      'retry': retryVoice
+          ? "voice"
+          : retryText
+              ? "text"
+              : null,
     };
 
     // request
@@ -148,7 +156,7 @@ class TBBSdk {
     final body = {
       'phone': phone.toString(),
       "otp": otp.toString(),
-      "newUser": newUser.toString(),
+      "new_user": newUser.toString(),
       "latitude": coordinates.latitude.toString(),
       "longitude": coordinates.longitude.toString(),
     };
@@ -185,7 +193,8 @@ class TBBSdk {
     }
   }
 
-  Future<TBBUser> verifyAndUpdatePhone(String phone, String otp) async {
+  Future<TBBUser> verifyAndUpdatePhone(
+      String newPhone, String otp, String newPhoneOtp) async {
     _printToLog("preparing Verify And Update Phone");
 
     // headers data
@@ -198,8 +207,9 @@ class TBBSdk {
 
     // body data
     final body = {
-      'phone': phone.toString(),
+      'new_phone': newPhone.toString(),
       'otp': otp.toString(),
+      'new_phone_otp': newPhoneOtp.toString(),
     };
 
     // request
@@ -342,8 +352,8 @@ class TBBSdk {
 
     // body data
     final body = {
-      'firstname': userData.firstName.toString(),
-      'lastname': userData.lastName.toString(),
+      'first_name': userData.firstName.toString(),
+      'last_name': userData.lastName.toString(),
       'email': userData.email.toString(),
     };
 
