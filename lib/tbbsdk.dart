@@ -9,7 +9,7 @@ import 'package:tbbsdk/constants/constants.dart';
 import 'package:tbbsdk/models/access_token.dart';
 import 'package:tbbsdk/models/helper_class.dart';
 import 'package:tbbsdk/models/services/service_item.dart';
-import 'package:tbbsdk/models/services/service_term.dart';
+import 'package:tbbsdk/models/services/service_taxonomy.dart';
 import 'package:tbbsdk/models/system_state.dart';
 import 'package:tbbsdk/models/tbb_response.dart';
 import 'package:tbbsdk/models/user.dart';
@@ -379,7 +379,7 @@ class TBBSdk {
 
   // SERVICES FUNCTIONS
 
-  Future<List<TBBServiceTerm>> getServiceTypes(String type,
+  Future<TBBServiceTaxonomy> getServiceTypes(String type,
       {int limit, int offset}) async {
     _printToLog("preparing get service types");
 
@@ -407,10 +407,9 @@ class TBBSdk {
     if (_response.statusCode >= 200 && _response.statusCode < 300) {
       TBBResponse response = TBBResponse.fromJson(json.decode(_response.body));
 
-      List<TBBServiceTerm> items = response.data
-          .map((service) => TBBServiceItem.fromJson(service))
-          .toList();
-      return items;
+      TBBServiceTaxonomy item = TBBServiceTaxonomy.fromJson(response.data);
+
+      return item;
     } else {
       throw new TBBError.fromJson(json.decode(_response.body));
     }
