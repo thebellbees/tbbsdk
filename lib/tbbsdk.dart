@@ -379,7 +379,7 @@ class TBBSdk {
 
   // SERVICES FUNCTIONS
 
-  Future<List<ServiceTerm>> getServiceTypes({int limit, int offset}) async {
+  Future<List<TBBServiceTerm>> getServiceTypes({int limit, int offset}) async {
     _printToLog("preparing get service types");
 
     // body data
@@ -404,8 +404,8 @@ class TBBSdk {
     if (_response.statusCode >= 200 && _response.statusCode < 300) {
       TBBResponse response = TBBResponse.fromJson(json.decode(_response.body));
 
-      List<ServiceTerm> items = response.data
-          .map((service) => ServiceItem.fromJson(service))
+      List<TBBServiceTerm> items = response.data
+          .map((service) => TBBServiceItem.fromJson(service))
           .toList();
       return items;
     } else {
@@ -413,7 +413,7 @@ class TBBSdk {
     }
   }
 
-  Future<List<ServiceItem>> availableService(
+  Future<List<TBBServiceItem>> availableService(
       {int kilometer, int limit, int offset}) async {
     _printToLog("preparing getting list of available service");
 
@@ -441,7 +441,7 @@ class TBBSdk {
     if (_response.statusCode >= 200 && _response.statusCode < 300) {
       TBBResponse response = TBBResponse.fromJson(json.decode(_response.body));
       return response.data
-          .map((service) => ServiceItem.fromJson(service))
+          .map((service) => TBBServiceItem.fromJson(service))
           .toList();
     } else {
       throw new TBBError.fromJson(json.decode(_response.body));

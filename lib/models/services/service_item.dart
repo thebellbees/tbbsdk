@@ -1,17 +1,17 @@
 import 'package:tbbsdk/models/store.dart';
 
-class ServiceItem {
+class TBBServiceItem {
   String id;
   String storeId;
   String name;
   String slug;
   String responseMinute;
-  Store store;
+  TBBStore store;
   String createdAt;
   String updatedAt;
   String deletedAt;
 
-  ServiceItem({
+  TBBServiceItem({
     this.id,
     this.storeId,
     this.name,
@@ -23,13 +23,13 @@ class ServiceItem {
     this.deletedAt,
   });
 
-  ServiceItem.fromJson(Map<String, dynamic> json) {
+  TBBServiceItem.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     storeId = json['store_id'];
     name = json['name'];
     slug = json['slug'];
     responseMinute = json['response_minute'];
-    store = json['store'] != null ? Store.fromJson(json['store']) : null;
+    store = json['store'] != null ? TBBStore.fromJson(json['store']) : null;
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
     deletedAt = json['deleted_at'];

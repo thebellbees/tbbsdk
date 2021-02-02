@@ -1,17 +1,17 @@
-class Customer {
+class TBBCustomer {
   String customerId;
   String createdAt;
   String updatedAt;
   String deletedAt;
 
-  Customer({
+  TBBCustomer({
     this.customerId,
     this.createdAt,
     this.updatedAt,
     this.deletedAt,
   });
 
-  Customer.fromJson(Map<String, dynamic> json) {
+  TBBCustomer.fromJson(Map<String, dynamic> json) {
     customerId = json['customer_id'];
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];

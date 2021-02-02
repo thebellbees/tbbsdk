@@ -1,4 +1,4 @@
-class ServiceTaxonomy {
+class TBBServiceTaxonomy {
   String taxonomy;
   String slug;
   String icon;
@@ -7,7 +7,7 @@ class ServiceTaxonomy {
   String updatedAt;
   String deletedAt;
 
-  ServiceTaxonomy({
+  TBBServiceTaxonomy({
     this.taxonomy,
     this.slug,
     this.icon,
@@ -17,7 +17,7 @@ class ServiceTaxonomy {
     this.deletedAt,
   });
 
-  ServiceTaxonomy.fromJson(Map<String, dynamic> json) {
+  TBBServiceTaxonomy.fromJson(Map<String, dynamic> json) {
     taxonomy = json['taxonomy'];
     slug = json['slug'];
     icon = json['icon'];

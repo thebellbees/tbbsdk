@@ -1,6 +1,6 @@
 import 'package:tbbsdk/models/customer.dart';
 
-class Store {
+class TBBStore {
   String storeId;
   String ownerId;
   String storeType;
@@ -10,12 +10,12 @@ class Store {
   String email;
   String address;
   bool enabled;
-  Customer customer;
+  TBBCustomer customer;
   String createdAt;
   String updatedAt;
   String deletedAt;
 
-  Store({
+  TBBStore({
     this.storeId,
     this.ownerId,
     this.storeType,
@@ -31,7 +31,7 @@ class Store {
     this.deletedAt,
   });
 
-  Store.fromJson(Map<String, dynamic> json) {
+  TBBStore.fromJson(Map<String, dynamic> json) {
     storeId = json['store_id'];
     ownerId = json['owner_id'];
     storeType = json['store_type'];
@@ -42,7 +42,7 @@ class Store {
     address = json['address'];
     enabled = json['enabled'];
     customer =
-        json['customer'] != null ? Customer.fromJson(json['customer']) : null;
+        json['customer'] != null ? TBBCustomer.fromJson(json['customer']) : null;
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
     deletedAt = json['deleted_at'];

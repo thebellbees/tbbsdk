@@ -1,17 +1,17 @@
 import 'package:tbbsdk/models/services/service_taxonomy.dart';
 
-class ServiceTerm {
+class TBBServiceTerm {
   String name;
   String slug;
   String icon;
   String parent;
   String taxonomyId;
-  ServiceTaxonomy taxonomy;
+  TBBServiceTaxonomy taxonomy;
   String createdAt;
   String updatedAt;
   String deletedAt;
 
-  ServiceTerm({
+  TBBServiceTerm({
     this.name,
     this.slug,
     this.icon,
@@ -23,14 +23,14 @@ class ServiceTerm {
     this.deletedAt,
   });
 
-  ServiceTerm.fromJson(Map<String, dynamic> json) {
+  TBBServiceTerm.fromJson(Map<String, dynamic> json) {
     name = json['name'];
     slug = json['slug'];
     icon = json['icon'];
     parent = json['parent'];
     taxonomyId = json['taxonomy_id'];
     taxonomy = json['taxonomy'] != null
-        ? ServiceTaxonomy.fromJson(json['taxonomy'])
+        ? TBBServiceTaxonomy.fromJson(json['taxonomy'])
         : null;
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
