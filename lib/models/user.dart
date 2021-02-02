@@ -1,50 +1,50 @@
 class TBBUser {
   String id;
-  String firstname;
-  String lastname;
+  String firstName;
+  String lastName;
   String email;
   String phone;
   bool enabled;
   String image;
-  List user_meta;
+  List userMeta;
 
   TBBUser(
       {this.id,
-      this.firstname,
-      this.lastname,
+      this.firstName,
+      this.lastName,
       this.email,
       this.phone,
       this.enabled,
       this.image,
-      this.user_meta});
+      this.userMeta});
 
   TBBUser.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    firstname = json['firstname'];
-    lastname = json['lastname'];
+    firstName = json['first_name'];
+    lastName = json['last_name'];
     email = json['email'];
     phone = json['phone'];
     enabled = json['enabled'];
     image = json['image'];
-    user_meta = json['user_meta'];
+    userMeta = json['user_meta'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['id'] = this.id;
-    data['firstname'] = this.firstname;
-    data['lastname'] = this.lastname;
+    data['first_name'] = this.firstName;
+    data['last_name'] = this.lastName;
     data['email'] = this.email;
     data['phone'] = this.phone;
     data['enabled'] = this.enabled;
     data['image'] = this.image;
-    data['user_meta'] = this.user_meta;
+    data['user_meta'] = this.userMeta;
 
     return data;
   }
 
   bool get isEmpty {
-    List values = [id, firstname, lastname, email, phone];
+    List values = [id, firstName, lastName, email, phone];
     values.removeWhere((val) {
       return val == null || val == '';
     });

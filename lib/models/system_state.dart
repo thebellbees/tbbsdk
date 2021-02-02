@@ -2,33 +2,33 @@ import 'package:tbbsdk/models/user.dart';
 import 'package:tbbsdk/utilities/local_database.dart';
 
 class TBBLocalState {
-  String access_id;
-  String refresh_id;
+  String accessId;
+  String refreshId;
   TBBUser user;
 
   bool get loggedIn => user != null && user.isEmpty == false;
 
-  Future<String> get otp_from async => await _getProp("otp_from");
+  Future<String> get otpFrom async => await _getProp("otp_from");
 
   TBBLocalState({
-    this.access_id,
-    this.refresh_id,
+    this.accessId,
+    this.refreshId,
     this.user,
   });
 
   TBBLocalState.fromJson(Map<String, dynamic> json) {
-    access_id = json['access_id'];
-    refresh_id = json['refresh_id'];
+    accessId = json['access_id'];
+    refreshId = json['refresh_id'];
     user = json['user'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['access_id'] = this.access_id;
+    data['access_id'] = this.accessId;
     data['loggedIn'] = this.loggedIn;
-    data['refresh_id'] = this.refresh_id;
+    data['refresh_id'] = this.refreshId;
     data['user'] = this.user;
-    data['otp_from'] = this.otp_from;
+    data['otp_from'] = this.otpFrom;
 
     return data;
   }
@@ -37,7 +37,8 @@ class TBBLocalState {
   toString() => this.toJson().toString();
 
   _getProp(String key) async {
-    TBBLocalDatabaseService localDatabaseService = new TBBLocalDatabaseService();
+    TBBLocalDatabaseService localDatabaseService =
+        new TBBLocalDatabaseService();
     return await localDatabaseService.getLocalStateProp(key);
   }
 }

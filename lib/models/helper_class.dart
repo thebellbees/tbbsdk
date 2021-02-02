@@ -1,20 +1,20 @@
 class TBBUserUpdate {
-  String firstname = "";
-  String lastname = "";
+  String firstName = "";
+  String lastName = "";
   String email = "";
 
-  TBBUserUpdate({this.firstname, this.lastname, this.email});
+  TBBUserUpdate({this.firstName, this.lastName, this.email});
 
   TBBUserUpdate.fromJson(Map<String, dynamic> json) {
-    firstname = json['firstname'];
-    lastname = json['lastname'];
+    firstName = json['first_name'];
+    lastName = json['last_name'];
     email = json['email'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['firstname'] = this.firstname;
-    data['lastname'] = this.lastname;
+    data['first_name'] = this.firstName;
+    data['last_name'] = this.lastName;
     data['email'] = this.email;
 
     return data;

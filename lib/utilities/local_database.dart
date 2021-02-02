@@ -6,33 +6,33 @@ class TBBLocalDatabaseService {
   Future<dynamic> updateSecureAccess(Map<String, String> tokens) async {
     if (tokens.isNotEmpty && tokens['access_id'].isNotEmpty) {
       await secureStorage.write(
-          key: 'tbb_localstate.access_id', value: tokens['access_id']);
+          key: 'tbb_localState.access_id', value: tokens['access_id']);
     }
     if (tokens.isNotEmpty && tokens['refresh_id'].isNotEmpty) {
       await secureStorage.write(
-          key: 'tbb_localstate.refresh_id', value: tokens['refresh_id']);
+          key: 'tbb_localState.refresh_id', value: tokens['refresh_id']);
     }
   }
 
   Future<dynamic> deleteSecureAccess(int code) async {
     if (code >= 1) {
-      await secureStorage.delete(key: 'tbb_localstate.access_id');
+      await secureStorage.delete(key: 'tbb_localState.access_id');
     }
     if (code == 0) {
-      await secureStorage.delete(key: 'tbb_localstate.refresh_id');
+      await secureStorage.delete(key: 'tbb_localState.refresh_id');
     }
   }
 
   Future<dynamic> putLocalState(String key, String value) async {
-    if (value == 0 || value == '0' || value.isEmpty) {
-      await secureStorage.delete(key: 'tbb_localstate.${key}');
+    if (int.parse(value, radix: 10) == 0 || value == '0' || value.isEmpty) {
+      await secureStorage.delete(key: 'tbb_localState.$key');
     } else {
-      await secureStorage.write(key: 'tbb_localstate.${key}', value: value);
+      await secureStorage.write(key: 'tbb_localState.$key', value: value);
     }
   }
 
   Future<String> getSecureAccess(String key) async {
-    String token = await secureStorage.read(key: 'tbb_localstate.${key}');
+    String token = await secureStorage.read(key: 'tbb_localState.$key');
     if (token == null) {
       token = '0';
     }
@@ -40,7 +40,7 @@ class TBBLocalDatabaseService {
   }
 
   Future<String> getLocalStateProp(String key) async {
-    String prop = await secureStorage.read(key: 'tbb_localstate.${key}');
+    String prop = await secureStorage.read(key: 'tbb_localState.$key');
     if (prop == null) {
       prop = '0';
     }

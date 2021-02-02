@@ -8,6 +8,8 @@ import 'package:location/location.dart';
 import 'package:tbbsdk/constants/constants.dart';
 import 'package:tbbsdk/models/access_token.dart';
 import 'package:tbbsdk/models/helper_class.dart';
+import 'package:tbbsdk/models/services/service_item.dart';
+import 'package:tbbsdk/models/services/service_term.dart';
 import 'package:tbbsdk/models/system_state.dart';
 import 'package:tbbsdk/models/tbb_response.dart';
 import 'package:tbbsdk/models/user.dart';
@@ -97,9 +99,6 @@ class TBBSdk {
   // Auth Token
   String _authToken;
   String get authToken => _authToken;
-  set authToken(String authToken) {
-    _authToken = authToken;
-  }
 
   Future<TBBResponse> logout(String phone) async {
     _printToLog("user getting logged out");
@@ -131,6 +130,7 @@ class TBBSdk {
         return response;
       } catch (e) {
         print(e);
+        throw e;
       }
     } else {
       throw new TBBError.fromJson(json.decode(_response.body));
@@ -176,7 +176,7 @@ class TBBSdk {
 
       if (token != null) {
         await _localDatabaseService.updateSecureAccess(
-            {"access_id": token.access_id, "refresh_id": token.refresh_id});
+            {"access_id": token.accessId, "refresh_id": token.refreshId});
       }
 
       return token;
@@ -261,8 +261,8 @@ class TBBSdk {
       }
     }
 
-    _localState = new TBBLocalState(
-        access_id: accessId, refresh_id: refreshId, user: user);
+    _localState =
+        new TBBLocalState(accessId: accessId, refreshId: refreshId, user: user);
 
     return this.localState;
   }
@@ -310,8 +310,8 @@ class TBBSdk {
     };
 
     final body = {
-      'firstname': userData.firstname.toString(),
-      'lastname': userData.lastname.toString(),
+      'firstname': userData.firstName.toString(),
+      'lastname': userData.lastName.toString(),
       'email': userData.email.toString(),
     };
 
@@ -368,7 +368,7 @@ class TBBSdk {
 
       if (token != null) {
         await _localDatabaseService.updateSecureAccess(
-            {"access_id": token.access_id, "refresh_id": token.refresh_id});
+            {"access_id": token.accessId, "refresh_id": token.refreshId});
       }
 
       return token;
@@ -379,7 +379,7 @@ class TBBSdk {
 
   // SERVICES FUNCTIONS
 
-  Future getServiceTypes({int limit, int offset}) async {
+  Future<List<ServiceTerm>> getServiceTypes({int limit, int offset}) async {
     _printToLog("preparing get service types");
 
     // body data
@@ -403,13 +403,18 @@ class TBBSdk {
     //  response
     if (_response.statusCode >= 200 && _response.statusCode < 300) {
       TBBResponse response = TBBResponse.fromJson(json.decode(_response.body));
-      return response.data;
+
+      List<ServiceTerm> items = response.data
+          .map((service) => ServiceItem.fromJson(service))
+          .toList();
+      return items;
     } else {
       throw new TBBError.fromJson(json.decode(_response.body));
     }
   }
 
-  Future availableService({int kilometer, int limit, int offset}) async {
+  Future<List<ServiceItem>> availableService(
+      {int kilometer, int limit, int offset}) async {
     _printToLog("preparing getting list of available service");
 
     // body data
@@ -435,7 +440,9 @@ class TBBSdk {
     //  response
     if (_response.statusCode >= 200 && _response.statusCode < 300) {
       TBBResponse response = TBBResponse.fromJson(json.decode(_response.body));
-      return response.data;
+      return response.data
+          .map((service) => ServiceItem.fromJson(service))
+          .toList();
     } else {
       throw new TBBError.fromJson(json.decode(_response.body));
     }
