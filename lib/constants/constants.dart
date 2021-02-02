@@ -2,11 +2,12 @@ const DEFAULT_API_PATH = "/v1";
 
 // Authentication Server Endpoints
 const API_PATH_REGISTER_WITH_PHONE = "/auth/register";
-const API_PATH_LOGIN_WITH_PHONE = "/auth/login";
-const API_PATH_OTP_VERIFY = "/auth/otpverify";
+const API_PATH_LOGIN_WITH_PHONE = "/auth/generate_otp";
+const API_PATH_OTP_VERIFY = "/auth/otp_verify";
 const API_PATH_REFRESH_TOKEN = "/auth/refresh-token";
 const API_PATH_GET_INFO = "/users/me";
 const API_PATH_INFO_UPDATE = "/users/me";
+const API_PATH_PHONE_UPDATE = "/users/update_phone";
 const API_PATH_CONNECT_WITH_SOCIAL = "/users/social_connect";
 const API_PATH_AUTH_WITH_SOCIAL = "/auth/login_with_social";
 

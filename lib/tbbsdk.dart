@@ -105,7 +105,7 @@ class TBBSdk {
     return await _localDatabaseService.flashSecureLocalState();
   }
 
-  Future<TBBResponse> authWithPhone(String phone) async {
+  Future<TBBResponse> generateOtp(String phone) async {
     _printToLog("preparing Auth With Phone");
 
     // body data
@@ -185,10 +185,40 @@ class TBBSdk {
     }
   }
 
+  Future<TBBUser> verifyAndUpdatePhone(String phone, String otp) async {
+    _printToLog("preparing Verify And Update Phone");
+
+    // headers data
+    final headers = {
+      'authorization':
+          'Bearer ' + await _localDatabaseService.getSecureAccess('access_id'),
+      'X-Refresh-Token':
+          await _localDatabaseService.getSecureAccess('refresh_id'),
+    };
+
+    // body data
+    final body = {
+      'phone': phone.toString(),
+      'otp': otp.toString(),
+    };
+
+    // request
+    final _response = await http.post(this.authServer + API_PATH_PHONE_UPDATE,
+        headers: headers, body: body);
+
+    //  response
+    if (_response.statusCode >= 200 && _response.statusCode < 300) {
+      TBBResponse response = TBBResponse.fromJson(json.decode(_response.body));
+      return TBBUser.fromJson(response.data);
+    } else {
+      throw new TBBError.fromJson(json.decode(_response.body));
+    }
+  }
+
   Future<TBBUser> getUserInfo() async {
     _printToLog("preparing Get User Info");
 
-    // body data
+    // headers data
     final headers = {
       'authorization':
           'Bearer ' + await _localDatabaseService.getSecureAccess('access_id'),
@@ -218,7 +248,7 @@ class TBBSdk {
   Future refreshAccessToken() async {
     _printToLog("preparing Refreshing Access Token");
 
-    // body data
+    // headers data
     final headers = {
       'X-Refresh-Token':
           await _localDatabaseService.getSecureAccess('refresh_id'),
@@ -271,13 +301,14 @@ class TBBSdk {
       {String socialPlatform, String username}) async {
     _printToLog("preparing Social Connect");
 
-    // body data
+    // headers data
     final headers = {
       'authorization':
           'Bearer ' + await _localDatabaseService.getSecureAccess('access_id'),
       'username': await _localDatabaseService.getSecureAccess('refresh_id'),
     };
 
+    // body data
     final body = {
       'platform': socialPlatform.toString(),
       'username': username.toString(),
@@ -303,12 +334,13 @@ class TBBSdk {
   Future<TBBUser> userUpdate({TBBUserUpdate userData}) async {
     _printToLog("preparing user update");
 
-    // body data
+    // headers data
     final headers = {
       'authorization':
           'Bearer ' + await _localDatabaseService.getSecureAccess('access_id'),
     };
 
+    // body data
     final body = {
       'firstname': userData.firstName.toString(),
       'lastname': userData.lastName.toString(),
@@ -337,19 +369,19 @@ class TBBSdk {
     final location = new Location();
     final coordinates = await location.getLocation();
 
+    // headers data
+    final headers = {
+      'authorization':
+          'Bearer ' + await _localDatabaseService.getSecureAccess('access_id'),
+      'username': await _localDatabaseService.getSecureAccess('refresh_id'),
+    };
+
     // body data
     final body = {
       "platform": platform.toString(),
       "username": username.toString(),
       "latitude": coordinates.latitude.toString(),
       "longitude": coordinates.longitude.toString(),
-    };
-
-    // body data
-    final headers = {
-      'authorization':
-          'Bearer ' + await _localDatabaseService.getSecureAccess('access_id'),
-      'username': await _localDatabaseService.getSecureAccess('refresh_id'),
     };
 
     // request
@@ -383,7 +415,7 @@ class TBBSdk {
       {int limit, int offset}) async {
     _printToLog("preparing get service types");
 
-    // body data
+    // headers data
     final headers = {
       'authorization':
           'Bearer ' + await _localDatabaseService.getSecureAccess('access_id'),
@@ -419,7 +451,7 @@ class TBBSdk {
       {int kilometer, int limit, int offset}) async {
     _printToLog("preparing getting list of available service");
 
-    // body data
+    // headers data
     final headers = {
       'authorization':
           'Bearer ' + await _localDatabaseService.getSecureAccess('access_id'),
@@ -427,6 +459,7 @@ class TBBSdk {
           await _localDatabaseService.getSecureAccess('refresh_id'),
     };
 
+    // body data
     final body = {
       'km': kilometer.toString(),
     };
