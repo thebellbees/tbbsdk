@@ -108,7 +108,7 @@ class TBBSdk {
   }
 
   Future<TBBResponse> generateOtp(String phone,
-      {bool retryVoice, bool retryText}) async {
+      {bool retryVoice = false, bool retryText = false}) async {
     _printToLog("preparing Auth With Phone");
 
     // body data
