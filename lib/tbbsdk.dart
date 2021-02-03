@@ -112,13 +112,8 @@ class TBBSdk {
     _printToLog("preparing Auth With Phone");
 
     // body data
-    final body = {
-      'phone': phone,
-      'retry': retryVoice
-          ? "voice"
-          : retryText
-              ? "text"
-              : null,
+    var body = {
+      'phone': phone.toString(),
     };
 
     // request
