@@ -38,14 +38,11 @@ class TBBSdk {
   /// Parameter, [authServer] is the base url of your site. For example, http://example.com or https://example.com.
   String authServer;
 
-  /// Parameter [consumerKey] is the consumer key provided by WooCommerce, e.g. `ck_12abc34n56j`.
+  /// Parameter [consumerKey] is the consumer key provided.
   String consumerKey;
 
-  /// Parameter [consumerSecret] is the consumer secret provided by WooCommerce, e.g. `cs_1uab8h3s3op`.
+  /// Parameter [consumerSecret] is the consumer secret provided.
   String consumerSecret;
-
-  /// Parameter(Optional) [apiPath], tells the SDK if there is a different path to your api installation.
-  String apiPath;
 
   /// Returns if the website is https or not based on the [baseUrl] parameter.
   bool isHttps;
@@ -66,14 +63,12 @@ class TBBSdk {
     @required String authServer,
     @required String consumerKey,
     @required String consumerSecret,
-    String apiPath = DEFAULT_API_PATH,
     bool isDebug = false,
   }) {
     this.appServer = appServer;
     this.authServer = authServer;
     this.consumerKey = consumerKey;
     this.consumerSecret = consumerSecret;
-    this.apiPath = apiPath;
     this.isDebug = isDebug;
 
     if (this.appServer.startsWith("https") &&
