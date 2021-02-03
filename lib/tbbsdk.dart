@@ -156,8 +156,6 @@ class TBBSdk {
       "longitude": coordinates.longitude.toString(),
     };
 
-    _printToLog(body.toString());
-
     // request
     final _response = await http.post(
       this.authServer + API_PATH_OTP_VERIFY,
@@ -210,6 +208,8 @@ class TBBSdk {
     // request
     final _response = await http.post(this.authServer + API_PATH_PHONE_UPDATE,
         headers: headers, body: body);
+
+    _printHttpLog(response: _response, body: body);
 
     //  response
     if (_response.statusCode >= 200 && _response.statusCode < 300) {
