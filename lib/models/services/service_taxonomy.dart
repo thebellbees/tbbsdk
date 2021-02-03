@@ -34,7 +34,7 @@ class TBBServiceTaxonomy {
             print(item);
             print(item.runtimeType);
             return TBBServiceTerm.fromJson(item);
-          }).toList()
+          })
         : null;
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
