@@ -31,11 +31,7 @@ class TBBServiceTaxonomy {
     description = json['description'];
     print(json['sr_terms']);
     print(json['sr_terms'].runtimeType);
-    srTerms = json['sr_terms'] != null
-        ? json['sr_terms'].map((item) {
-            return TBBServiceTerm.fromJson(item);
-          }).toList()
-        : null;
+    srTerms = json['sr_terms'].cast<TBBServiceTerm>();
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
     deletedAt = json['deleted_at'];
