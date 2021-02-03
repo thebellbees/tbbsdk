@@ -29,12 +29,12 @@ class TBBServiceTaxonomy {
     slug = json['slug'];
     icon = json['icon'];
     description = json['description'];
+    print(json['sr_terms']);
+    print(json['sr_terms'].runtimeType);
     srTerms = json['sr_terms'] != null
         ? json['sr_terms'].map((item) {
-            print(item);
-            print(item.runtimeType);
             return TBBServiceTerm.fromJson(item);
-          })
+          }).toList()
         : null;
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
