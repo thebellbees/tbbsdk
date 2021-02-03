@@ -12,7 +12,7 @@ class TBBCustomer {
   });
 
   TBBCustomer.fromJson(Map<String, dynamic> json) {
-    customerId = json['customer_id'];
+    customerId = json['customer_id'].toString();
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
     deletedAt = json['deleted_at'];

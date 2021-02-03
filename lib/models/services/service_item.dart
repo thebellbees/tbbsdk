@@ -24,8 +24,8 @@ class TBBServiceItem {
   });
 
   TBBServiceItem.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    storeId = json['store_id'];
+    id = json['id'].toString();
+    storeId = json['store_id'].toString();
     name = json['name'];
     slug = json['slug'];
     responseMinute = json['response_minute'];

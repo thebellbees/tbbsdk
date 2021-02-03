@@ -32,8 +32,8 @@ class TBBStore {
   });
 
   TBBStore.fromJson(Map<String, dynamic> json) {
-    storeId = json['store_id'];
-    ownerId = json['owner_id'];
+    storeId = json['store_id'].toString();
+    ownerId = json['owner_id'].toString();
     storeType = json['store_type'];
     name = json['name'];
     company = json['company'];

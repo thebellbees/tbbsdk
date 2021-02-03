@@ -28,7 +28,7 @@ class TBBServiceTerm {
     slug = json['slug'];
     icon = json['icon'];
     parent = json['parent'];
-    taxonomyId = json['taxonomy_id'];
+    taxonomyId = json['taxonomy_id'].toString();
     taxonomy = json['taxonomy'] != null
         ? TBBServiceTaxonomy.fromJson(json['taxonomy'])
         : null;
