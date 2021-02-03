@@ -48,7 +48,7 @@ class TBBSdk {
   bool isHttps;
 
   /// Parameter(Optional) [isDebug], tells the library if it should _printToLog debug logs.
-  /// Useful if you are debuging or in development.
+  /// Useful if you are debugging or in development.
   bool isDebug;
 
   TBBLocalDatabaseService _localDatabaseService = new TBBLocalDatabaseService();
