@@ -45,8 +45,6 @@ class TBBServiceTaxonomy {
     data['icon'] = this.icon;
     data['description'] = this.description;
     data['sr_terms'] = data['sr_terms'] != null
-
-
         ? this.srTerms.map((item) => item.toJson()).toList()
         : null;
     data['created_at'] = this.createdAt;
