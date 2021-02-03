@@ -24,6 +24,11 @@ export './models/helper_class.dart';
 export './models/system_state.dart' show TBBLocalState;
 export './models/tbb_response.dart' show TBBResponse;
 export './models/user.dart' show TBBUser;
+export './models/services/service_taxonomy.dart' show TBBServiceTaxonomy;
+export './models/services/service_item.dart' show TBBServiceItem;
+export './models/services/service_term.dart' show TBBServiceTerm;
+export './models/customer.dart' show TBBCustomer;
+export './models/store.dart' show TBBStore;
 
 /// A Calculator.
 class TBBSdk {
