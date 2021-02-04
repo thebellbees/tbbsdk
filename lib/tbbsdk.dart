@@ -487,4 +487,12 @@ class TBBSdk {
       throw new TBBError.fromJson(json.decode(_response.body));
     }
   }
+
+  Future loadDefaults() async {
+    _printToLog("loading Defaults");
+
+    if (localState != null && localState.loggedIn) {
+      _localState.serviceTaxonomy = await getServiceTypes("category");
+    }
+  }
 }
