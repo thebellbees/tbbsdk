@@ -30,8 +30,9 @@ class TBBServiceTaxonomy {
     icon = json['icon'];
     description = json['description'];
 
-    srTerms =
-        json["sr_terms"].map((item) => TBBServiceTerm.fromJson(item)).toList();
+    srTerms = (json["sr_terms"] as List<Map<String, dynamic>>)
+        .map((item) => TBBServiceTerm.fromJson(item))
+        .toList();
     // srTerms = json["sr_terms"] != null
     //     ? (json["sr_terms"] as List)
     //         .map((item) => TBBServiceTerm.fromJson(item))
