@@ -29,9 +29,9 @@ class TBBServiceTaxonomy {
     slug = json['slug'];
     icon = json['icon'];
     description = json['description'];
-    srTerms = (json['sr_terms'] as List)
-        .map((i) => TBBServiceTerm.fromJson(i))
-        .toList();
+    srTerms = json["sr_terms"] != null
+        ? json["sr_terms"].map((item) => TBBServiceTerm.fromJson(item))
+        : null;
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
     deletedAt = json['deleted_at'];
