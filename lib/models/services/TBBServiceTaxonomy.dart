@@ -11,7 +11,7 @@ part 'TBBServiceTaxonomy.g.dart';
 /// JSON serialization logic to be generated.
 @JsonSerializable()
 class TBBServiceTaxonomy {
-  int id;
+  dynamic id;
   String taxonomy;
   String slug;
   String icon;

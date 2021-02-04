@@ -8,7 +8,7 @@ part of 'TBBServiceTaxonomy.dart';
 
 TBBServiceTaxonomy _$TBBServiceTaxonomyFromJson(Map<String, dynamic> json) {
   return TBBServiceTaxonomy(
-    id: json['id'] as int,
+    id: json['id'],
     taxonomy: json['taxonomy'] as String,
     slug: json['slug'] as String,
     icon: json['icon'] as String,
