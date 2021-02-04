@@ -19,7 +19,7 @@ class TBBLocalState {
   TBBLocalState.fromJson(Map<String, dynamic> json) {
     accessId = json['access_id'];
     refreshId = json['refresh_id'];
-    user = json['user'];
+    user = json['user'] != null ? TBBUser.fromJson(json['user']) : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -27,7 +27,7 @@ class TBBLocalState {
     data['access_id'] = this.accessId;
     data['loggedIn'] = this.loggedIn;
     data['refresh_id'] = this.refreshId;
-    data['user'] = this.user;
+    data['user'] = this.user != null ? this.user.toJson() : null;
     data['otp_from'] = this.otpFrom;
 
     return data;
