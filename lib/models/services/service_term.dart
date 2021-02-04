@@ -1,4 +1,4 @@
-import 'package:tbbsdk/models/services/service_taxonomy.dart';
+import 'package:tbbsdk/models/services/TBBServiceTaxonomy.dart';
 
 class TBBServiceTerm {
   String name;
