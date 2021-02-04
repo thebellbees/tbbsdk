@@ -436,9 +436,9 @@ class TBBSdk {
       headers: headers,
     );
 
-    _printHttpLog(
-      response: _response,
-    );
+    // _printHttpLog(
+    //   response: _response,
+    // );
 
     //  response
     if (_response.statusCode >= 200 && _response.statusCode < 300) {
