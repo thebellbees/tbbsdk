@@ -28,7 +28,6 @@ class TBBLocalState {
     data['loggedIn'] = this.loggedIn;
     data['refresh_id'] = this.refreshId;
     data['user'] = this.user != null ? this.user.toJson() : null;
-    data['otp_from'] = this.otpFrom;
 
     return data;
   }
