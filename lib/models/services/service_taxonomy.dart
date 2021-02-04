@@ -30,7 +30,9 @@ class TBBServiceTaxonomy {
     icon = json['icon'];
     description = json['description'];
     srTerms = json["sr_terms"] != null
-        ? json["sr_terms"].map((item) => TBBServiceTerm.fromJson(item))
+        ? (json["sr_terms"] as List)
+            .map((item) => TBBServiceTerm.fromJson(item))
+            .toList()
         : null;
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
