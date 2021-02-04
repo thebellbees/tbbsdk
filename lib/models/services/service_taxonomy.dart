@@ -29,13 +29,14 @@ class TBBServiceTaxonomy {
     slug = json['slug'];
     icon = json['icon'];
     description = json['description'];
-    print(
-        json["sr_terms"].map((item) => TBBServiceTerm.fromJson(item)).toList());
-    srTerms = json["sr_terms"] != null
-        ? (json["sr_terms"] as List)
-            .map((item) => TBBServiceTerm.fromJson(item))
-            .toList()
-        : null;
+
+    srTerms =
+        json["sr_terms"].map((item) => TBBServiceTerm.fromJson(item)).toList();
+    // srTerms = json["sr_terms"] != null
+    //     ? (json["sr_terms"] as List)
+    //         .map((item) => TBBServiceTerm.fromJson(item))
+    //         .toList()
+    //     : null;
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
     deletedAt = json['deleted_at'];
