@@ -8,7 +8,7 @@ import 'package:location/location.dart';
 import 'package:tbbsdk/constants/constants.dart';
 import 'package:tbbsdk/models/access_token.dart';
 import 'package:tbbsdk/models/helper_class.dart';
-import 'package:tbbsdk/models/services/service_item.dart';
+import 'package:tbbsdk/models/services/TBBServiceItem.dart';
 import 'package:tbbsdk/models/services/TBBServiceTaxonomy.dart';
 import 'package:tbbsdk/models/system_state.dart';
 import 'package:tbbsdk/models/tbb_response.dart';
@@ -25,8 +25,8 @@ export './models/system_state.dart' show TBBLocalState;
 export './models/tbb_response.dart' show TBBResponse;
 export './models/user.dart' show TBBUser;
 export './models/services/TBBServiceTaxonomy.dart' show TBBServiceTaxonomy;
-export './models/services/service_item.dart' show TBBServiceItem;
-export './models/services/service_term.dart' show TBBServiceTerm;
+export './models/services/TBBServiceItem.dart' show TBBServiceItem;
+export './models/services/TBBServiceTerm.dart' show TBBServiceTerm;
 export './models/customer.dart' show TBBCustomer;
 export './models/store.dart' show TBBStore;
 
@@ -436,9 +436,9 @@ class TBBSdk {
       headers: headers,
     );
 
-    // _printHttpLog(
-    //   response: _response,
-    // );
+    _printHttpLog(
+      response: _response,
+    );
 
     //  response
     if (_response.statusCode >= 200 && _response.statusCode < 300) {

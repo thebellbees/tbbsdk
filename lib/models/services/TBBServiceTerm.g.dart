@@ -1,37 +1,37 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'TBBServiceTaxonomy.dart';
+part of 'TBBServiceTerm.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-TBBServiceTaxonomy _$TBBServiceTaxonomyFromJson(Map<String, dynamic> json) {
-  return TBBServiceTaxonomy(
+TBBServiceTerm _$TBBServiceTermFromJson(Map<String, dynamic> json) {
+  return TBBServiceTerm(
     id: json['id'] as String,
-    taxonomy: json['taxonomy'] as String,
+    name: json['name'] as String,
     slug: json['slug'] as String,
     icon: json['icon'] as String,
-    description: json['description'] as String,
-    srTerms: (json['sr_terms'] as List)
-        ?.map((e) => e == null
-            ? null
-            : TBBServiceTerm.fromJson(e as Map<String, dynamic>))
-        ?.toList(),
+    parent: json['parent'] as String,
+    taxonomyId: json['taxonomy_id'] as String,
+    taxonomy: json['taxonomy'] == null
+        ? null
+        : TBBServiceTerm.fromJson(json['taxonomy'] as Map<String, dynamic>),
     createdAt: json['created_at'] as String,
     updatedAt: json['updated_at'] as String,
     deletedAt: json['deleted_at'] as String,
   );
 }
 
-Map<String, dynamic> _$TBBServiceTaxonomyToJson(TBBServiceTaxonomy instance) =>
+Map<String, dynamic> _$TBBServiceTermToJson(TBBServiceTerm instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'taxonomy': instance.taxonomy,
+      'name': instance.name,
       'slug': instance.slug,
       'icon': instance.icon,
-      'description': instance.description,
-      'sr_terms': instance.srTerms?.map((e) => e?.toJson())?.toList(),
+      'parent': instance.parent,
+      'taxonomy_id': instance.taxonomyId,
+      'taxonomy': instance.taxonomy?.toJson(),
       'created_at': instance.createdAt,
       'updated_at': instance.updatedAt,
       'deleted_at': instance.deletedAt,
