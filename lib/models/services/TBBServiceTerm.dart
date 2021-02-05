@@ -42,6 +42,7 @@ class TBBServiceTerm {
   /// The constructor is named after the source class, in this case, User.
   factory TBBServiceTerm.fromJson(Map<String, dynamic> json) {
     json['id'] = json['id'].toString();
+    json['parent'] = json['parent'].toString();
     json['taxonomy_id'] = json['taxonomy_id'].toString();
     return _$TBBServiceTermFromJson(json);
   }
