@@ -453,7 +453,7 @@ class TBBSdk {
   }
 
   Future<List<TBBServiceItem>> availableService(
-      {int kilometer, int limit, int offset}) async {
+      {String category, int kilometer, int limit, int offset}) async {
     _printToLog("preparing getting list of available service");
 
     // headers data
@@ -466,6 +466,7 @@ class TBBSdk {
 
     // body data
     final body = {
+      'category': category.toString(),
       'km': kilometer.toString(),
     };
 

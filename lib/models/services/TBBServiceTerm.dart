@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:tbbsdk/models/services/TBBServiceTaxonomy.dart';
 
 /// This allows the `User` class to access private members in
 /// the generated file. The value for this is *.g.dart, where
@@ -16,7 +17,8 @@ class TBBServiceTerm {
   String icon;
   String parent;
   String taxonomyId;
-  TBBServiceTerm taxonomy;
+  TBBServiceTaxonomy taxonomy;
+  List<TBBServiceTerm> srTerms;
   String createdAt;
   String updatedAt;
   String deletedAt;
@@ -29,6 +31,7 @@ class TBBServiceTerm {
     this.parent,
     this.taxonomyId,
     this.taxonomy,
+    this.srTerms,
     this.createdAt,
     this.updatedAt,
     this.deletedAt,
