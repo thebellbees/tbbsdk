@@ -465,10 +465,15 @@ class TBBSdk {
     };
 
     // body data
-    final body = {
-      'term_slug': category.toString(),
-      'km': kilometer.toString(),
-    };
+    final body = {};
+
+    if (category != null) {
+      body.addAll({"term_slug": category.toString()});
+    }
+
+    if (kilometer != null) {
+      body.addAll({"km": category.toString()});
+    }
 
     // request
     final _response = await http.post(
