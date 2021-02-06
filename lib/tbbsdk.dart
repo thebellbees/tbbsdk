@@ -466,7 +466,7 @@ class TBBSdk {
 
     // body data
     final body = {
-      'category': category.toString(),
+      'term_slug': category.toString(),
       'km': kilometer.toString(),
     };
 
