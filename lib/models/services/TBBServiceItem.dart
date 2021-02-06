@@ -56,6 +56,7 @@ class TBBServiceItem {
     Iterable l = listJson;
     List<TBBServiceItem> items = List<TBBServiceItem>.from(
         l.map((model) => TBBServiceItem.fromJson(model)));
+    print({"items":items});
     return items;
   }
 
