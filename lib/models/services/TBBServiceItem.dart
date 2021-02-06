@@ -54,9 +54,10 @@ class TBBServiceItem {
 
   static List<TBBServiceItem> listFromJson(List<dynamic> listJson) {
     Iterable l = listJson;
+    print({"l": l});
     List<TBBServiceItem> items = List<TBBServiceItem>.from(
         l.map((model) => TBBServiceItem.fromJson(model)));
-    print({"items":items});
+    print({"items": items});
     return items;
   }
 
