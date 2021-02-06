@@ -482,9 +482,9 @@ class TBBSdk {
     if (_response.statusCode >= 200 && _response.statusCode < 300) {
       TBBResponse response = TBBResponse.fromJson(json.decode(_response.body));
       print(response.data);
-      return response.data
+      return (response.data as List<Map<String, dynamic>>)
           .map((service) => TBBServiceItem.fromJson(service))
-          .toList() as List<TBBServiceItem>;
+          .toList();
     } else {
       throw new TBBError.fromJson(json.decode(_response.body));
     }
