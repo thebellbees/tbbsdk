@@ -41,6 +41,7 @@ class TBBServiceDetail {
   factory TBBServiceDetail.fromJson(Map<String, dynamic> json) {
     json['id'] = json['id'].toString();
     json['store_id'] = json['store_id'].toString();
+    json['response_minute'] = json['response_minute'].toString();
     return _$TBBServiceDetailFromJson(json);
   }
 

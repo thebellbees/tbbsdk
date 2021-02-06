@@ -48,6 +48,7 @@ class TBBServiceItem {
     json['available_around_with_km'] =
         json['available_around_with_km'].toString();
     json['reach_time'] = json['reach_time'].toString();
+    json['distance'] = json['distance'].toString();
     return _$TBBServiceItemFromJson(json);
   }
 
