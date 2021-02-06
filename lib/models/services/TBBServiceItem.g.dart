@@ -8,14 +8,15 @@ part of 'TBBServiceItem.dart';
 
 TBBServiceItem _$TBBServiceItemFromJson(Map<String, dynamic> json) {
   return TBBServiceItem(
-    id: json['id'] as String,
-    storeId: json['store_id'] as String,
-    name: json['name'] as String,
-    slug: json['slug'] as String,
-    responseMinute: json['response_minute'] as String,
-    store: json['store'] == null
+    serviceId: json['service_id'] as String,
+    latitude: json['latitude'] as String,
+    longitude: json['longitude'] as String,
+    availableAroundWithKm: json['available_around_with_km'] as String,
+    reachTime: json['reach_time'] as String,
+    distance: json['distance'] as String,
+    detail: json['sr_service'] == null
         ? null
-        : TBBStore.fromJson(json['store'] as Map<String, dynamic>),
+        : TBBServiceDetail.fromJson(json['sr_service'] as Map<String, dynamic>),
     createdAt: json['created_at'] as String,
     updatedAt: json['updated_at'] as String,
     deletedAt: json['deleted_at'] as String,
@@ -24,12 +25,13 @@ TBBServiceItem _$TBBServiceItemFromJson(Map<String, dynamic> json) {
 
 Map<String, dynamic> _$TBBServiceItemToJson(TBBServiceItem instance) =>
     <String, dynamic>{
-      'id': instance.id,
-      'store_id': instance.storeId,
-      'name': instance.name,
-      'slug': instance.slug,
-      'response_minute': instance.responseMinute,
-      'store': instance.store?.toJson(),
+      'service_id': instance.serviceId,
+      'latitude': instance.latitude,
+      'longitude': instance.longitude,
+      'available_around_with_km': instance.availableAroundWithKm,
+      'reach_time': instance.reachTime,
+      'distance': instance.distance,
+      'sr_service': instance.detail?.toJson(),
       'created_at': instance.createdAt,
       'updated_at': instance.updatedAt,
       'deleted_at': instance.deletedAt,
