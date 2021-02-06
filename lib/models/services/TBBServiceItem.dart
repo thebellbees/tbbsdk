@@ -42,6 +42,10 @@ class TBBServiceItem {
     return _$TBBServiceItemFromJson(json);
   }
 
+  factory TBBServiceItem.listFromJson(){
+
+  }
+
   /// `toJson` is the convention for a class to declare support for serialization
   /// to JSON. The implementation simply calls the private, generated
   /// helper method `_$UserToJson`.
