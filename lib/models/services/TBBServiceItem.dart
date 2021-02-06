@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:tbbsdk/models/store.dart';
 
 import 'package:json_annotation/json_annotation.dart';
@@ -9,7 +11,8 @@ part 'TBBServiceItem.g.dart';
 
 /// An annotation for the code generator to know that this class needs the
 /// JSON serialization logic to be generated.
-@JsonSerializable(fieldRename: FieldRename.snake, nullable: true, explicitToJson: true)
+@JsonSerializable(
+    fieldRename: FieldRename.snake, nullable: true, explicitToJson: true)
 class TBBServiceItem {
   String id;
   String storeId;
@@ -42,8 +45,11 @@ class TBBServiceItem {
     return _$TBBServiceItemFromJson(json);
   }
 
-  factory TBBServiceItem.listFromJson(){
-
+  static List<TBBServiceItem> listFromJson(List<dynamic> listJson) {
+    Iterable l = listJson;
+    List<TBBServiceItem> items = List<TBBServiceItem>.from(
+        l.map((model) => TBBServiceItem.fromJson(model)));
+    return items;
   }
 
   /// `toJson` is the convention for a class to declare support for serialization
