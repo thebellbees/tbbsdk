@@ -518,9 +518,9 @@ class TBBSdk {
     // body data
     final body = {};
 
-    if (kilometer != null) {
-      body.addAll({"km": kilometer.toString()});
-    }
+    // if (kilometer != null) {
+    //   body.addAll({"km": kilometer.toString()});
+    // }
 
     // query data
     String queryString = "";
@@ -538,7 +538,7 @@ class TBBSdk {
     final _response = await http.post(
         this.appServer + API_PATH_SERVICES_SEARCH + "?$queryString",
         headers: headers,
-        body: {});
+        body: body);
 
     _printHttpLog(response: _response, body: body);
 
