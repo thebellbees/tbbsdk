@@ -18,6 +18,7 @@ class TBBServiceDetail {
   String name;
   String description;
   String responseMinute;
+  bool enabled;
 
   TBBStore store;
   String createdAt;
@@ -29,6 +30,7 @@ class TBBServiceDetail {
     this.name,
     this.description,
     this.responseMinute,
+    this.enabled,
     this.store,
     this.createdAt,
     this.updatedAt,

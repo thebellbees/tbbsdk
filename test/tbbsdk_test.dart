@@ -109,6 +109,6 @@ Future<void> main() async {
 
     List<TBBServiceItem> serviceItems =
         TBBServiceItem.listFromJson(convertedData);
-    print(serviceItems.first.detail);
+    print(serviceItems.last);
   });
 }
