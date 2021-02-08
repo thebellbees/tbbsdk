@@ -465,7 +465,7 @@ class TBBSdk {
     };
 
     // body data
-    final body = {};
+    final Map<String, String> body = {};
 
     if (category != null) {
       body.addAll({"term_slug": category.toString()});
@@ -516,11 +516,11 @@ class TBBSdk {
     };
 
     // body data
-    final body = {};
+    final Map<String, String> body = {};
 
-    // if (kilometer != null) {
-    //   body.addAll({"km": kilometer.toString()});
-    // }
+    if (kilometer != null) {
+      body.addAll({"km": kilometer.toString()});
+    }
 
     // query data
     String queryString = "";
