@@ -19,7 +19,11 @@ TBBServiceDetail _$TBBServiceDetailFromJson(Map<String, dynamic> json) {
     createdAt: json['created_at'] as String,
     updatedAt: json['updated_at'] as String,
     deletedAt: json['deleted_at'] as String,
-  );
+  )..reviews = (json['reviews'] as List)
+      ?.map((e) => e == null
+          ? null
+          : TBBServiceOrderReview.fromJson(e as Map<String, dynamic>))
+      ?.toList();
 }
 
 Map<String, dynamic> _$TBBServiceDetailToJson(TBBServiceDetail instance) =>
@@ -33,4 +37,5 @@ Map<String, dynamic> _$TBBServiceDetailToJson(TBBServiceDetail instance) =>
       'created_at': instance.createdAt,
       'updated_at': instance.updatedAt,
       'deleted_at': instance.deletedAt,
+      'reviews': instance.reviews?.map((e) => e?.toJson())?.toList(),
     };
