@@ -472,12 +472,71 @@ class TBBSdk {
     }
 
     if (kilometer != null) {
-      body.addAll({"km": category.toString()});
+      body.addAll({"km": kilometer.toString()});
+    }
+
+    // query data
+    String queryString = "";
+
+    if (limit != null) {
+      queryString = queryString + "&limit=$limit";
+    }
+    if (offset != null) {
+      queryString = queryString + "&offset=$offset";
     }
 
     // request
     final _response = await http.post(
-        this.appServer + API_PATH_SERVICES_ALL + "?limit=$limit&offset=$offset",
+        this.appServer + API_PATH_SERVICES_ALL + "?$queryString",
+        headers: headers,
+        body: body);
+
+    _printHttpLog(response: _response, body: body);
+
+    //  response
+    if (_response.statusCode >= 200 && _response.statusCode < 300) {
+      TBBResponse response = TBBResponse.fromJson(json.decode(_response.body));
+
+      return TBBServiceItem.listFromJson(response.data);
+    } else {
+      throw new TBBError.fromJson(json.decode(_response.body));
+    }
+  }
+
+  Future<List<TBBServiceItem>> searchAvailableService(
+      {String searchString, int kilometer, int limit, int offset}) async {
+    _printToLog("preparing getting search list of available service");
+
+    // headers data
+    final headers = {
+      'authorization':
+          'Bearer ' + await _localDatabaseService.getSecureAccess('access_id'),
+      'X-Refresh-Token':
+          await _localDatabaseService.getSecureAccess('refresh_id'),
+    };
+
+    // body data
+    final body = {};
+
+    if (kilometer != null) {
+      body.addAll({"km": kilometer.toString()});
+    }
+
+    // query data
+    String queryString = "";
+
+    queryString = queryString + "q=$searchString";
+
+    if (limit != null) {
+      queryString = queryString + "&limit=$limit";
+    }
+    if (offset != null) {
+      queryString = queryString + "&offset=$offset";
+    }
+
+    // request
+    final _response = await http.get(
+        this.appServer + API_PATH_SERVICES_SEARCH + "?$queryString",
         headers: headers,
         body: body);
 
