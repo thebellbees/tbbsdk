@@ -497,7 +497,7 @@ class TBBSdk {
     _printToLog("loading Defaults");
 
     if (localState != null && localState.loggedIn) {
-      _localState.serviceTaxonomy = await getServiceTypes("category");
+      _localState.serviceTaxonomy = await getServiceTypes("services");
     }
   }
 }
