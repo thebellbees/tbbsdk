@@ -535,10 +535,10 @@ class TBBSdk {
     }
 
     // request
-    final _response = await http.get(
+    final _response = await http.post(
         this.appServer + API_PATH_SERVICES_SEARCH + "?$queryString",
         headers: headers,
-        body: body);
+        body: {});
 
     _printHttpLog(response: _response, body: body);
 
