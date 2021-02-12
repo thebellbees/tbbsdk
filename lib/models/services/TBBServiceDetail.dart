@@ -1,5 +1,5 @@
-import 'package:tbbsdk/models/services/TBBServiceItem.dart';
 import 'package:tbbsdk/models/services/TBBServiceOrderReview.dart';
+import 'package:tbbsdk/models/services/TBBServiceTerm.dart';
 import 'package:tbbsdk/models/store.dart';
 
 import 'package:json_annotation/json_annotation.dart';
@@ -23,7 +23,7 @@ class TBBServiceDetail {
   String createdAt;
   String updatedAt;
   String deletedAt;
-  TBBServiceItem serviceItem;
+  TBBServiceTerm serviceTerm;
   List<TBBServiceOrderReview> reviews;
 
   TBBServiceDetail({
@@ -33,7 +33,7 @@ class TBBServiceDetail {
     this.responseMinute,
     this.enabled,
     this.store,
-    this.serviceItem,
+    this.serviceTerm,
     this.reviews,
     this.createdAt,
     this.updatedAt,
