@@ -1,7 +1,4 @@
-import 'dart:convert';
-
 import 'package:tbbsdk/models/services/TBBServiceDetail.dart';
-import 'package:tbbsdk/models/store.dart';
 
 import 'package:json_annotation/json_annotation.dart';
 
