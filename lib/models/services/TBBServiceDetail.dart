@@ -23,7 +23,7 @@ class TBBServiceDetail {
   String createdAt;
   String updatedAt;
   String deletedAt;
-  TBBServiceTerm serviceTerm;
+  TBBServiceTerm srTerm;
   List<TBBServiceOrderReview> reviews;
 
   TBBServiceDetail({
@@ -33,7 +33,7 @@ class TBBServiceDetail {
     this.responseMinute,
     this.enabled,
     this.store,
-    this.serviceTerm,
+    this.srTerm,
     this.reviews,
     this.createdAt,
     this.updatedAt,
