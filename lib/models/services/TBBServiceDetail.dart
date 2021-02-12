@@ -1,5 +1,4 @@
-import 'dart:convert';
-
+import 'package:tbbsdk/models/services/TBBServiceItem.dart';
 import 'package:tbbsdk/models/services/TBBServiceOrderReview.dart';
 import 'package:tbbsdk/models/store.dart';
 
@@ -24,6 +23,7 @@ class TBBServiceDetail {
   String createdAt;
   String updatedAt;
   String deletedAt;
+  TBBServiceItem serviceItem;
   List<TBBServiceOrderReview> reviews;
 
   TBBServiceDetail({
@@ -33,6 +33,8 @@ class TBBServiceDetail {
     this.responseMinute,
     this.enabled,
     this.store,
+    this.serviceItem,
+    this.reviews,
     this.createdAt,
     this.updatedAt,
     this.deletedAt,
