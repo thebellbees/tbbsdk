@@ -18,7 +18,8 @@ class TBBServiceTerm {
   String parent;
   String taxonomyId;
   TBBServiceTaxonomy taxonomy;
-  List<TBBServiceTerm> srTerms;
+  @JsonKey(name: "sr_terms")
+  List<TBBServiceTerm> serviceTerms;
   String createdAt;
   String updatedAt;
   String deletedAt;
@@ -31,7 +32,7 @@ class TBBServiceTerm {
     this.parent,
     this.taxonomyId,
     this.taxonomy,
-    this.srTerms,
+    this.serviceTerms,
     this.createdAt,
     this.updatedAt,
     this.deletedAt,

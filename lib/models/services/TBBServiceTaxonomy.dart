@@ -9,14 +9,16 @@ part 'TBBServiceTaxonomy.g.dart';
 
 /// An annotation for the code generator to know that this class needs the
 /// JSON serialization logic to be generated.
-@JsonSerializable(fieldRename: FieldRename.snake,nullable: true, explicitToJson: true)
+@JsonSerializable(
+    fieldRename: FieldRename.snake, nullable: true, explicitToJson: true)
 class TBBServiceTaxonomy {
   String id;
   String taxonomy;
   String slug;
   String icon;
   String description;
-  List<TBBServiceTerm> srTerms;
+  @JsonKey(name: "sr_terms")
+  List<TBBServiceTerm> serviceTerms;
   String createdAt;
   String updatedAt;
   String deletedAt;
@@ -27,7 +29,7 @@ class TBBServiceTaxonomy {
     this.slug,
     this.icon,
     this.description,
-    this.srTerms,
+    this.serviceTerms,
     this.createdAt,
     this.updatedAt,
     this.deletedAt,

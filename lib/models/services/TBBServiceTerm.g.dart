@@ -17,7 +17,7 @@ TBBServiceTerm _$TBBServiceTermFromJson(Map<String, dynamic> json) {
     taxonomy: json['taxonomy'] == null
         ? null
         : TBBServiceTaxonomy.fromJson(json['taxonomy'] as Map<String, dynamic>),
-    srTerms: (json['sr_terms'] as List)
+    serviceTerms: (json['sr_terms'] as List)
         ?.map((e) => e == null
             ? null
             : TBBServiceTerm.fromJson(e as Map<String, dynamic>))
@@ -37,7 +37,7 @@ Map<String, dynamic> _$TBBServiceTermToJson(TBBServiceTerm instance) =>
       'parent': instance.parent,
       'taxonomy_id': instance.taxonomyId,
       'taxonomy': instance.taxonomy?.toJson(),
-      'sr_terms': instance.srTerms?.map((e) => e?.toJson())?.toList(),
+      'sr_terms': instance.serviceTerms?.map((e) => e?.toJson())?.toList(),
       'created_at': instance.createdAt,
       'updated_at': instance.updatedAt,
       'deleted_at': instance.deletedAt,
