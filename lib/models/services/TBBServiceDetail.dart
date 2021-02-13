@@ -23,7 +23,8 @@ class TBBServiceDetail {
   String createdAt;
   String updatedAt;
   String deletedAt;
-  TBBServiceTerm srTerm;
+  @JsonKey(name: "sr_term")
+  TBBServiceTerm serviceTerm;
   List<TBBServiceOrderReview> reviews;
 
   TBBServiceDetail({
@@ -33,7 +34,7 @@ class TBBServiceDetail {
     this.responseMinute,
     this.enabled,
     this.store,
-    this.srTerm,
+    this.serviceTerm,
     this.reviews,
     this.createdAt,
     this.updatedAt,
