@@ -34,6 +34,7 @@ class TBBStore {
   String createdAt;
   String updatedAt;
   String deletedAt;
+  String city;
 
   TBBStore({
     this.storeId,
@@ -56,6 +57,7 @@ class TBBStore {
     this.country,
     this.pincode,
     this.state,
+    this.city,
   });
 
   /// A necessary factory constructor for creating a new User instance

@@ -361,7 +361,22 @@ class TBBSdkPartner {
 
     // body data
     _printToLog('body before');
-    final body = {};
+    final body = {
+      "store_type": store.storeType,
+      "category": store.category,
+      "name":store.name,
+      "company": store.company,
+      "phone": store.phone,
+      "email": store.email,
+      "aadhar": store.aadhar,
+      "gst": store.gst,
+      "udyog_aadhar": store.udyogAadhar,
+      "address": store.address,
+      "city": store.city,
+      "state": store.state,
+      "country": store.country,
+      "pincode": store.pincode
+    };
     _printToLog('body works');
     // request
     final _response = await http.post(this.authServer + API_PATH_INFO_UPDATE,
