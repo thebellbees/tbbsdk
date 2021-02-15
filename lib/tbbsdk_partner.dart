@@ -362,20 +362,21 @@ class TBBSdkPartner {
     // body data
     _printToLog('body before');
     final body = {
-      "store_type": store.storeType,
-      "category": store.category,
-      "name":store.name,
-      "company": store.company,
-      "phone": store.phone,
-      "email": store.email,
-      "aadhar": store.aadhar,
-      "gst": store.gst,
-      "udyog_aadhar": store.udyogAadhar,
-      "address": store.address,
-      "city": store.city,
-      "state": store.state,
-      "country": store.country,
-      "pincode": store.pincode
+      "store_type": store.storeType.toString(),
+      "category": store.category.toString(),
+      "name":store.name.toString(),
+      "company": store.company.toString(),
+      "phone": store.phone.toString(),
+      "email": store.email.toString(),
+      "aadhar": store.aadhar.toString(),
+      "gst": store.gst.toString(),
+      "udyog_aadhar": store.udyogAadhar.toString(),
+      "address": store.address.toString(),
+      "city": store.city.toString(),
+      "state": store.state.toString(),
+      "country": store.country.toString(),
+      "pincode": store.pincode.toString(),
+      "certificate": store.certificate.toString()
     };
     _printToLog('body works');
     // request

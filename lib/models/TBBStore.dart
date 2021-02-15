@@ -11,6 +11,7 @@ part 'TBBStore.g.dart';
 /// JSON serialization logic to be generated.
 @JsonSerializable(
     fieldRename: FieldRename.snake, nullable: true, explicitToJson: true)
+
 class TBBStore {
   String storeId;
   String ownerId;
