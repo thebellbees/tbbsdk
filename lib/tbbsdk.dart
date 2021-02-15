@@ -18,6 +18,7 @@ import 'package:tbbsdk/utilities/local_database.dart';
 
 // exports
 
+export './tbbsdk_partner.dart' show TBBSdkPartner;
 export './constants/constants.dart';
 export './models/access_token.dart' show TBBAccessToken;
 export './models/helper_class.dart';
