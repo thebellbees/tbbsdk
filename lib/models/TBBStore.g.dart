@@ -1,0 +1,43 @@
+// GENERATED CODE - DO NOT MODIFY BY HAND
+
+part of 'TBBStore.dart';
+
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+TBBStore _$TBBStoreFromJson(Map<String, dynamic> json) {
+  return TBBStore(
+    storeId: json['store_id'] as String,
+    ownerId: json['owner_id'] as String,
+    storeType: json['store_type'] as String,
+    name: json['name'] as String,
+    company: json['company'] as String,
+    phone: json['phone'] as String,
+    email: json['email'] as String,
+    address: json['address'] as String,
+    enabled: json['enabled'] as bool,
+    customer: json['customer'] == null
+        ? null
+        : TBBCustomer.fromJson(json['customer'] as Map<String, dynamic>),
+    createdAt: json['created_at'] as String,
+    updatedAt: json['updated_at'] as String,
+    deletedAt: json['deleted_at'] as String,
+  );
+}
+
+Map<String, dynamic> _$TBBStoreToJson(TBBStore instance) => <String, dynamic>{
+      'store_id': instance.storeId,
+      'owner_id': instance.ownerId,
+      'store_type': instance.storeType,
+      'name': instance.name,
+      'company': instance.company,
+      'phone': instance.phone,
+      'email': instance.email,
+      'address': instance.address,
+      'enabled': instance.enabled,
+      'customer': instance.customer?.toJson(),
+      'created_at': instance.createdAt,
+      'updated_at': instance.updatedAt,
+      'deleted_at': instance.deletedAt,
+    };
