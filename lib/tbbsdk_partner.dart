@@ -361,7 +361,7 @@ class TBBSdkPartner {
 
     // body data
     _printToLog('body before');
-    final body = store.toJson();
+    final body = {};
     _printToLog('body works');
     // request
     final _response = await http.post(this.authServer + API_PATH_INFO_UPDATE,
