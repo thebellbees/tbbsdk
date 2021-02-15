@@ -4,6 +4,7 @@ import 'dart:convert';
 
 import 'package:flutter/widgets.dart';
 import 'package:http/http.dart' as http;
+import 'package:location/location.dart';
 import 'package:tbbsdk/tbbsdk.dart';
 import 'package:tbbsdk/utilities/local_database.dart';
 
@@ -82,6 +83,119 @@ class TBBSdkPartner {
   Future<TBBResponse> logout(String phone) async {
     _printToLog("user getting logged out");
     return await _localDatabaseService.flashSecureLocalState();
+  }
+
+  Future<TBBResponse> generateOtp(String phone,
+      {bool retryVoice = false, bool retryText = false}) async {
+    _printToLog("preparing Auth With Phone");
+
+    // body data
+    var body = {
+      'phone': phone.toString(),
+    };
+
+    // request
+    final _response = await http.post(
+      this.authServer + API_PATH_LOGIN_WITH_PHONE,
+      body: body,
+    );
+
+    _printHttpLog(response: _response, body: body);
+
+    //  Response
+    if (_response.statusCode >= 200 && _response.statusCode < 300) {
+      try {
+        TBBResponse response =
+            TBBResponse.fromJson(json.decode(_response.body));
+
+        return response;
+      } catch (e) {
+        print(e);
+        throw e;
+      }
+    } else {
+      throw new TBBError.fromJson(json.decode(_response.body));
+    }
+  }
+
+  Future<TBBAccessToken> verifyAuthOtp(
+      String phone, String otp, bool newUser) async {
+    _printToLog("preparing Verify Auth OTP");
+
+    final location = new Location();
+    final coordinates = await location.getLocation();
+
+    // body data
+    final body = {
+      'phone': phone.toString(),
+      "otp": otp.toString(),
+      "new_user": newUser.toString(),
+      "latitude": coordinates.latitude.toString(),
+      "longitude": coordinates.longitude.toString(),
+    };
+
+    // request
+    final _response = await http.post(
+      this.authServer + API_PATH_OTP_VERIFY,
+      body: body,
+    );
+
+    _printHttpLog(response: _response, body: body);
+
+    //  response
+    if (_response.statusCode >= 200 && _response.statusCode < 300) {
+      TBBResponse response = TBBResponse.fromJson(json.decode(_response.body));
+
+      // Setting Waiting for otp
+      if (response.data != null && response.data["phone"] != null) {
+        _localDatabaseService.putLocalState('otp_from', '0');
+      }
+
+      var token = TBBAccessToken.fromJson(response.data);
+
+      if (token != null) {
+        await _localDatabaseService.updateSecureAccess(
+            {"access_id": token.accessId, "refresh_id": token.refreshId});
+      }
+
+      return token;
+    } else {
+      throw new TBBError.fromJson(json.decode(_response.body));
+    }
+  }
+
+  Future<TBBUser> verifyAndUpdatePhone(
+      String newPhone, String otp, String newPhoneOtp) async {
+    _printToLog("preparing Verify And Update Phone");
+
+    // headers data
+    final headers = {
+      'authorization':
+          'Bearer ' + await _localDatabaseService.getSecureAccess('access_id'),
+      'X-Refresh-Token':
+          await _localDatabaseService.getSecureAccess('refresh_id'),
+    };
+
+    // body data
+    final body = {
+      'new_phone': newPhone.toString(),
+      'otp': otp.toString(),
+      'new_phone_otp': newPhoneOtp.toString(),
+    };
+
+    // request
+    final _response = await http.post(this.authServer + API_PATH_PHONE_UPDATE,
+        headers: headers, body: body);
+
+    _printHttpLog(response: _response, body: body);
+
+    //  response
+    if (_response.statusCode >= 200 && _response.statusCode < 300) {
+      TBBResponse response = TBBResponse.fromJson(json.decode(_response.body));
+      return TBBUser.fromJson(response.data);
+    } else {
+      throw new TBBError.fromJson(json.decode(_response.body));
+    }
   }
 
   Future<TBBUser> getUserInfo() async {
