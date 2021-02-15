@@ -380,7 +380,7 @@ class TBBSdkPartner {
     };
     _printToLog('body works');
     // request
-    final _response = await http.post(this.authServer + API_PATH_INFO_UPDATE,
+    final _response = await http.post(this.appServer + API_PATH_PARTNER_CREATE_STORE,
         headers: headers, body: body);
 
     _printHttpLog(response: _response, body: body);
