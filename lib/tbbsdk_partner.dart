@@ -4,12 +4,7 @@ import 'dart:convert';
 
 import 'package:flutter/widgets.dart';
 import 'package:http/http.dart' as http;
-import 'package:tbbsdk/constants/constants.dart';
-import 'package:tbbsdk/models/helper_class.dart';
-import 'package:tbbsdk/models/system_state.dart';
-import 'package:tbbsdk/models/tbb_response.dart';
-import 'package:tbbsdk/models/user.dart';
-import 'package:tbbsdk/tbb_error.dart';
+import 'package:tbbsdk/tbbsdk.dart';
 import 'package:tbbsdk/utilities/local_database.dart';
 
 /// A Calculator.
@@ -40,7 +35,7 @@ class TBBSdkPartner {
   TBBLocalState get localState => _localState;
 
   // Constructor
-  TBBSdk({
+  TBBSdkPartner({
     @required String appServer,
     @required String authServer,
     @required String consumerKey,

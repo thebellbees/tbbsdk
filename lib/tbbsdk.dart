@@ -30,6 +30,7 @@ export './models/services/TBBServiceItem.dart' show TBBServiceItem;
 export './models/services/TBBServiceTerm.dart' show TBBServiceTerm;
 export './models/customer.dart' show TBBCustomer;
 export './models/store.dart' show TBBStore;
+export './tbb_error.dart' show TBBError;
 
 /// A Calculator.
 class TBBSdk {
