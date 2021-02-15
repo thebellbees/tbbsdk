@@ -1,4 +1,4 @@
-import 'package:tbbsdk/models/services/TBBServiceDetail.dart';
+
 
 import 'package:json_annotation/json_annotation.dart';
 
