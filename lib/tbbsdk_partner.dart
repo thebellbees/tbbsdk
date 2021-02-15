@@ -360,8 +360,9 @@ class TBBSdkPartner {
     };
 
     // body data
+    _printToLog('body before');
     final body = store.toJson();
-
+    _printToLog('body works');
     // request
     final _response = await http.post(this.authServer + API_PATH_INFO_UPDATE,
         headers: headers, body: body);
