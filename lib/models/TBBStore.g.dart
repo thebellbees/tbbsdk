@@ -25,13 +25,14 @@ TBBStore _$TBBStoreFromJson(Map<String, dynamic> json) {
     deletedAt: json['deleted_at'] as String,
     category: json['category'] as String,
     certificate: json['certificate'] as String,
+    aadhar: json['aadhar'] as String,
     gst: json['gst'] as String,
     udyogAadhar: json['udyog_aadhar'] as String,
     country: json['country'] as String,
     pincode: json['pincode'] as String,
     state: json['state'] as String,
     city: json['city'] as String,
-  )..aadhar = json['aadhar'] as String;
+  );
 }
 
 Map<String, dynamic> _$TBBStoreToJson(TBBStore instance) => <String, dynamic>{
