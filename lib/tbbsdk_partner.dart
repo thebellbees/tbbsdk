@@ -10,6 +10,13 @@ import 'package:tbbsdk/models/TBBPartnerUser.dart';
 import 'package:tbbsdk/tbbsdk.dart';
 import 'package:tbbsdk/utilities/local_database.dart';
 
+// exports
+
+export './models/TBBPartnerToken.dart' show TBBPartnerToken;
+export './models/TBBPartnerLocalState.dart' show TBBPartnerLocalState;
+export './models/TBBPartnerUser.dart' show TBBPartnerUser;
+
+
 /// A Calculator.
 class TBBSdkPartner {
   /// Parameter, [appServer] is the base url of your site. For example, http://example.com or https://example.com.
