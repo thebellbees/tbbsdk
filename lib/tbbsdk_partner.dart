@@ -322,7 +322,7 @@ class TBBSdkPartner {
 
     // request
     final _response = await http.get(
-      this.authServer + API_PATH_PARTNER_INFO,
+      this.appServer + API_PATH_PARTNER_INFO,
       headers: headers,
     );
 
