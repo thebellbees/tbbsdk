@@ -6,13 +6,13 @@ import 'package:flutter/widgets.dart';
 import 'package:http/http.dart' as http;
 import 'package:location/location.dart';
 import 'package:tbbsdk/constants/constants.dart';
-import 'package:tbbsdk/models/access_token.dart';
+import 'package:tbbsdk/models/TBBAccessToken.dart';
 import 'package:tbbsdk/models/helper_class.dart';
 import 'package:tbbsdk/models/services/TBBServiceItem.dart';
 import 'package:tbbsdk/models/services/TBBServiceTaxonomy.dart';
-import 'package:tbbsdk/models/system_state.dart';
+import 'package:tbbsdk/models/TBBLocalState.dart';
 import 'package:tbbsdk/models/tbb_response.dart';
-import 'package:tbbsdk/models/user.dart';
+import 'package:tbbsdk/models/TBBUser.dart';
 import 'package:tbbsdk/tbb_error.dart';
 import 'package:tbbsdk/utilities/local_database.dart';
 
@@ -20,16 +20,16 @@ import 'package:tbbsdk/utilities/local_database.dart';
 
 export './tbbsdk_partner.dart' show TBBSdkPartner;
 export './constants/constants.dart';
-export './models/access_token.dart' show TBBAccessToken;
+export './models/TBBAccessToken.dart' show TBBAccessToken;
 export './models/helper_class.dart';
-export './models/system_state.dart' show TBBLocalState;
+export './models/TBBLocalState.dart' show TBBLocalState;
 export './models/tbb_response.dart' show TBBResponse;
-export './models/user.dart' show TBBUser;
+export './models/TBBUser.dart' show TBBUser;
 export './models/services/TBBServiceTaxonomy.dart' show TBBServiceTaxonomy;
 export './models/services/TBBServiceItem.dart' show TBBServiceItem;
 export './models/services/TBBServiceTerm.dart' show TBBServiceTerm;
-export './models/customer.dart' show TBBCustomer;
-export './models/store.dart' show TBBStore;
+export './models/TBBCustomer.dart' show TBBCustomer;
+export './models/TBBStore.dart' show TBBStore;
 export './tbb_error.dart' show TBBError;
 
 /// A Calculator.

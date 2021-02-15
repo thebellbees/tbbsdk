@@ -1,41 +1,22 @@
-import 'package:tbbsdk/models/services/TBBServiceOrderReview.dart';
-import 'package:tbbsdk/models/services/TBBServiceTerm.dart';
-import 'package:tbbsdk/models/TBBStore.dart';
-
 import 'package:json_annotation/json_annotation.dart';
 
 /// This allows the `User` class to access private members in
 /// the generated file. The value for this is *.g.dart, where
 /// the star denotes the source file name.
-part 'TBBServiceDetail.g.dart';
+part 'TBBCustomer.g.dart';
 
 /// An annotation for the code generator to know that this class needs the
 /// JSON serialization logic to be generated.
 @JsonSerializable(
     fieldRename: FieldRename.snake, nullable: true, explicitToJson: true)
-class TBBServiceDetail {
-  String storeId;
-  String name;
-  String description;
-  String responseMinute;
-  bool enabled;
-  TBBStore store;
+class TBBCustomer {
+  String customerId;
   String createdAt;
   String updatedAt;
   String deletedAt;
-  @JsonKey(name: "sr_term")
-  TBBServiceTerm serviceTerm;
-  List<TBBServiceOrderReview> reviews;
 
-  TBBServiceDetail({
-    this.storeId,
-    this.name,
-    this.description,
-    this.responseMinute,
-    this.enabled,
-    this.store,
-    this.serviceTerm,
-    this.reviews,
+  TBBCustomer({
+    this.customerId,
     this.createdAt,
     this.updatedAt,
     this.deletedAt,
@@ -44,24 +25,24 @@ class TBBServiceDetail {
   /// A necessary factory constructor for creating a new User instance
   /// from a map. Pass the map to the generated `_$UserFromJson()` constructor.
   /// The constructor is named after the source class, in this case, User.
-  factory TBBServiceDetail.fromJson(Map<String, dynamic> json) {
+  factory TBBCustomer.fromJson(Map<String, dynamic> json) {
     json['id'] = json['id'].toString();
     json['store_id'] = json['store_id'].toString();
     json['response_minute'] = json['response_minute'].toString();
-    return _$TBBServiceDetailFromJson(json);
+    return _$TBBCustomerFromJson(json);
   }
 
-  static List<TBBServiceDetail> listFromJson(List<dynamic> listJson) {
+  static List<TBBCustomer> listFromJson(List<dynamic> listJson) {
     Iterable l = listJson;
-    List<TBBServiceDetail> items = List<TBBServiceDetail>.from(
-        l.map((model) => TBBServiceDetail.fromJson(model)));
+    List<TBBCustomer> items =
+        List<TBBCustomer>.from(l.map((model) => TBBCustomer.fromJson(model)));
     return items;
   }
 
   /// `toJson` is the convention for a class to declare support for serialization
   /// to JSON. The implementation simply calls the private, generated
   /// helper method `_$UserToJson`.
-  Map<String, dynamic> toJson() => _$TBBServiceDetailToJson(this);
+  Map<String, dynamic> toJson() => _$TBBCustomerToJson(this);
 
   @override
   toString() => this.toJson().toString();

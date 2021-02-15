@@ -5,6 +5,8 @@ import 'dart:convert';
 import 'package:flutter/widgets.dart';
 import 'package:http/http.dart' as http;
 import 'package:location/location.dart';
+import 'package:tbbsdk/models/TBBPartnerLocalState.dart';
+import 'package:tbbsdk/models/TBBPartnerUser.dart';
 import 'package:tbbsdk/tbbsdk.dart';
 import 'package:tbbsdk/utilities/local_database.dart';
 
@@ -31,9 +33,9 @@ class TBBSdkPartner {
 
   TBBLocalDatabaseService _localDatabaseService = new TBBLocalDatabaseService();
 
-  TBBLocalState _localState;
+  TBBPartnerLocalState _localState;
 
-  TBBLocalState get localState => _localState;
+  TBBPartnerLocalState get localState => _localState;
 
   // Constructor
   TBBSdkPartner({
@@ -198,7 +200,7 @@ class TBBSdkPartner {
     }
   }
 
-  Future<TBBUser> getUserInfo() async {
+  Future<TBBPartnerUser> getUserInfo() async {
     _printToLog("preparing Get User Info");
 
     // headers data
@@ -211,7 +213,7 @@ class TBBSdkPartner {
 
     // request
     final _response = await http.get(
-      this.authServer + API_PATH_GET_INFO,
+      this.authServer + API_PATH_PARTNER_INFO,
       headers: headers,
     );
 
@@ -222,7 +224,7 @@ class TBBSdkPartner {
     //  response
     if (_response.statusCode >= 200 && _response.statusCode < 300) {
       TBBResponse response = TBBResponse.fromJson(json.decode(_response.body));
-      return TBBUser.fromJson(response.data);
+      return TBBPartnerUser.fromJson(response.data);
     } else {
       throw new TBBError.fromJson(json.decode(_response.body));
     }
@@ -256,13 +258,13 @@ class TBBSdkPartner {
     }
   }
 
-  Future<TBBLocalState> loadLocalState() async {
+  Future<TBBPartnerLocalState> loadLocalState() async {
     _printToLog("loading Local State");
 
     String accessId = await _localDatabaseService.getSecureAccess("access_id");
     String refreshId =
         await _localDatabaseService.getSecureAccess("refresh_id");
-    TBBUser user;
+    TBBPartnerUser user;
 
     try {
       user = await this.getUserInfo();
@@ -274,8 +276,11 @@ class TBBSdkPartner {
       }
     }
 
-    _localState =
-        new TBBLocalState(accessId: accessId, refreshId: refreshId, user: user);
+    _localState = new TBBPartnerLocalState(
+      user: user,
+      accessId: accessId,
+      refreshId: refreshId,
+    );
 
     return this.localState;
   }
