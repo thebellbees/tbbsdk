@@ -33,6 +33,8 @@ class TBBUser {
   /// from a map. Pass the map to the generated `_$UserFromJson()` constructor.
   /// The constructor is named after the source class, in this case, User.
   factory TBBUser.fromJson(Map<String, dynamic> json) {
+    json['id'] = json['id'].toString();
+    json['phone'] = json['phone'].toString();
     return _$TBBUserFromJson(json);
   }
 

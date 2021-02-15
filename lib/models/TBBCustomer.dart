@@ -27,7 +27,11 @@ class TBBCustomer {
   /// The constructor is named after the source class, in this case, User.
   factory TBBCustomer.fromJson(Map<String, dynamic> json) {
     json['id'] = json['id'].toString();
-    json['store_id'] = json['store_id'].toString();
+    json['customer_id'] = json['customer_id'].toString();
+    json['created_at'] = json['created_at'].toString();
+    json['updated_at'] = json['updated_at'].toString();
+    json['updated_at'] = json['updated_at'].toString();
+    json['deleted_at'] = json['deleted_at'].toString();
     json['response_minute'] = json['response_minute'].toString();
     return _$TBBCustomerFromJson(json);
   }

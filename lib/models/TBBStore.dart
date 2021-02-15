@@ -11,6 +11,7 @@ part 'TBBStore.g.dart';
 /// JSON serialization logic to be generated.
 @JsonSerializable(
     fieldRename: FieldRename.snake, nullable: true, explicitToJson: true)
+
 class TBBStore {
   String storeId;
   String ownerId;
@@ -19,6 +20,14 @@ class TBBStore {
   String company;
   String phone;
   String email;
+  String category;
+  String state;
+  String pincode;
+  String country;
+  String certificate;
+  String aadhar;
+  String gst;
+  String udyogAadhar;
   String address;
   bool enabled;
   TBBCustomer customer;
@@ -40,6 +49,13 @@ class TBBStore {
     this.createdAt,
     this.updatedAt,
     this.deletedAt,
+    this.category,
+    this.certificate,
+    this.gst,
+    this.udyogAadhar,
+    this.country,
+    this.pincode,
+    this.state,
   });
 
   /// A necessary factory constructor for creating a new User instance
@@ -51,6 +67,10 @@ class TBBStore {
         json['available_around_with_km'].toString();
     json['reach_time'] = json['reach_time'].toString();
     json['distance'] = json['distance'].toString();
+    json['phone'] = json['phone'].toString();
+    json['gst'] = json['gst'].toString();
+    json['udyog_aadhar'] = json['udyog_aadhar'].toString();
+
     return _$TBBStoreFromJson(json);
   }
 

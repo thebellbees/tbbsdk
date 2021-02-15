@@ -32,9 +32,10 @@ class TBBAccessToken {
   /// from a map. Pass the map to the generated `_$UserFromJson()` constructor.
   /// The constructor is named after the source class, in this case, User.
   factory TBBAccessToken.fromJson(Map<String, dynamic> json) {
-    json['id'] = json['id'].toString();
-    json['store_id'] = json['store_id'].toString();
-    json['response_minute'] = json['response_minute'].toString();
+    json['user_id'] = json['user_id'].toString();
+    json['expires'] = json['expires'].toString();
+    json['access_id'] = json['access_id'].toString();
+    json['refresh_id'] = json['refresh_id'].toString();
     return _$TBBAccessTokenFromJson(json);
   }
 
