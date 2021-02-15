@@ -30,6 +30,7 @@ TBBStore _$TBBStoreFromJson(Map<String, dynamic> json) {
     country: json['country'] as String,
     pincode: json['pincode'] as String,
     state: json['state'] as String,
+    city: json['city'] as String,
   )..aadhar = json['aadhar'] as String;
 }
 
@@ -55,4 +56,5 @@ Map<String, dynamic> _$TBBStoreToJson(TBBStore instance) => <String, dynamic>{
       'created_at': instance.createdAt,
       'updated_at': instance.updatedAt,
       'deleted_at': instance.deletedAt,
+      'city': instance.city,
     };
