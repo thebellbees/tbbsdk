@@ -16,3 +16,6 @@ const API_PATH_AUTH_WITH_SOCIAL = "/auth/login_with_social";
 const API_PATH_SERVICES_TYPES = "/services/groups";
 const API_PATH_SERVICES_ALL = "/services/get";
 const API_PATH_SERVICES_SEARCH = "/services/search";
+
+// PARTNER Server Endpoints
+const API_PATH_PARTNER_INFO = "/accounts/info";
