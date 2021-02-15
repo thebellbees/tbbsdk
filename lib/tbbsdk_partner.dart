@@ -16,7 +16,6 @@ export './models/TBBPartnerToken.dart' show TBBPartnerToken;
 export './models/TBBPartnerLocalState.dart' show TBBPartnerLocalState;
 export './models/TBBPartnerUser.dart' show TBBPartnerUser;
 
-
 /// A Calculator.
 class TBBSdkPartner {
   /// Parameter, [appServer] is the base url of your site. For example, http://example.com or https://example.com.
@@ -220,7 +219,7 @@ class TBBSdkPartner {
 
     // request
     final _response = await http.get(
-      this.authServer + API_PATH_PARTNER_INFO,
+      this.appServer + API_PATH_PARTNER_INFO,
       headers: headers,
     );
 
