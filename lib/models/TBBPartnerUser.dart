@@ -53,7 +53,8 @@ class TBBPartnerUser {
   @override
   toString() => this.toJson().toString();
 
-  String get fullName => this.firstName + " " + this.lastName;
+  String get fullName =>
+      "${this.firstName.toString()} ${this.lastName.toString()}";
 
   bool get isEmpty {
     List values = [id, firstName, lastName, email, phone];
