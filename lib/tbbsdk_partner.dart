@@ -397,7 +397,7 @@ class TBBSdkPartner {
     }
   }
 
-  Future<TBBPartnerToken> setPatnerToken({TBBStore store}) async {
+  Future<TBBPartnerToken> setPartnerToken({TBBStore store}) async {
     _printToLog("preparing user update");
 
     // headers data
@@ -412,7 +412,7 @@ class TBBSdkPartner {
     };
 
     // request
-    final _response = await http.post(this.authServer + API_PATH_PARTNER_TOKEN,
+    final _response = await http.post(this.appServer + API_PATH_PARTNER_TOKEN,
         headers: headers, body: body);
 
     _printHttpLog(response: _response, body: body);
