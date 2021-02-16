@@ -65,12 +65,11 @@ class TBBStore {
   /// from a map. Pass the map to the generated `_$UserFromJson()` constructor.
   /// The constructor is named after the source class, in this case, User.
   factory TBBStore.fromJson(Map<String, dynamic> json) {
-    json['service_id'] = json['service_id'].toString();
-    json['available_around_with_km'] =
-        json['available_around_with_km'].toString();
-    json['reach_time'] = json['reach_time'].toString();
-    json['distance'] = json['distance'].toString();
     json['phone'] = json['phone'].toString();
+    json['store_Id'] = json['store_Id'].toString();
+    json['owner_Id'] = json['owner_Id'].toString();
+    json['phone'] = json['phone'].toString();
+    json['pincode'] = json['pincode'].toString();
     json['gst'] = json['gst'].toString();
     json['udyog_aadhar'] = json['udyog_aadhar'].toString();
 
