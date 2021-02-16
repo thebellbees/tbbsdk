@@ -66,8 +66,8 @@ class TBBStore {
   /// The constructor is named after the source class, in this case, User.
   factory TBBStore.fromJson(Map<String, dynamic> json) {
     json['phone'] = json['phone'].toString();
-    json['store_Id'] = json['store_Id'].toString();
-    json['owner_Id'] = json['owner_Id'].toString();
+    json['store_id'] = json['store_id'].toString();
+    json['owner_id'] = json['owner_id'].toString();
     json['phone'] = json['phone'].toString();
     json['pincode'] = json['pincode'].toString();
     json['gst'] = json['gst'].toString();

@@ -6,6 +6,7 @@ import 'package:flutter/widgets.dart';
 import 'package:http/http.dart' as http;
 import 'package:location/location.dart';
 import 'package:tbbsdk/models/TBBPartnerLocalState.dart';
+import 'package:tbbsdk/models/TBBPartnerToken.dart';
 import 'package:tbbsdk/models/TBBPartnerUser.dart';
 import 'package:tbbsdk/tbbsdk.dart';
 import 'package:tbbsdk/utilities/local_database.dart';
@@ -364,7 +365,7 @@ class TBBSdkPartner {
     final body = {
       "store_type": store.storeType.toString(),
       "category": store.category.toString(),
-      "name":store.name.toString(),
+      "name": store.name.toString(),
       "company": store.company.toString(),
       "phone": store.phone.toString(),
       "email": store.email.toString(),
@@ -380,8 +381,10 @@ class TBBSdkPartner {
     };
     _printToLog('body works');
     // request
-    final _response = await http.post(this.appServer + API_PATH_PARTNER_CREATE_STORE,
-        headers: headers, body: body);
+    final _response = await http.post(
+        this.appServer + API_PATH_PARTNER_CREATE_STORE,
+        headers: headers,
+        body: body);
 
     _printHttpLog(response: _response, body: body);
 
@@ -389,6 +392,35 @@ class TBBSdkPartner {
     if (_response.statusCode >= 200 && _response.statusCode < 300) {
       TBBResponse response = TBBResponse.fromJson(json.decode(_response.body));
       return TBBStore.fromJson(response.data);
+    } else {
+      throw new TBBError.fromJson(json.decode(_response.body));
+    }
+  }
+
+  Future<TBBPartnerToken> setPatnerToken({TBBStore store}) async {
+    _printToLog("preparing user update");
+
+    // headers data
+    final headers = {
+      'authorization':
+          'Bearer ' + await _localDatabaseService.getSecureAccess('access_id'),
+    };
+
+    // body data
+    final body = {
+      'store_id': store.storeId.toString(),
+    };
+
+    // request
+    final _response = await http.post(this.authServer + API_PATH_PARTNER_TOKEN,
+        headers: headers, body: body);
+
+    _printHttpLog(response: _response, body: body);
+
+    //  response
+    if (_response.statusCode >= 200 && _response.statusCode < 300) {
+      TBBResponse response = TBBResponse.fromJson(json.decode(_response.body));
+      return TBBPartnerToken.fromJson(response.data);
     } else {
       throw new TBBError.fromJson(json.decode(_response.body));
     }
