@@ -52,6 +52,9 @@ class TBBPartnerUser {
 
   @override
   toString() => this.toJson().toString();
+
+  String get fullName => this.firstName + " " + this.lastName;
+
   bool get isEmpty {
     List values = [id, firstName, lastName, email, phone];
     values.removeWhere((val) {
