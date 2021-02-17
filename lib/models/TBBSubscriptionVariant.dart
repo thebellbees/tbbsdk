@@ -14,11 +14,19 @@ class TBBSubscriptionVariant {
   @JsonKey(name: "id")
   String variantId;
   double duration;
+  String days;
+  String months;
+  String label;
+  double totalAmount;
 
   TBBSubscriptionVariant({
     this.planId,
     this.variantId,
     this.duration,
+    this.days,
+    this.months,
+    this.label,
+    this.totalAmount,
   });
 
   /// A necessary factory constructor for creating a new User instance
@@ -27,7 +35,9 @@ class TBBSubscriptionVariant {
   factory TBBSubscriptionVariant.fromJson(Map<String, dynamic> json) {
     json['plan_id'] = json['plan_id'].toString();
     json['id'] = json['id'].toString();
-
+    json['days'] = json['days'].toString();
+    json['months'] = json['months'].toString();
+    json['label'] = json['label'].toString();
     return _$TBBSubscriptionVariantFromJson(json);
   }
 
