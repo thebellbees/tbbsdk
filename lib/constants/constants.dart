@@ -20,5 +20,5 @@ const API_PATH_SERVICES_SEARCH = "/services/search";
 // PARTNER Server Endpoints
 const API_PATH_PARTNER_INFO = "/accounts/info";
 const API_PATH_PARTNER_CREATE_STORE = "/accounts/stores";
-const API_PATH_PARTNER_SUBSCRIPTION = "/accounts/stores";
+const API_PATH_PARTNER_SUBSCRIPTION_PLANS = "/accounts/subscription_plans";
 const API_PATH_PARTNER_TOKEN= "/accounts/partner_token";

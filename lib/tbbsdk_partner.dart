@@ -438,15 +438,16 @@ class TBBSdkPartner {
     };
 
     // body data
-    final body = {
-      'store_type': store.storeType.toString(),
-    };
 
     // request
-    final _response = await http.post(this.appServer + API_PATH_PARTNER_TOKEN,
-        headers: headers, body: body);
+    final _response = await http.post(
+      this.appServer + API_PATH_PARTNER_SUBSCRIPTION_PLANS,
+      headers: headers,
+    );
 
-    _printHttpLog(response: _response, body: body);
+    _printHttpLog(
+      response: _response,
+    );
 
     //  response
     if (_response.statusCode >= 200 && _response.statusCode < 300) {
