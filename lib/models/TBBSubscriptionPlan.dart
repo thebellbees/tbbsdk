@@ -18,6 +18,7 @@ class TBBSubscriptionPlan {
   String days;
   String months;
   String label;
+  double totalAmount;
   int maxDayDuration;
   double dayPrice;
   List<TBBSubscriptionVariant> subscriptionVariants;
@@ -35,6 +36,7 @@ class TBBSubscriptionPlan {
     this.days,
     this.months,
     this.label,
+    this.totalAmount,
     this.subscriptionVariants,
     this.createdAt,
     this.updatedAt,
