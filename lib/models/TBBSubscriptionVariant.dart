@@ -11,19 +11,14 @@ part 'TBBSubscriptionVariant.g.dart';
     fieldRename: FieldRename.snake, nullable: true, explicitToJson: true)
 class TBBSubscriptionVariant {
   String planId;
+  @JsonKey(name: "id")
   String variantId;
   double duration;
-  String createdAt;
-  String updatedAt;
-  String deletedAt;
 
   TBBSubscriptionVariant({
     this.planId,
     this.variantId,
     this.duration,
-    this.createdAt,
-    this.updatedAt,
-    this.deletedAt,
   });
 
   /// A necessary factory constructor for creating a new User instance
@@ -31,8 +26,8 @@ class TBBSubscriptionVariant {
   /// The constructor is named after the source class, in this case, User.
   factory TBBSubscriptionVariant.fromJson(Map<String, dynamic> json) {
     json['plan_id'] = json['plan_id'].toString();
-    json['variant_id'] = json['variant_id'].toString();
- 
+    json['id'] = json['id'].toString();
+
     return _$TBBSubscriptionVariantFromJson(json);
   }
 

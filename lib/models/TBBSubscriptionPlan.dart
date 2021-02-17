@@ -15,6 +15,9 @@ class TBBSubscriptionPlan {
   String name;
   String description;
   String type;
+  String days;
+  String months;
+  String label;
   int maxDayDuration;
   double dayPrice;
   List<TBBSubscriptionVariant> subscriptionVariants;
@@ -29,6 +32,9 @@ class TBBSubscriptionPlan {
     this.type,
     this.maxDayDuration,
     this.dayPrice,
+    this.days,
+    this.months,
+    this.label,
     this.subscriptionVariants,
     this.createdAt,
     this.updatedAt,
@@ -43,7 +49,18 @@ class TBBSubscriptionPlan {
     json['name'] = json['name'].toString();
     json['description'] = json['description'].toString();
     json['type'] = json['type'].toString();
+    json['days'] = json['days'].toString();
+    json['months'] = json['months'].toString();
+    json['label'] = json['label'].toString();
     return _$TBBSubscriptionPlanFromJson(json);
+  }
+  static List<TBBSubscriptionPlan> listFromJson(List<dynamic> listJson) {
+    Iterable l = listJson;
+
+    List<TBBSubscriptionPlan> items = List<TBBSubscriptionPlan>.from(
+        l.map((model) => TBBSubscriptionPlan.fromJson(model)));
+
+    return items;
   }
 
   /// `toJson` is the convention for a class to declare support for serialization
