@@ -17,6 +17,7 @@ TBBSubscriptionPlan _$TBBSubscriptionPlanFromJson(Map<String, dynamic> json) {
     days: json['days'] as String,
     months: json['months'] as String,
     label: json['label'] as String,
+    totalAmount: (json['total_amount'] as num)?.toDouble(),
     subscriptionVariants: (json['subscription_variants'] as List)
         ?.map((e) => e == null
             ? null
@@ -38,6 +39,7 @@ Map<String, dynamic> _$TBBSubscriptionPlanToJson(
       'days': instance.days,
       'months': instance.months,
       'label': instance.label,
+      'total_amount': instance.totalAmount,
       'max_day_duration': instance.maxDayDuration,
       'day_price': instance.dayPrice,
       'subscription_variants':
