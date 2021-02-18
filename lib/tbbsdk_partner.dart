@@ -53,12 +53,14 @@ class TBBSdkPartner {
   TBBSdkPartner({
     @required String appServer,
     @required String authServer,
+    @required String appPath,
     @required String consumerKey,
     @required String consumerSecret,
     bool isDebug = false,
   }) {
     this.appServer = appServer;
     this.authServer = authServer;
+    this.authServer = appPath;
     this.consumerKey = consumerKey;
     this.consumerSecret = consumerSecret;
     this.isDebug = isDebug;
