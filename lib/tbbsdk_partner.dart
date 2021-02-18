@@ -24,6 +24,9 @@ class TBBSdkPartner {
   /// Parameter, [appServer] is the base url of your site. For example, http://example.com or https://example.com.
   String appServer;
 
+  /// Parameter, [appPath] is the base url of your site. For example, http://example.com or https://example.com.
+  String appPath;
+
   /// Parameter, [authServer] is the base url of your site. For example, http://example.com or https://example.com.
   String authServer;
 
@@ -222,7 +225,7 @@ class TBBSdkPartner {
 
     // request
     final _response = await http.get(
-      this.appServer + API_PATH_PARTNER_INFO,
+      this.appServer + "/$appPath" + API_PATH_PARTNER_INFO,
       headers: headers,
     );
 
@@ -336,7 +339,7 @@ class TBBSdkPartner {
 
     // request
     final _response = await http.get(
-      this.appServer + API_PATH_PARTNER_INFO,
+      this.appServer + "/$appPath" + API_PATH_PARTNER_INFO,
       headers: headers,
     );
 
@@ -384,7 +387,7 @@ class TBBSdkPartner {
     _printToLog('body works');
     // request
     final _response = await http.post(
-        this.appServer + API_PATH_PARTNER_CREATE_STORE,
+        this.appServer + "/$appPath" + API_PATH_PARTNER_CREATE_STORE,
         headers: headers,
         body: body);
 
@@ -414,8 +417,10 @@ class TBBSdkPartner {
     };
 
     // request
-    final _response = await http.post(this.appServer + API_PATH_PARTNER_TOKEN,
-        headers: headers, body: body);
+    final _response = await http.post(
+        this.appServer + "/$appPath" + API_PATH_PARTNER_TOKEN,
+        headers: headers,
+        body: body);
 
     _printHttpLog(response: _response, body: body);
 
@@ -442,7 +447,7 @@ class TBBSdkPartner {
 
     // request
     final _response = await http.post(
-      this.appServer + API_PATH_PARTNER_SUBSCRIPTION_PLANS,
+      this.appServer + "/$appPath" + API_PATH_PARTNER_SUBSCRIPTION_PLANS,
       headers: headers,
     );
 
@@ -475,7 +480,7 @@ class TBBSdkPartner {
 
     // request
     final _response = await http.post(
-        this.appServer + "/system" + API_PATH_STORE_CATEGORIES,
+        this.appServer + "/$appPath" + API_PATH_STORE_CATEGORIES,
         headers: headers,
         body: body);
 
