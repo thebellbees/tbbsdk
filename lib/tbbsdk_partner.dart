@@ -60,7 +60,7 @@ class TBBSdkPartner {
   }) {
     this.appServer = appServer;
     this.authServer = authServer;
-    this.authServer = appPath;
+    this.appPath = appPath;
     this.consumerKey = consumerKey;
     this.consumerSecret = consumerSecret;
     this.isDebug = isDebug;
