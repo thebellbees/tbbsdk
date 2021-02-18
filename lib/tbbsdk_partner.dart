@@ -457,4 +457,65 @@ class TBBSdkPartner {
       throw new TBBError.fromJson(json.decode(_response.body));
     }
   }
+
+  Future<TBBServiceTaxonomy> getStoreCategory({String taxonomySlug}) async {
+    _printToLog("preparing store category");
+
+    // headers data
+    final headers = {
+      'authorization':
+          'Bearer ' + await _localDatabaseService.getSecureAccess('access_id'),
+    };
+
+    // body data
+    final body = {
+      'taxonomy_slug': taxonomySlug.toString(),
+    };
+
+    // request
+    final _response = await http.post(
+        this.appServer + "/system" + API_PATH_STORE_CATEGORIES,
+        headers: headers,
+        body: body);
+
+    _printHttpLog(response: _response, body: body);
+
+    //  response
+    if (_response.statusCode >= 200 && _response.statusCode < 300) {
+      TBBResponse response = TBBResponse.fromJson(json.decode(_response.body));
+      return TBBServiceTaxonomy.fromJson(response.data);
+    } else {
+      throw new TBBError.fromJson(json.decode(_response.body));
+    }
+  }
+  Future<TBBServiceTaxonomy> getCities({String taxonomySlug}) async {
+    _printToLog("preparing store category");
+
+    // headers data
+    final headers = {
+      'authorization':
+      'Bearer ' + await _localDatabaseService.getSecureAccess('access_id'),
+    };
+
+    // body data
+    final body = {
+      'taxonomy_slug': taxonomySlug.toString(),
+    };
+
+    // request
+    final _response = await http.post(
+        this.appServer + "/system" + API_PATH_STORE_CATEGORIES,
+        headers: headers,
+        body: body);
+
+    _printHttpLog(response: _response, body: body);
+
+    //  response
+    if (_response.statusCode >= 200 && _response.statusCode < 300) {
+      TBBResponse response = TBBResponse.fromJson(json.decode(_response.body));
+      return TBBServiceTaxonomy.fromJson(response.data);
+    } else {
+      throw new TBBError.fromJson(json.decode(_response.body));
+    }
+  }
 }
