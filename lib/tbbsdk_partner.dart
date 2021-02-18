@@ -482,7 +482,7 @@ class TBBSdkPartner {
 
     // request
     final _response = await http.post(
-        this.appServer + "/$appPath" + API_PATH_STORE_CATEGORIES,
+        this.appServer + "/system" + API_PATH_STORE_CATEGORIES,
         headers: headers,
         body: body);
 
