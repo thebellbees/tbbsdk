@@ -5,6 +5,7 @@ import 'dart:convert';
 import 'package:flutter/widgets.dart';
 import 'package:http/http.dart' as http;
 import 'package:location/location.dart';
+import 'package:tbbsdk/models/TBBCountry.dart';
 import 'package:tbbsdk/models/TBBPartnerLocalState.dart';
 import 'package:tbbsdk/models/TBBPartnerToken.dart';
 import 'package:tbbsdk/models/TBBPartnerUser.dart';
@@ -488,13 +489,14 @@ class TBBSdkPartner {
       throw new TBBError.fromJson(json.decode(_response.body));
     }
   }
+
   Future<TBBServiceTaxonomy> getCities({String taxonomySlug}) async {
     _printToLog("preparing store category");
 
     // headers data
     final headers = {
       'authorization':
-      'Bearer ' + await _localDatabaseService.getSecureAccess('access_id'),
+          'Bearer ' + await _localDatabaseService.getSecureAccess('access_id'),
     };
 
     // body data
@@ -514,6 +516,31 @@ class TBBSdkPartner {
     if (_response.statusCode >= 200 && _response.statusCode < 300) {
       TBBResponse response = TBBResponse.fromJson(json.decode(_response.body));
       return TBBServiceTaxonomy.fromJson(response.data);
+    } else {
+      throw new TBBError.fromJson(json.decode(_response.body));
+    }
+  }
+
+  Future<List<TBBCountry>> getCountry() async {
+    _printToLog("preparing country");
+
+    // headers data
+    final headers = {
+      'authorization':
+          'Bearer ' + await _localDatabaseService.getSecureAccess('access_id'),
+    };
+
+    // request
+    final _response = await http.post(
+        this.appServer + "/system" + API_PATH_GET_COUNTRY,
+        headers: headers);
+
+    _printHttpLog(response: _response);
+
+    //  response
+    if (_response.statusCode >= 200 && _response.statusCode < 300) {
+      TBBResponse response = TBBResponse.fromJson(json.decode(_response.body));
+      return TBBCountry.listFromJson(response.data);
     } else {
       throw new TBBError.fromJson(json.decode(_response.body));
     }

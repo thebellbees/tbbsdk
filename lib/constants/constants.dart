@@ -24,3 +24,4 @@ const API_PATH_PARTNER_SUBSCRIPTION_PLANS = "/accounts/subscription_plans";
 const API_PATH_PARTNER_TOKEN = "/accounts/partner_token";
 const API_PATH_STORE_CATEGORIES = "/utils/store_category";
 const API_PATH_GET_CITIES = "/utils/get_cities";
+const API_PATH_GET_COUNTRY = "/utils/available_countries";
