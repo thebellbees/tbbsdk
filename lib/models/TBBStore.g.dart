@@ -32,6 +32,7 @@ TBBStore _$TBBStoreFromJson(Map<String, dynamic> json) {
     pincode: json['pincode'] as String,
     state: json['state'] as String,
     city: json['city'] as String,
+    proprietorName: json['proprietor_name'] as String,
   );
 }
 
@@ -58,4 +59,5 @@ Map<String, dynamic> _$TBBStoreToJson(TBBStore instance) => <String, dynamic>{
       'updated_at': instance.updatedAt,
       'deleted_at': instance.deletedAt,
       'city': instance.city,
+      'proprietor_name': instance.proprietorName,
     };
