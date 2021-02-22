@@ -5,6 +5,7 @@ import 'dart:convert';
 import 'package:flutter/widgets.dart';
 import 'package:http/http.dart' as http;
 import 'package:location/location.dart';
+import 'package:tbbsdk/models/TBBCity.dart';
 import 'package:tbbsdk/models/TBBCountry.dart';
 import 'package:tbbsdk/models/TBBPartnerLocalState.dart';
 import 'package:tbbsdk/models/TBBPartnerToken.dart';
@@ -548,6 +549,31 @@ class TBBSdkPartner {
     if (_response.statusCode >= 200 && _response.statusCode < 300) {
       TBBResponse response = TBBResponse.fromJson(json.decode(_response.body));
       return TBBCountry.listFromJson(response.data);
+    } else {
+      throw new TBBError.fromJson(json.decode(_response.body));
+    }
+  }
+
+  Future<List<TBBCity>> getSelectedLocation() async {
+    _printToLog("preparing country");
+
+    // headers data
+    final headers = {
+      'authorization':
+          'Bearer ' + await _localDatabaseService.getSecureAccess('access_id'),
+    };
+
+    // request
+    final _response = await http.post(
+        this.appServer + "/system" + API_PATH_GET_SERVICE_LOCATION,
+        headers: headers);
+
+    _printHttpLog(response: _response);
+
+    //  response
+    if (_response.statusCode >= 200 && _response.statusCode < 300) {
+      TBBResponse response = TBBResponse.fromJson(json.decode(_response.body));
+      return TBBCity.listFromJson(response.data);
     } else {
       throw new TBBError.fromJson(json.decode(_response.body));
     }

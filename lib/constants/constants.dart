@@ -25,3 +25,4 @@ const API_PATH_PARTNER_TOKEN = "/accounts/partner_token";
 const API_PATH_STORE_CATEGORIES = "/utils/store_categories";
 const API_PATH_GET_CITIES = "/utils/get_cities";
 const API_PATH_GET_COUNTRY = "/utils/available_countries";
+const API_PATH_GET_SERVICE_LOCATION = "/utils/available_service_locations";

@@ -35,6 +35,7 @@ class TBBStore {
   String updatedAt;
   String deletedAt;
   String city;
+  String proprietorName;
 
   TBBStore({
     this.storeId,
@@ -59,6 +60,7 @@ class TBBStore {
     this.pincode,
     this.state,
     this.city,
+    this.proprietorName,
   });
 
   /// A necessary factory constructor for creating a new User instance
@@ -69,6 +71,7 @@ class TBBStore {
     json['store_id'] = json['store_id'].toString();
     json['owner_id'] = json['owner_id'].toString();
     json['phone'] = json['phone'].toString();
+    json['proprietor_name'] = json['proprietor_name'].toString();
     json['pincode'] = json['pincode'].toString();
     json['gst'] = json['gst'].toString();
     json['udyog_aadhar'] = json['udyog_aadhar'].toString();
