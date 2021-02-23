@@ -91,7 +91,7 @@ class TBBStore {
     return items;
   }
 
-  validateProps() {
+  Future<TBBStore> validateProps() async {
     List<String> _notRequired = ["gst", "udyog_aadhar"];
     Map<String, PropValidation> _validations = {
       "gst": GSTValidation(),
