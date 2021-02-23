@@ -32,6 +32,12 @@ export './models/TBBCustomer.dart' show TBBCustomer;
 export './models/TBBStore.dart' show TBBStore;
 export './tbb_error.dart' show TBBError;
 
+extension StringExtension on String {
+  String capitalize() {
+    return "${this[0].toUpperCase()}${this.substring(1)}";
+  }
+}
+
 /// A Calculator.
 class TBBSdk {
   /// Parameter, [appServer] is the base url of your site. For example, http://example.com or https://example.com.

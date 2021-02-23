@@ -20,6 +20,12 @@ export './models/TBBPartnerToken.dart' show TBBPartnerToken;
 export './models/TBBPartnerLocalState.dart' show TBBPartnerLocalState;
 export './models/TBBPartnerUser.dart' show TBBPartnerUser;
 
+extension StringExtension on String {
+  String capitalize() {
+    return "${this[0].toUpperCase()}${this.substring(1)}";
+  }
+}
+
 /// A Calculator.
 class TBBSdkPartner {
   /// Parameter, [appServer] is the base url of your site. For example, http://example.com or https://example.com.
@@ -373,13 +379,13 @@ class TBBSdkPartner {
     final body = {
       "store_type": store.storeType.toString(),
       "category": store.category.toString(),
-      "name": store.name.toString(),
       "company": store.company.toString(),
       "phone": store.phone.toString(),
       "email": store.email.toString(),
       "aadhar": store.aadhar.toString(),
       "gst": store.gst.toString(),
       "udyog_aadhar": store.udyogAadhar.toString(),
+      "proprietor_name": store.proprietorName.toString(),
       "address": store.address.toString(),
       "city": store.city.toString(),
       "state": store.state.toString(),
