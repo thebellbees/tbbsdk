@@ -1,7 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:http/http.dart' as http;
-import 'package:tbbsdk/models/TBBStore.dart';
-import 'package:tbbsdk/tbbsdk.dart';
+
 
 Future<void> main() async {
   test('adds one to input values', () async {
