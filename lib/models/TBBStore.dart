@@ -81,7 +81,6 @@ class TBBStore {
 
     return _$TBBStoreFromJson(json);
   }
-
   static List<TBBStore> listFromJson(List<dynamic> listJson) {
     Iterable l = listJson;
 
@@ -91,35 +90,25 @@ class TBBStore {
     return items;
   }
 
-  Future<TBBStore> validateProps() async {
-    List<String> _notRequired = ["gst", "udyog_aadhar"];
+  Future<TBBStore> validateProps(
+      {List<String> exclude, Map<String, PropValidation> validators}) async {
+    List<String> _notRequired = ["gst", "udyog_aadhar", "customer"];
+
     Map<String, PropValidation> _validations = {
       "gst": GSTValidation(),
       "aadhar": AadharValidation()
     };
 
-    this.toJson().map((key, value) {
-      if (_notRequired.contains(key) == false) {
-        if (_validations.containsKey(key)) {
-          dynamic val = _validations[key].validate(value);
-          return MapEntry('($key)', val);
-        }
+    if (exclude != null) {
+      _notRequired.addAll(exclude);
+    }
 
-        if (value != null) {
-          return MapEntry('($key)', value);
-        } else {
-          List<String> prop = key.split("_");
-          throw Exception("${prop.join(" ").capitalize()} is required");
-        }
-      } else {
-        if (_validations.containsKey(key)) {
-          dynamic val = _validations[key].validate(value);
-          return MapEntry('($key)', val);
-        }
-        return MapEntry('($key)', value);
-      }
-    });
-    return this;
+    if (validators != null) {
+      _validations.addAll(validators);
+    }
+
+    return await validatePropsFunc(this.toJson(),
+        notRequired: exclude, validators: validators);
   }
 
   /// `toJson` is the convention for a class to declare support for serialization
@@ -129,6 +118,4 @@ class TBBStore {
 
   @override
   toString() => this.toJson().toString();
-
-  bool AdharValidation() => true;
 }

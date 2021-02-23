@@ -1,3 +1,35 @@
+extension StringExtension on String {
+  String capitalize() {
+    return "${this[0].toUpperCase()}${this.substring(1)}";
+  }
+}
+
+Future validatePropsFunc(Map json,
+    {List<String> notRequired, Map<String, PropValidation> validators}) async {
+  json.map((key, value) {
+    if (notRequired.contains(key) == false) {
+      if (validators.containsKey(key)) {
+        dynamic val = validators[key].validate(value);
+        return MapEntry('($key)', val);
+      }
+
+      if (value != null) {
+        return MapEntry('($key)', value);
+      } else {
+        List<String> prop = key.split("_");
+        throw Exception("${prop.join(" ").capitalize()} is required");
+      }
+    } else {
+      if (validators.containsKey(key)) {
+        dynamic val = validators[key].validate(value);
+        return MapEntry('($key)', val);
+      }
+      return MapEntry('($key)', value);
+    }
+  });
+  return json;
+}
+
 abstract class PropValidation<T> {
   T validate(dynamic value);
 }
