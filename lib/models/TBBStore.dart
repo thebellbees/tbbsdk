@@ -91,12 +91,16 @@ class TBBStore {
   }
 
   Future<TBBStore> validateProps(
-      {List<String> exclude, Map<String, PropValidation> validators}) async {
-    List<String> _notRequired = ["gst", "udyog_aadhar", "customer"];
+      {List<String> exclude,
+      Map<String, PropValidation> validators,
+      bool checkNull = true,
+      bool validate = true}) async {
+    List<String> _notRequired = ["gst", "udyog_aadhar"];
 
     Map<String, PropValidation> _validations = {
       "gst": GSTValidation(),
-      "aadhar": AadharValidation()
+      "aadhar": AadharValidation(),
+      "udyog_aadhar": AadharValidation()
     };
 
     if (exclude != null) {
@@ -107,8 +111,11 @@ class TBBStore {
       _validations.addAll(validators);
     }
 
-    return await validatePropsFunc(this.toJson(),
-        notRequired: exclude, validators: validators);
+    return TBBStore.fromJson(await validatePropsFunc(this.toJson(),
+        excludeNull: _notRequired,
+        validators: _validations,
+        validate: validate,
+        checkNull: checkNull));
   }
 
   /// `toJson` is the convention for a class to declare support for serialization

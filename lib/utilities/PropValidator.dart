@@ -4,29 +4,46 @@ extension StringExtension on String {
   }
 }
 
-Future validatePropsFunc(Map json,
-    {List<String> notRequired, Map<String, PropValidation> validators}) async {
-  json.map((key, value) {
-    if (notRequired.contains(key) == false) {
-      if (validators.containsKey(key)) {
-        dynamic val = validators[key].validate(value);
-        return MapEntry('($key)', val);
-      }
+Future<Map<String, dynamic>> validatePropsFunc(Map json,
+    {List<String> excludeNull,
+    List<String> excludeValidator,
+    Map<String, PropValidation> validators,
+    bool checkNull = false,
+    bool validate = false}) async {
+  if (excludeNull == null) excludeNull = [];
+  if (excludeValidator == null) excludeValidator = [];
 
-      if (value != null) {
-        return MapEntry('($key)', value);
+  if (checkNull) {
+    //checking null values
+    json.map((key, value) {
+      if (excludeNull.contains(key) == false) {
+        if (value != null) {
+          return MapEntry('($key)', value);
+        } else {
+          List<String> prop = key.split("_");
+          throw Exception("${prop.join(" ").capitalize()} is required");
+        }
       } else {
-        List<String> prop = key.split("_");
-        throw Exception("${prop.join(" ").capitalize()} is required");
+        return MapEntry('($key)', value);
       }
-    } else {
-      if (validators.containsKey(key)) {
-        dynamic val = validators[key].validate(value);
-        return MapEntry('($key)', val);
+    });
+  }
+
+  if (validate) {
+    json.map((key, value) {
+      if (value != null && excludeValidator.contains(key) == false) {
+        if (validators.containsKey(key)) {
+          dynamic val = validators[key].validate(value);
+          return MapEntry('($key)', val);
+        } else {
+          return MapEntry('($key)', value);
+        }
+      } else {
+        return MapEntry('($key)', value);
       }
-      return MapEntry('($key)', value);
-    }
-  });
+    });
+  }
+
   return json;
 }
 
