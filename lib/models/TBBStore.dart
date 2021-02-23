@@ -96,7 +96,15 @@ class TBBStore {
       Map<String, PropValidation> validators,
       bool checkNull = true,
       bool validate = true}) async {
-    List<String> _excludeNull = ["gst", "udyog_aadhar"];
+    List<String> _excludeNull = [
+      "store_id",
+      "owner_id",
+      "created_at",
+      "updated_at",
+      "deleted_at",
+      "gst",
+      "udyog_aadhar"
+    ];
 
     Map<String, PropValidation> _excludeValidators = {
       "gst": GSTValidation(),
