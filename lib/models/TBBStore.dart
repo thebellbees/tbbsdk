@@ -91,7 +91,7 @@ class TBBStore {
     return items;
   }
 
-  validateNull() {
+  validateProps() {
     List<String> _notRequired = ["gst", "udyog_aadhar"];
     Map<String, PropValidation> _validations = {
       "gst": GSTValidation(),
