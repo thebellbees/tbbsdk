@@ -27,7 +27,7 @@ Future<void> main() async {
         certificate: "1",
         country: "1");
 
-    print(await store.validateProps(exclude: ["customer"]));
+    print(await store.validateProps(excludeNull: ["customer"]));
 
     // print(convertedPdf);
   });

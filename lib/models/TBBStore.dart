@@ -91,29 +91,31 @@ class TBBStore {
   }
 
   Future<TBBStore> validateProps(
-      {List<String> exclude,
+      {List<String> excludeNull,
+      List<String> excludeValidators,
       Map<String, PropValidation> validators,
       bool checkNull = true,
       bool validate = true}) async {
-    List<String> _notRequired = ["gst", "udyog_aadhar"];
+    List<String> _excludeNull = ["gst", "udyog_aadhar"];
 
-    Map<String, PropValidation> _validations = {
+    Map<String, PropValidation> _excludeValidators = {
       "gst": GSTValidation(),
       "aadhar": AadharValidation(),
       "udyog_aadhar": AadharValidation()
     };
 
-    if (exclude != null) {
-      _notRequired.addAll(exclude);
+    if (excludeNull != null) {
+      _excludeNull.addAll(excludeNull);
     }
 
     if (validators != null) {
-      _validations.addAll(validators);
+      _excludeValidators.addAll(validators);
     }
 
     return TBBStore.fromJson(await validatePropsFunc(this.toJson(),
-        excludeNull: _notRequired,
-        validators: _validations,
+        excludeNull: _excludeNull,
+        excludeValidator: excludeValidators,
+        validators: _excludeValidators,
         validate: validate,
         checkNull: checkNull));
   }
