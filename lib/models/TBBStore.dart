@@ -109,7 +109,7 @@ class TBBStore {
     Map<String, PropValidation> _excludeValidators = {
       "gst": GSTValidation(),
       "aadhar": AadharValidation(),
-      "udyog_aadhar": AadharValidation()
+      "udyog_aadhar": UdyogAadharValidation()
     };
 
     if (excludeNull != null) {
