@@ -19,7 +19,7 @@ Future<Map<String, dynamic>> validatePropsFunc(Map json,
     //checking null values
     json.map((key, value) {
       if (excludeNull.contains(key) == false) {
-        if (value != null) {
+        if (value != null && value.toString().isNotEmpty) {
           return MapEntry('($key)', value);
         } else {
           List<String> prop = key.split("_");
