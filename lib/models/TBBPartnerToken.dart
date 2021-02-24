@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:tbbsdk/models/TBBStore.dart';
 import 'package:tbbsdk/models/TBBStoreSubscription.dart';
 
 /// This allows the `User` class to access private members in
@@ -16,6 +17,7 @@ class TBBPartnerToken {
   String tokenId;
   String ownerId;
   String storeId;
+  TBBStore store;
   TBBStoreSubscription tbbStoreSubscription;
 
   TBBPartnerToken({
@@ -23,6 +25,7 @@ class TBBPartnerToken {
     this.tokenId,
     this.ownerId,
     this.storeId,
+    this.store
   });
 
   /// A necessary factory constructor for creating a new User instance

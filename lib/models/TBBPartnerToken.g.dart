@@ -12,6 +12,9 @@ TBBPartnerToken _$TBBPartnerTokenFromJson(Map<String, dynamic> json) {
     tokenId: json['id'] as String,
     ownerId: json['owner_id'] as String,
     storeId: json['store_id'] as String,
+    store: json['store'] == null
+        ? null
+        : TBBStore.fromJson(json['store'] as Map<String, dynamic>),
   )..tbbStoreSubscription = json['tbb_store_subscription'] == null
       ? null
       : TBBStoreSubscription.fromJson(
@@ -24,5 +27,6 @@ Map<String, dynamic> _$TBBPartnerTokenToJson(TBBPartnerToken instance) =>
       'id': instance.tokenId,
       'owner_id': instance.ownerId,
       'store_id': instance.storeId,
+      'store': instance.store?.toJson(),
       'tbb_store_subscription': instance.tbbStoreSubscription?.toJson(),
     };
