@@ -56,13 +56,17 @@ abstract class PropValidation<T> {
 class AadharValidation extends PropValidation<dynamic> {
   @override
   validate(dynamic value) {
-    value = int.parse(value.toString(), radix: 10);
-    if ((value is int) == false) {
-      throw TBBError(message: "aadhar must be number");
-    }
+    if (value != null && value.toString().isNotEmpty) {
+      value = int.parse(value.toString(), radix: 10);
+      if ((value is int) == false) {
+        throw TBBError(message: "aadhar must be number");
+      }
 
-    if (value.toString().length != 12) {
-      throw TBBError(message: "aadhar must be greater than 12");
+      if (value.toString().length != 12) {
+        throw TBBError(message: "aadhar must be greater than 12");
+      }
+    } else {
+      throw TBBError(message: "aadhar must be number");
     }
 
     return value.toString();
