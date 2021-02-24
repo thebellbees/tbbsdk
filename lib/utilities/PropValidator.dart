@@ -54,7 +54,7 @@ abstract class PropValidation<T> {
 class AadharValidation extends PropValidation<dynamic> {
   @override
   validate(dynamic value) {
-    value = int.parse(value.toString());
+    value = int.parse(value.toString(),radix: 10);
     if ((value is int) == false) {
       throw Exception("must be number");
     }
