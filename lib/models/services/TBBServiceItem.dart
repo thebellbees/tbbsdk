@@ -16,6 +16,7 @@ class TBBServiceItem {
   String latitude;
   String longitude;
   String availableAroundWithKm;
+  String gender;
   String reachTime;
   String distance;
   @JsonKey(name: "sr_service", nullable: true)
@@ -32,6 +33,7 @@ class TBBServiceItem {
     this.reachTime,
     this.distance,
     this.detail,
+    this.gender,
     this.createdAt,
     this.updatedAt,
     this.deletedAt,
@@ -46,6 +48,7 @@ class TBBServiceItem {
         json['available_around_with_km'].toString();
     json['reach_time'] = json['reach_time'].toString();
     json['distance'] = json['distance'].toString();
+    json['gender'] = json['gender'].toString();
     return _$TBBServiceItemFromJson(json);
   }
 

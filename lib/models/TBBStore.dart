@@ -1,6 +1,7 @@
 import 'package:tbbsdk/models/TBBCustomer.dart';
 
 import 'package:json_annotation/json_annotation.dart';
+import 'package:tbbsdk/models/TBBOptionalDocument.dart';
 import 'package:tbbsdk/utilities/PropValidator.dart';
 
 /// This allows the `User` class to access private members in
@@ -41,6 +42,7 @@ class TBBStore {
   String deletedAt;
   String city;
   String proprietorName;
+  TBBOptionalDocument optionalDocuments;
 
   TBBStore({
     this.storeId,
@@ -65,6 +67,7 @@ class TBBStore {
     this.state,
     this.city,
     this.proprietorName,
+    this.optionalDocuments,
   });
 
   /// A necessary factory constructor for creating a new User instance
