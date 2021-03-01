@@ -16,6 +16,9 @@ class TBBServiceItem {
   String serviceId;
   String latitude;
   String longitude;
+  String serviceManPic;
+  String workerOne;
+  String workerTwo;
   String availableAroundWithKm;
   String gender;
   String reachTime;
@@ -36,6 +39,9 @@ class TBBServiceItem {
     this.reachTime,
     this.distance,
     this.detail,
+    this.serviceManPic,
+    this.workerOne,
+    this.workerTwo,
     this.serviceLocation,
     this.gender,
     this.createdAt,
@@ -50,7 +56,10 @@ class TBBServiceItem {
     json['service_id'] = json['service_id'].toString();
     json['available_around_with_km'] =
         json['available_around_with_km'].toString();
+    json['service_man_pic'] = json['service_man_pic'].toString();
     json['reach_time'] = json['reach_time'].toString();
+    json['worker_one'] = json['worker_one'].toString();
+    json['worker_two'] = json['worker_two'].toString();
     json['distance'] = json['distance'].toString();
     json['gender'] = json['gender'].toString();
     return _$TBBServiceItemFromJson(json);
