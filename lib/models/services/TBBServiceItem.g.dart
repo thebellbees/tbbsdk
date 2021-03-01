@@ -17,6 +17,10 @@ TBBServiceItem _$TBBServiceItemFromJson(Map<String, dynamic> json) {
     detail: json['sr_service'] == null
         ? null
         : TBBServiceDetail.fromJson(json['sr_service'] as Map<String, dynamic>),
+    serviceLocation: json['locations'] == null
+        ? null
+        : TBBServiceLocation.fromJson(
+            json['locations'] as Map<String, dynamic>),
     gender: json['gender'] as String,
     createdAt: json['created_at'] as String,
     updatedAt: json['updated_at'] as String,
@@ -34,6 +38,7 @@ Map<String, dynamic> _$TBBServiceItemToJson(TBBServiceItem instance) =>
       'reach_time': instance.reachTime,
       'distance': instance.distance,
       'sr_service': instance.detail?.toJson(),
+      'locations': instance.serviceLocation?.toJson(),
       'created_at': instance.createdAt,
       'updated_at': instance.updatedAt,
       'deleted_at': instance.deletedAt,

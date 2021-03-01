@@ -1,6 +1,7 @@
 import 'package:tbbsdk/models/services/TBBServiceDetail.dart';
 
 import 'package:json_annotation/json_annotation.dart';
+import 'package:tbbsdk/models/services/TBBServiceLocation.dart';
 
 /// This allows the `User` class to access private members in
 /// the generated file. The value for this is *.g.dart, where
@@ -21,6 +22,8 @@ class TBBServiceItem {
   String distance;
   @JsonKey(name: "sr_service", nullable: true)
   TBBServiceDetail detail;
+  @JsonKey(name: "locations")
+  TBBServiceLocation serviceLocation;
   String createdAt;
   String updatedAt;
   String deletedAt;
@@ -33,6 +36,7 @@ class TBBServiceItem {
     this.reachTime,
     this.distance,
     this.detail,
+    this.serviceLocation,
     this.gender,
     this.createdAt,
     this.updatedAt,
