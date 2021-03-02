@@ -426,6 +426,9 @@ class TBBSdkPartner {
           'Bearer ' + await _localDatabaseService.getSecureAccess('access_id'),
     };
 
+    String locationsString = jsonEncode(
+        serviceItem.serviceLocations.map((e) => e.toJson()).toList());
+
     // body data
     _printToLog('body before');
     final body = {
@@ -436,8 +439,7 @@ class TBBSdkPartner {
       "gender": serviceItem.gender.toString(),
       "description": serviceItem.description.toString(),
       "response_minute": serviceItem.responseMinute.toString(),
-      "locations": jsonEncode(
-          serviceItem.serviceLocations.map((e) => e.toJson()).toList())
+      "locations": locationsString.toString()
     };
     _printToLog('body works');
     // request
