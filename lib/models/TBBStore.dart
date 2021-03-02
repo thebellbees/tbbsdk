@@ -2,6 +2,7 @@ import 'package:tbbsdk/models/TBBCustomer.dart';
 
 import 'package:json_annotation/json_annotation.dart';
 import 'package:tbbsdk/models/TBBOptionalDocument.dart';
+import 'package:tbbsdk/models/services/TBBServiceTerm.dart';
 import 'package:tbbsdk/utilities/PropValidator.dart';
 
 /// This allows the `User` class to access private members in
@@ -26,7 +27,7 @@ class TBBStore {
   String company;
   String phone;
   String email;
-  String category;
+  TBBServiceTerm subCategory;
   String state;
   String pincode;
   String country;
@@ -57,7 +58,7 @@ class TBBStore {
     this.createdAt,
     this.updatedAt,
     this.deletedAt,
-    this.category,
+    this.subCategory,
     this.certificate,
     this.aadhar,
     this.gst,

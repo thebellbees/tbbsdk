@@ -378,7 +378,7 @@ class TBBSdkPartner {
     _printToLog('body before');
     final body = {
       "store_type": store.storeType.toString(),
-      "category": store.category.toString(),
+      "subCategory": store.subCategory.toString(),
       "company": store.company.toString(),
       "phone": store.phone.toString(),
       "email": store.email.toString(),
