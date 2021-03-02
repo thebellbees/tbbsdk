@@ -436,7 +436,7 @@ class TBBSdkPartner {
       "gender": serviceItem.gender.toString(),
       "description": serviceItem.description.toString(),
       "response_minute": serviceItem.responseMinute.toString(),
-      "locations": serviceItem.serviceLocation.toJson(),
+      "locations": serviceItem.serviceLocations.map((e) => e.toJson()).toList(),
     };
     _printToLog('body works');
     // request

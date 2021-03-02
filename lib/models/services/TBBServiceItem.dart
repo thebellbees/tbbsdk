@@ -29,7 +29,7 @@ class TBBServiceItem {
   @JsonKey(name: "sr_service", nullable: true)
   TBBServiceDetail detail;
   @JsonKey(name: "locations")
-  List<TBBServiceLocation> serviceLocation;
+  List<TBBServiceLocation> serviceLocations;
   String createdAt;
   String updatedAt;
   String deletedAt;
@@ -48,7 +48,7 @@ class TBBServiceItem {
     this.serviceManPic,
     this.workerOne,
     this.workerTwo,
-    this.serviceLocation,
+    this.serviceLocations,
     this.gender,
     this.createdAt,
     this.updatedAt,
