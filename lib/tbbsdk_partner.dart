@@ -391,7 +391,8 @@ class TBBSdkPartner {
       "state": store.state.toString(),
       "country": store.country.toString(),
       "pincode": store.pincode.toString(),
-      "certificate": store.certificate.toString()
+      "certificate": store.certificate.toString(),
+      "optional_documents": store.optionalDocuments.toJson()
     };
     _printToLog('body works');
     // request
