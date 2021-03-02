@@ -378,7 +378,7 @@ class TBBSdkPartner {
     _printToLog('body before');
     final body = {
       "store_type": store.storeType.toString(),
-      "subCategory": store.subCategory.toString(),
+      "sub_category_id": store.subCategory.id.toString(),
       "company": store.company.toString(),
       "phone": store.phone.toString(),
       "email": store.email.toString(),
@@ -410,6 +410,47 @@ class TBBSdkPartner {
     if (_response.statusCode >= 200 && _response.statusCode < 300) {
       TBBResponse response = TBBResponse.fromJson(json.decode(_response.body));
       return TBBStore.fromJson(response.data);
+    } else {
+      throw new TBBError.fromJson(json.decode(_response.body));
+    }
+  }
+
+  Future<TBBServiceItem> createService({
+    TBBServiceItem serviceItem,
+  }) async {
+    _printToLog("preparing user store");
+
+    // headers data
+    final headers = {
+      'authorization':
+          'Bearer ' + await _localDatabaseService.getSecureAccess('access_id'),
+    };
+
+    // body data
+    _printToLog('body before');
+    final body = {
+      "service_man_pic": serviceItem.serviceManPic.toString(),
+      "worker_one": serviceItem.workerOne.toString(),
+      "worker_two": serviceItem.workerTwo.toString(),
+      "name": serviceItem.name.toString(),
+      "gender": serviceItem.gender.toString(),
+      "description": serviceItem.description.toString(),
+      "response_minute": serviceItem.responseMinute.toString(),
+      "locations": serviceItem.serviceLocation.toJson(),
+    };
+    _printToLog('body works');
+    // request
+    final _response = await http.post(
+        this.appServer + "/$appPath" + API_PATH_PARTNER_CREATE_SERVICE,
+        headers: headers,
+        body: jsonEncode(body));
+
+    _printHttpLog(response: _response, body: body);
+
+    //  response
+    if (_response.statusCode >= 200 && _response.statusCode < 300) {
+      TBBResponse response = TBBResponse.fromJson(json.decode(_response.body));
+      return TBBServiceItem.fromJson(response.data);
     } else {
       throw new TBBError.fromJson(json.decode(_response.body));
     }

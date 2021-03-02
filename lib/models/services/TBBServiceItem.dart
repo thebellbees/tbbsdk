@@ -16,11 +16,14 @@ class TBBServiceItem {
   String serviceId;
   String latitude;
   String longitude;
+  String name;
   String serviceManPic;
   String workerOne;
   String workerTwo;
   String availableAroundWithKm;
   String gender;
+  String responseMinute;
+  String description;
   String reachTime;
   String distance;
   @JsonKey(name: "sr_service", nullable: true)
@@ -35,6 +38,9 @@ class TBBServiceItem {
     this.serviceId,
     this.latitude,
     this.longitude,
+    this.name,
+    this.responseMinute,
+    this.description,
     this.availableAroundWithKm,
     this.reachTime,
     this.distance,
