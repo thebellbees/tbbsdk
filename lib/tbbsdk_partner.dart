@@ -415,9 +415,8 @@ class TBBSdkPartner {
     }
   }
 
-  Future<TBBServiceItem> createService({
-    TBBServiceItem serviceItem,TBBStore store
-  }) async {
+  Future<TBBServiceItem> createService(
+      {TBBServiceItem serviceItem, TBBStore store}) async {
     _printToLog("preparing user store");
 
     // headers data
@@ -428,6 +427,7 @@ class TBBSdkPartner {
 
     String locationsString = jsonEncode(
         serviceItem.serviceLocations.map((e) => e.toJson()).toList());
+    String tagString = jsonEncode(serviceItem.tags);
 
     // body data
     _printToLog('body before');
@@ -438,10 +438,12 @@ class TBBSdkPartner {
       "worker_one": serviceItem.workerOne.toString(),
       "worker_two": serviceItem.workerTwo.toString(),
       "name": serviceItem.name.toString(),
+      "phone": serviceItem.phone.toString(),
       "gender": serviceItem.gender.toString(),
       "description": serviceItem.description.toString(),
       "response_minute": serviceItem.responseMinute.toString(),
-      "locations": locationsString.toString()
+      "locations": locationsString.toString(),
+      "tags": tagString.toString()
     };
     _printToLog('body works');
     // request

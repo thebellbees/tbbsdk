@@ -17,6 +17,7 @@ class TBBServiceItem {
   String latitude;
   String longitude;
   String name;
+  String phone;
   String serviceManPic;
   String workerOne;
   String workerTwo;
@@ -40,6 +41,7 @@ class TBBServiceItem {
     this.latitude,
     this.longitude,
     this.name,
+    this.phone,
     this.responseMinute,
     this.description,
     this.availableAroundWithKm,
