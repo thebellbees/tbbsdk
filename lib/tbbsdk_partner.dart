@@ -392,7 +392,12 @@ class TBBSdkPartner {
       "country": store.country.toString(),
       "pincode": store.pincode.toString(),
       "certificate": store.certificate.toString(),
-      "optional_documents": store.optionalDocuments.toJson()
+      "optional_documents": {
+        "aadhar_doc": store.optionalDocuments.aadharDoc.toString(),
+        "gst_doc": store.optionalDocuments.gstDoc.toString(),
+        "udyog_aadhar_doc": store.optionalDocuments.udyogAadharDoc.toString(),
+        "certificate_doc": store.optionalDocuments.certificateDoc.toString(),
+      }
     };
     _printToLog('body works');
     // request
