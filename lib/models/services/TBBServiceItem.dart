@@ -72,6 +72,7 @@ class TBBServiceItem {
     json['worker_two'] = json['worker_two'].toString();
     json['distance'] = json['distance'].toString();
     json['gender'] = json['gender'].toString();
+    json['response_minute'] = json['response_minute'].toString();
     return _$TBBServiceItemFromJson(json);
   }
 
