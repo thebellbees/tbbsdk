@@ -27,6 +27,7 @@ class TBBStore {
   String company;
   String phone;
   String email;
+  @JsonKey(name: "sr_term")
   TBBServiceTerm subCategory;
   String state;
   String pincode;
