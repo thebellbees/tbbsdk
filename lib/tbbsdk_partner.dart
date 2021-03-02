@@ -436,14 +436,15 @@ class TBBSdkPartner {
       "gender": serviceItem.gender.toString(),
       "description": serviceItem.description.toString(),
       "response_minute": serviceItem.responseMinute.toString(),
-      "locations": serviceItem.serviceLocations.map((e) => e.toJson()).toList(),
+      "locations": jsonEncode(
+          serviceItem.serviceLocations.map((e) => e.toJson()).toList())
     };
     _printToLog('body works');
     // request
     final _response = await http.post(
         this.appServer + "/$appPath" + API_PATH_PARTNER_CREATE_SERVICE,
         headers: headers,
-        body: jsonEncode(body));
+        body: body);
 
     _printHttpLog(response: _response, body: body);
 
