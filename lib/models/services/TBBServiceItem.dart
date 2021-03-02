@@ -30,6 +30,7 @@ class TBBServiceItem {
   TBBServiceDetail detail;
   @JsonKey(name: "locations")
   List<TBBServiceLocation> serviceLocations;
+  List<String> tags;
   String createdAt;
   String updatedAt;
   String deletedAt;
@@ -49,6 +50,7 @@ class TBBServiceItem {
     this.workerOne,
     this.workerTwo,
     this.serviceLocations,
+    this.tags,
     this.gender,
     this.createdAt,
     this.updatedAt,
