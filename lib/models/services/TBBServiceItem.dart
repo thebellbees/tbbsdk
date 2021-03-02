@@ -29,7 +29,7 @@ class TBBServiceItem {
   @JsonKey(name: "sr_service", nullable: true)
   TBBServiceDetail detail;
   @JsonKey(name: "locations")
-  TBBServiceLocation serviceLocation;
+  List<TBBServiceLocation> serviceLocation;
   String createdAt;
   String updatedAt;
   String deletedAt;
