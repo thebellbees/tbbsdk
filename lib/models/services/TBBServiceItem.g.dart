@@ -12,6 +12,7 @@ TBBServiceItem _$TBBServiceItemFromJson(Map<String, dynamic> json) {
     latitude: json['latitude'] as String,
     longitude: json['longitude'] as String,
     name: json['name'] as String,
+    phone: json['phone'] as String,
     responseMinute: json['response_minute'] as String,
     description: json['description'] as String,
     availableAroundWithKm: json['available_around_with_km'] as String,
@@ -28,6 +29,7 @@ TBBServiceItem _$TBBServiceItemFromJson(Map<String, dynamic> json) {
             ? null
             : TBBServiceLocation.fromJson(e as Map<String, dynamic>))
         ?.toList(),
+    tags: (json['tags'] as List)?.map((e) => e as String)?.toList(),
     gender: json['gender'] as String,
     createdAt: json['created_at'] as String,
     updatedAt: json['updated_at'] as String,
@@ -41,6 +43,7 @@ Map<String, dynamic> _$TBBServiceItemToJson(TBBServiceItem instance) =>
       'latitude': instance.latitude,
       'longitude': instance.longitude,
       'name': instance.name,
+      'phone': instance.phone,
       'service_man_pic': instance.serviceManPic,
       'worker_one': instance.workerOne,
       'worker_two': instance.workerTwo,
@@ -52,6 +55,7 @@ Map<String, dynamic> _$TBBServiceItemToJson(TBBServiceItem instance) =>
       'distance': instance.distance,
       'sr_service': instance.detail?.toJson(),
       'locations': instance.serviceLocations?.map((e) => e?.toJson())?.toList(),
+      'tags': instance.tags,
       'created_at': instance.createdAt,
       'updated_at': instance.updatedAt,
       'deleted_at': instance.deletedAt,
