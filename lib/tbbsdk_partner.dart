@@ -416,7 +416,7 @@ class TBBSdkPartner {
   }
 
   Future<TBBServiceItem> createService({
-    TBBServiceItem serviceItem,
+    TBBServiceItem serviceItem,TBBStore store
   }) async {
     _printToLog("preparing user store");
 
@@ -432,6 +432,7 @@ class TBBSdkPartner {
     // body data
     _printToLog('body before');
     final body = {
+      'store_id': store.storeId.toString(),
       "service_man_pic": serviceItem.serviceManPic.toString(),
       "worker_one": serviceItem.workerOne.toString(),
       "worker_two": serviceItem.workerTwo.toString(),
