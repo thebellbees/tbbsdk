@@ -39,6 +39,7 @@ class TBBStore {
   String udyogAadhar;
   String address;
   bool enabled;
+  @JsonKey(name: "sr_service")
   TBBServiceItem service;
   TBBCustomer customer;
   String createdAt;
