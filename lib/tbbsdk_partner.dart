@@ -481,7 +481,7 @@ class TBBSdkPartner {
     // body data
     _printToLog('body before');
     final body = {
-      "enabled": store.service.enabled.toString(),
+      "enabled": serviceItem.enabled.toString(),
       "service_man_pic": serviceItem.serviceManPic.toString(),
       "worker_one": serviceItem.workerOne.toString(),
       "worker_two": serviceItem.workerTwo.toString(),
@@ -499,7 +499,7 @@ class TBBSdkPartner {
         this.appServer +
             "/$appPath" +
             API_PATH_PARTNER_UPDATE_SERVICE +
-            "/${serviceItem.serviceId.toString()}",
+            "/${store.service.serviceId.toString()}",
         headers: headers,
         body: body);
 
