@@ -66,7 +66,7 @@ class TBBServiceItem {
   /// from a map. Pass the map to the generated `_$UserFromJson()` constructor.
   /// The constructor is named after the source class, in this case, User.
   factory TBBServiceItem.fromJson(Map<String, dynamic> json) {
-    json['service_id'] = json['service_id'].toString();
+    json['id'] = json['id'].toString();
     json['available_around_with_km'] =
         json['available_around_with_km'].toString();
     json['service_man_pic'] = json['service_man_pic'].toString();
