@@ -13,6 +13,7 @@ part 'TBBServiceItem.g.dart';
 @JsonSerializable(
     fieldRename: FieldRename.snake, nullable: true, explicitToJson: true)
 class TBBServiceItem {
+  @JsonKey(name: "id")
   String serviceId;
   String latitude;
   String longitude;

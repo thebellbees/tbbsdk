@@ -8,7 +8,7 @@ part of 'TBBServiceItem.dart';
 
 TBBServiceItem _$TBBServiceItemFromJson(Map<String, dynamic> json) {
   return TBBServiceItem(
-    serviceId: json['service_id'] as String,
+    serviceId: json['id'] as String,
     latitude: json['latitude'] as String,
     longitude: json['longitude'] as String,
     name: json['name'] as String,
@@ -40,7 +40,7 @@ TBBServiceItem _$TBBServiceItemFromJson(Map<String, dynamic> json) {
 
 Map<String, dynamic> _$TBBServiceItemToJson(TBBServiceItem instance) =>
     <String, dynamic>{
-      'service_id': instance.serviceId,
+      'id': instance.serviceId,
       'latitude': instance.latitude,
       'longitude': instance.longitude,
       'name': instance.name,
