@@ -481,7 +481,7 @@ class TBBSdkPartner {
     // body data
     _printToLog('body before');
     final body = {
-      "enabled": serviceItem.enabled.toString(),
+      "enabled": store.service.enabled.toString(),
       "service_man_pic": serviceItem.serviceManPic.toString(),
       "worker_one": serviceItem.workerOne.toString(),
       "worker_two": serviceItem.workerTwo.toString(),
