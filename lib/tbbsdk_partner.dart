@@ -434,6 +434,7 @@ class TBBSdkPartner {
     final body = {
       "store_id": store.storeId.toString(),
       "sub_category_id": store.subCategory.id.toString(),
+      "enabled": serviceItem.enabled.toString(),
       "service_man_pic": serviceItem.serviceManPic.toString(),
       "worker_one": serviceItem.workerOne.toString(),
       "worker_two": serviceItem.workerTwo.toString(),
@@ -449,6 +450,56 @@ class TBBSdkPartner {
     // request
     final _response = await http.post(
         this.appServer + "/$appPath" + API_PATH_PARTNER_CREATE_SERVICE,
+        headers: headers,
+        body: body);
+
+    _printHttpLog(response: _response, body: body);
+
+    //  response
+    if (_response.statusCode >= 200 && _response.statusCode < 300) {
+      TBBResponse response = TBBResponse.fromJson(json.decode(_response.body));
+      return TBBServiceItem.fromJson(response.data);
+    } else {
+      throw new TBBError.fromJson(json.decode(_response.body));
+    }
+  }
+
+  Future<TBBServiceItem> updateService(
+      {TBBServiceItem serviceItem, TBBStore store}) async {
+    _printToLog("preparing user store");
+
+    // headers data
+    final headers = {
+      'authorization':
+          'Bearer ' + await _localDatabaseService.getSecureAccess('access_id'),
+    };
+
+    String locationsString = jsonEncode(
+        serviceItem.serviceLocations.map((e) => e.toJson()).toList());
+    String tagString = jsonEncode(serviceItem.tags);
+
+    // body data
+    _printToLog('body before');
+    final body = {
+      "enabled": serviceItem.enabled.toString(),
+      "service_man_pic": serviceItem.serviceManPic.toString(),
+      "worker_one": serviceItem.workerOne.toString(),
+      "worker_two": serviceItem.workerTwo.toString(),
+      "name": serviceItem.name.toString(),
+      "phone": serviceItem.phone.toString(),
+      "gender": serviceItem.gender.toString(),
+      "description": serviceItem.description.toString(),
+      "response_minute": serviceItem.responseMinute.toString(),
+      "locations": locationsString.toString(),
+      "tags": tagString.toString()
+    };
+    _printToLog('body works');
+    // request
+    final _response = await http.put(
+        this.appServer +
+            "/$appPath" +
+            API_PATH_PARTNER_UPDATE_SERVICE +
+            "/${serviceItem.serviceId.toString()}",
         headers: headers,
         body: body);
 

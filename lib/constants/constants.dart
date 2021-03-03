@@ -21,6 +21,7 @@ const API_PATH_SERVICES_SEARCH = "/services/search";
 const API_PATH_PARTNER_INFO = "/accounts/info";
 const API_PATH_PARTNER_CREATE_STORE = "/accounts/stores";
 const API_PATH_PARTNER_CREATE_SERVICE = "/services";
+const API_PATH_PARTNER_UPDATE_SERVICE = "/services";
 const API_PATH_PARTNER_SUBSCRIPTION_PLANS = "/accounts/subscription_plans";
 const API_PATH_PARTNER_TOKEN = "/accounts/partner_token";
 const API_PATH_STORE_CATEGORIES = "/utils/store_categories";

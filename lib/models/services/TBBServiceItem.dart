@@ -27,6 +27,7 @@ class TBBServiceItem {
   String description;
   String reachTime;
   String distance;
+  bool enabled;
   @JsonKey(name: "sr_service", nullable: true)
   TBBServiceDetail detail;
   @JsonKey(name: "locations")
@@ -42,6 +43,7 @@ class TBBServiceItem {
     this.longitude,
     this.name,
     this.phone,
+    this.enabled,
     this.responseMinute,
     this.description,
     this.availableAroundWithKm,
