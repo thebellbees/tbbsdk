@@ -241,7 +241,7 @@ class TBBSdk {
 
     // request
     final _response = await http.get(
-      this.authServer + API_PATH_GET_INFO,
+      this.appServer + API_PATH_GET_INFO,
       headers: headers,
     );
 
