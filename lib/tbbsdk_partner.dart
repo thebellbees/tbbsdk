@@ -12,6 +12,7 @@ import 'package:tbbsdk/models/TBBPartnerToken.dart';
 import 'package:tbbsdk/models/TBBPartnerUser.dart';
 import 'package:tbbsdk/models/TBBSubscriptionPlan.dart';
 import 'package:tbbsdk/tbbsdk.dart';
+import 'package:tbbsdk/utilities/common_functions.dart';
 import 'package:tbbsdk/utilities/local_database.dart';
 
 // exports
@@ -103,10 +104,14 @@ class TBBSdkPartner {
 
   String get authToken => _authToken;
 
+  // Logout
+
   Future<TBBResponse> logout(String phone) async {
     _printToLog("user getting logged out");
     return await _localDatabaseService.flashSecureLocalState();
   }
+
+  // Generate Otp
 
   Future<TBBResponse> generateOtp(String phone,
       {bool retryVoice = false, bool retryText = false}) async {
@@ -140,6 +145,8 @@ class TBBSdkPartner {
       throw new TBBError.fromJson(json.decode(_response.body));
     }
   }
+
+  //Verify Otp
 
   Future<TBBAccessToken> verifyAuthOtp(
       String phone, String otp, bool newUser) async {
@@ -187,6 +194,8 @@ class TBBSdkPartner {
     }
   }
 
+  //Verify and Update Phone
+
   Future<TBBUser> verifyAndUpdatePhone(
       String newPhone, String otp, String newPhoneOtp) async {
     _printToLog("preparing Verify And Update Phone");
@@ -221,6 +230,8 @@ class TBBSdkPartner {
     }
   }
 
+  //Get User Info
+
   Future<TBBPartnerUser> getUserInfo() async {
     _printToLog("preparing Get User Info");
 
@@ -251,6 +262,8 @@ class TBBSdkPartner {
     }
   }
 
+  //Refresh Token
+
   Future refreshAccessToken() async {
     _printToLog("preparing Refreshing Access Token");
 
@@ -279,6 +292,8 @@ class TBBSdkPartner {
     }
   }
 
+  //LoadLocalState
+
   Future<TBBPartnerLocalState> loadLocalState() async {
     _printToLog("loading Local State");
 
@@ -306,6 +321,8 @@ class TBBSdkPartner {
     return this.localState;
   }
 
+  //UserUpdate
+
   Future<TBBUser> userUpdate({TBBUserUpdate userData}) async {
     _printToLog("preparing user update");
 
@@ -322,11 +339,13 @@ class TBBSdkPartner {
       'email': userData.email.toString(),
     };
 
+    final data = propertySanitizer<Map<String, dynamic>>(body);
+
     // request
     final _response = await http.post(this.authServer + API_PATH_INFO_UPDATE,
-        headers: headers, body: body);
+        headers: headers, body: data);
 
-    _printHttpLog(response: _response, body: body);
+    _printHttpLog(response: _response, body: data);
 
     //  response
     if (_response.statusCode >= 200 && _response.statusCode < 300) {
@@ -336,6 +355,8 @@ class TBBSdkPartner {
       throw new TBBError.fromJson(json.decode(_response.body));
     }
   }
+
+  //LoadDefault
 
   Future<TBBUser> loadDefault() async {
     _printToLog("preparing user update");
@@ -364,6 +385,8 @@ class TBBSdkPartner {
       throw new TBBError.fromJson(json.decode(_response.body));
     }
   }
+
+  //Create Store
 
   Future<TBBStore> createStore({TBBStore store}) async {
     _printToLog("preparing create store");
@@ -397,14 +420,15 @@ class TBBSdkPartner {
       "udyog_aadhar_doc": store.optionalDocuments.udyogAadharDoc.toString(),
       "certificate_doc": store.optionalDocuments.certificateDoc.toString(),
     };
+    final data = propertySanitizer<Map<String, dynamic>>(body);
     _printToLog('body works');
     // request
     final _response = await http.post(
         this.appServer + "/$appPath" + API_PATH_PARTNER_CREATE_STORE,
         headers: headers,
-        body: body);
+        body: data);
 
-    _printHttpLog(response: _response, body: body);
+    _printHttpLog(response: _response, body: data);
 
     //  response
     if (_response.statusCode >= 200 && _response.statusCode < 300) {
@@ -414,6 +438,8 @@ class TBBSdkPartner {
       throw new TBBError.fromJson(json.decode(_response.body));
     }
   }
+
+  //CreateService
 
   Future<TBBServiceItem> createService(
       {TBBServiceItem serviceItem, TBBStore store}) async {
@@ -446,14 +472,15 @@ class TBBSdkPartner {
       "locations": locationsString.toString(),
       "tags": tagString.toString()
     };
+    final data = propertySanitizer<Map<String, dynamic>>(body);
     _printToLog('body works');
     // request
     final _response = await http.post(
         this.appServer + "/$appPath" + API_PATH_PARTNER_CREATE_SERVICE,
         headers: headers,
-        body: body);
+        body: data);
 
-    _printHttpLog(response: _response, body: body);
+    _printHttpLog(response: _response, body: data);
 
     //  response
     if (_response.statusCode >= 200 && _response.statusCode < 300) {
@@ -463,6 +490,8 @@ class TBBSdkPartner {
       throw new TBBError.fromJson(json.decode(_response.body));
     }
   }
+
+  //UpdateService
 
   Future<TBBServiceItem> updateService(
       {TBBServiceItem serviceItem, TBBStore store}) async {
@@ -497,6 +526,8 @@ class TBBSdkPartner {
       "locations": locationsString.toString(),
       "tags": tagString.toString()
     };
+
+    final data = propertySanitizer<Map<String, dynamic>>(body);
     _printToLog('body works');
     // request
     final _response = await http.put(
@@ -505,9 +536,9 @@ class TBBSdkPartner {
             API_PATH_PARTNER_UPDATE_SERVICE +
             "/${store.service.serviceId.toString()}",
         headers: headers,
-        body: body);
+        body: data);
 
-    _printHttpLog(response: _response, body: body);
+    _printHttpLog(response: _response, body: data);
 
     //  response
     if (_response.statusCode >= 200 && _response.statusCode < 300) {
@@ -517,6 +548,8 @@ class TBBSdkPartner {
       throw new TBBError.fromJson(json.decode(_response.body));
     }
   }
+
+  //PartnerToken
 
   Future<TBBPartnerToken> setPartnerToken({TBBStore store}) async {
     _printToLog("preparing partner token");
@@ -531,14 +564,15 @@ class TBBSdkPartner {
     final body = {
       'store_id': store.storeId.toString(),
     };
+    final data = propertySanitizer<Map<String, dynamic>>(body);
 
     // request
     final _response = await http.post(
         this.appServer + "/$appPath" + API_PATH_PARTNER_TOKEN,
         headers: headers,
-        body: body);
+        body: data);
 
-    _printHttpLog(response: _response, body: body);
+    _printHttpLog(response: _response, body: data);
 
     //  response
     if (_response.statusCode >= 200 && _response.statusCode < 300) {
@@ -548,6 +582,8 @@ class TBBSdkPartner {
       throw new TBBError.fromJson(json.decode(_response.body));
     }
   }
+
+  //SubscriptionPlan
 
   Future<List<TBBSubscriptionPlan>> availableSubscriptionPlans(
       {TBBStore store}) async {
@@ -580,6 +616,8 @@ class TBBSdkPartner {
     }
   }
 
+  //StoreCategory
+
   Future<TBBServiceTaxonomy> getStoreCategory({String taxonomySlug}) async {
     _printToLog("preparing store category");
 
@@ -610,6 +648,8 @@ class TBBSdkPartner {
       throw new TBBError.fromJson(json.decode(_response.body));
     }
   }
+
+  //Get Cities
 
   Future<TBBServiceTaxonomy> getCities({String taxonomySlug}) async {
     _printToLog("preparing cities");
@@ -642,6 +682,8 @@ class TBBSdkPartner {
     }
   }
 
+  //Get Country
+
   Future<List<TBBCountry>> getCountry() async {
     _printToLog("preparing country");
 
@@ -666,6 +708,8 @@ class TBBSdkPartner {
       throw new TBBError.fromJson(json.decode(_response.body));
     }
   }
+
+  //Get Selected Location
 
   Future<List<TBBCity>> getSelectedLocation() async {
     _printToLog("preparing country");
