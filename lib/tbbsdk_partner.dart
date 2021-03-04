@@ -366,7 +366,7 @@ class TBBSdkPartner {
   }
 
   Future<TBBStore> createStore({TBBStore store}) async {
-    _printToLog("preparing user store");
+    _printToLog("preparing create store");
 
     // headers data
     final headers = {
@@ -417,7 +417,7 @@ class TBBSdkPartner {
 
   Future<TBBServiceItem> createService(
       {TBBServiceItem serviceItem, TBBStore store}) async {
-    _printToLog("preparing user store");
+    _printToLog("preparing create service");
 
     // headers data
     final headers = {
@@ -466,7 +466,7 @@ class TBBSdkPartner {
 
   Future<TBBServiceItem> updateService(
       {TBBServiceItem serviceItem, TBBStore store}) async {
-    _printToLog("preparing user store");
+    _printToLog("preparing update service");
 
     // headers data
     final headers = {
@@ -475,8 +475,9 @@ class TBBSdkPartner {
     };
 
     String locationsString = serviceItem.serviceLocations != null
-        ? jsonEncode(
-            serviceItem.serviceLocations.map((e) => e.toJson()).toList())
+        ? jsonEncode({
+            "add": serviceItem.serviceLocations.map((e) => e.toJson()).toList()
+          })
         : null;
     String tagString =
         serviceItem.tags != null ? jsonEncode(serviceItem.tags) : null;
@@ -518,7 +519,7 @@ class TBBSdkPartner {
   }
 
   Future<TBBPartnerToken> setPartnerToken({TBBStore store}) async {
-    _printToLog("preparing user update");
+    _printToLog("preparing partner token");
 
     // headers data
     final headers = {
@@ -550,7 +551,7 @@ class TBBSdkPartner {
 
   Future<List<TBBSubscriptionPlan>> availableSubscriptionPlans(
       {TBBStore store}) async {
-    _printToLog("preparing user update");
+    _printToLog("preparing subscription plan");
 
     // headers data
     final headers = {
@@ -611,7 +612,7 @@ class TBBSdkPartner {
   }
 
   Future<TBBServiceTaxonomy> getCities({String taxonomySlug}) async {
-    _printToLog("preparing store category");
+    _printToLog("preparing cities");
 
     // headers data
     final headers = {
