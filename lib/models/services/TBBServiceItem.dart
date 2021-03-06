@@ -17,13 +17,7 @@ class TBBServiceItem {
   String serviceId;
   String latitude;
   String longitude;
-  String name;
-  String phone;
-  String serviceManPic;
-  String workerOne;
-  String workerTwo;
   String availableAroundWithKm;
-  String gender;
   String responseMinute;
   String description;
   String reachTime;
@@ -42,8 +36,6 @@ class TBBServiceItem {
     this.serviceId,
     this.latitude,
     this.longitude,
-    this.name,
-    this.phone,
     this.enabled,
     this.responseMinute,
     this.description,
@@ -51,12 +43,8 @@ class TBBServiceItem {
     this.reachTime,
     this.distance,
     this.detail,
-    this.serviceManPic,
-    this.workerOne,
-    this.workerTwo,
     this.serviceLocations,
     this.tags,
-    this.gender,
     this.createdAt,
     this.updatedAt,
     this.deletedAt,

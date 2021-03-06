@@ -16,7 +16,12 @@ part 'TBBServiceDetail.g.dart';
 class TBBServiceDetail {
   String storeId;
   String name;
+  String phone;
+  String serviceManPic;
+  String workerOne;
+  String workerTwo;
   String description;
+  String gender;
   String responseMinute;
   bool enabled;
   TBBStore store;
@@ -29,12 +34,16 @@ class TBBServiceDetail {
 
   TBBServiceDetail({
     this.storeId,
-    this.name,
+    this.phone,
     this.description,
     this.responseMinute,
     this.enabled,
     this.store,
     this.serviceTerm,
+    this.serviceManPic,
+    this.workerOne,
+    this.workerTwo,
+    this.gender,
     this.reviews,
     this.createdAt,
     this.updatedAt,

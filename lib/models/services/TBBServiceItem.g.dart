@@ -11,8 +11,6 @@ TBBServiceItem _$TBBServiceItemFromJson(Map<String, dynamic> json) {
     serviceId: json['id'] as String,
     latitude: json['latitude'] as String,
     longitude: json['longitude'] as String,
-    name: json['name'] as String,
-    phone: json['phone'] as String,
     enabled: json['enabled'] as bool,
     responseMinute: json['response_minute'] as String,
     description: json['description'] as String,
@@ -22,16 +20,12 @@ TBBServiceItem _$TBBServiceItemFromJson(Map<String, dynamic> json) {
     detail: json['sr_service'] == null
         ? null
         : TBBServiceDetail.fromJson(json['sr_service'] as Map<String, dynamic>),
-    serviceManPic: json['service_man_pic'] as String,
-    workerOne: json['worker_one'] as String,
-    workerTwo: json['worker_two'] as String,
     serviceLocations: (json['locations'] as List)
         ?.map((e) => e == null
             ? null
             : TBBServiceLocation.fromJson(e as Map<String, dynamic>))
         ?.toList(),
     tags: (json['tags'] as List)?.map((e) => e as String)?.toList(),
-    gender: json['gender'] as String,
     createdAt: json['created_at'] as String,
     updatedAt: json['updated_at'] as String,
     deletedAt: json['deleted_at'] as String,
@@ -43,13 +37,7 @@ Map<String, dynamic> _$TBBServiceItemToJson(TBBServiceItem instance) =>
       'id': instance.serviceId,
       'latitude': instance.latitude,
       'longitude': instance.longitude,
-      'name': instance.name,
-      'phone': instance.phone,
-      'service_man_pic': instance.serviceManPic,
-      'worker_one': instance.workerOne,
-      'worker_two': instance.workerTwo,
       'available_around_with_km': instance.availableAroundWithKm,
-      'gender': instance.gender,
       'response_minute': instance.responseMinute,
       'description': instance.description,
       'reach_time': instance.reachTime,
