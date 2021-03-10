@@ -399,7 +399,7 @@ class TBBSdk {
     final _response = await http.post(
         this.authServer +
             API_PATH_CUSTOMER_SERVICES_ACTION +
-            "/${serviceItem.serviceId.toString()}/${actionString.toString()}}",
+            "/${serviceItem.serviceId.toString()}/${actionString.toString()}",
         headers: headers);
 
     _printHttpLog(response: _response);
