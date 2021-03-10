@@ -11,6 +11,7 @@ import 'package:tbbsdk/models/TBBPartnerLocalState.dart';
 import 'package:tbbsdk/models/TBBPartnerToken.dart';
 import 'package:tbbsdk/models/TBBPartnerUser.dart';
 import 'package:tbbsdk/models/TBBSubscriptionPlan.dart';
+import 'package:tbbsdk/models/services/TBBServiceOrder.dart';
 import 'package:tbbsdk/tbbsdk.dart';
 import 'package:tbbsdk/utilities/common_functions.dart';
 import 'package:tbbsdk/utilities/local_database.dart';
@@ -578,6 +579,42 @@ class TBBSdkPartner {
     if (_response.statusCode >= 200 && _response.statusCode < 300) {
       TBBResponse response = TBBResponse.fromJson(json.decode(_response.body));
       return TBBPartnerToken.fromJson(response.data);
+    } else {
+      throw new TBBError.fromJson(json.decode(_response.body));
+    }
+  }
+
+  //Create Service Order
+
+  Future<TBBServiceOrder> createServiceOrder(
+      {TBBUser customer, TBBServiceItem serviceItem}) async {
+    _printToLog("preparing partner token");
+
+    // headers data
+    final headers = {
+      'authorization':
+          'Bearer ' + await _localDatabaseService.getSecureAccess('access_id'),
+    };
+
+    // body data
+    final body = {'customer_id': customer.id.toString()};
+    final data = propertySanitizer<Map<String, dynamic>>(body);
+
+    // request
+    final _response = await http.post(
+        this.appServer +
+            "/$appPath" +
+            API_PATH_CREATE_SERVICES_ORDER +
+            "/${serviceItem.serviceId.toString()}",
+        headers: headers,
+        body: data);
+
+    _printHttpLog(response: _response, body: data);
+
+    //  response
+    if (_response.statusCode >= 200 && _response.statusCode < 300) {
+      TBBResponse response = TBBResponse.fromJson(json.decode(_response.body));
+      return TBBServiceOrder.fromJson(response.data);
     } else {
       throw new TBBError.fromJson(json.decode(_response.body));
     }
