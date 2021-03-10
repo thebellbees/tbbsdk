@@ -35,6 +35,7 @@ class TBBServiceDetail {
   TBBServiceDetail({
     this.storeId,
     this.phone,
+    this.name,
     this.description,
     this.responseMinute,
     this.enabled,

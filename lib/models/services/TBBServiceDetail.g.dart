@@ -10,6 +10,7 @@ TBBServiceDetail _$TBBServiceDetailFromJson(Map<String, dynamic> json) {
   return TBBServiceDetail(
     storeId: json['store_id'] as String,
     phone: json['phone'] as String,
+    name: json['name'] as String,
     description: json['description'] as String,
     responseMinute: json['response_minute'] as String,
     enabled: json['enabled'] as bool,
@@ -31,7 +32,7 @@ TBBServiceDetail _$TBBServiceDetailFromJson(Map<String, dynamic> json) {
     createdAt: json['created_at'] as String,
     updatedAt: json['updated_at'] as String,
     deletedAt: json['deleted_at'] as String,
-  )..name = json['name'] as String;
+  );
 }
 
 Map<String, dynamic> _$TBBServiceDetailToJson(TBBServiceDetail instance) =>
