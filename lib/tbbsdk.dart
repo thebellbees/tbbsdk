@@ -15,7 +15,6 @@ import 'package:tbbsdk/models/tbb_response.dart';
 import 'package:tbbsdk/models/TBBUser.dart';
 import 'package:tbbsdk/tbb_error.dart';
 import 'package:tbbsdk/utilities/enums.dart';
-import 'package:tbbsdk/utilities/enums.dart';
 import 'package:tbbsdk/utilities/local_database.dart';
 
 // exports
@@ -397,7 +396,7 @@ class TBBSdk {
 
     // request
     final _response = await http.post(
-        this.authServer +
+        this.appServer +
             API_PATH_CUSTOMER_SERVICES_ACTION +
             "/${serviceItem.serviceId.toString()}/${actionString.toString()}",
         headers: headers);
