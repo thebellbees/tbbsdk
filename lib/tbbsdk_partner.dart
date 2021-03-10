@@ -11,6 +11,7 @@ import 'package:tbbsdk/models/TBBPartnerLocalState.dart';
 import 'package:tbbsdk/models/TBBPartnerToken.dart';
 import 'package:tbbsdk/models/TBBPartnerUser.dart';
 import 'package:tbbsdk/models/TBBSubscriptionPlan.dart';
+import 'package:tbbsdk/models/services/TBBServiceDetail.dart';
 import 'package:tbbsdk/models/services/TBBServiceOrder.dart';
 import 'package:tbbsdk/tbbsdk.dart';
 import 'package:tbbsdk/utilities/common_functions.dart';
@@ -514,6 +515,11 @@ class TBBSdkPartner {
 
     // body data
     _printToLog('body before');
+
+    if (serviceItem.detail == null) {
+      serviceItem.detail = new TBBServiceDetail();
+    }
+
     final body = {
       "enabled": serviceItem.enabled.toString(),
       "service_man_pic": serviceItem.detail.serviceManPic.toString(),
