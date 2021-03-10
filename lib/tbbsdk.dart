@@ -14,6 +14,7 @@ import 'package:tbbsdk/models/TBBLocalState.dart';
 import 'package:tbbsdk/models/tbb_response.dart';
 import 'package:tbbsdk/models/TBBUser.dart';
 import 'package:tbbsdk/tbb_error.dart';
+import 'package:tbbsdk/utilities/enums.dart';
 import 'package:tbbsdk/utilities/local_database.dart';
 
 // exports
@@ -370,6 +371,36 @@ class TBBSdk {
     if (_response.statusCode >= 200 && _response.statusCode < 300) {
       TBBResponse response = TBBResponse.fromJson(json.decode(_response.body));
       return TBBUser.fromJson(response.data);
+    } else {
+      throw new TBBError.fromJson(json.decode(_response.body));
+    }
+  }
+
+  //Customer Action
+
+  Future<TBBServiceItem> customerAction(
+      {TBBServiceItem serviceItem, CustomerServiceAction action}) async {
+    _printToLog("preparing user update");
+
+    // headers data
+    final headers = {
+      'authorization':
+          'Bearer ' + await _localDatabaseService.getSecureAccess('access_id'),
+    };
+
+    // request
+    final _response = await http.post(
+        this.authServer +
+            API_PATH_CUSTOMER_SERVICES_ACTION +
+            "/${serviceItem.serviceId.toString()}/${action.toString()}}",
+        headers: headers);
+
+    _printHttpLog(response: _response);
+
+    //  response
+    if (_response.statusCode >= 200 && _response.statusCode < 300) {
+      TBBResponse response = TBBResponse.fromJson(json.decode(_response.body));
+      return TBBServiceItem.fromJson(response.data);
     } else {
       throw new TBBError.fromJson(json.decode(_response.body));
     }

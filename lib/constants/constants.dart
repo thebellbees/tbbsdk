@@ -16,6 +16,8 @@ const API_PATH_GET_INFO = "/accounts/info";
 const API_PATH_SERVICES_TYPES = "/services/groups";
 const API_PATH_SERVICES_ALL = "/services/get";
 const API_PATH_SERVICES_SEARCH = "/services/search";
+const API_PATH_CUSTOMER_SERVICES_ACTION = "/services/customer_service_action";
+
 
 // PARTNER Server Endpoints
 const API_PATH_PARTNER_INFO = "/accounts/info";
