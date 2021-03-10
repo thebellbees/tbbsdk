@@ -1,8 +1,8 @@
-import 'package:tbbsdk/models/services/TBBServiceOrderReview.dart';
-import 'package:tbbsdk/models/services/TBBServiceTerm.dart';
 import 'package:tbbsdk/models/TBBStore.dart';
 
 import 'package:json_annotation/json_annotation.dart';
+import 'package:tbbsdk/models/TBBUser.dart';
+import 'package:tbbsdk/models/services/TBBServiceItem.dart';
 
 /// This allows the `User` class to access private members in
 /// the generated file. The value for this is *.g.dart, where
@@ -14,41 +14,24 @@ part 'TBBServiceItemRequest.g.dart';
 @JsonSerializable(
     fieldRename: FieldRename.snake, nullable: true, explicitToJson: true)
 class TBBServiceItemRequest {
-  String storeId;
-  String name;
-  String phone;
-  String serviceManPic;
-  String workerOne;
-  String workerTwo;
-  String description;
-  String gender;
-  String responseMinute;
-  bool enabled;
-  TBBStore store;
-  String createdAt;
-  String updatedAt;
-  String deletedAt;
-  @JsonKey(name: "sr_term")
-  TBBServiceTerm serviceTerm;
-  List<TBBServiceOrderReview> reviews;
+  String id;
+  String serviceId;
+  String customerId;
+  String action;
+  TBBUser user;
+  String totalRequest;
+  @JsonKey(name: "sr_item")
+  TBBServiceItem serviceItem;
 
   TBBServiceItemRequest({
-    this.storeId,
-    this.phone,
-    this.name,
-    this.description,
-    this.responseMinute,
-    this.enabled,
-    this.store,
-    this.serviceTerm,
-    this.serviceManPic,
-    this.workerOne,
-    this.workerTwo,
-    this.gender,
-    this.reviews,
-    this.createdAt,
-    this.updatedAt,
-    this.deletedAt,
+    this.id,
+    this.serviceId,
+    this.serviceItem,
+    this.customerId,
+    this.totalRequest,
+    this.user,
+    this.action,
+
   });
 
   /// A necessary factory constructor for creating a new User instance
@@ -56,8 +39,9 @@ class TBBServiceItemRequest {
   /// The constructor is named after the source class, in this case, User.
   factory TBBServiceItemRequest.fromJson(Map<String, dynamic> json) {
     json['id'] = json['id'].toString();
-    json['store_id'] = json['store_id'].toString();
-    json['response_minute'] = json['response_minute'].toString();
+    json['service_id'] = json['service_id'].toString();
+    json['customer_id'] = json['customer_id'].toString();
+    json['total_request'] = json['total_request'].toString();
     return _$TBBServiceItemRequestFromJson(json);
   }
 

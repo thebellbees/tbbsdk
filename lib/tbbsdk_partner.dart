@@ -12,6 +12,7 @@ import 'package:tbbsdk/models/TBBPartnerToken.dart';
 import 'package:tbbsdk/models/TBBPartnerUser.dart';
 import 'package:tbbsdk/models/TBBSubscriptionPlan.dart';
 import 'package:tbbsdk/models/services/TBBServiceDetail.dart';
+import 'package:tbbsdk/models/services/TBBServiceItemRequest.dart';
 import 'package:tbbsdk/models/services/TBBServiceOrder.dart';
 import 'package:tbbsdk/tbbsdk.dart';
 import 'package:tbbsdk/utilities/common_functions.dart';
@@ -551,6 +552,39 @@ class TBBSdkPartner {
     if (_response.statusCode >= 200 && _response.statusCode < 300) {
       TBBResponse response = TBBResponse.fromJson(json.decode(_response.body));
       return TBBServiceItem.fromJson(response.data);
+    } else {
+      throw new TBBError.fromJson(json.decode(_response.body));
+    }
+  }
+
+  //Request Service
+
+  Future<TBBServiceItemRequest> serviceRequests({num limit, num offset}) async {
+    _printToLog("preparing partner token");
+
+    // headers data
+    final headers = {
+      'authorization':
+          'Bearer ' + await _localDatabaseService.getSecureAccess('access_id'),
+    };
+
+    final body = {
+      'limit': limit.toString(),
+      'offset': offset.toString(),
+    };
+
+    // request
+    final _response = await http.post(
+        this.appServer + "/$appPath" + API_PATH_SERVICE_REQUESTS,
+        headers: headers,
+        body: body);
+
+    _printHttpLog(response: _response, body: body);
+
+    //  response
+    if (_response.statusCode >= 200 && _response.statusCode < 300) {
+      TBBResponse response = TBBResponse.fromJson(json.decode(_response.body));
+      return TBBServiceItemRequest.fromJson(response.data);
     } else {
       throw new TBBError.fromJson(json.decode(_response.body));
     }
