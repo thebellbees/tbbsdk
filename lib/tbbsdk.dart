@@ -15,6 +15,7 @@ import 'package:tbbsdk/models/tbb_response.dart';
 import 'package:tbbsdk/models/TBBUser.dart';
 import 'package:tbbsdk/tbb_error.dart';
 import 'package:tbbsdk/utilities/enums.dart';
+import 'package:tbbsdk/utilities/enums.dart';
 import 'package:tbbsdk/utilities/local_database.dart';
 
 // exports
@@ -388,11 +389,17 @@ class TBBSdk {
           'Bearer ' + await _localDatabaseService.getSecureAccess('access_id'),
     };
 
+    String actionString = action == CustomerServiceAction.hire
+        ? "hire"
+        : action == CustomerServiceAction.call
+            ? "call"
+            : null;
+
     // request
     final _response = await http.post(
         this.authServer +
             API_PATH_CUSTOMER_SERVICES_ACTION +
-            "/${serviceItem.serviceId.toString()}/${action.toString()}}",
+            "/${serviceItem.serviceId.toString()}/${actionString.toString()}}",
         headers: headers);
 
     _printHttpLog(response: _response);
