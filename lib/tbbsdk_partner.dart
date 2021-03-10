@@ -468,7 +468,7 @@ class TBBSdkPartner {
       "name": serviceItem.detail.name.toString(),
       "phone": serviceItem.detail.phone.toString(),
       "gender": serviceItem.detail.gender.toString(),
-      "description": serviceItem.description.toString(),
+      "description": serviceItem.detail.description.toString(),
       "response_minute": serviceItem.responseMinute.toString(),
       "locations": locationsString.toString(),
       "tags": tagString.toString()
