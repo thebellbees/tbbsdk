@@ -11,9 +11,9 @@ TBBServiceItemRequest _$TBBServiceItemRequestFromJson(
   return TBBServiceItemRequest(
     id: json['id'] as String,
     serviceId: json['service_id'] as String,
-    serviceDetail: json['sr_item'] == null
+    serviceDetail: json['sr_service'] == null
         ? null
-        : TBBServiceDetail.fromJson(json['sr_item'] as Map<String, dynamic>),
+        : TBBServiceDetail.fromJson(json['sr_service'] as Map<String, dynamic>),
     customerId: json['customer_id'] as String,
     totalRequest: json['total_request'] as String,
     user: json['customer'] == null
@@ -38,5 +38,5 @@ Map<String, dynamic> _$TBBServiceItemRequestToJson(
       'updated_at': instance.updatedAt,
       'deleted_at': instance.deletedAt,
       'total_request': instance.totalRequest,
-      'sr_item': instance.serviceDetail?.toJson(),
+      'sr_service': instance.serviceDetail?.toJson(),
     };

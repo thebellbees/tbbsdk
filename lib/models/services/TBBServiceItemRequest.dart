@@ -23,7 +23,7 @@ class TBBServiceItemRequest {
   String updatedAt;
   String deletedAt;
   String totalRequest;
-  @JsonKey(name: "sr_item")
+  @JsonKey(name: "sr_service")
   TBBServiceDetail serviceDetail;
 
   TBBServiceItemRequest({
