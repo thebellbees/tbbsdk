@@ -559,7 +559,8 @@ class TBBSdkPartner {
 
   //Request Service
 
-  Future<TBBServiceItemRequest> serviceRequests({num limit, num offset}) async {
+  Future<List<TBBServiceItemRequest>> serviceRequests(
+      {num limit, num offset}) async {
     _printToLog("preparing partner token");
 
     // headers data
@@ -584,7 +585,7 @@ class TBBSdkPartner {
     //  response
     if (_response.statusCode >= 200 && _response.statusCode < 300) {
       TBBResponse response = TBBResponse.fromJson(json.decode(_response.body));
-      return TBBServiceItemRequest.fromJson(response.data);
+      return TBBServiceItemRequest.listFromJson(response.data);
     } else {
       throw new TBBError.fromJson(json.decode(_response.body));
     }
