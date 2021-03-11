@@ -16,6 +16,7 @@ class TBBServiceItemRequest {
   String serviceId;
   String customerId;
   String action;
+  @JsonKey(name: "customer")
   TBBUser user;
   String createdAt;
   String updatedAt;
