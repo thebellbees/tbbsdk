@@ -18,6 +18,7 @@ const API_PATH_SERVICES_ALL = "/services/get";
 const API_PATH_SERVICES_SEARCH = "/services/search";
 const API_PATH_CUSTOMER_SERVICES_ACTION = "/services/customer_service_action";
 const API_PATH_CREATE_SERVICES_ORDER = "/services/orders";
+const API_PATH_REJECT_SERVICES_ORDER = "/services/orders";
 
 
 // PARTNER Server Endpoints

@@ -637,20 +637,48 @@ class TBBSdkPartner {
           'Bearer ' + await _localDatabaseService.getSecureAccess('access_id'),
     };
 
-    // body data
-    final body = {'customer_id': serviceItemRequest.customerId.toString()};
-    final data = propertySanitizer<Map<String, dynamic>>(body);
-
     // request
     final _response = await http.post(
-        this.appServer +
-            "/$appPath" +
-            API_PATH_CREATE_SERVICES_ORDER +
-            "/${serviceItemRequest.serviceId.toString()}",
-        headers: headers,
-        body: data);
+      this.appServer +
+          "/$appPath" +
+          API_PATH_CREATE_SERVICES_ORDER +
+          "/${serviceItemRequest.id.toString()}",
+      headers: headers,
+    );
 
-    _printHttpLog(response: _response, body: data);
+    _printHttpLog(response: _response);
+
+    //  response
+    if (_response.statusCode >= 200 && _response.statusCode < 300) {
+      TBBResponse response = TBBResponse.fromJson(json.decode(_response.body));
+      return TBBServiceOrder.fromJson(response.data);
+    } else {
+      throw new TBBError.fromJson(json.decode(_response.body));
+    }
+  }
+
+  //Service Request Reject
+
+  Future<TBBServiceOrder> rejectServiceRequest(
+      {TBBServiceItemRequest serviceItemRequest}) async {
+    _printToLog("preparing partner token");
+
+    // headers data
+    final headers = {
+      'authorization':
+          'Bearer ' + await _localDatabaseService.getSecureAccess('access_id'),
+    };
+
+    // request
+    final _response = await http.delete(
+      this.appServer +
+          "/$appPath" +
+          API_PATH_REJECT_SERVICES_ORDER +
+          "/${serviceItemRequest.id.toString()}",
+      headers: headers,
+    );
+
+    _printHttpLog(response: _response);
 
     //  response
     if (_response.statusCode >= 200 && _response.statusCode < 300) {
