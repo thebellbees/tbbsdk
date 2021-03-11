@@ -1,6 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:tbbsdk/models/TBBUser.dart';
-import 'package:tbbsdk/models/services/TBBServiceItem.dart';
+import 'package:tbbsdk/models/services/TBBServiceDetail.dart';
+
 
 /// This allows the `User` class to access private members in
 /// the generated file. The value for this is *.g.dart, where
@@ -23,12 +24,12 @@ class TBBServiceItemRequest {
   String deletedAt;
   String totalRequest;
   @JsonKey(name: "sr_item")
-  TBBServiceItem serviceItem;
+  TBBServiceDetail serviceDetail;
 
   TBBServiceItemRequest({
     this.id,
     this.serviceId,
-    this.serviceItem,
+    this.serviceDetail,
     this.customerId,
     this.totalRequest,
     this.user,
