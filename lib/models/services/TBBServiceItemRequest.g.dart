@@ -20,6 +20,7 @@ TBBServiceItemRequest _$TBBServiceItemRequestFromJson(
         ? null
         : TBBUser.fromJson(json['customer'] as Map<String, dynamic>),
     action: json['action'] as String,
+    status: json['status'] as String,
     createdAt: json['created_at'] as String,
     updatedAt: json['updated_at'] as String,
     deletedAt: json['deleted_at'] as String,
@@ -33,6 +34,7 @@ Map<String, dynamic> _$TBBServiceItemRequestToJson(
       'service_id': instance.serviceId,
       'customer_id': instance.customerId,
       'action': instance.action,
+      'status': instance.status,
       'customer': instance.user?.toJson(),
       'created_at': instance.createdAt,
       'updated_at': instance.updatedAt,
