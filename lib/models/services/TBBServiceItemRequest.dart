@@ -1,5 +1,3 @@
-import 'package:tbbsdk/models/TBBStore.dart';
-
 import 'package:json_annotation/json_annotation.dart';
 import 'package:tbbsdk/models/TBBUser.dart';
 import 'package:tbbsdk/models/services/TBBServiceItem.dart';
@@ -19,6 +17,9 @@ class TBBServiceItemRequest {
   String customerId;
   String action;
   TBBUser user;
+  String createdAt;
+  String updatedAt;
+  String deletedAt;
   String totalRequest;
   @JsonKey(name: "sr_item")
   TBBServiceItem serviceItem;
@@ -31,7 +32,9 @@ class TBBServiceItemRequest {
     this.totalRequest,
     this.user,
     this.action,
-
+    this.createdAt,
+    this.updatedAt,
+    this.deletedAt,
   });
 
   /// A necessary factory constructor for creating a new User instance
@@ -41,6 +44,9 @@ class TBBServiceItemRequest {
     json['id'] = json['id'].toString();
     json['service_id'] = json['service_id'].toString();
     json['customer_id'] = json['customer_id'].toString();
+    json['created_at'] = json['created_at'].toString();
+    json['updated_at'] = json['updated_at'].toString();
+    json['deleted_at'] = json['deleted_at'].toString();
     json['total_request'] = json['total_request'].toString();
     return _$TBBServiceItemRequestFromJson(json);
   }
