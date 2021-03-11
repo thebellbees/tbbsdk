@@ -51,12 +51,6 @@ class TBBServiceItemRequest {
     return _$TBBServiceItemRequestFromJson(json);
   }
 
-  static List<TBBServiceItemRequest> listFromJson(List<dynamic> listJson) {
-    Iterable l = listJson;
-    List<TBBServiceItemRequest> items = List<TBBServiceItemRequest>.from(
-        l.map((model) => TBBServiceItemRequest.fromJson(model)));
-    return items;
-  }
 
   /// `toJson` is the convention for a class to declare support for serialization
   /// to JSON. The implementation simply calls the private, generated
