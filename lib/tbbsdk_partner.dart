@@ -628,7 +628,7 @@ class TBBSdkPartner {
   //Create Service Order
 
   Future<TBBServiceOrder> createServiceOrder(
-      {TBBUser customer, TBBServiceItem serviceItem}) async {
+      {TBBServiceItemRequest serviceItemRequest}) async {
     _printToLog("preparing partner token");
 
     // headers data
@@ -638,7 +638,7 @@ class TBBSdkPartner {
     };
 
     // body data
-    final body = {'customer_id': customer.id.toString()};
+    final body = {'customer_id': serviceItemRequest.customerId.toString()};
     final data = propertySanitizer<Map<String, dynamic>>(body);
 
     // request
@@ -646,7 +646,7 @@ class TBBSdkPartner {
         this.appServer +
             "/$appPath" +
             API_PATH_CREATE_SERVICES_ORDER +
-            "/${serviceItem.serviceId.toString()}",
+            "/${serviceItemRequest.serviceId.toString()}",
         headers: headers,
         body: data);
 
