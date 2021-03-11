@@ -560,7 +560,7 @@ class TBBSdkPartner {
   //Request Service
 
   Future<List<TBBServiceItemRequest>> serviceRequests(
-      {num limit, num offset, String action}) async {
+      {num limit, num offset, String action, String status}) async {
     _printToLog("preparing partner token");
 
     // headers data
@@ -573,6 +573,7 @@ class TBBSdkPartner {
       'limit': limit.toString(),
       'offset': offset.toString(),
       'action': action.toString(),
+      'status': status.toString(),
     };
 
     // request
