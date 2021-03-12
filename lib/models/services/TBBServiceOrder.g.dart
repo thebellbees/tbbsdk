@@ -16,6 +16,9 @@ TBBServiceOrder _$TBBServiceOrderFromJson(Map<String, dynamic> json) {
     cancelledTime: json['cancelled_time'] as String,
     reachedTime: json['reached_time'] as String,
     expired: json['expired'] as bool,
+    serviceDetail: json['sr_service'] == null
+        ? null
+        : TBBServiceDetail.fromJson(json['sr_service'] as Map<String, dynamic>),
     status: json['status'] as String,
     createdAt: json['created_at'] as String,
     updatedAt: json['updated_at'] as String,
@@ -40,5 +43,6 @@ Map<String, dynamic> _$TBBServiceOrderToJson(TBBServiceOrder instance) =>
       'created_at': instance.createdAt,
       'updated_at': instance.updatedAt,
       'deleted_at': instance.deletedAt,
+      'sr_service': instance.serviceDetail?.toJson(),
       'order_review': instance.orderReview?.toJson(),
     };
