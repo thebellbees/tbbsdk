@@ -9,7 +9,6 @@ import 'package:tbbsdk/constants/constants.dart';
 import 'package:tbbsdk/models/TBBAccessToken.dart';
 import 'package:tbbsdk/models/helper_class.dart';
 import 'package:tbbsdk/models/services/TBBServiceItem.dart';
-import 'package:tbbsdk/models/services/TBBServiceItemRequest.dart';
 import 'package:tbbsdk/models/services/TBBServiceOrder.dart';
 import 'package:tbbsdk/models/services/TBBServiceTaxonomy.dart';
 import 'package:tbbsdk/models/TBBLocalState.dart';
@@ -449,7 +448,7 @@ class TBBSdk {
   //Customer Service Accept
 
   Future<TBBServiceOrder> serviceOrderAccept(
-      {TBBServiceItemRequest tbbServiceItemRequest}) async {
+      {TBBServiceOrder tbbServiceOrder}) async {
     _printToLog("preparing partner token");
 
     // headers data
@@ -462,7 +461,7 @@ class TBBSdk {
     final _response = await http.post(
         this.appServer +
             API_PATH_CUSTOMER_SERVICE_ORDERS_ACCEPT +
-            "/${tbbServiceItemRequest.id.toString()}/accept",
+            "/${tbbServiceOrder.id.toString()}/accept",
         headers: headers);
 
     _printHttpLog(response: _response);
@@ -479,7 +478,7 @@ class TBBSdk {
   //Customer Service Cancel
 
   Future<TBBServiceOrder> serviceOrderCancel(
-      {TBBServiceItemRequest tbbServiceItemRequest}) async {
+      {TBBServiceOrder tbbServiceOrder}) async {
     _printToLog("preparing partner token");
 
     // headers data
@@ -492,7 +491,7 @@ class TBBSdk {
     final _response = await http.post(
       this.appServer +
           API_PATH_CUSTOMER_SERVICE_ORDERS_CANCEL +
-          "/${tbbServiceItemRequest.id.toString()}/cancel",
+          "/${tbbServiceOrder.id.toString()}/cancel",
       headers: headers,
     );
 
