@@ -17,7 +17,8 @@ const API_PATH_SERVICES_TYPES = "/services/groups";
 const API_PATH_SERVICES_ALL = "/services/get";
 const API_PATH_SERVICES_SEARCH = "/services/search";
 const API_PATH_CUSTOMER_SERVICES_ACTION = "/services/customer_service_action";
-const API_PATH_CUSTOMER_ORDERS = "/services/cart/orders";
+const API_PATH_CUSTOMER_CART_ORDERS = "/services/cart/orders";
+const API_PATH_CUSTOMER_ORDERS = "/services/orders/get";
 const API_PATH_CUSTOMER_SERVICE_ORDERS_ACCEPT = "/services/orders";
 const API_PATH_CUSTOMER_SERVICE_ORDERS_CANCEL = "/services/orders";
 

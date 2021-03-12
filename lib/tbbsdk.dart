@@ -445,6 +445,40 @@ class TBBSdk {
     }
   }
 
+  //Customer Service Order List
+
+  Future<List<TBBServiceOrder>> serviceCartOrders(
+      {num limit, num offset}) async {
+    _printToLog("preparing partner token");
+
+    // headers data
+    final headers = {
+      'authorization':
+          'Bearer ' + await _localDatabaseService.getSecureAccess('access_id'),
+    };
+
+    final body = {
+      'limit': limit.toString(),
+      'offset': offset.toString(),
+    };
+
+    // request
+    final _response = await http.post(
+        this.appServer + API_PATH_CUSTOMER_CART_ORDERS,
+        headers: headers,
+        body: body);
+
+    _printHttpLog(response: _response, body: body);
+
+    //  response
+    if (_response.statusCode >= 200 && _response.statusCode < 300) {
+      TBBResponse response = TBBResponse.fromJson(json.decode(_response.body));
+      return TBBServiceOrder.listFromJson(response.data);
+    } else {
+      throw new TBBError.fromJson(json.decode(_response.body));
+    }
+  }
+
   //Customer Service Accept
 
   Future<TBBServiceOrder> serviceOrderAccept(
