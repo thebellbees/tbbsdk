@@ -449,7 +449,7 @@ class TBBSdk {
   //Customer Service Accept
 
   Future<TBBServiceOrder> serviceOrderAccept(
-      TBBServiceItemRequest tbbServiceItemRequest) async {
+      {TBBServiceItemRequest tbbServiceItemRequest}) async {
     _printToLog("preparing partner token");
 
     // headers data
@@ -479,7 +479,7 @@ class TBBSdk {
   //Customer Service Cancel
 
   Future<TBBServiceOrder> serviceOrderCancel(
-      TBBServiceItemRequest tbbServiceItemRequest) async {
+      {TBBServiceItemRequest tbbServiceItemRequest}) async {
     _printToLog("preparing partner token");
 
     // headers data
