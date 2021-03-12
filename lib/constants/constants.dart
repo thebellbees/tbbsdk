@@ -17,9 +17,9 @@ const API_PATH_SERVICES_TYPES = "/services/groups";
 const API_PATH_SERVICES_ALL = "/services/get";
 const API_PATH_SERVICES_SEARCH = "/services/search";
 const API_PATH_CUSTOMER_SERVICES_ACTION = "/services/customer_service_action";
-const API_PATH_CREATE_SERVICES_ORDER = "/services/orders";
-const API_PATH_REJECT_SERVICES_ORDER = "/services/orders";
-const API_PATH_SERVICE_REQUESTS = "/services/orders/get";
+const API_PATH_CUSTOMER_ORDERS = "/services/orders/get";
+const API_PATH_CUSTOMER_SERVICE_ORDERS_ACCEPT = "/services/orders";
+const API_PATH_CUSTOMER_SERVICE_ORDERS_CANCEL = "/services/orders";
 
 // PARTNER Server Endpoints
 const API_PATH_PARTNER_INFO = "/accounts/info";
@@ -28,7 +28,11 @@ const API_PATH_PARTNER_CREATE_SERVICE = "/services";
 const API_PATH_PARTNER_UPDATE_SERVICE = "/services";
 const API_PATH_PARTNER_SUBSCRIPTION_PLANS = "/accounts/subscription_plans";
 const API_PATH_PARTNER_TOKEN = "/accounts/partner_token";
-const API_PATH_STORE_CATEGORIES = "/utils/store_categories";
-const API_PATH_GET_CITIES = "/utils/get_cities";
-const API_PATH_GET_COUNTRY = "/utils/available_countries";
-const API_PATH_GET_SERVICE_LOCATION = "/utils/available_service_locations";
+const API_PATH_PARTNER_STORE_CATEGORIES = "/utils/store_categories";
+const API_PATH_PARTNER_GET_CITIES = "/utils/get_cities";
+const API_PATH_PARTNER_GET_COUNTRY = "/utils/available_countries";
+const API_PATH_PARTNER_GET_SERVICE_LOCATION =
+    "/utils/available_service_locations";
+const API_PATH_PARTNER_CREATE_SERVICES_ORDER = "/services/orders";
+const API_PATH_PARTNER_REJECT_SERVICES_ORDER = "/services/orders";
+const API_PATH_PARTNER_SERVICE_REQUESTS = "/services/orders/get";

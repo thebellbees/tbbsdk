@@ -578,7 +578,7 @@ class TBBSdkPartner {
 
     // request
     final _response = await http.post(
-        this.appServer + "/$appPath" + API_PATH_SERVICE_REQUESTS,
+        this.appServer + "/$appPath" + API_PATH_PARTNER_SERVICE_REQUESTS,
         headers: headers,
         body: body);
 
@@ -643,7 +643,7 @@ class TBBSdkPartner {
     final _response = await http.post(
       this.appServer +
           "/$appPath" +
-          API_PATH_CREATE_SERVICES_ORDER +
+          API_PATH_PARTNER_CREATE_SERVICES_ORDER +
           "/${serviceItemRequest.id.toString()}",
       headers: headers,
     );
@@ -675,7 +675,7 @@ class TBBSdkPartner {
     final _response = await http.delete(
       this.appServer +
           "/$appPath" +
-          API_PATH_REJECT_SERVICES_ORDER +
+          API_PATH_PARTNER_REJECT_SERVICES_ORDER +
           "/${serviceItemRequest.id.toString()}",
       headers: headers,
     );
@@ -742,7 +742,7 @@ class TBBSdkPartner {
 
     // request
     final _response = await http.post(
-        this.appServer + "/system" + API_PATH_STORE_CATEGORIES,
+        this.appServer + "/system" + API_PATH_PARTNER_STORE_CATEGORIES,
         headers: headers,
         body: body);
 
@@ -775,7 +775,7 @@ class TBBSdkPartner {
 
     // request
     final _response = await http.post(
-        this.appServer + "/system" + API_PATH_STORE_CATEGORIES,
+        this.appServer + "/system" + API_PATH_PARTNER_STORE_CATEGORIES,
         headers: headers,
         body: body);
 
@@ -803,7 +803,7 @@ class TBBSdkPartner {
 
     // request
     final _response = await http.post(
-        this.appServer + "/system" + API_PATH_GET_COUNTRY,
+        this.appServer + "/system" + API_PATH_PARTNER_GET_COUNTRY,
         headers: headers);
 
     _printHttpLog(response: _response);
@@ -830,7 +830,7 @@ class TBBSdkPartner {
 
     // request
     final _response = await http.post(
-        this.appServer + "/system" + API_PATH_GET_SERVICE_LOCATION,
+        this.appServer + "/system" + API_PATH_PARTNER_GET_SERVICE_LOCATION,
         headers: headers);
 
     _printHttpLog(response: _response);

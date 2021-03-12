@@ -9,6 +9,8 @@ import 'package:tbbsdk/constants/constants.dart';
 import 'package:tbbsdk/models/TBBAccessToken.dart';
 import 'package:tbbsdk/models/helper_class.dart';
 import 'package:tbbsdk/models/services/TBBServiceItem.dart';
+import 'package:tbbsdk/models/services/TBBServiceItemRequest.dart';
+import 'package:tbbsdk/models/services/TBBServiceOrder.dart';
 import 'package:tbbsdk/models/services/TBBServiceTaxonomy.dart';
 import 'package:tbbsdk/models/TBBLocalState.dart';
 import 'package:tbbsdk/models/tbb_response.dart';
@@ -407,6 +409,99 @@ class TBBSdk {
     if (_response.statusCode >= 200 && _response.statusCode < 300) {
       TBBResponse response = TBBResponse.fromJson(json.decode(_response.body));
       return TBBServiceItem.fromJson(response.data);
+    } else {
+      throw new TBBError.fromJson(json.decode(_response.body));
+    }
+  }
+
+  //Customer Service Order List
+
+  Future<List<TBBServiceOrder>> customerServiceOrders(
+      {num limit, num offset}) async {
+    _printToLog("preparing partner token");
+
+    // headers data
+    final headers = {
+      'authorization':
+          'Bearer ' + await _localDatabaseService.getSecureAccess('access_id'),
+    };
+
+    final body = {
+      'limit': limit.toString(),
+      'offset': offset.toString(),
+    };
+
+    // request
+    final _response = await http.post(this.appServer + API_PATH_CUSTOMER_ORDERS,
+        headers: headers, body: body);
+
+    _printHttpLog(response: _response, body: body);
+
+    //  response
+    if (_response.statusCode >= 200 && _response.statusCode < 300) {
+      TBBResponse response = TBBResponse.fromJson(json.decode(_response.body));
+      return TBBServiceOrder.listFromJson(response.data);
+    } else {
+      throw new TBBError.fromJson(json.decode(_response.body));
+    }
+  }
+
+  //Customer Service Accept
+
+  Future<TBBServiceOrder> serviceOrderAccept(
+      TBBServiceItemRequest tbbServiceItemRequest) async {
+    _printToLog("preparing partner token");
+
+    // headers data
+    final headers = {
+      'authorization':
+          'Bearer ' + await _localDatabaseService.getSecureAccess('access_id'),
+    };
+
+    // request
+    final _response = await http.post(
+        this.appServer +
+            API_PATH_CUSTOMER_SERVICE_ORDERS_ACCEPT +
+            "/${tbbServiceItemRequest.id.toString()}/accept",
+        headers: headers);
+
+    _printHttpLog(response: _response);
+
+    //  response
+    if (_response.statusCode >= 200 && _response.statusCode < 300) {
+      TBBResponse response = TBBResponse.fromJson(json.decode(_response.body));
+      return TBBServiceOrder.fromJson(response.data);
+    } else {
+      throw new TBBError.fromJson(json.decode(_response.body));
+    }
+  }
+
+  //Customer Service Cancel
+
+  Future<TBBServiceOrder> serviceOrderCancel(
+      TBBServiceItemRequest tbbServiceItemRequest) async {
+    _printToLog("preparing partner token");
+
+    // headers data
+    final headers = {
+      'authorization':
+          'Bearer ' + await _localDatabaseService.getSecureAccess('access_id'),
+    };
+
+    // request
+    final _response = await http.post(
+      this.appServer +
+          API_PATH_CUSTOMER_SERVICE_ORDERS_CANCEL +
+          "/${tbbServiceItemRequest.id.toString()}/cancel",
+      headers: headers,
+    );
+
+    _printHttpLog(response: _response);
+
+    //  response
+    if (_response.statusCode >= 200 && _response.statusCode < 300) {
+      TBBResponse response = TBBResponse.fromJson(json.decode(_response.body));
+      return TBBServiceOrder.fromJson(response.data);
     } else {
       throw new TBBError.fromJson(json.decode(_response.body));
     }
