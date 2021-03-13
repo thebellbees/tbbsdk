@@ -22,7 +22,7 @@ class TBBServiceItemRequest {
   String createdAt;
   String updatedAt;
   String deletedAt;
-  String totalRequest;
+  String totalRequestCount;
   @JsonKey(name: "sr_service")
   TBBServiceDetail serviceDetail;
 
@@ -31,7 +31,7 @@ class TBBServiceItemRequest {
     this.serviceId,
     this.serviceDetail,
     this.customerId,
-    this.totalRequest,
+    this.totalRequestCount,
     this.user,
     this.action,
     this.status,
@@ -50,7 +50,7 @@ class TBBServiceItemRequest {
     json['created_at'] = json['created_at'].toString();
     json['updated_at'] = json['updated_at'].toString();
     json['deleted_at'] = json['deleted_at'].toString();
-    json['total_request'] = json['total_request'].toString();
+    json['total_request_count'] = json['total_request_count'].toString();
     return _$TBBServiceItemRequestFromJson(json);
   }
 
