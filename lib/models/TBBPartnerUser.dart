@@ -19,7 +19,7 @@ class TBBPartnerUser {
   String phone;
   bool enabled;
   String image;
-  String serviceRequestCount;
+  String serviceRequestsCount;
   List userMeta;
   TBBPartnerToken partnerToken;
   List<TBBStore> stores;
@@ -29,7 +29,7 @@ class TBBPartnerUser {
       this.firstName,
       this.lastName,
       this.email,
-      this.serviceRequestCount,
+      this.serviceRequestsCount,
       this.phone,
       this.enabled,
       this.image,
@@ -43,7 +43,7 @@ class TBBPartnerUser {
   factory TBBPartnerUser.fromJson(Map<String, dynamic> json) {
     json['id'] = json['id'].toString();
     json['phone'] = json['phone'].toString();
-    json['service_request_count'] = json['service_request_count'].toString();
+    json['service_requests_count'] = json['service_requests_count'].toString();
 
     return _$TBBPartnerUserFromJson(json);
   }
