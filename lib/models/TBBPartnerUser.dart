@@ -19,16 +19,19 @@ class TBBPartnerUser {
   String phone;
   bool enabled;
   String image;
+  TBBPartnerToken partnerToken;
+  List<TBBStore> stores;
 
-  TBBPartnerUser({
-    this.id,
-    this.firstName,
-    this.lastName,
-    this.email,
-    this.phone,
-    this.enabled,
-    this.image,
-  });
+  TBBPartnerUser(
+      {this.id,
+      this.firstName,
+      this.lastName,
+      this.email,
+      this.phone,
+      this.enabled,
+      this.image,
+      this.partnerToken,
+      this.stores});
 
   /// A necessary factory constructor for creating a new User instance
   /// from a map. Pass the map to the generated `_$UserFromJson()` constructor.

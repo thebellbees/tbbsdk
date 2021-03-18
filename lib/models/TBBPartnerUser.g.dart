@@ -15,6 +15,14 @@ TBBPartnerUser _$TBBPartnerUserFromJson(Map<String, dynamic> json) {
     phone: json['phone'] as String,
     enabled: json['enabled'] as bool,
     image: json['image'] as String,
+    partnerToken: json['partner_token'] == null
+        ? null
+        : TBBPartnerToken.fromJson(
+            json['partner_token'] as Map<String, dynamic>),
+    stores: (json['stores'] as List)
+        ?.map((e) =>
+            e == null ? null : TBBStore.fromJson(e as Map<String, dynamic>))
+        ?.toList(),
   );
 }
 
@@ -27,4 +35,6 @@ Map<String, dynamic> _$TBBPartnerUserToJson(TBBPartnerUser instance) =>
       'phone': instance.phone,
       'enabled': instance.enabled,
       'image': instance.image,
+      'partner_token': instance.partnerToken?.toJson(),
+      'stores': instance.stores?.map((e) => e?.toJson())?.toList(),
     };
