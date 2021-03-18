@@ -19,23 +19,16 @@ class TBBPartnerUser {
   String phone;
   bool enabled;
   String image;
-  String serviceRequestsCount;
-  List userMeta;
-  TBBPartnerToken partnerToken;
-  List<TBBStore> stores;
 
-  TBBPartnerUser(
-      {this.id,
-      this.firstName,
-      this.lastName,
-      this.email,
-      this.serviceRequestsCount,
-      this.phone,
-      this.enabled,
-      this.image,
-      this.userMeta,
-      this.partnerToken,
-      this.stores});
+  TBBPartnerUser({
+    this.id,
+    this.firstName,
+    this.lastName,
+    this.email,
+    this.phone,
+    this.enabled,
+    this.image,
+  });
 
   /// A necessary factory constructor for creating a new User instance
   /// from a map. Pass the map to the generated `_$UserFromJson()` constructor.
@@ -43,7 +36,6 @@ class TBBPartnerUser {
   factory TBBPartnerUser.fromJson(Map<String, dynamic> json) {
     json['id'] = json['id'].toString();
     json['phone'] = json['phone'].toString();
-    json['service_requests_count'] = json['service_requests_count'].toString();
 
     return _$TBBPartnerUserFromJson(json);
   }
