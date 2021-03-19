@@ -24,9 +24,11 @@ class ServiceOverview {
   /// from a map. Pass the map to the generated `_$UserFromJson()` constructor.
   /// The constructor is named after the source class, in this case, User.
   factory ServiceOverview.fromJson(Map<String, dynamic> json) {
-    json['new_jobs_count'] = json['new_jobs_count'].toString();
-    json['total_orders_count'] = json['total_orders_count'].toString();
-    json['completed_orders_count'] = json['completed_orders_count'].toString();
+    json['new_jobs_count'] = num.parse(json['new_jobs_count'].toString());
+    json['total_orders_count'] =
+        num.parse(json['total_orders_count'].toString());
+    json['completed_orders_count'] =
+        num.parse(json['completed_orders_count'].toString());
     return _$ServiceOverviewFromJson(json);
   }
 
