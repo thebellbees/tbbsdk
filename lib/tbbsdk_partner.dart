@@ -488,10 +488,19 @@ class TBBSdkPartner {
     };
 
     String locationsString = serviceItem.serviceLocations != null
-        ? jsonEncode(
-            serviceItem.serviceLocations.map((e) => e.toJson()).toList())
+        ? jsonEncode({
+            "add": serviceItem.serviceLocations.map((e) => e.toJson()).toList()
+          })
         : null;
-    String tagString = jsonEncode(serviceItem.tags);
+    String tagString =
+        serviceItem.tags != null ? jsonEncode(serviceItem.tags) : null;
+
+    // body data
+    _printToLog('body before');
+
+    if (serviceItem.detail == null) {
+      serviceItem.detail = new TBBServiceDetail();
+    }
 
     // body data
     _printToLog('body before');
