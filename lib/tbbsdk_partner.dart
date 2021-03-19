@@ -5,6 +5,7 @@ import 'dart:convert';
 import 'package:flutter/widgets.dart';
 import 'package:http/http.dart' as http;
 import 'package:location/location.dart';
+import 'package:tbbsdk/models/Page/ServiceOverview.dart';
 import 'package:tbbsdk/models/TBBCity.dart';
 import 'package:tbbsdk/models/TBBCountry.dart';
 import 'package:tbbsdk/models/TBBPartnerLocalState.dart';
@@ -883,6 +884,32 @@ class TBBSdkPartner {
     if (_response.statusCode >= 200 && _response.statusCode < 300) {
       TBBResponse response = TBBResponse.fromJson(json.decode(_response.body));
       return TBBCity.listFromJson(response.data);
+    } else {
+      throw new TBBError.fromJson(json.decode(_response.body));
+    }
+  }
+
+  //StoreCategory
+
+  Future<ServiceOverview> serviceOverView() async {
+    _printToLog("preparing store category");
+
+    // headers data
+    final headers = {
+      'authorization':
+          'Bearer ' + await _localDatabaseService.getSecureAccess('access_id'),
+    };
+
+    // request
+    final _response = await http.get(
+      this.appServer + "/$appPath" + API_PATH_PARTNER_SERVICES_OVERVIEW,
+      headers: headers,
+    );
+
+    //  response
+    if (_response.statusCode >= 200 && _response.statusCode < 300) {
+      TBBResponse response = TBBResponse.fromJson(json.decode(_response.body));
+      return ServiceOverview.fromJson(response.data);
     } else {
       throw new TBBError.fromJson(json.decode(_response.body));
     }

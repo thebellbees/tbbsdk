@@ -27,6 +27,12 @@ const API_PATH_CUSTOMER_SERVICE_ORDERS_CANCEL = "/services/orders";
 
 const API_PATH_PARTNER_GET_STORES = "/accounts/store/items";
 
+// Pages
+const API_PATH_PARTNER_SERVICES_OVERVIEW = "/home/overview";
+const API_PATH_PARTNER_CREATE_SERVICES_ORDER = "/job/create_order";
+const API_PATH_PARTNER_REJECT_SERVICES_ORDER = "/services/orders";
+const API_PATH_PARTNER_SERVICE_REQUESTS = "/services/orders/get";
+
 const API_PATH_PARTNER_INFO = "/accounts/info";
 const API_PATH_PARTNER_CREATE_STORE = "/accounts/store/create";
 const API_PATH_PARTNER_CREATE_SERVICE = "/accounts/store/create_service";
@@ -38,7 +44,3 @@ const API_PATH_PARTNER_GET_CITIES = "/utils/get_cities";
 const API_PATH_PARTNER_GET_COUNTRY = "/utils/available_countries";
 const API_PATH_PARTNER_GET_SERVICE_LOCATION =
     "/utils/available_service_locations";
-const API_PATH_PARTNER_SERVICES_JOBS_OVERVIEW = "/home/overview";
-const API_PATH_PARTNER_CREATE_SERVICES_ORDER = "/job/create_order";
-const API_PATH_PARTNER_REJECT_SERVICES_ORDER = "/services/orders";
-const API_PATH_PARTNER_SERVICE_REQUESTS = "/services/orders/get";
