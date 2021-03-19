@@ -905,6 +905,7 @@ class TBBSdkPartner {
       this.appServer + "/$appPath" + API_PATH_PARTNER_SERVICES_OVERVIEW,
       headers: headers,
     );
+    _printHttpLog(response: _response);
 
     //  response
     if (_response.statusCode >= 200 && _response.statusCode < 300) {
