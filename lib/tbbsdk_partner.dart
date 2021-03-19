@@ -487,8 +487,10 @@ class TBBSdkPartner {
           'Bearer ' + await _localDatabaseService.getSecureAccess('access_id'),
     };
 
-    String locationsString = jsonEncode(
-        serviceItem.serviceLocations.map((e) => e.toJson()).toList());
+    String locationsString = serviceItem.serviceLocations != null
+        ? jsonEncode(
+            serviceItem.serviceLocations.map((e) => e.toJson()).toList())
+        : null;
     String tagString = jsonEncode(serviceItem.tags);
 
     // body data
