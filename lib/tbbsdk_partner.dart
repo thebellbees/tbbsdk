@@ -324,6 +324,39 @@ class TBBSdkPartner {
     return this.localState;
   }
 
+  Future<List<TBBStore>> getStores({num limit = 10, num offset = 0}) async {
+    _printToLog("preparing Get User Info");
+
+    // headers data
+    final headers = {
+      'authorization':
+          'Bearer ' + await _localDatabaseService.getSecureAccess('access_id'),
+      'X-Refresh-Token':
+          await _localDatabaseService.getSecureAccess('refresh_id'),
+    };
+
+    // request
+    final _response = await http.get(
+      this.appServer +
+          "/$appPath" +
+          API_PATH_PARTNER_GET_STORES +
+          "?limit=$limit&offset=$offset",
+      headers: headers,
+    );
+
+    _printHttpLog(
+      response: _response,
+    );
+
+    //  response
+    if (_response.statusCode >= 200 && _response.statusCode < 300) {
+      TBBResponse response = TBBResponse.fromJson(json.decode(_response.body));
+      return TBBStore.listFromJson(response.data);
+    } else {
+      throw new TBBError.fromJson(json.decode(_response.body));
+    }
+  }
+
   //UserUpdate
 
   Future<TBBUser> userUpdate({TBBUserUpdate userData}) async {
