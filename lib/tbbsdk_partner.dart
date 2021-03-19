@@ -477,7 +477,7 @@ class TBBSdkPartner {
 
   //CreateService
 
-  Future<TBBServiceItem> createService(
+  Future<TBBServiceItem> saveService(
       {TBBServiceItem serviceItem, TBBStore store}) async {
     _printToLog("preparing create service");
 
