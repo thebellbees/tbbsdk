@@ -24,7 +24,7 @@ const API_PATH_CUSTOMER_SERVICE_ORDERS_CANCEL = "/services/orders";
 
 // PARTNER Server Endpoints
 const API_PATH_PARTNER_INFO = "/accounts/info";
-const API_PATH_PARTNER_CREATE_STORE = "/accounts/stores";
+const API_PATH_PARTNER_CREATE_STORE = "/accounts/store/create";
 const API_PATH_PARTNER_CREATE_SERVICE = "/services";
 const API_PATH_PARTNER_UPDATE_SERVICE = "/services";
 const API_PATH_PARTNER_SUBSCRIPTION_PLANS = "/accounts/subscription_plans";
