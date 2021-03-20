@@ -625,7 +625,7 @@ class TBBSdk {
     final _response = await http.get(
       this.appServer +
           API_PATH_SERVICES_TYPES +
-          "/$type?limit=$limit&offset=$offset",
+          "/?limit=$limit&offset=$offset",
       headers: headers,
     );
 
