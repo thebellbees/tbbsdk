@@ -36,7 +36,7 @@ class TBBCustomer {
     return _$TBBCustomerFromJson(json);
   }
 
-  static List<TBBCustomer> listFromJson(List<Map<String,dynamic>>  listJson) {
+  static List<TBBCustomer> listFromJson(List<dynamic> listJson) {
     Iterable l = listJson;
     List<TBBCustomer> items =
         List<TBBCustomer>.from(l.map((model) => TBBCustomer.fromJson(model)));

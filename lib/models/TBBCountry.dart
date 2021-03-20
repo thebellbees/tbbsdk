@@ -55,7 +55,7 @@ class TBBCountry {
     return _$TBBCountryFromJson(json);
   }
 
-  static List<TBBCountry> listFromJson(List<Map<String,dynamic>>  listJson) {
+  static List<TBBCountry> listFromJson(List<dynamic> listJson) {
     Iterable l = listJson;
     List<TBBCountry> items =
         List<TBBCountry>.from(l.map((model) => TBBCountry.fromJson(model)));

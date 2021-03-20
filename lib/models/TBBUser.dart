@@ -38,7 +38,7 @@ class TBBUser {
     return _$TBBUserFromJson(json);
   }
 
-  static List<TBBUser> listFromJson(List<Map<String,dynamic>>  listJson) {
+  static List<TBBUser> listFromJson(List<dynamic> listJson) {
     Iterable l = listJson;
     List<TBBUser> items =
         List<TBBUser>.from(l.map((model) => TBBUser.fromJson(model)));

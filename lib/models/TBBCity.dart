@@ -43,7 +43,7 @@ class TBBCity {
     return _$TBBCityFromJson(json);
   }
 
-  static List<TBBCity> listFromJson(List<Map<String,dynamic>>  listJson) {
+  static List<TBBCity> listFromJson(List<dynamic> listJson) {
     Iterable l = listJson;
     List<TBBCity> items =
         List<TBBCity>.from(l.map((model) => TBBCity.fromJson(model)));

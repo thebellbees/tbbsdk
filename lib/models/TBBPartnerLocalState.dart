@@ -36,7 +36,7 @@ class TBBPartnerLocalState {
     return _$TBBPartnerLocalStateFromJson(json);
   }
 
-  static List<TBBPartnerLocalState> listFromJson(List<Map<String,dynamic>> listJson) {
+  static List<TBBPartnerLocalState> listFromJson(List<dynamic> listJson) {
     Iterable l = listJson;
     List<TBBPartnerLocalState> items = List<TBBPartnerLocalState>.from(
         l.map((model) => TBBPartnerLocalState.fromJson(model)));

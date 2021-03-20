@@ -63,7 +63,7 @@ class TBBServiceDetail {
     return _$TBBServiceDetailFromJson(json);
   }
 
-  static List<TBBServiceDetail> listFromJson(List<Map<String,dynamic>>  listJson) {
+  static List<TBBServiceDetail> listFromJson(List<dynamic> listJson) {
     Iterable l = listJson;
     List<TBBServiceDetail> items = List<TBBServiceDetail>.from(
         l.map((model) => TBBServiceDetail.fromJson(model)));
