@@ -54,7 +54,7 @@ class TBBServiceItemRequest {
     return _$TBBServiceItemRequestFromJson(json);
   }
 
-  static List<TBBServiceItemRequest> listFromJson(List<dynamic> listJson) {
+  static List<TBBServiceItemRequest> listFromJson(List<Map<String,dynamic>> listJson) {
     Iterable l = listJson;
     List<TBBServiceItemRequest> items = List<TBBServiceItemRequest>.from(
         l.map((model) => TBBServiceItemRequest.fromJson(model)));

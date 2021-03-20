@@ -28,7 +28,7 @@ class TBBServiceLocation {
     return _$TBBServiceLocationFromJson(json);
   }
 
-  static List<TBBServiceLocation> listFromJson(List<dynamic> listJson) {
+  static List<TBBServiceLocation> listFromJson(List<Map<String,dynamic>>  listJson) {
     Iterable l = listJson;
     List<TBBServiceLocation> items = List<TBBServiceLocation>.from(
         l.map((model) => TBBServiceLocation.fromJson(model)));

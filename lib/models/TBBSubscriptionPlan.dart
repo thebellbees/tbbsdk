@@ -48,7 +48,7 @@ class TBBSubscriptionPlan {
 
     return _$TBBSubscriptionPlanFromJson(json);
   }
-  static List<TBBSubscriptionPlan> listFromJson(List<dynamic> listJson) {
+  static List<TBBSubscriptionPlan> listFromJson(List<Map<String,dynamic>>  listJson) {
     Iterable l = listJson;
 
     List<TBBSubscriptionPlan> items = List<TBBSubscriptionPlan>.from(

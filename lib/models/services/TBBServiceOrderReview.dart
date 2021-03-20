@@ -40,7 +40,7 @@ class TBBServiceOrderReview {
     return _$TBBServiceOrderReviewFromJson(json);
   }
 
-  static List<TBBServiceOrderReview> listFromJson(List<dynamic> listJson) {
+  static List<TBBServiceOrderReview> listFromJson(List<Map<String,dynamic>>  listJson) {
     Iterable l = listJson;
 
     List<TBBServiceOrderReview> items = List<TBBServiceOrderReview>.from(

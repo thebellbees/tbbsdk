@@ -45,7 +45,7 @@ class TBBState {
     return _$TBBStateFromJson(json);
   }
 
-  static List<TBBState> listFromJson(List<dynamic> listJson) {
+  static List<TBBState> listFromJson(List<Map<String,dynamic>>  listJson) {
     Iterable l = listJson;
     List<TBBState> items =
         List<TBBState>.from(l.map((model) => TBBState.fromJson(model)));

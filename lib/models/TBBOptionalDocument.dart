@@ -36,7 +36,7 @@ class TBBOptionalDocument {
     return _$TBBOptionalDocumentFromJson(json);
   }
 
-  static List<TBBOptionalDocument> listFromJson(List<dynamic> listJson) {
+  static List<TBBOptionalDocument> listFromJson(List<Map<String,dynamic>>  listJson) {
     Iterable l = listJson;
     List<TBBOptionalDocument> items =
     List<TBBOptionalDocument>.from(l.map((model) => TBBOptionalDocument.fromJson(model)));
