@@ -609,7 +609,7 @@ class TBBSdk {
 
   // SERVICES FUNCTIONS
 
-  Future<TBBServiceTaxonomy> getServiceTypes(
+  Future<List<TBBServiceTaxonomy>> getServiceTypes(
       {int limit = 10, int offset = 0}) async {
     _printToLog("preparing get service types");
 
@@ -636,10 +636,7 @@ class TBBSdk {
     //  response
     if (_response.statusCode >= 200 && _response.statusCode < 300) {
       TBBResponse response = TBBResponse.fromJson(json.decode(_response.body));
-
-      TBBServiceTaxonomy item = TBBServiceTaxonomy.fromJson(response.data);
-
-      return item;
+      return TBBServiceTaxonomy.listFromJson(response.data);
     } else {
       throw new TBBError.fromJson(json.decode(_response.body));
     }

@@ -43,6 +43,14 @@ class TBBServiceTaxonomy {
     return _$TBBServiceTaxonomyFromJson(json);
   }
 
+  static List<TBBServiceTaxonomy> listFromJson(List<dynamic> listJson) {
+    Iterable l = listJson;
+
+    List<TBBServiceTaxonomy> items = List<TBBServiceTaxonomy>.from(
+        l.map((model) => TBBServiceTaxonomy.fromJson(model)));
+
+    return items;
+  }
   /// `toJson` is the convention for a class to declare support for serialization
   /// to JSON. The implementation simply calls the private, generated
   /// helper method `_$UserToJson`.
