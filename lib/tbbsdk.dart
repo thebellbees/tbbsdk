@@ -750,11 +750,5 @@ class TBBSdk {
     }
   }
 
-  Future loadDefaults() async {
-    _printToLog("loading Defaults");
 
-    if (localState != null && localState.loggedIn) {
-      _localState.serviceTaxonomy = await getServiceTypes("services");
-    }
-  }
 }
