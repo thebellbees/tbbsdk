@@ -605,7 +605,7 @@ class TBBSdkPartner {
   //Request Service
 
   Future<List<TBBServiceItemRequest>> serviceRequests(
-      {num limit, num offset, String action, String status}) async {
+      {num limit, num offset, String status}) async {
     _printToLog("preparing partner token");
 
     // headers data
@@ -617,13 +617,12 @@ class TBBSdkPartner {
     final body = {
       'limit': limit.toString(),
       'offset': offset.toString(),
-      'action': action.toString(),
       'status': status.toString(),
     };
 
     // request
     final _response = await http.post(
-        this.appServer + "/$appPath" + API_PATH_PARTNER_SERVICE_REQUESTS,
+        this.appServer + "/$appPath" + API_PATH_PARTNER_SERVICE_ORDERS,
         headers: headers,
         body: body);
 
