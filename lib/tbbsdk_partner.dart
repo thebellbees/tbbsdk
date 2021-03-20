@@ -631,7 +631,8 @@ class TBBSdkPartner {
     //  response
     if (_response.statusCode >= 200 && _response.statusCode < 300) {
       TBBResponse response = TBBResponse.fromJson(json.decode(_response.body));
-      return TBBServiceOrder.listFromJson(response.data);
+      return TBBServiceOrder.listFromJson(
+          response.data as List<Map<String, dynamic>>);
     } else {
       throw new TBBError.fromJson(json.decode(_response.body));
     }
@@ -646,7 +647,7 @@ class TBBSdkPartner {
     // headers data
     final headers = {
       'authorization':
-      'Bearer ' + await _localDatabaseService.getSecureAccess('access_id'),
+          'Bearer ' + await _localDatabaseService.getSecureAccess('access_id'),
     };
 
     final body = {
