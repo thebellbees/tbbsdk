@@ -379,8 +379,7 @@ class TBBSdk {
 
   //Customer Action
 
-  Future<TBBServiceItem> serviceHire(
-      {TBBServiceItem serviceItem}) async {
+  Future<TBBServiceItem> serviceHire({TBBServiceItem serviceItem}) async {
     _printToLog("preparing user update");
 
     // headers data
@@ -388,8 +387,6 @@ class TBBSdk {
       'authorization':
           'Bearer ' + await _localDatabaseService.getSecureAccess('access_id'),
     };
-
-
 
     // request
     final _response = await http.post(
@@ -409,16 +406,14 @@ class TBBSdk {
     }
   }
 
-  Future<TBBServiceItem> serviceCall(
-      {TBBServiceItem serviceItem}) async {
+  Future<TBBServiceItem> serviceCall({TBBServiceItem serviceItem}) async {
     _printToLog("preparing user update");
 
     // headers data
     final headers = {
       'authorization':
-      'Bearer ' + await _localDatabaseService.getSecureAccess('access_id'),
+          'Bearer ' + await _localDatabaseService.getSecureAccess('access_id'),
     };
-
 
     // request
     final _response = await http.post(
@@ -614,7 +609,7 @@ class TBBSdk {
 
   // SERVICES FUNCTIONS
 
-  Future<TBBServiceTaxonomy> getServiceTypes(String type,
+  Future<TBBServiceTaxonomy> getServiceTypes(
       {int limit = 10, int offset = 0}) async {
     _printToLog("preparing get service types");
 
@@ -749,6 +744,4 @@ class TBBSdk {
       throw new TBBError.fromJson(json.decode(_response.body));
     }
   }
-
-
 }
