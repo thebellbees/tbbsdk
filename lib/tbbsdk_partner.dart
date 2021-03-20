@@ -637,6 +637,41 @@ class TBBSdkPartner {
     }
   }
 
+  //Request Service
+
+  Future<List<TBBServiceItemRequest>> jobRequests(
+      {num limit, num offset, String status}) async {
+    _printToLog("preparing partner token");
+
+    // headers data
+    final headers = {
+      'authorization':
+      'Bearer ' + await _localDatabaseService.getSecureAccess('access_id'),
+    };
+
+    final body = {
+      'limit': limit.toString(),
+      'offset': offset.toString(),
+      'status': status.toString(),
+    };
+
+    // request
+    final _response = await http.post(
+        this.appServer + "/$appPath" + API_PATH_PARTNER_SERVICE_JOBS_REQUESTS,
+        headers: headers,
+        body: body);
+
+    _printHttpLog(response: _response, body: body);
+
+    //  response
+    if (_response.statusCode >= 200 && _response.statusCode < 300) {
+      TBBResponse response = TBBResponse.fromJson(json.decode(_response.body));
+      return TBBServiceItemRequest.listFromJson(response.data);
+    } else {
+      throw new TBBError.fromJson(json.decode(_response.body));
+    }
+  }
+
   //PartnerToken
 
   Future<TBBPartnerToken> setPartnerToken({TBBStore store}) async {
