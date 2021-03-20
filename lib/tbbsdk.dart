@@ -615,7 +615,7 @@ class TBBSdk {
   // SERVICES FUNCTIONS
 
   Future<TBBServiceTaxonomy> getServiceTypes(String type,
-      {int limit, int offset}) async {
+      {int limit = 10, int offset = 0}) async {
     _printToLog("preparing get service types");
 
     // headers data
