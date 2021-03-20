@@ -379,8 +379,8 @@ class TBBSdk {
 
   //Customer Action
 
-  Future<TBBServiceItem> customerAction(
-      {TBBServiceItem serviceItem, CustomerServiceAction action}) async {
+  Future<TBBServiceItem> serviceHire(
+      {TBBServiceItem serviceItem}) async {
     _printToLog("preparing user update");
 
     // headers data
@@ -389,17 +389,42 @@ class TBBSdk {
           'Bearer ' + await _localDatabaseService.getSecureAccess('access_id'),
     };
 
-    String actionString = action == CustomerServiceAction.hire
-        ? "hire"
-        : action == CustomerServiceAction.call
-            ? "call"
-            : null;
+
 
     // request
     final _response = await http.post(
         this.appServer +
-            API_PATH_CUSTOMER_SERVICES_ACTION +
-            "/${serviceItem.serviceId.toString()}/${actionString.toString()}",
+            API_PATH_SERVICE_ACTION_HIRE +
+            "/${serviceItem.serviceId.toString().toString()}",
+        headers: headers);
+
+    _printHttpLog(response: _response);
+
+    //  response
+    if (_response.statusCode >= 200 && _response.statusCode < 300) {
+      TBBResponse response = TBBResponse.fromJson(json.decode(_response.body));
+      return TBBServiceItem.fromJson(response.data);
+    } else {
+      throw new TBBError.fromJson(json.decode(_response.body));
+    }
+  }
+
+  Future<TBBServiceItem> serviceCall(
+      {TBBServiceItem serviceItem}) async {
+    _printToLog("preparing user update");
+
+    // headers data
+    final headers = {
+      'authorization':
+      'Bearer ' + await _localDatabaseService.getSecureAccess('access_id'),
+    };
+
+
+    // request
+    final _response = await http.post(
+        this.appServer +
+            API_PATH_SERVICE_ACTION_CALL +
+            "/${serviceItem.serviceId.toString().toString()}",
         headers: headers);
 
     _printHttpLog(response: _response);
