@@ -587,7 +587,7 @@ class TBBSdkPartner {
         this.appServer +
             "/$appPath" +
             API_PATH_PARTNER_UPDATE_SERVICE +
-            "/${store.service.serviceId.toString()}",
+            "/${store.serviceDetail.id.toString()}",
         headers: headers,
         body: data);
 

@@ -2,6 +2,7 @@ import 'package:tbbsdk/models/TBBCustomer.dart';
 
 import 'package:json_annotation/json_annotation.dart';
 import 'package:tbbsdk/models/TBBOptionalDocument.dart';
+import 'package:tbbsdk/models/services/TBBServiceDetail.dart';
 import 'package:tbbsdk/models/services/TBBServiceItem.dart';
 import 'package:tbbsdk/models/services/TBBServiceTerm.dart';
 import 'package:tbbsdk/utilities/PropValidator.dart';
@@ -40,7 +41,7 @@ class TBBStore {
   String address;
   bool enabled;
   @JsonKey(name: "sr_service")
-  TBBServiceItem service;
+  TBBServiceDetail serviceDetail;
   TBBCustomer customer;
   String createdAt;
   String updatedAt;
@@ -65,7 +66,7 @@ class TBBStore {
     this.subCategory,
     this.certificate,
     this.aadhar,
-    this.service,
+    this.serviceDetail,
     this.gst,
     this.udyogAadhar,
     this.country,
