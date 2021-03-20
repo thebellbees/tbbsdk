@@ -632,7 +632,7 @@ class TBBSdkPartner {
     if (_response.statusCode >= 200 && _response.statusCode < 300) {
       TBBResponse response = TBBResponse.fromJson(json.decode(_response.body));
       return TBBServiceOrder.listFromJson(
-          response.data as List<Map<String, dynamic>>);
+          response.data);
     } else {
       throw new TBBError.fromJson(json.decode(_response.body));
     }
