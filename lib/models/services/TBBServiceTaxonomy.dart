@@ -40,6 +40,8 @@ class TBBServiceTaxonomy {
   /// The constructor is named after the source class, in this case, User.
   factory TBBServiceTaxonomy.fromJson(Map<String, dynamic> json) {
     json['id'] = json['id'].toString();
+    json['icon'] = json['icon'].toString();
+    json['taxonomy'] = json['taxonomy'].toString();
     return _$TBBServiceTaxonomyFromJson(json);
   }
 
