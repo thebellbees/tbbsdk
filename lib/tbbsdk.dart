@@ -676,12 +676,14 @@ class TBBSdk {
     }
 
     // request
-    final _response = await http.post(
-        this.appServer + API_PATH_SERVICES_ALL + "?$queryString",
-        headers: headers,
-        body: body);
+    final _response = await http.get(
+      this.appServer + API_PATH_SERVICES_ALL + "?$queryString",
+      headers: headers,
+    );
 
-    _printHttpLog(response: _response, body: body);
+    _printHttpLog(
+      response: _response,
+    );
 
     //  response
     if (_response.statusCode >= 200 && _response.statusCode < 300) {
