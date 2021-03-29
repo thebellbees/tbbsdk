@@ -786,7 +786,7 @@ class TBBSdkPartner {
     // body data
 
     // request
-    final _response = await http.post(
+    final _response = await http.get(
       this.appServer + "/$appPath" + API_PATH_PARTNER_SUBSCRIPTION_PLANS,
       headers: headers,
     );
