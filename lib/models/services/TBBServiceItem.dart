@@ -13,7 +13,7 @@ part 'TBBServiceItem.g.dart';
 @JsonSerializable(
     fieldRename: FieldRename.snake, nullable: true, explicitToJson: true)
 class TBBServiceItem {
-  @JsonKey(name: "id")
+  @JsonKey(name: "service_id")
   String serviceId;
   String latitude;
   String longitude;
@@ -55,6 +55,7 @@ class TBBServiceItem {
   /// The constructor is named after the source class, in this case, User.
   factory TBBServiceItem.fromJson(Map<String, dynamic> json) {
     json['id'] = json['id'].toString();
+    json['service_id'] = json['service_id'].toString();
     json['available_around_with_km'] =
         json['available_around_with_km'].toString();
     json['service_man_pic'] = json['service_man_pic'].toString();
