@@ -658,7 +658,7 @@ class TBBSdk {
     final Map<String, String> body = {};
 
     if (category != null) {
-      body.addAll({"term_slug": category.toString()});
+      body.addAll({"category": category.toString()});
     }
 
     if (kilometer != null) {
@@ -676,9 +676,10 @@ class TBBSdk {
     }
 
     // request
-    final _response = await http.get(
+    final _response = await http.post(
       this.appServer + API_PATH_SERVICES_ALL + "?$queryString",
       headers: headers,
+      body: body,
     );
 
     _printHttpLog(
