@@ -728,7 +728,7 @@ class TBBSdk {
 
     // request
     final _response = await http.post(
-      this.appServer + API_PATH_SERVICES_FAVOURITES_ALL,
+      this.appServer + API_PATH_FAVOURITES_ALL,
       headers: headers,
       body: body,
     );
@@ -781,7 +781,7 @@ class TBBSdk {
     }
   }
 
-  Future<bool> removeServiceFavourite({TBBServiceDetail serviceDetail}) async {
+  Future<bool> removeFavourite({String favId}) async {
     _printToLog("preparing getting list of available service");
 
     // headers data
@@ -794,9 +794,7 @@ class TBBSdk {
 
     // request
     final _response = await http.delete(
-      this.appServer +
-          API_PATH_SERVICES_REMOVE_FROM_FAVOURITE +
-          "/${serviceDetail.id.toString()}",
+      this.appServer + API_PATH_REMOVE_FROM_FAVOURITE + "/${favId.toString()}",
       headers: headers,
     );
 
