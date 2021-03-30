@@ -30,10 +30,10 @@ const API_PATH_PARTNER_GET_STORES = "/accounts/store/items";
 
 // Pages
 const API_PATH_PARTNER_SERVICES_OVERVIEW = "/home/overview";
-const API_PATH_PARTNER_CREATE_SERVICES_ORDER = "/job/create_order";
-const API_PATH_PARTNER_REJECT_SERVICES_ORDER = "/services/orders";
 const API_PATH_PARTNER_SERVICE_ORDERS = "/order/items";
 const API_PATH_PARTNER_SERVICE_JOBS_REQUESTS = "/job/items";
+const API_PATH_PARTNER_SERVICE_JOB_CANCEL = "/job";
+const API_PATH_PARTNER_SERVICE_JOB_CREATE_ORDER = "/job";
 
 const API_PATH_PARTNER_INFO = "/accounts/info";
 const API_PATH_PARTNER_CREATE_STORE = "/accounts/store/create";

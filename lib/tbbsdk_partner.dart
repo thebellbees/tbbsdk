@@ -709,7 +709,7 @@ class TBBSdkPartner {
 
   //Create Service Order
 
-  Future<TBBServiceOrder> createServiceOrder(
+  Future<TBBServiceOrder> jobCreate(
       {TBBServiceItemRequest serviceItemRequest}) async {
     _printToLog("preparing partner token");
 
@@ -723,8 +723,8 @@ class TBBSdkPartner {
     final _response = await http.post(
       this.appServer +
           "/$appPath" +
-          API_PATH_PARTNER_CREATE_SERVICES_ORDER +
-          "/${serviceItemRequest.id.toString()}",
+          API_PATH_PARTNER_SERVICE_JOB_CREATE_ORDER +
+          "/${serviceItemRequest.id.toString()}/create_order",
       headers: headers,
     );
 
@@ -741,7 +741,7 @@ class TBBSdkPartner {
 
   //Service Request Reject
 
-  Future<TBBServiceOrder> rejectServiceRequest(
+  Future<TBBServiceOrder> jobCancel(
       {TBBServiceItemRequest serviceItemRequest}) async {
     _printToLog("preparing partner token");
 
@@ -755,8 +755,8 @@ class TBBSdkPartner {
     final _response = await http.delete(
       this.appServer +
           "/$appPath" +
-          API_PATH_PARTNER_REJECT_SERVICES_ORDER +
-          "/${serviceItemRequest.id.toString()}",
+          API_PATH_PARTNER_SERVICE_JOB_CANCEL +
+          "/${serviceItemRequest.id.toString()}/cancel_job",
       headers: headers,
     );
 
