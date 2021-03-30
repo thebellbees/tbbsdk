@@ -684,6 +684,7 @@ class TBBSdk {
 
     _printHttpLog(
       response: _response,
+      body: body,
     );
 
     //  response
