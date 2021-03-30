@@ -28,8 +28,8 @@ const API_PATH_CUSTOMER_ORDERS = "/order/items";
 // Accounts
 
 const API_PATH_PARTNER_GET_STORES = "/accounts/store/items";
-const API_PATH_REMOVE_FROM_FAVOURITE = "/account/remove_from_fav";
-const API_PATH_FAVOURITES_ALL = "/account/get_favourites";
+const API_PATH_REMOVE_FROM_FAVOURITE = "/accounts/remove_from_fav";
+const API_PATH_FAVOURITES_ALL = "/accounts/get_favourites";
 
 // Pages
 const API_PATH_PARTNER_SERVICES_OVERVIEW = "/home/overview";
