@@ -8,6 +8,7 @@ import 'package:location/location.dart';
 import 'package:tbbsdk/constants/constants.dart';
 import 'package:tbbsdk/models/TBBAccessToken.dart';
 import 'package:tbbsdk/models/helper_class.dart';
+import 'package:tbbsdk/models/services/TBBServiceDetail.dart';
 import 'package:tbbsdk/models/services/TBBServiceItem.dart';
 import 'package:tbbsdk/models/services/TBBServiceOrder.dart';
 import 'package:tbbsdk/models/services/TBBServiceTaxonomy.dart';
@@ -696,11 +697,8 @@ class TBBSdk {
     }
   }
 
-  Future<List<TBBServiceItem>> serviceFavourite(
-      {TBBServiceItem serviceItem,
-      int kilometer,
-      int limit,
-      int offset}) async {
+  Future<List<TBBServiceDetail>> serviceFavourites(
+      {int kilometer, int limit, int offset}) async {
     _printToLog("preparing getting list of available service");
 
     // headers data
@@ -712,7 +710,7 @@ class TBBSdk {
     };
 
     // body data
-    final Map<String, String> body = {};
+    final Map<String, String> body = {"store_type ": "services"};
 
     if (kilometer != null) {
       body.addAll({"km": kilometer.toString()});
@@ -730,9 +728,7 @@ class TBBSdk {
 
     // request
     final _response = await http.post(
-      this.appServer +
-          API_PATH_SERVICES_ADD_TO_FAVOURITE +
-          "/${serviceItem.serviceId.toString()}",
+      this.appServer + API_PATH_SERVICES_FAVOURITES_ALL,
       headers: headers,
       body: body,
     );
@@ -746,7 +742,73 @@ class TBBSdk {
     if (_response.statusCode >= 200 && _response.statusCode < 300) {
       TBBResponse response = TBBResponse.fromJson(json.decode(_response.body));
 
-      return TBBServiceItem.listFromJson(response.data);
+      return TBBServiceDetail.listFromJson(response.data);
+    } else {
+      throw new TBBError.fromJson(json.decode(_response.body));
+    }
+  }
+
+  Future<bool> addServiceFavourite({TBBServiceDetail serviceDetail}) async {
+    _printToLog("preparing getting list of available service");
+
+    // headers data
+    final headers = {
+      'authorization':
+          'Bearer ' + await _localDatabaseService.getSecureAccess('access_id'),
+      'X-Refresh-Token':
+          await _localDatabaseService.getSecureAccess('refresh_id'),
+    };
+
+    // request
+    final _response = await http.post(
+      this.appServer +
+          API_PATH_SERVICES_ADD_TO_FAVOURITE +
+          "/${serviceDetail.id.toString()}",
+      headers: headers,
+    );
+
+    _printHttpLog(
+      response: _response,
+    );
+
+    //  response
+    if (_response.statusCode >= 200 && _response.statusCode < 300) {
+      TBBResponse response = TBBResponse.fromJson(json.decode(_response.body));
+
+      return response.data;
+    } else {
+      throw new TBBError.fromJson(json.decode(_response.body));
+    }
+  }
+
+  Future<bool> removeServiceFavourite({TBBServiceDetail serviceDetail}) async {
+    _printToLog("preparing getting list of available service");
+
+    // headers data
+    final headers = {
+      'authorization':
+          'Bearer ' + await _localDatabaseService.getSecureAccess('access_id'),
+      'X-Refresh-Token':
+          await _localDatabaseService.getSecureAccess('refresh_id'),
+    };
+
+    // request
+    final _response = await http.delete(
+      this.appServer +
+          API_PATH_SERVICES_REMOVE_FROM_FAVOURITE +
+          "/${serviceDetail.id.toString()}",
+      headers: headers,
+    );
+
+    _printHttpLog(
+      response: _response,
+    );
+
+    //  response
+    if (_response.statusCode >= 200 && _response.statusCode < 300) {
+      TBBResponse response = TBBResponse.fromJson(json.decode(_response.body));
+
+      return response.data;
     } else {
       throw new TBBError.fromJson(json.decode(_response.body));
     }
