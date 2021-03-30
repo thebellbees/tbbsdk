@@ -15,7 +15,6 @@ import 'package:tbbsdk/models/TBBLocalState.dart';
 import 'package:tbbsdk/models/tbb_response.dart';
 import 'package:tbbsdk/models/TBBUser.dart';
 import 'package:tbbsdk/tbb_error.dart';
-import 'package:tbbsdk/utilities/enums.dart';
 import 'package:tbbsdk/utilities/local_database.dart';
 
 // exports
@@ -678,6 +677,62 @@ class TBBSdk {
     // request
     final _response = await http.post(
       this.appServer + API_PATH_SERVICES_ALL + "?$queryString",
+      headers: headers,
+      body: body,
+    );
+
+    _printHttpLog(
+      response: _response,
+      body: body,
+    );
+
+    //  response
+    if (_response.statusCode >= 200 && _response.statusCode < 300) {
+      TBBResponse response = TBBResponse.fromJson(json.decode(_response.body));
+
+      return TBBServiceItem.listFromJson(response.data);
+    } else {
+      throw new TBBError.fromJson(json.decode(_response.body));
+    }
+  }
+
+  Future<List<TBBServiceItem>> serviceFavourite(
+      {TBBServiceItem serviceItem,
+      int kilometer,
+      int limit,
+      int offset}) async {
+    _printToLog("preparing getting list of available service");
+
+    // headers data
+    final headers = {
+      'authorization':
+          'Bearer ' + await _localDatabaseService.getSecureAccess('access_id'),
+      'X-Refresh-Token':
+          await _localDatabaseService.getSecureAccess('refresh_id'),
+    };
+
+    // body data
+    final Map<String, String> body = {};
+
+    if (kilometer != null) {
+      body.addAll({"km": kilometer.toString()});
+    }
+
+    // query data
+    String queryString = "";
+
+    if (limit != null) {
+      queryString = queryString + "&limit=$limit";
+    }
+    if (offset != null) {
+      queryString = queryString + "&offset=$offset";
+    }
+
+    // request
+    final _response = await http.post(
+      this.appServer +
+          API_PATH_SERVICES_ADD_TO_FAVOURITE +
+          "/${serviceItem.serviceId.toString()}",
       headers: headers,
       body: body,
     );
