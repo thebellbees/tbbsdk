@@ -16,9 +16,6 @@ TBBStore _$TBBStoreFromJson(Map<String, dynamic> json) {
     email: json['email'] as String,
     address: json['address'] as String,
     enabled: json['enabled'] as bool,
-    customer: json['customer'] == null
-        ? null
-        : TBBCustomer.fromJson(json['customer'] as Map<String, dynamic>),
     createdAt: json['created_at'] as String,
     updatedAt: json['updated_at'] as String,
     deletedAt: json['deleted_at'] as String,
@@ -34,6 +31,9 @@ TBBStore _$TBBStoreFromJson(Map<String, dynamic> json) {
     udyogAadhar: json['udyog_aadhar'] as String,
     country: json['country'] as String,
     pincode: json['pincode'] as String,
+    user: json['customer'] == null
+        ? null
+        : TBBUser.fromJson(json['customer'] as Map<String, dynamic>),
     state: json['state'] as String,
     city: json['city'] as String,
     proprietorName: json['proprietor_name'] as String,
@@ -62,7 +62,7 @@ Map<String, dynamic> _$TBBStoreToJson(TBBStore instance) => <String, dynamic>{
       'address': instance.address,
       'enabled': instance.enabled,
       'sr_service': instance.serviceDetail?.toJson(),
-      'customer': instance.customer?.toJson(),
+      'customer': instance.user?.toJson(),
       'created_at': instance.createdAt,
       'updated_at': instance.updatedAt,
       'deleted_at': instance.deletedAt,
