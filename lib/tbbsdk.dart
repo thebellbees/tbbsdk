@@ -8,6 +8,7 @@ import 'package:location/location.dart';
 import 'package:tbbsdk/constants/constants.dart';
 import 'package:tbbsdk/models/TBBAccessToken.dart';
 import 'package:tbbsdk/models/helper_class.dart';
+import 'package:tbbsdk/models/services/TBBFavouriteItem.dart';
 import 'package:tbbsdk/models/services/TBBServiceDetail.dart';
 import 'package:tbbsdk/models/services/TBBServiceItem.dart';
 import 'package:tbbsdk/models/services/TBBServiceOrder.dart';
@@ -697,7 +698,7 @@ class TBBSdk {
     }
   }
 
-  Future<List<TBBServiceDetail>> serviceFavourites(
+  Future<List<TBBFavouriteItem>> serviceFavourites(
       {int kilometer, int limit, int offset}) async {
     _printToLog("preparing getting list of available service");
 
@@ -742,7 +743,7 @@ class TBBSdk {
     if (_response.statusCode >= 200 && _response.statusCode < 300) {
       TBBResponse response = TBBResponse.fromJson(json.decode(_response.body));
 
-      return TBBServiceDetail.listFromJson(response.data);
+      return TBBFavouriteItem.listFromJson(response.data);
     } else {
       throw new TBBError.fromJson(json.decode(_response.body));
     }
