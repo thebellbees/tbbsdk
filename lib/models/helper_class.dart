@@ -24,8 +24,8 @@ class TBBUserUpdate {
 }
 
 class CartList {
-  List<TBBServiceCartItem> totalCount;
-  String items;
+  String totalCount;
+  List<TBBServiceCartItem> items;
 
   CartList({
     this.totalCount,
