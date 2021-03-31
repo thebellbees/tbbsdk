@@ -1,8 +1,5 @@
 import 'package:tbbsdk/models/services/TBBServiceDetail.dart';
 import 'package:tbbsdk/models/services/TBBServiceOrder.dart';
-import 'package:tbbsdk/models/services/TBBServiceOrderReview.dart';
-import 'package:tbbsdk/models/services/TBBServiceTerm.dart';
-import 'package:tbbsdk/models/TBBStore.dart';
 
 import 'package:json_annotation/json_annotation.dart';
 
@@ -54,8 +51,10 @@ class TBBServiceCartItem {
 
   static List<TBBServiceCartItem> listFromJson(List<dynamic> listJson) {
     Iterable l = listJson;
-    List<TBBServiceCartItem> items = List<TBBServiceCartItem>.from(
-        l.map((model) => TBBServiceCartItem.fromJson(model)));
+    List<TBBServiceCartItem> items = List<TBBServiceCartItem>.from(l.map(
+            (model) =>
+                TBBServiceCartItem.fromJson(model as Map<String, dynamic>)))
+        .toList();
     return items;
   }
 
