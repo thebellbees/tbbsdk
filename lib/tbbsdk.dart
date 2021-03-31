@@ -9,6 +9,7 @@ import 'package:tbbsdk/constants/constants.dart';
 import 'package:tbbsdk/models/TBBAccessToken.dart';
 import 'package:tbbsdk/models/helper_class.dart';
 import 'package:tbbsdk/models/services/TBBFavouriteItem.dart';
+import 'package:tbbsdk/models/services/TBBServiceCartItem.dart';
 import 'package:tbbsdk/models/services/TBBServiceDetail.dart';
 import 'package:tbbsdk/models/services/TBBServiceItem.dart';
 import 'package:tbbsdk/models/services/TBBServiceOrder.dart';
@@ -468,7 +469,7 @@ class TBBSdk {
 
   //Customer Service Order List
 
-  Future<List<TBBServiceOrder>> serviceCartOrders(
+  Future<List<TBBServiceCartItem>> serviceCartOrders(
       {num limit, num offset}) async {
     _printToLog("preparing partner token");
 
@@ -494,7 +495,7 @@ class TBBSdk {
     //  response
     if (_response.statusCode >= 200 && _response.statusCode < 300) {
       TBBResponse response = TBBResponse.fromJson(json.decode(_response.body));
-      return TBBServiceOrder.listFromJson(response.data);
+      return TBBServiceCartItem.listFromJson(response.data);
     } else {
       throw new TBBError.fromJson(json.decode(_response.body));
     }
