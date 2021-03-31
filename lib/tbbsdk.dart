@@ -712,7 +712,7 @@ class TBBSdk {
     };
 
     // body data
-    final Map<String, String> body = {"store_type ": "services"};
+    final Map<String, String> body = {"store_type": "services"};
 
     if (kilometer != null) {
       body.addAll({"km": kilometer.toString()});
