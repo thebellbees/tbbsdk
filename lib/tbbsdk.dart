@@ -469,8 +469,7 @@ class TBBSdk {
 
   //Customer Service Order List
 
-  Future<List<TBBServiceCartItem>> serviceCartOrders(
-      {num limit, num offset}) async {
+  Future<CartList> serviceCartOrders({num limit, num offset}) async {
     _printToLog("preparing partner token");
 
     // headers data
@@ -495,7 +494,7 @@ class TBBSdk {
     //  response
     if (_response.statusCode >= 200 && _response.statusCode < 300) {
       TBBResponse response = TBBResponse.fromJson(json.decode(_response.body));
-      return TBBServiceCartItem.listFromJson(response.data);
+      return CartList.fromJson(response.data);
     } else {
       throw new TBBError.fromJson(json.decode(_response.body));
     }
