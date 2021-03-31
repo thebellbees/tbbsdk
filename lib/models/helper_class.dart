@@ -34,13 +34,16 @@ class CartList {
 
   CartList.fromJson(Map<String, dynamic> json) {
     totalCount = json['total_count'];
-    items = json['items'];
+    items = json['items'] == null
+        ? null
+        : TBBServiceCartItem.listFromJson(json['items']);
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['total_count'] = this.totalCount;
-    data['items'] = this.items;
+    data['items'] =
+        data['items'] == null ? null : this.items.map((e) => e.toJson());
 
     return data;
   }
