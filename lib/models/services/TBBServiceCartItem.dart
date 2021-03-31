@@ -1,4 +1,5 @@
 import 'package:tbbsdk/models/services/TBBServiceDetail.dart';
+import 'package:tbbsdk/models/services/TBBServiceOrder.dart';
 import 'package:tbbsdk/models/services/TBBServiceOrderReview.dart';
 import 'package:tbbsdk/models/services/TBBServiceTerm.dart';
 import 'package:tbbsdk/models/TBBStore.dart';
@@ -25,6 +26,8 @@ class TBBServiceCartItem {
   String deletedAt;
   @JsonKey(name: "sr_service")
   TBBServiceDetail serviceDetail;
+  @JsonKey(name: "sr_order")
+  TBBServiceOrder serviceOrder;
 
   TBBServiceCartItem({
     this.id,
@@ -33,6 +36,7 @@ class TBBServiceCartItem {
     this.action,
     this.status,
     this.serviceDetail,
+    this.serviceOrder,
     this.createdAt,
     this.updatedAt,
     this.deletedAt,

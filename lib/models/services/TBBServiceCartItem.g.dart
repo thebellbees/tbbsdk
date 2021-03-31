@@ -16,6 +16,9 @@ TBBServiceCartItem _$TBBServiceCartItemFromJson(Map<String, dynamic> json) {
     serviceDetail: json['sr_service'] == null
         ? null
         : TBBServiceDetail.fromJson(json['sr_service'] as Map<String, dynamic>),
+    serviceOrder: json['sr_order'] == null
+        ? null
+        : TBBServiceOrder.fromJson(json['sr_order'] as Map<String, dynamic>),
     createdAt: json['created_at'] as String,
     updatedAt: json['updated_at'] as String,
     deletedAt: json['deleted_at'] as String,
@@ -33,4 +36,5 @@ Map<String, dynamic> _$TBBServiceCartItemToJson(TBBServiceCartItem instance) =>
       'updated_at': instance.updatedAt,
       'deleted_at': instance.deletedAt,
       'sr_service': instance.serviceDetail?.toJson(),
+      'sr_order': instance.serviceOrder?.toJson(),
     };
