@@ -24,22 +24,22 @@ class TBBUserUpdate {
 }
 
 class CartList {
-  List<TBBServiceCartItem> totalItems;
+  List<TBBServiceCartItem> totalCount;
   String items;
 
   CartList({
-    this.totalItems,
+    this.totalCount,
     this.items,
   });
 
   CartList.fromJson(Map<String, dynamic> json) {
-    totalItems = json['total_items'];
+    totalCount = json['total_count'];
     items = json['items'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['total_items'] = this.totalItems;
+    data['total_count'] = this.totalCount;
     data['items'] = this.items;
 
     return data;
