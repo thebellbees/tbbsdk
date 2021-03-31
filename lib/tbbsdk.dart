@@ -503,8 +503,8 @@ class TBBSdk {
 
   //Customer Service Accept
 
-  Future<TBBServiceOrder> serviceOrderAccept(
-      {TBBServiceOrder tbbServiceOrder}) async {
+  Future<TBBServiceCartItem> serviceOrderAccept(
+      {TBBServiceCartItem tbbServiceCartItem}) async {
     _printToLog("preparing partner token");
 
     // headers data
@@ -517,7 +517,7 @@ class TBBSdk {
     final _response = await http.post(
         this.appServer +
             API_PATH_CUSTOMER_SERVICE_ORDERS_ACCEPT +
-            "/${tbbServiceOrder.id.toString()}/accept",
+            "/${tbbServiceCartItem.id.toString()}/accept",
         headers: headers);
 
     _printHttpLog(response: _response);
@@ -525,7 +525,7 @@ class TBBSdk {
     //  response
     if (_response.statusCode >= 200 && _response.statusCode < 300) {
       TBBResponse response = TBBResponse.fromJson(json.decode(_response.body));
-      return TBBServiceOrder.fromJson(response.data);
+      return TBBServiceCartItem.fromJson(response.data);
     } else {
       throw new TBBError.fromJson(json.decode(_response.body));
     }
@@ -533,8 +533,8 @@ class TBBSdk {
 
   //Customer Service Cancel
 
-  Future<TBBServiceOrder> serviceOrderCancel(
-      {TBBServiceOrder tbbServiceOrder}) async {
+  Future<TBBServiceCartItem> serviceOrderCancel(
+      {TBBServiceCartItem tbbServiceCartItem}) async {
     _printToLog("preparing partner token");
 
     // headers data
@@ -547,7 +547,7 @@ class TBBSdk {
     final _response = await http.post(
       this.appServer +
           API_PATH_CUSTOMER_SERVICE_ORDERS_CANCEL +
-          "/${tbbServiceOrder.id.toString()}/cancel",
+          "/${tbbServiceCartItem.id.toString()}/cancel",
       headers: headers,
     );
 
@@ -556,7 +556,7 @@ class TBBSdk {
     //  response
     if (_response.statusCode >= 200 && _response.statusCode < 300) {
       TBBResponse response = TBBResponse.fromJson(json.decode(_response.body));
-      return TBBServiceOrder.fromJson(response.data);
+      return TBBServiceCartItem.fromJson(response.data);
     } else {
       throw new TBBError.fromJson(json.decode(_response.body));
     }

@@ -15,6 +15,7 @@ part 'TBBServiceCartItem.g.dart';
 @JsonSerializable(
     fieldRename: FieldRename.snake, nullable: true, explicitToJson: true)
 class TBBServiceCartItem {
+  String id;
   String serviceId;
   String customerId;
   String action;
@@ -26,6 +27,7 @@ class TBBServiceCartItem {
   TBBServiceDetail serviceDetail;
 
   TBBServiceCartItem({
+    this.id,
     this.serviceId,
     this.customerId,
     this.action,
@@ -41,6 +43,7 @@ class TBBServiceCartItem {
   /// The constructor is named after the source class, in this case, User.
   factory TBBServiceCartItem.fromJson(Map<String, dynamic> json) {
     json['customer_id'] = json['customer_id'].toString();
+    json['id'] = json['id'].toString();
     json['service_id'] = json['service_id'].toString();
     return _$TBBServiceCartItemFromJson(json);
   }

@@ -8,6 +8,7 @@ part of 'TBBServiceCartItem.dart';
 
 TBBServiceCartItem _$TBBServiceCartItemFromJson(Map<String, dynamic> json) {
   return TBBServiceCartItem(
+    id: json['id'] as String,
     serviceId: json['service_id'] as String,
     customerId: json['customer_id'] as String,
     action: json['action'] as String,
@@ -23,6 +24,7 @@ TBBServiceCartItem _$TBBServiceCartItemFromJson(Map<String, dynamic> json) {
 
 Map<String, dynamic> _$TBBServiceCartItemToJson(TBBServiceCartItem instance) =>
     <String, dynamic>{
+      'id': instance.id,
       'service_id': instance.serviceId,
       'customer_id': instance.customerId,
       'action': instance.action,
