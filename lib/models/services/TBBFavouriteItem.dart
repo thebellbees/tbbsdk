@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:tbbsdk/models/TBBUser.dart';
 
 import 'package:json_annotation/json_annotation.dart';
@@ -17,6 +19,7 @@ class TBBFavouriteItem {
   String storeType;
   String customerId;
   TBBUser customer;
+  @JsonKey(name: "favourite_item")
   Map<String, dynamic> item;
   String createdAt;
   String updatedAt;

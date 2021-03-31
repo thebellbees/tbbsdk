@@ -15,7 +15,7 @@ TBBFavouriteItem _$TBBFavouriteItemFromJson(Map<String, dynamic> json) {
     customer: json['customer'] == null
         ? null
         : TBBUser.fromJson(json['customer'] as Map<String, dynamic>),
-    item: json['item'] as Map<String, dynamic>,
+    item: json['favourite_item'] as Map<String, dynamic>,
     createdAt: json['created_at'] as String,
     updatedAt: json['updated_at'] as String,
     deletedAt: json['deleted_at'] as String,
@@ -29,7 +29,7 @@ Map<String, dynamic> _$TBBFavouriteItemToJson(TBBFavouriteItem instance) =>
       'store_type': instance.storeType,
       'customer_id': instance.customerId,
       'customer': instance.customer?.toJson(),
-      'item': instance.item,
+      'favourite_item': instance.item,
       'created_at': instance.createdAt,
       'updated_at': instance.updatedAt,
       'deleted_at': instance.deletedAt,
