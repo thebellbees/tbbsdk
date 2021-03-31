@@ -517,7 +517,7 @@ class TBBSdk {
     final _response = await http.post(
         this.appServer +
             API_PATH_CUSTOMER_SERVICE_ORDERS_ACCEPT +
-            "/${tbbServiceCartItem.id.toString()}/accept",
+            "/${tbbServiceCartItem.id.toString()}",
         headers: headers);
 
     _printHttpLog(response: _response);
@@ -547,7 +547,7 @@ class TBBSdk {
     final _response = await http.post(
       this.appServer +
           API_PATH_CUSTOMER_SERVICE_ORDERS_CANCEL +
-          "/${tbbServiceCartItem.id.toString()}/cancel",
+          "/${tbbServiceCartItem.id.toString()}",
       headers: headers,
     );
 
