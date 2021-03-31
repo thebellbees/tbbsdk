@@ -1,3 +1,4 @@
+import 'package:tbbsdk/models/services/TBBFavouriteItem.dart';
 import 'package:tbbsdk/models/services/TBBServiceOrderReview.dart';
 import 'package:tbbsdk/models/services/TBBServiceTerm.dart';
 import 'package:tbbsdk/models/TBBStore.dart';
@@ -31,6 +32,7 @@ class TBBServiceDetail {
   String deletedAt;
   @JsonKey(name: "sr_term")
   TBBServiceTerm serviceTerm;
+  TBBFavouriteItem favouriteItem;
   List<TBBServiceOrderReview> reviews;
 
   TBBServiceDetail({
@@ -45,6 +47,7 @@ class TBBServiceDetail {
     this.serviceTerm,
     this.serviceManPic,
     this.workerOne,
+    this.favouriteItem,
     this.workerTwo,
     this.gender,
     this.reviews,
