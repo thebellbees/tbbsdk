@@ -15,7 +15,6 @@ class TBBSubscriptionPlan {
   String name;
   String description;
   String type;
-
   int maxDayDuration;
   double dayPrice;
   List<TBBSubscriptionVariant> subscriptionVariants;

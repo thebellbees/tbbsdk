@@ -10,19 +10,31 @@ part 'TBBStoreSubscription.g.dart';
 @JsonSerializable(
     fieldRename: FieldRename.snake, nullable: true, explicitToJson: true)
 class TBBStoreSubscription {
+  String id;
   String subscriptionId;
+  String transactionId;
   String variantId;
   String storeId;
-  String dateOfPurchase;
+  int duration;
+  int beginDate;
+  int endDate;
+  double price;
+  String status;
   String createdAt;
   String updatedAt;
   String deletedAt;
 
   TBBStoreSubscription({
+    this.id,
     this.subscriptionId,
+    this.transactionId,
     this.variantId,
     this.storeId,
-    this.dateOfPurchase,
+    this.beginDate,
+    this.endDate,
+    this.duration,
+    this.price,
+    this.status,
     this.createdAt,
     this.updatedAt,
     this.deletedAt,
@@ -32,10 +44,12 @@ class TBBStoreSubscription {
   /// from a map. Pass the map to the generated `_$UserFromJson()` constructor.
   /// The constructor is named after the source class, in this case, User.
   factory TBBStoreSubscription.fromJson(Map<String, dynamic> json) {
+    json['id'] = json['id'].toString();
     json['subscription_id'] = json['subscription_id'].toString();
-    json['variant_id'] = json['variant_id'].toString();
+    json['transaction_id'] = json['transaction_id'].toString();
     json['store_id'] = json['store_id'].toString();
-    json['date_of_purchase'] = json['date_of_purchase'].toString();
+    json['end_date'] = json['end_date'].toString();
+    json['begin_date'] = json['begin_date'].toString();
 
     return _$TBBStoreSubscriptionFromJson(json);
   }
