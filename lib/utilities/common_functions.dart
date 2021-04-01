@@ -10,3 +10,7 @@ T propertySanitizer<T>(T source, {bool includeZero = false}) {
     return source;
   }
 }
+
+class ModelHelpers {
+  static bool boolParse(v) => v == "true" || v == true || v == 1;
+}

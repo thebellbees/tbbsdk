@@ -4,6 +4,7 @@ import 'package:tbbsdk/models/services/TBBServiceTerm.dart';
 import 'package:tbbsdk/models/TBBStore.dart';
 
 import 'package:json_annotation/json_annotation.dart';
+import 'package:tbbsdk/utilities/common_functions.dart';
 
 /// This allows the `User` class to access private members in
 /// the generated file. The value for this is *.g.dart, where
@@ -32,6 +33,7 @@ class TBBServiceDetail {
   String deletedAt;
   @JsonKey(name: "sr_term")
   TBBServiceTerm serviceTerm;
+  @JsonKey(fromJson: ModelHelpers.boolParse)
   bool isFavourite;
   List<TBBServiceOrderReview> reviews;
 

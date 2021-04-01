@@ -23,7 +23,7 @@ TBBServiceDetail _$TBBServiceDetailFromJson(Map<String, dynamic> json) {
         : TBBServiceTerm.fromJson(json['sr_term'] as Map<String, dynamic>),
     serviceManPic: json['service_man_pic'] as String,
     workerOne: json['worker_one'] as String,
-    isFavourite: json['is_favourite'] as bool,
+    isFavourite: ModelHelpers.boolParse(json['is_favourite']),
     workerTwo: json['worker_two'] as String,
     gender: json['gender'] as String,
     reviews: (json['reviews'] as List)
