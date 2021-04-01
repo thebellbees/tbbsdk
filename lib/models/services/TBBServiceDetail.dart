@@ -32,7 +32,7 @@ class TBBServiceDetail {
   String deletedAt;
   @JsonKey(name: "sr_term")
   TBBServiceTerm serviceTerm;
-  TBBFavouriteItem favouriteItem;
+  bool isFavourite;
   List<TBBServiceOrderReview> reviews;
 
   TBBServiceDetail({
@@ -47,7 +47,7 @@ class TBBServiceDetail {
     this.serviceTerm,
     this.serviceManPic,
     this.workerOne,
-    this.favouriteItem,
+    this.isFavourite,
     this.workerTwo,
     this.gender,
     this.reviews,

@@ -23,10 +23,7 @@ TBBServiceDetail _$TBBServiceDetailFromJson(Map<String, dynamic> json) {
         : TBBServiceTerm.fromJson(json['sr_term'] as Map<String, dynamic>),
     serviceManPic: json['service_man_pic'] as String,
     workerOne: json['worker_one'] as String,
-    favouriteItem: json['favourite_item'] == null
-        ? null
-        : TBBFavouriteItem.fromJson(
-            json['favourite_item'] as Map<String, dynamic>),
+    isFavourite: json['is_favourite'] as bool,
     workerTwo: json['worker_two'] as String,
     gender: json['gender'] as String,
     reviews: (json['reviews'] as List)
@@ -58,6 +55,6 @@ Map<String, dynamic> _$TBBServiceDetailToJson(TBBServiceDetail instance) =>
       'updated_at': instance.updatedAt,
       'deleted_at': instance.deletedAt,
       'sr_term': instance.serviceTerm?.toJson(),
-      'favourite_item': instance.favouriteItem?.toJson(),
+      'is_favourite': instance.isFavourite,
       'reviews': instance.reviews?.map((e) => e?.toJson())?.toList(),
     };
