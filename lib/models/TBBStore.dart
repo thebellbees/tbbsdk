@@ -50,6 +50,8 @@ class TBBStore {
   String proprietorName;
   TBBOptionalDocument optionalDocuments;
   List<TBBStoreSubscription> storeSubscriptions;
+  TBBStoreSubscription activeSubscription;
+  dynamic subscriptionAddons;
 
   TBBStore(
       {this.storeId,
@@ -76,7 +78,8 @@ class TBBStore {
       this.city,
       this.proprietorName,
       this.optionalDocuments,
-      this.storeSubscriptions});
+      this.activeSubscription,
+      this.subscriptionAddons});
 
   /// A necessary factory constructor for creating a new User instance
   /// from a map. Pass the map to the generated `_$UserFromJson()` constructor.

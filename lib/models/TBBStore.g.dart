@@ -41,12 +41,16 @@ TBBStore _$TBBStoreFromJson(Map<String, dynamic> json) {
         ? null
         : TBBOptionalDocument.fromJson(
             json['optional_documents'] as Map<String, dynamic>),
-    storeSubscriptions: (json['store_subscriptions'] as List)
-        ?.map((e) => e == null
-            ? null
-            : TBBStoreSubscription.fromJson(e as Map<String, dynamic>))
-        ?.toList(),
-  );
+    activeSubscription: json['active_subscription'] == null
+        ? null
+        : TBBStoreSubscription.fromJson(
+            json['active_subscription'] as Map<String, dynamic>),
+    subscriptionAddons: json['subscription_addons'],
+  )..storeSubscriptions = (json['store_subscriptions'] as List)
+      ?.map((e) => e == null
+          ? null
+          : TBBStoreSubscription.fromJson(e as Map<String, dynamic>))
+      ?.toList();
 }
 
 Map<String, dynamic> _$TBBStoreToJson(TBBStore instance) => <String, dynamic>{
@@ -76,4 +80,6 @@ Map<String, dynamic> _$TBBStoreToJson(TBBStore instance) => <String, dynamic>{
       'optional_documents': instance.optionalDocuments?.toJson(),
       'store_subscriptions':
           instance.storeSubscriptions?.map((e) => e?.toJson())?.toList(),
+      'active_subscription': instance.activeSubscription?.toJson(),
+      'subscription_addons': instance.subscriptionAddons,
     };
