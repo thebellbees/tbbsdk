@@ -33,7 +33,7 @@ class CartList {
   });
 
   CartList.fromJson(Map<String, dynamic> json) {
-    totalCount = json['total_count'] as String;
+    totalCount = json['total_count'].toString();
     items = json['items'] == null
         ? null
         : TBBServiceCartItem.listFromJson(json['items']);
