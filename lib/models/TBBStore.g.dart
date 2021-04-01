@@ -41,6 +41,10 @@ TBBStore _$TBBStoreFromJson(Map<String, dynamic> json) {
         ? null
         : TBBOptionalDocument.fromJson(
             json['optional_documents'] as Map<String, dynamic>),
+    storeSubscription: json['store_subscription'] == null
+        ? null
+        : TBBStoreSubscription.fromJson(
+            json['store_subscription'] as Map<String, dynamic>),
   );
 }
 
@@ -69,4 +73,5 @@ Map<String, dynamic> _$TBBStoreToJson(TBBStore instance) => <String, dynamic>{
       'city': instance.city,
       'proprietor_name': instance.proprietorName,
       'optional_documents': instance.optionalDocuments?.toJson(),
+      'store_subscription': instance.storeSubscription?.toJson(),
     };

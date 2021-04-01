@@ -1,7 +1,6 @@
-
-
 import 'package:json_annotation/json_annotation.dart';
 import 'package:tbbsdk/models/TBBOptionalDocument.dart';
+import 'package:tbbsdk/models/TBBStoreSubscription.dart';
 import 'package:tbbsdk/models/TBBUser.dart';
 import 'package:tbbsdk/models/services/TBBServiceDetail.dart';
 import 'package:tbbsdk/models/services/TBBServiceTerm.dart';
@@ -50,33 +49,34 @@ class TBBStore {
   String city;
   String proprietorName;
   TBBOptionalDocument optionalDocuments;
+  TBBStoreSubscription storeSubscription;
 
-  TBBStore({
-    this.storeId,
-    this.ownerId,
-    this.storeType,
-    this.company,
-    this.phone,
-    this.email,
-    this.address,
-    this.enabled,
-    this.createdAt,
-    this.updatedAt,
-    this.deletedAt,
-    this.subCategory,
-    this.certificate,
-    this.aadhar,
-    this.serviceDetail,
-    this.gst,
-    this.udyogAadhar,
-    this.country,
-    this.pincode,
-    this.user,
-    this.state,
-    this.city,
-    this.proprietorName,
-    this.optionalDocuments,
-  });
+  TBBStore(
+      {this.storeId,
+      this.ownerId,
+      this.storeType,
+      this.company,
+      this.phone,
+      this.email,
+      this.address,
+      this.enabled,
+      this.createdAt,
+      this.updatedAt,
+      this.deletedAt,
+      this.subCategory,
+      this.certificate,
+      this.aadhar,
+      this.serviceDetail,
+      this.gst,
+      this.udyogAadhar,
+      this.country,
+      this.pincode,
+      this.user,
+      this.state,
+      this.city,
+      this.proprietorName,
+      this.optionalDocuments,
+      this.storeSubscription});
 
   /// A necessary factory constructor for creating a new User instance
   /// from a map. Pass the map to the generated `_$UserFromJson()` constructor.
