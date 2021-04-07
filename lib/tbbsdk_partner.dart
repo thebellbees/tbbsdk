@@ -100,15 +100,7 @@ class TBBSdkPartner {
     String refreshId =
         (await _localDatabaseService.getSecureAccess('refresh_id')).toString();
 
-    print({
-      "expires": expires,
-      "now": DateTime.now().millisecondsSinceEpoch,
-      "mil": DateTime.now().millisecond,
-      "accessId": accessId,
-      "refreshId": refreshId
-    });
-
-    if (expires > DateTime.now().millisecondsSinceEpoch) {
+    if (expires > (DateTime.now().millisecondsSinceEpoch / 1000)) {
       return {
         'authorization': 'Bearer ' + accessId,
         'X-Refresh-Token': refreshId,
