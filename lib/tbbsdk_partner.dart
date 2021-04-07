@@ -103,6 +103,7 @@ class TBBSdkPartner {
     print({
       "expires": expires,
       "now": DateTime.now().millisecondsSinceEpoch,
+      "mil": DateTime.now().millisecond,
       "accessId": accessId,
       "refreshId": refreshId
     });
