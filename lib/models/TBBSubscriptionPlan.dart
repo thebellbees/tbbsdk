@@ -51,7 +51,7 @@ class TBBSubscriptionPlan {
     Iterable l = listJson;
 
     List<TBBSubscriptionPlan> items = List<TBBSubscriptionPlan>.from(
-        l.map((model) => TBBSubscriptionPlan.fromJson(model as Map<String, dynamic>)));
+        l.map((model) => TBBSubscriptionPlan.fromJson(model)));
 
     return items;
   }
