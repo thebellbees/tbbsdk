@@ -92,7 +92,7 @@ class TBBSdkPartner {
     }
   }
 
-  Future<Map<String, dynamic>> _prepareRequestHeader() async {
+  Future<Map<String, String>> _prepareRequestHeader() async {
     int expires = int.parse(
         (await _localDatabaseService.getSecureAccess('expires')).toString());
     String accessId =
@@ -102,8 +102,8 @@ class TBBSdkPartner {
 
     if (expires > (DateTime.now().millisecondsSinceEpoch / 1000)) {
       return {
-        'authorization': 'Bearer ' + accessId,
-        'X-Refresh-Token': refreshId,
+        'authorization': 'Bearer ' + accessId.toString(),
+        'X-Refresh-Token': refreshId.toString(),
       };
     } else {
       await refreshAccessToken();
