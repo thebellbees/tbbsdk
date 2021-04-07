@@ -773,8 +773,7 @@ class TBBSdkPartner {
 
   //SubscriptionPlan
 
-  Future<List<TBBSubscriptionPlan>> availableSubscriptionPlans(
-      {TBBStore store}) async {
+  Future<List<TBBSubscriptionPlan>> availableSubscriptionPlans() async {
     _printToLog("preparing subscription plan");
 
     // headers data
