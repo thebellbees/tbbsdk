@@ -284,6 +284,15 @@ class TBBSdkPartner {
   Future<TBBAccessToken> refreshAccessToken() async {
     _printToLog("preparing Refreshing Access Token");
 
+    final location = new Location();
+    final coordinates = await location.getLocation();
+
+    // body data
+    final body = {
+      "latitude": coordinates.latitude.toString(),
+      "longitude": coordinates.longitude.toString(),
+    };
+
     // headers data
     final headers = {
       'X-Refresh-Token':
@@ -291,10 +300,8 @@ class TBBSdkPartner {
     };
 
     // request
-    final _response = await http.post(
-      this.authServer + API_PATH_REFRESH_TOKEN,
-      headers: headers,
-    );
+    final _response = await http.post(this.authServer + API_PATH_REFRESH_TOKEN,
+        headers: headers, body: body);
 
     _printHttpLog(
       response: _response,
