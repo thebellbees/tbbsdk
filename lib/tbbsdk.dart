@@ -109,6 +109,25 @@ class TBBSdk {
     }
   }
 
+  Future<Map<String, dynamic>> _prepareRequestHeader() async {
+    int expires = int.parse(
+        (await _localDatabaseService.getSecureAccess('expires')).toString());
+    String accessId =
+        (await _localDatabaseService.getSecureAccess('access_id')).toString();
+    String refreshId =
+        (await _localDatabaseService.getSecureAccess('refresh_id')).toString();
+
+    if (expires > DateTime.now().millisecondsSinceEpoch) {
+      return {
+        'authorization': 'Bearer ' + accessId,
+        'X-Refresh-Token': refreshId,
+      };
+    } else {
+      await refreshAccessToken();
+      return await _prepareRequestHeader();
+    }
+  }
+
   // Auth Token
   String _authToken;
 
@@ -203,12 +222,7 @@ class TBBSdk {
     _printToLog("preparing Verify And Update Phone");
 
     // headers data
-    final headers = {
-      'authorization':
-          'Bearer ' + await _localDatabaseService.getSecureAccess('access_id'),
-      'X-Refresh-Token':
-          await _localDatabaseService.getSecureAccess('refresh_id'),
-    };
+    final headers = await _prepareRequestHeader();
 
     // body data
     final body = {
@@ -236,12 +250,7 @@ class TBBSdk {
     _printToLog("preparing Get User Info");
 
     // headers data
-    final headers = {
-      'authorization':
-          'Bearer ' + await _localDatabaseService.getSecureAccess('access_id'),
-      'X-Refresh-Token':
-          await _localDatabaseService.getSecureAccess('refresh_id'),
-    };
+    final headers = await _prepareRequestHeader();
 
     // request
     final _response = await http.get(
@@ -319,11 +328,7 @@ class TBBSdk {
     _printToLog("preparing Social Connect");
 
     // headers data
-    final headers = {
-      'authorization':
-          'Bearer ' + await _localDatabaseService.getSecureAccess('access_id'),
-      'username': await _localDatabaseService.getSecureAccess('refresh_id'),
-    };
+    final headers = await _prepareRequestHeader();
 
     // body data
     final body = {
@@ -352,10 +357,7 @@ class TBBSdk {
     _printToLog("preparing user update");
 
     // headers data
-    final headers = {
-      'authorization':
-          'Bearer ' + await _localDatabaseService.getSecureAccess('access_id'),
-    };
+    final headers = await _prepareRequestHeader();
 
     // body data
     final body = {
@@ -385,10 +387,7 @@ class TBBSdk {
     _printToLog("preparing user update");
 
     // headers data
-    final headers = {
-      'authorization':
-          'Bearer ' + await _localDatabaseService.getSecureAccess('access_id'),
-    };
+    final headers = await _prepareRequestHeader();
 
     // request
     final _response = await http.post(
@@ -412,10 +411,7 @@ class TBBSdk {
     _printToLog("preparing user update");
 
     // headers data
-    final headers = {
-      'authorization':
-          'Bearer ' + await _localDatabaseService.getSecureAccess('access_id'),
-    };
+    final headers = await _prepareRequestHeader();
 
     // request
     final _response = await http.post(
@@ -442,10 +438,7 @@ class TBBSdk {
     _printToLog("preparing partner token");
 
     // headers data
-    final headers = {
-      'authorization':
-          'Bearer ' + await _localDatabaseService.getSecureAccess('access_id'),
-    };
+    final headers = await _prepareRequestHeader();
 
     final body = {
       'limit': limit.toString(),
@@ -473,10 +466,7 @@ class TBBSdk {
     _printToLog("preparing partner token");
 
     // headers data
-    final headers = {
-      'authorization':
-          'Bearer ' + await _localDatabaseService.getSecureAccess('access_id'),
-    };
+    final headers = await _prepareRequestHeader();
 
     final body = {
       'limit': limit.toString(),
@@ -507,10 +497,7 @@ class TBBSdk {
     _printToLog("preparing partner token");
 
     // headers data
-    final headers = {
-      'authorization':
-          'Bearer ' + await _localDatabaseService.getSecureAccess('access_id'),
-    };
+    final headers = await _prepareRequestHeader();
 
     // request
     final _response = await http.post(
@@ -537,10 +524,7 @@ class TBBSdk {
     _printToLog("preparing partner token");
 
     // headers data
-    final headers = {
-      'authorization':
-          'Bearer ' + await _localDatabaseService.getSecureAccess('access_id'),
-    };
+    final headers = await _prepareRequestHeader();
 
     // request
     final _response = await http.post(
@@ -569,11 +553,7 @@ class TBBSdk {
     final coordinates = await location.getLocation();
 
     // headers data
-    final headers = {
-      'authorization':
-          'Bearer ' + await _localDatabaseService.getSecureAccess('access_id'),
-      'username': await _localDatabaseService.getSecureAccess('refresh_id'),
-    };
+    final headers = await _prepareRequestHeader();
 
     // body data
     final body = {
@@ -615,12 +595,7 @@ class TBBSdk {
     _printToLog("preparing get service types");
 
     // headers data
-    final headers = {
-      'authorization':
-          'Bearer ' + await _localDatabaseService.getSecureAccess('access_id'),
-      'X-Refresh-Token':
-          await _localDatabaseService.getSecureAccess('refresh_id'),
-    };
+    final headers = await _prepareRequestHeader();
 
     // request
     final _response = await http.get(
@@ -648,12 +623,7 @@ class TBBSdk {
     _printToLog("preparing getting list of available service");
 
     // headers data
-    final headers = {
-      'authorization':
-          'Bearer ' + await _localDatabaseService.getSecureAccess('access_id'),
-      'X-Refresh-Token':
-          await _localDatabaseService.getSecureAccess('refresh_id'),
-    };
+    final headers = await _prepareRequestHeader();
 
     // body data
     final Map<String, String> body = {};
@@ -703,12 +673,7 @@ class TBBSdk {
     _printToLog("preparing getting list of available service");
 
     // headers data
-    final headers = {
-      'authorization':
-          'Bearer ' + await _localDatabaseService.getSecureAccess('access_id'),
-      'X-Refresh-Token':
-          await _localDatabaseService.getSecureAccess('refresh_id'),
-    };
+    final headers = await _prepareRequestHeader();
 
     // body data
     final Map<String, String> body = {"store_type": "services"};
@@ -753,12 +718,7 @@ class TBBSdk {
     _printToLog("preparing getting list of available service");
 
     // headers data
-    final headers = {
-      'authorization':
-          'Bearer ' + await _localDatabaseService.getSecureAccess('access_id'),
-      'X-Refresh-Token':
-          await _localDatabaseService.getSecureAccess('refresh_id'),
-    };
+    final headers = await _prepareRequestHeader();
 
     // request
     final _response = await http.post(
@@ -786,12 +746,7 @@ class TBBSdk {
     _printToLog("preparing getting list of available service");
 
     // headers data
-    final headers = {
-      'authorization':
-          'Bearer ' + await _localDatabaseService.getSecureAccess('access_id'),
-      'X-Refresh-Token':
-          await _localDatabaseService.getSecureAccess('refresh_id'),
-    };
+    final headers = await _prepareRequestHeader();
 
     // request
     final _response = await http.delete(
@@ -818,12 +773,7 @@ class TBBSdk {
     _printToLog("preparing getting search list of available service");
 
     // headers data
-    final headers = {
-      'authorization':
-          'Bearer ' + await _localDatabaseService.getSecureAccess('access_id'),
-      'X-Refresh-Token':
-          await _localDatabaseService.getSecureAccess('refresh_id'),
-    };
+    final headers = await _prepareRequestHeader();
 
     // body data
     final Map<String, String> body = {};

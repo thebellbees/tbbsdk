@@ -12,11 +12,16 @@ class TBBLocalDatabaseService {
       await secureStorage.write(
           key: 'tbb_localState.refresh_id', value: tokens['refresh_id']);
     }
+    if (tokens.isNotEmpty && tokens['expires'].isNotEmpty) {
+      await secureStorage.write(
+          key: 'tbb_localState.expires', value: tokens['expires']);
+    }
   }
 
   Future<dynamic> deleteSecureAccess(int code) async {
     if (code >= 1) {
       await secureStorage.delete(key: 'tbb_localState.access_id');
+      await secureStorage.delete(key: 'tbb_localState.expires');
     }
     if (code == 0) {
       await secureStorage.delete(key: 'tbb_localState.refresh_id');
