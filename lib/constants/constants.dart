@@ -12,16 +12,18 @@ const API_PATH_AUTH_WITH_SOCIAL = "/auth/login_with_social";
 
 // App Server Endpoints
 const API_PATH_GET_INFO = "/accounts/info";
-const API_PATH_SERVICES_TYPES = "/home/categories";
-const API_PATH_SERVICES_ALL = "/service/available_service";
-const API_PATH_SERVICES_ADD_TO_FAVOURITE = "/service/add_to_fav";
-const API_PATH_SERVICES_SEARCH = "/service/search";
-const API_PATH_SERVICE_ACTION_HIRE = "/service/hire_service";
-const API_PATH_SERVICE_ACTION_CALL = "/service/call_service";
-const API_PATH_CUSTOMER_CART_ORDERS = "/cart/service_items";
-const API_PATH_CUSTOMER_SERVICE_ORDERS_ACCEPT = "/cart/service_items/accept";
-const API_PATH_CUSTOMER_SERVICE_ORDERS_CANCEL = "/cart/service_items/cancel";
-const API_PATH_CUSTOMER_ORDERS = "/order/items";
+const API_PATH_SERVICES_TYPES = "/services/home/categories";
+const API_PATH_SERVICES_ALL = "/services/service/available_service";
+const API_PATH_SERVICES_ADD_TO_FAVOURITE = "/services/service/add_to_fav";
+const API_PATH_SERVICES_SEARCH = "/services/service/search";
+const API_PATH_SERVICE_ACTION_HIRE = "/services/service/hire_service";
+const API_PATH_SERVICE_ACTION_CALL = "/services/service/call_service";
+const API_PATH_CUSTOMER_CART_ORDERS = "/services/cart/service_items";
+const API_PATH_CUSTOMER_SERVICE_ORDERS_ACCEPT =
+    "/services/cart/service_items/accept";
+const API_PATH_CUSTOMER_SERVICE_ORDERS_CANCEL =
+    "/services/cart/service_items/cancel";
+const API_PATH_CUSTOMER_ORDERS = "/services/order/items";
 
 // PARTNER Server Endpoints
 
