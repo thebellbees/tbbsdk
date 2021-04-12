@@ -31,17 +31,21 @@ const API_PATH_PARTNER_GET_STORES = "/accounts/store/items";
 const API_PATH_REMOVE_FROM_FAVOURITE = "/accounts/remove_from_fav";
 const API_PATH_FAVOURITES_ALL = "/accounts/get_favourites";
 
-// Pages
-const API_PATH_PARTNER_SERVICES_OVERVIEW = "/home/overview";
-const API_PATH_PARTNER_SERVICE_ORDERS = "/order/items";
-const API_PATH_PARTNER_SERVICE_JOBS_REQUESTS = "/job/items";
-const API_PATH_PARTNER_SERVICE_JOB_CANCEL = "/job";
-const API_PATH_PARTNER_SERVICE_JOB_CREATE_ORDER = "/job";
+// Service
+const API_PATH_PARTNER_SERVICES_OVERVIEW = "/services/home/overview";
+const API_PATH_PARTNER_SERVICE_ORDERS = "services/order/items";
+const API_PATH_PARTNER_SERVICE_JOBS_REQUESTS = "services/job/items";
+const API_PATH_PARTNER_SERVICE_JOB_CANCEL = "services/job";
+const API_PATH_PARTNER_SERVICE_JOB_CREATE_ORDER = "services/job";
+const API_PATH_PARTNER_CREATE_SERVICE = "/accounts/store/create_service";
+const API_PATH_PARTNER_UPDATE_SERVICE = "/services";
+
+//Hyper
+const API_PATH_PARTNER_CREATE_HYPER = "/accounts/store/create_hyper_shop";
+// const API_PATH_PARTNER_UPDATE_SERVICE = "/services";
 
 const API_PATH_PARTNER_INFO = "/accounts/info";
 const API_PATH_PARTNER_CREATE_STORE = "/accounts/store/create";
-const API_PATH_PARTNER_CREATE_SERVICE = "/accounts/store/create_service";
-const API_PATH_PARTNER_UPDATE_SERVICE = "/services";
 const API_PATH_PARTNER_SUBSCRIPTION_PLANS = "/store/available_subscriptions";
 const API_PATH_PARTNER_TOKEN = "/accounts/partner_token";
 const API_PATH_PARTNER_STORE_CATEGORIES = "/utils/store_categories";
