@@ -117,15 +117,15 @@ class TBBSdk {
     String refreshId =
         (await _localDatabaseService.getSecureAccess('refresh_id')).toString();
 
-    if (expires > DateTime.now().millisecondsSinceEpoch) {
-      return {
+    // if (expires > DateTime.now().millisecondsSinceEpoch) {
+     return {
         'authorization': 'Bearer ' + accessId,
         'X-Refresh-Token': refreshId,
-      };
-    } else {
-      await refreshAccessToken();
-      return await _prepareRequestHeader();
-    }
+      // };
+    // } else {
+    //   // await refreshAccessToken();
+    //   // return await _prepareRequestHeader();
+    };
   }
 
   // Auth Token
