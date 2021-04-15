@@ -208,7 +208,7 @@ class TBBSdk {
 
       if (token != null) {
         await _localDatabaseService.updateSecureAccess(
-            {"access_id": token.accessId, "refresh_id": token.refreshId});
+            {"access_id": token.accessId, "refresh_id": token.refreshId, "expires": token.expires});
       }
 
       return token;
