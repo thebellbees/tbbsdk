@@ -109,7 +109,7 @@ class TBBSdk {
     }
   }
 
-  Future<Map<String, dynamic>> _prepareRequestHeader() async {
+  Future<Map<String, String>> _prepareRequestHeader() async {
     int expires = int.parse(
         (await _localDatabaseService.getSecureAccess('expires')).toString());
     String accessId =
