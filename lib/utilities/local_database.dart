@@ -4,18 +4,21 @@ class TBBLocalDatabaseService {
   final secureStorage = new FlutterSecureStorage();
 
   Future<dynamic> updateSecureAccess(Map<String, String> tokens) async {
-    if (tokens.isNotEmpty && tokens['access_id'].isNotEmpty) {
-      await secureStorage.write(
-          key: 'tbb_localState.access_id', value: tokens['access_id']);
-    }
-    if (tokens.isNotEmpty && tokens['refresh_id'].isNotEmpty) {
-      await secureStorage.write(
-          key: 'tbb_localState.refresh_id', value: tokens['refresh_id']);
-    }
-    if (tokens.isNotEmpty && tokens['expires'].isNotEmpty) {
-      await secureStorage.write(
-          key: 'tbb_localState.expires', value: tokens['expires']);
-    }
+ if(tokens!=null){
+   if (tokens.isNotEmpty && tokens['access_id'].isNotEmpty) {
+     await secureStorage.write(
+         key: 'tbb_localState.access_id', value: tokens['access_id']);
+   }
+   if (tokens.isNotEmpty && tokens['refresh_id'].isNotEmpty) {
+     await secureStorage.write(
+         key: 'tbb_localState.refresh_id', value: tokens['refresh_id']);
+   }
+   if (tokens.isNotEmpty && tokens['expires'].isNotEmpty) {
+     await secureStorage.write(
+         key: 'tbb_localState.expires', value: tokens['expires']);
+   }
+
+ }
   }
 
   Future<dynamic> deleteSecureAccess(int code) async {
