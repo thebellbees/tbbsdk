@@ -293,6 +293,7 @@ class TBBSdk {
     final _response = await http.post(
       this.authServer + API_PATH_REFRESH_TOKEN,
       headers: headers,
+      body: body,
     );
 
     _printHttpLog(
