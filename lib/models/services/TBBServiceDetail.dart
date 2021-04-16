@@ -16,6 +16,8 @@ part 'TBBServiceDetail.g.dart';
 @JsonSerializable(
     fieldRename: FieldRename.snake, nullable: true, explicitToJson: true)
 class TBBServiceDetail {
+
+  @JsonKey(includeIfNull:true)
   String id;
   String storeId;
   String name;
