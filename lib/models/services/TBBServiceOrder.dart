@@ -1,5 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:tbbsdk/models/services/TBBServiceDetail.dart';
+import 'package:tbbsdk/models/services/TBBServiceItemRequest.dart';
 
 import 'TBBServiceOrderReview.dart';
 
@@ -25,6 +26,8 @@ class TBBServiceOrder {
   String createdAt;
   String updatedAt;
   String deletedAt;
+  @JsonKey(name: "sr_customer_request")
+  TBBServiceItemRequest tbbServiceItemRequest;
   @JsonKey(name: "sr_service")
   TBBServiceDetail serviceDetail;
   TBBServiceOrderReview orderReview;
@@ -40,6 +43,7 @@ class TBBServiceOrder {
     this.expired,
     this.serviceDetail,
     this.status,
+    this.tbbServiceItemRequest,
     this.createdAt,
     this.updatedAt,
     this.deletedAt,
