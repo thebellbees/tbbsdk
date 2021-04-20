@@ -925,4 +925,43 @@ class TBBSdkPartner {
       throw new TBBError.fromJson(json.decode(_response.body));
     }
   }
+
+  //Service Otp
+
+  Future<TBBServiceOrder> serviceVerifyOtp(
+    String orderId,
+    String otp,
+  ) async {
+    _printToLog("preparing Verify service OTP");
+
+    // body data
+    final body = {
+      "otp": otp.toString(),
+      "order_id": orderId.toString(),
+    };
+
+    // request
+    final _response = await http.post(
+      this.appServer + API_PATH_PARTNER_SERVICE_ORDER_COMPLETE,
+      body: body,
+    );
+
+    _printHttpLog(response: _response, body: body);
+
+    //  response
+    if (_response.statusCode >= 200 && _response.statusCode < 300) {
+      TBBResponse response = TBBResponse.fromJson(json.decode(_response.body));
+
+      // Setting Waiting for otp
+      if (response.data != null && response.data["order_id"] != null) {
+        _localDatabaseService.putLocalState('otp_from', '0');
+      }
+
+      var order = TBBServiceOrder.fromJson(response.data);
+
+      return order;
+    } else {
+      throw new TBBError.fromJson(json.decode(_response.body));
+    }
+  }
 }

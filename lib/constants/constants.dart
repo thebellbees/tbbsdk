@@ -39,6 +39,7 @@ const API_PATH_PARTNER_SERVICE_JOB_CANCEL = "services/job";
 const API_PATH_PARTNER_SERVICE_JOB_CREATE_ORDER = "/services/job";
 const API_PATH_PARTNER_CREATE_SERVICE = "/accounts/create_service";
 const API_PATH_PARTNER_UPDATE_SERVICE = "/services";
+const API_PATH_PARTNER_SERVICE_ORDER_COMPLETE = "/services/order/complete";
 
 //Hyper
 const API_PATH_PARTNER_CREATE_HYPER = "/accounts/create_hyper_shop";
