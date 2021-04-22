@@ -928,10 +928,10 @@ class TBBSdkPartner {
 
   //Service Otp
 
-  Future<TBBServiceOrder> serviceVerifyOtp(
-      TBBServiceOrder order,
-      String otp,
-      ) async {
+  Future<TBBServiceOrder> serviceVerifyOtp({
+    TBBServiceOrder order,
+    String otp,
+  }) async {
     _printToLog("preparing Verify service OTP");
 
     // body data
@@ -941,7 +941,9 @@ class TBBSdkPartner {
 
     // request
     final _response = await http.post(
-      this.appServer + API_PATH_PARTNER_SERVICE_ORDER_COMPLETE + "/${order?.id.toString()}",
+      this.appServer +
+          API_PATH_PARTNER_SERVICE_ORDER_COMPLETE +
+          "/${order?.id.toString()}",
       body: body,
     );
 
