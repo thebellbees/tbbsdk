@@ -929,9 +929,9 @@ class TBBSdkPartner {
   //Service Otp
 
   Future<TBBServiceOrder> serviceVerifyOtp(
-    String orderId,
-    String otp,
-  ) async {
+      String orderId,
+      String otp,
+      ) async {
     _printToLog("preparing Verify service OTP");
 
     // body data
