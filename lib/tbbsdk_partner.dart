@@ -934,7 +934,6 @@ class TBBSdkPartner {
   }) async {
     _printToLog("preparing Verify service OTP");
 
-
     final headers = await _prepareRequestHeader();
     // body data
     final body = {
@@ -943,7 +942,8 @@ class TBBSdkPartner {
 
     // request
     final _response = await http.post(
-      this.appServer +"/$appPath"+
+      this.appServer +
+          "/$appPath" +
           API_PATH_PARTNER_SERVICE_ORDER_COMPLETE +
           "/${order?.id.toString()}",
       headers: headers,
