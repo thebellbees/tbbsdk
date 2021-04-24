@@ -1001,7 +1001,7 @@ class TBBSdkPartner {
       "store_id": store.storeId.toString(),
       "sub_category_id": store.subCategory.id.toString(),
       "enabled": hyperItem.enabled.toString(),
-      "service_man_pic": hyperItem.detail.shopPic.toString(),
+      "shop_pic": hyperItem.detail.shopPic.toString(),
       "name": hyperItem.detail.name.toString(),
       "phone": hyperItem.detail.phone.toString(),
       "gender": hyperItem.detail.gender.toString(),
