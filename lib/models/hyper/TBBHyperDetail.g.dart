@@ -14,6 +14,7 @@ TBBHyperDetail _$TBBHyperDetailFromJson(Map<String, dynamic> json) {
     name: json['name'] as String,
     description: json['description'] as String,
     enabled: json['enabled'] as bool,
+    shopPic: json['shop_pic'] as String,
     store: json['store'] == null
         ? null
         : TBBStore.fromJson(json['store'] as Map<String, dynamic>),
@@ -30,7 +31,7 @@ TBBHyperDetail _$TBBHyperDetailFromJson(Map<String, dynamic> json) {
     createdAt: json['created_at'] as String,
     updatedAt: json['updated_at'] as String,
     deletedAt: json['deleted_at'] as String,
-  )..shopPic = json['shop_pic'] as String;
+  );
 }
 
 Map<String, dynamic> _$TBBHyperDetailToJson(TBBHyperDetail instance) =>

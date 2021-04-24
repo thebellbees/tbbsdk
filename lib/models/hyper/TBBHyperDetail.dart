@@ -41,6 +41,7 @@ class TBBHyperDetail {
     this.name,
     this.description,
     this.enabled,
+    this.shopPic,
     this.store,
     this.hyperTerm,
     this.isFavourite,
