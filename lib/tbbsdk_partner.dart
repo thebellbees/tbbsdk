@@ -12,6 +12,8 @@ import 'package:tbbsdk/models/TBBPartnerLocalState.dart';
 import 'package:tbbsdk/models/TBBPartnerToken.dart';
 import 'package:tbbsdk/models/TBBPartnerUser.dart';
 import 'package:tbbsdk/models/TBBSubscriptionPlan.dart';
+import 'package:tbbsdk/models/hyper/TBBHyperDetail.dart';
+import 'package:tbbsdk/models/hyper/TBBHyperItem.dart';
 import 'package:tbbsdk/models/services/TBBServiceDetail.dart';
 import 'package:tbbsdk/models/services/TBBServiceItemRequest.dart';
 import 'package:tbbsdk/models/services/TBBServiceOrder.dart';
@@ -968,4 +970,63 @@ class TBBSdkPartner {
       throw new TBBError.fromJson(json.decode(_response.body));
     }
   }
+
+  //Create Hyper
+
+  Future<TBBHyperItem> saveHyper(
+      {TBBHyperItem hyperItem, TBBStore store}) async {
+    _printToLog("preparing create hyper");
+
+    // headers data
+    final headers = await _prepareRequestHeader();
+
+    String locationsString = hyperItem.serviceLocations != null
+        ? jsonEncode({
+      "add": hyperItem.serviceLocations.map((e) => e.toJson()).toList()
+    })
+        : null;
+    String tagString =
+    hyperItem.tags != null ? jsonEncode(hyperItem.tags) : null;
+
+    // body data
+    _printToLog('body before');
+
+    if (hyperItem.detail == null) {
+      hyperItem.detail = new TBBHyperDetail();
+    }
+
+    // body data
+    _printToLog('body before');
+    final body = {
+      "store_id": store.storeId.toString(),
+      "sub_category_id": store.subCategory.id.toString(),
+      "enabled": hyperItem.enabled.toString(),
+      "service_man_pic": hyperItem.detail.shopPic.toString(),
+      "name": hyperItem.detail.name.toString(),
+      "phone": hyperItem.detail.phone.toString(),
+      "gender": hyperItem.detail.gender.toString(),
+      "description": hyperItem.detail.description.toString(),
+      "response_minute": hyperItem.responseMinute.toString(),
+      "locations": locationsString.toString(),
+      "tags": tagString.toString()
+    };
+    final data = propertySanitizer<Map<String, dynamic>>(body);
+    _printToLog('body works');
+    // request
+    final _response = await http.post(
+        this.appServer + "/$appPath" + API_PATH_PARTNER_CREATE_HYPER,
+        headers: headers,
+        body: data);
+
+    _printHttpLog(response: _response, body: data);
+
+    //  response
+    if (_response.statusCode >= 200 && _response.statusCode < 300) {
+      TBBResponse response = TBBResponse.fromJson(json.decode(_response.body));
+      return TBBHyperItem.fromJson(response.data);
+    } else {
+      throw new TBBError.fromJson(json.decode(_response.body));
+    }
+  }
+
 }
