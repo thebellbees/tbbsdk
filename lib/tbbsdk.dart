@@ -8,6 +8,7 @@ import 'package:location/location.dart';
 import 'package:tbbsdk/constants/constants.dart';
 import 'package:tbbsdk/models/TBBAccessToken.dart';
 import 'package:tbbsdk/models/helper_class.dart';
+import 'package:tbbsdk/models/hyper/TBBHyperItem.dart';
 import 'package:tbbsdk/models/services/TBBFavouriteItem.dart';
 import 'package:tbbsdk/models/services/TBBServiceCartItem.dart';
 import 'package:tbbsdk/models/services/TBBServiceDetail.dart';
@@ -817,6 +818,61 @@ class TBBSdk {
       TBBResponse response = TBBResponse.fromJson(json.decode(_response.body));
 
       return TBBServiceItem.listFromJson(response.data);
+    } else {
+      throw new TBBError.fromJson(json.decode(_response.body));
+    }
+  }
+
+
+  //Hyper
+
+  //Available Hyper Shop
+
+  Future<List<TBBHyperItem>> availableHyper(
+      {String category, int kilometer, int limit, int offset}) async {
+    _printToLog("preparing getting list of available hyper");
+
+    // headers data
+    final headers = await _prepareRequestHeader();
+
+    // body data
+    final Map<String, String> body = {};
+
+    if (category != null) {
+      body.addAll({"category": category.toString()});
+    }
+
+    if (kilometer != null) {
+      body.addAll({"km": kilometer.toString()});
+    }
+
+    // query data
+    String queryString = "";
+
+    if (limit != null) {
+      queryString = queryString + "&limit=$limit";
+    }
+    if (offset != null) {
+      queryString = queryString + "&offset=$offset";
+    }
+
+    // request
+    final _response = await http.post(
+      this.appServer + API_PATH_HYPER_ALL + "?$queryString",
+      headers: headers,
+      body: body,
+    );
+
+    _printHttpLog(
+      response: _response,
+      body: body,
+    );
+
+    //  response
+    if (_response.statusCode >= 200 && _response.statusCode < 300) {
+      TBBResponse response = TBBResponse.fromJson(json.decode(_response.body));
+
+      return TBBHyperItem.listFromJson(response.data);
     } else {
       throw new TBBError.fromJson(json.decode(_response.body));
     }
