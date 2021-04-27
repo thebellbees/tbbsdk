@@ -3,7 +3,6 @@ import 'package:tbbsdk/models/TBBTaxonomy.dart';
 import 'package:tbbsdk/models/hyper/TBBHyperTerm.dart';
 import 'package:tbbsdk/models/services/TBBServiceTerm.dart';
 
-
 /// This allows the `User` class to access private members in
 /// the generated file. The value for this is *.g.dart, where
 /// the star denotes the source file name.
@@ -21,10 +20,7 @@ class TBBTerm {
   String parent;
   String taxonomyId;
   TBBTaxonomy taxonomy;
-  @JsonKey(name: "sr_terms")
-  List<TBBServiceTerm> serviceTerms;
-  @JsonKey(name: "hy_terms")
-  List<TBBHyperTerm> hyperTerms;
+  List<TBBTerm> terms;
   String createdAt;
   String updatedAt;
   String deletedAt;
@@ -36,9 +32,8 @@ class TBBTerm {
     this.icon,
     this.parent,
     this.taxonomyId,
-    this.hyperTerms,
+    this.terms,
     this.taxonomy,
-    this.serviceTerms,
     this.createdAt,
     this.updatedAt,
     this.deletedAt,
@@ -51,6 +46,11 @@ class TBBTerm {
     json['id'] = json['id'].toString();
     json['parent'] = json['parent'].toString();
     json['taxonomy_id'] = json['taxonomy_id'].toString();
+    if (json['sr_terms'] != null && json['sr_terms'].length > 0) {
+      json['terms'] = json['sr_terms'];
+    } else {
+      json['terms'] = json['hr_terms'] ?? [];
+    }
     return _$TBBTermFromJson(json);
   }
 

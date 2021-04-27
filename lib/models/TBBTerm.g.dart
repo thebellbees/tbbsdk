@@ -14,18 +14,13 @@ TBBTerm _$TBBTermFromJson(Map<String, dynamic> json) {
     icon: json['icon'] as String,
     parent: json['parent'] as String,
     taxonomyId: json['taxonomy_id'] as String,
-    hyperTerms: (json['hy_terms'] as List)
+    terms: (json['terms'] as List)
         ?.map((e) =>
-            e == null ? null : TBBHyperTerm.fromJson(e as Map<String, dynamic>))
+            e == null ? null : TBBTerm.fromJson(e as Map<String, dynamic>))
         ?.toList(),
     taxonomy: json['taxonomy'] == null
         ? null
         : TBBTaxonomy.fromJson(json['taxonomy'] as Map<String, dynamic>),
-    serviceTerms: (json['sr_terms'] as List)
-        ?.map((e) => e == null
-            ? null
-            : TBBServiceTerm.fromJson(e as Map<String, dynamic>))
-        ?.toList(),
     createdAt: json['created_at'] as String,
     updatedAt: json['updated_at'] as String,
     deletedAt: json['deleted_at'] as String,
@@ -40,8 +35,7 @@ Map<String, dynamic> _$TBBTermToJson(TBBTerm instance) => <String, dynamic>{
       'parent': instance.parent,
       'taxonomy_id': instance.taxonomyId,
       'taxonomy': instance.taxonomy?.toJson(),
-      'sr_terms': instance.serviceTerms?.map((e) => e?.toJson())?.toList(),
-      'hy_terms': instance.hyperTerms?.map((e) => e?.toJson())?.toList(),
+      'terms': instance.terms?.map((e) => e?.toJson())?.toList(),
       'created_at': instance.createdAt,
       'updated_at': instance.updatedAt,
       'deleted_at': instance.deletedAt,

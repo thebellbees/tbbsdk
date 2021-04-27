@@ -21,7 +21,7 @@ TBBStore _$TBBStoreFromJson(Map<String, dynamic> json) {
     deletedAt: json['deleted_at'] as String,
     subCategory: json['sr_term'] == null
         ? null
-        : TBBServiceTerm.fromJson(json['sr_term'] as Map<String, dynamic>),
+        : TBBTerm.fromJson(json['sr_term'] as Map<String, dynamic>),
     certificate: json['certificate'] as String,
     aadhar: json['aadhar'] as String,
     serviceDetail: json['sr_service'] == null

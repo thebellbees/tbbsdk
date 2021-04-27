@@ -19,10 +19,7 @@ class TBBTaxonomy {
   String slug;
   String icon;
   String description;
-  @JsonKey(name: "sr_terms")
-  List<TBBServiceTerm> serviceTerms;
-  @JsonKey(name: "hy_terms")
-  List<TBBHyperTerm> hyperTerms;
+  List<TBBTerm> terms;
   String createdAt;
   String updatedAt;
   String deletedAt;
@@ -33,8 +30,7 @@ class TBBTaxonomy {
     this.slug,
     this.icon,
     this.description,
-    this.serviceTerms,
-    this.hyperTerms,
+    this.terms,
     this.createdAt,
     this.updatedAt,
     this.deletedAt,
@@ -47,6 +43,12 @@ class TBBTaxonomy {
     json['id'] = json['id'].toString();
     json['icon'] = json['icon'].toString();
     json['taxonomy'] = json['taxonomy'].toString();
+    if (json['sr_terms'] != null && json['sr_terms'].length > 0) {
+      json['terms'] = json['sr_terms'];
+    } else {
+      json['terms'] = json['hr_terms'] ?? [];
+    }
+
     return _$TBBTaxonomyFromJson(json);
   }
 

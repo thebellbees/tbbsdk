@@ -799,7 +799,7 @@ class TBBSdkPartner {
 
   //StoreCategory
 
-  Future<List<TBBTerm>> getStoreCategory({String taxonomySlug}) async {
+  Future<List<TBBTaxonomy>> getStoreCategory({String taxonomySlug}) async {
     _printToLog("preparing store category");
 
     // headers data
@@ -821,19 +821,8 @@ class TBBSdkPartner {
     //  response
     if (_response.statusCode >= 200 && _response.statusCode < 300) {
       TBBResponse response = TBBResponse.fromJson(json.decode(_response.body));
-      TBBTaxonomy taxonomy = TBBTaxonomy.fromJson(response.data);
+      return TBBTaxonomy.listFromJson(response.data);
 
-      if (taxonomy?.slug == 'services' && taxonomy.serviceTerms != null) {
-        return taxonomy.serviceTerms
-            .map((e) => TBBTerm.fromJson(e.toJson()))
-            .toList();
-      } else if (taxonomy?.slug == 'hyper' && taxonomy.hyperTerms != null) {
-        return taxonomy.hyperTerms
-            .map((e) => TBBTerm.fromJson(e.toJson()))
-            .toList();
-      } else {
-        return [];
-      }
     } else {
       throw new TBBError.fromJson(json.decode(_response.body));
     }

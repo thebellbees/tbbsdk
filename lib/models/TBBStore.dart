@@ -1,6 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:tbbsdk/models/TBBOptionalDocument.dart';
 import 'package:tbbsdk/models/TBBStoreSubscription.dart';
+import 'package:tbbsdk/models/TBBTerm.dart';
 import 'package:tbbsdk/models/TBBUser.dart';
 import 'package:tbbsdk/models/services/TBBServiceDetail.dart';
 import 'package:tbbsdk/models/services/TBBServiceTerm.dart';
@@ -29,7 +30,7 @@ class TBBStore {
   String phone;
   String email;
   @JsonKey(name: "sr_term")
-  TBBServiceTerm subCategory;
+  TBBTerm subCategory;
   String state;
   String pincode;
   String country;
