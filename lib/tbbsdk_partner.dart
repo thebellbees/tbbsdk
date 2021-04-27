@@ -799,7 +799,7 @@ class TBBSdkPartner {
 
   //StoreCategory
 
-  Future<List<TBBTaxonomy>> getStoreCategory({String taxonomySlug}) async {
+  Future<TBBTaxonomy> getStoreCategory({String taxonomySlug}) async {
     _printToLog("preparing store category");
 
     // headers data
@@ -821,7 +821,7 @@ class TBBSdkPartner {
     //  response
     if (_response.statusCode >= 200 && _response.statusCode < 300) {
       TBBResponse response = TBBResponse.fromJson(json.decode(_response.body));
-      return TBBTaxonomy.listFromJson(response.data);
+      return TBBTaxonomy.fromJson(response.data);
 
     } else {
       throw new TBBError.fromJson(json.decode(_response.body));
