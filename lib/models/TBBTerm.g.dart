@@ -16,14 +16,15 @@ TBBTerm _$TBBTermFromJson(Map<String, dynamic> json) {
     taxonomyId: json['taxonomy_id'] as String,
     hyperTerms: (json['hy_terms'] as List)
         ?.map((e) =>
-            e == null ? null : TBBTerm.fromJson(e as Map<String, dynamic>))
+            e == null ? null : TBBHyperTerm.fromJson(e as Map<String, dynamic>))
         ?.toList(),
     taxonomy: json['taxonomy'] == null
         ? null
         : TBBTaxonomy.fromJson(json['taxonomy'] as Map<String, dynamic>),
     serviceTerms: (json['sr_terms'] as List)
-        ?.map((e) =>
-            e == null ? null : TBBTerm.fromJson(e as Map<String, dynamic>))
+        ?.map((e) => e == null
+            ? null
+            : TBBServiceTerm.fromJson(e as Map<String, dynamic>))
         ?.toList(),
     createdAt: json['created_at'] as String,
     updatedAt: json['updated_at'] as String,

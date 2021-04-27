@@ -1,3 +1,4 @@
+import 'package:tbbsdk/models/TBBTerm.dart';
 import 'package:tbbsdk/models/hyper/TBBHyperTerm.dart';
 import 'package:tbbsdk/models/services/TBBServiceTerm.dart';
 
