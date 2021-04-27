@@ -12,6 +12,7 @@ import 'package:tbbsdk/models/TBBPartnerLocalState.dart';
 import 'package:tbbsdk/models/TBBPartnerToken.dart';
 import 'package:tbbsdk/models/TBBPartnerUser.dart';
 import 'package:tbbsdk/models/TBBSubscriptionPlan.dart';
+import 'package:tbbsdk/models/TBBTerm.dart';
 import 'package:tbbsdk/models/hyper/TBBHyperDetail.dart';
 import 'package:tbbsdk/models/hyper/TBBHyperItem.dart';
 import 'package:tbbsdk/models/services/TBBServiceDetail.dart';
@@ -798,7 +799,7 @@ class TBBSdkPartner {
 
   //StoreCategory
 
-  Future<TBBTaxonomy> getStoreCategory({String taxonomySlug}) async {
+  Future<List<TBBTerm>> getStoreCategory({String taxonomySlug}) async {
     _printToLog("preparing store category");
 
     // headers data
@@ -820,7 +821,19 @@ class TBBSdkPartner {
     //  response
     if (_response.statusCode >= 200 && _response.statusCode < 300) {
       TBBResponse response = TBBResponse.fromJson(json.decode(_response.body));
-      return TBBTaxonomy.fromJson(response.data);
+      TBBTaxonomy taxonomy = TBBTaxonomy.fromJson(response.data);
+
+      if (taxonomy?.slug == 'services' && taxonomy.serviceTerms != null) {
+        return taxonomy.serviceTerms
+            .map((e) => TBBTerm.fromJson(e.toJson()))
+            .toList();
+      } else if (taxonomy?.slug == 'hyper' && taxonomy.hyperTerms != null) {
+        return taxonomy.hyperTerms
+            .map((e) => TBBTerm.fromJson(e.toJson()))
+            .toList();
+      } else {
+        return [];
+      }
     } else {
       throw new TBBError.fromJson(json.decode(_response.body));
     }
@@ -981,12 +994,11 @@ class TBBSdkPartner {
     final headers = await _prepareRequestHeader();
 
     String locationsString = hyperItem.serviceLocations != null
-        ? jsonEncode({
-      "add": hyperItem.serviceLocations.map((e) => e.toJson()).toList()
-    })
+        ? jsonEncode(
+            {"add": hyperItem.serviceLocations.map((e) => e.toJson()).toList()})
         : null;
     String tagString =
-    hyperItem.tags != null ? jsonEncode(hyperItem.tags) : null;
+        hyperItem.tags != null ? jsonEncode(hyperItem.tags) : null;
 
     // body data
     _printToLog('body before');
@@ -1028,5 +1040,4 @@ class TBBSdkPartner {
       throw new TBBError.fromJson(json.decode(_response.body));
     }
   }
-
 }
