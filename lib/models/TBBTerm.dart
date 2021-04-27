@@ -47,8 +47,8 @@ class TBBTerm {
     json['parent'] = json['parent'].toString();
     json['taxonomy_id'] = json['taxonomy_id'].toString();
     json['terms'] = json['sr_terms'];
-    if(json['terms'] != null && json['terms'].length == 0){
-      json['terms'] = json['hr_terms'];
+    if( json['sr_terms'] == null || json['terms'] != null && json['terms'].length == 0){
+      json['terms'] = json['hy_terms'];
     }
     return _$TBBTermFromJson(json);
   }

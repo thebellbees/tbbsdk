@@ -44,10 +44,9 @@ class TBBTaxonomy {
     json['icon'] = json['icon'].toString();
     json['taxonomy'] = json['taxonomy'].toString();
     json['terms'] = json['sr_terms'];
-    if(json['terms'] != null && json['terms'].length == 0){
-      json['terms'] = json['hr_terms'];
+    if( json['sr_terms'] == null || json['terms'] != null && json['terms'].length == 0){
+      json['terms'] = json['hy_terms'];
     }
-
     return _$TBBTaxonomyFromJson(json);
   }
 
