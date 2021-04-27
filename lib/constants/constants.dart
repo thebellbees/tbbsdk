@@ -50,7 +50,7 @@ const API_PATH_PARTNER_CREATE_STORE = "/accounts/create_store";
 const API_PATH_PARTNER_SUBSCRIPTION_PLANS =
     "/accounts/store/available_subscriptions";
 const API_PATH_PARTNER_TOKEN = "/accounts/partner_token";
-const API_PATH_PARTNER_STORE_CATEGORIES = "/utils/store_categories";
+const API_PATH_PARTNER_STORE_CATEGORIES = "/store_categories";
 const API_PATH_PARTNER_GET_CITIES = "/utils/get_cities";
 const API_PATH_PARTNER_GET_COUNTRY = "/utils/available_countries";
 const API_PATH_PARTNER_GET_SERVICE_LOCATION =
