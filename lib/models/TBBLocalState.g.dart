@@ -13,10 +13,9 @@ TBBLocalState _$TBBLocalStateFromJson(Map<String, dynamic> json) {
     user: json['user'] == null
         ? null
         : TBBUser.fromJson(json['user'] as Map<String, dynamic>),
-    serviceTaxonomy: json['service_taxonomy'] == null
+    taxonomy: json['taxonomy'] == null
         ? null
-        : TBBServiceTaxonomy.fromJson(
-            json['service_taxonomy'] as Map<String, dynamic>),
+        : TBBTaxonomy.fromJson(json['taxonomy'] as Map<String, dynamic>),
   );
 }
 
@@ -25,5 +24,5 @@ Map<String, dynamic> _$TBBLocalStateToJson(TBBLocalState instance) =>
       'access_id': instance.accessId,
       'refresh_id': instance.refreshId,
       'user': instance.user?.toJson(),
-      'service_taxonomy': instance.serviceTaxonomy?.toJson(),
+      'taxonomy': instance.taxonomy?.toJson(),
     };

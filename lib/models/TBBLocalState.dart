@@ -1,4 +1,5 @@
-import 'package:tbbsdk/models/services/TBBServiceTaxonomy.dart';
+
+import 'package:tbbsdk/models/TBBTaxonomy.dart';
 import 'package:tbbsdk/models/TBBUser.dart';
 import 'package:tbbsdk/utilities/local_database.dart';
 import 'package:json_annotation/json_annotation.dart';
@@ -16,14 +17,14 @@ class TBBLocalState {
   String accessId;
   String refreshId;
   TBBUser user;
-  TBBServiceTaxonomy serviceTaxonomy;
+  TBBTaxonomy taxonomy;
 
   bool get loggedIn => user != null && user.isEmpty == false;
 
   Future<String> get otpFrom async => await _getProp("otp_from");
 
   TBBLocalState(
-      {this.accessId, this.refreshId, this.user, this.serviceTaxonomy});
+      {this.accessId, this.refreshId, this.user, this.taxonomy});
 
   /// A necessary factory constructor for creating a new User instance
   /// from a map. Pass the map to the generated `_$UserFromJson()` constructor.

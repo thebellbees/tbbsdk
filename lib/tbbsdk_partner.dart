@@ -798,7 +798,7 @@ class TBBSdkPartner {
 
   //StoreCategory
 
-  Future<TBBServiceTaxonomy> getStoreCategory({String taxonomySlug}) async {
+  Future<TBBTaxonomy> getStoreCategory({String taxonomySlug}) async {
     _printToLog("preparing store category");
 
     // headers data
@@ -820,7 +820,7 @@ class TBBSdkPartner {
     //  response
     if (_response.statusCode >= 200 && _response.statusCode < 300) {
       TBBResponse response = TBBResponse.fromJson(json.decode(_response.body));
-      return TBBServiceTaxonomy.fromJson(response.data);
+      return TBBTaxonomy.fromJson(response.data);
     } else {
       throw new TBBError.fromJson(json.decode(_response.body));
     }
@@ -828,7 +828,7 @@ class TBBSdkPartner {
 
   //Get Cities
 
-  Future<TBBServiceTaxonomy> getCities({String taxonomySlug}) async {
+  Future<TBBTaxonomy> getCities({String taxonomySlug}) async {
     _printToLog("preparing cities");
 
     // headers data
@@ -850,7 +850,7 @@ class TBBSdkPartner {
     //  response
     if (_response.statusCode >= 200 && _response.statusCode < 300) {
       TBBResponse response = TBBResponse.fromJson(json.decode(_response.body));
-      return TBBServiceTaxonomy.fromJson(response.data);
+      return TBBTaxonomy.fromJson(response.data);
     } else {
       throw new TBBError.fromJson(json.decode(_response.body));
     }

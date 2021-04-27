@@ -12,7 +12,7 @@ const API_PATH_AUTH_WITH_SOCIAL = "/auth/login_with_social";
 
 // App Server Endpoints
 const API_PATH_GET_INFO = "/accounts/info";
-const API_PATH_SERVICES_TYPES = "/services/home/categories";
+const API_PATH_TAXONOMY_TYPES = "/system/categories";
 const API_PATH_SERVICES_ALL = "/services/service/available_service";
 const API_PATH_SERVICES_ADD_TO_FAVOURITE = "/services/service/add_to_fav";
 const API_PATH_SERVICES_SEARCH = "/services/service/search";

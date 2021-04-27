@@ -7,6 +7,7 @@ import 'package:http/http.dart' as http;
 import 'package:location/location.dart';
 import 'package:tbbsdk/constants/constants.dart';
 import 'package:tbbsdk/models/TBBAccessToken.dart';
+import 'package:tbbsdk/models/TBBTaxonomy.dart';
 import 'package:tbbsdk/models/helper_class.dart';
 import 'package:tbbsdk/models/hyper/TBBHyperItem.dart';
 import 'package:tbbsdk/models/services/TBBFavouriteItem.dart';
@@ -14,7 +15,6 @@ import 'package:tbbsdk/models/services/TBBServiceCartItem.dart';
 import 'package:tbbsdk/models/services/TBBServiceDetail.dart';
 import 'package:tbbsdk/models/services/TBBServiceItem.dart';
 import 'package:tbbsdk/models/services/TBBServiceOrder.dart';
-import 'package:tbbsdk/models/services/TBBServiceTaxonomy.dart';
 import 'package:tbbsdk/models/TBBLocalState.dart';
 import 'package:tbbsdk/models/tbb_response.dart';
 import 'package:tbbsdk/models/TBBUser.dart';
@@ -30,7 +30,7 @@ export './models/helper_class.dart';
 export './models/TBBLocalState.dart' show TBBLocalState;
 export './models/tbb_response.dart' show TBBResponse;
 export './models/TBBUser.dart' show TBBUser;
-export './models/services/TBBServiceTaxonomy.dart' show TBBServiceTaxonomy;
+export './models/TBBTaxonomy.dart' show TBBTaxonomy;
 export './models/services/TBBServiceItem.dart' show TBBServiceItem;
 export './models/services/TBBServiceTerm.dart' show TBBServiceTerm;
 export './models/TBBCustomer.dart' show TBBCustomer;
@@ -601,7 +601,7 @@ class TBBSdk {
 
   // SERVICES FUNCTIONS
 
-  Future<List<TBBServiceTaxonomy>> getServiceTypes(
+  Future<List<TBBTaxonomy>> getTaxonomyTypes(
       {int limit = 10, int offset = 0}) async {
     _printToLog("preparing get service types");
 
@@ -611,7 +611,7 @@ class TBBSdk {
     // request
     final _response = await http.get(
       this.appServer +
-          API_PATH_SERVICES_TYPES +
+          API_PATH_TAXONOMY_TYPES +
           "/?limit=$limit&offset=$offset",
       headers: headers,
     );
@@ -623,7 +623,7 @@ class TBBSdk {
     //  response
     if (_response.statusCode >= 200 && _response.statusCode < 300) {
       TBBResponse response = TBBResponse.fromJson(json.decode(_response.body));
-      return TBBServiceTaxonomy.listFromJson(response.data);
+      return TBBTaxonomy.listFromJson(response.data);
     } else {
       throw new TBBError.fromJson(json.decode(_response.body));
     }

@@ -1,5 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:tbbsdk/models/hyper/TBBHyperTaxonomy.dart';
+import 'package:tbbsdk/models/TBBTaxonomy.dart';
+
 
 
 /// This allows the `User` class to access private members in
@@ -18,7 +19,7 @@ class TBBHyperTerm {
   String icon;
   String parent;
   String taxonomyId;
-  TBBHyperTaxonomy taxonomy;
+  TBBTaxonomy taxonomy;
   @JsonKey(name: "hy_terms")
   List<TBBHyperTerm> hyperTerms;
   String createdAt;

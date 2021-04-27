@@ -16,7 +16,7 @@ TBBServiceTerm _$TBBServiceTermFromJson(Map<String, dynamic> json) {
     taxonomyId: json['taxonomy_id'] as String,
     taxonomy: json['taxonomy'] == null
         ? null
-        : TBBServiceTaxonomy.fromJson(json['taxonomy'] as Map<String, dynamic>),
+        : TBBTaxonomy.fromJson(json['taxonomy'] as Map<String, dynamic>),
     serviceTerms: (json['sr_terms'] as List)
         ?.map((e) => e == null
             ? null

@@ -16,7 +16,7 @@ TBBHyperTerm _$TBBHyperTermFromJson(Map<String, dynamic> json) {
     taxonomyId: json['taxonomy_id'] as String,
     taxonomy: json['taxonomy'] == null
         ? null
-        : TBBHyperTaxonomy.fromJson(json['taxonomy'] as Map<String, dynamic>),
+        : TBBTaxonomy.fromJson(json['taxonomy'] as Map<String, dynamic>),
     hyperTerms: (json['hy_terms'] as List)
         ?.map((e) =>
             e == null ? null : TBBHyperTerm.fromJson(e as Map<String, dynamic>))
