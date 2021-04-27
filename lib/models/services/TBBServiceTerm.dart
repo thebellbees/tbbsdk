@@ -20,8 +20,6 @@ class TBBServiceTerm extends TBBTerm {
   String parent;
   String taxonomyId;
   TBBTaxonomy taxonomy;
-  @JsonKey(name: "sr_terms")
-  List<TBBServiceTerm> serviceTerms;
   String createdAt;
   String updatedAt;
   String deletedAt;
@@ -34,7 +32,6 @@ class TBBServiceTerm extends TBBTerm {
     this.parent,
     this.taxonomyId,
     this.taxonomy,
-    this.serviceTerms,
     this.createdAt,
     this.updatedAt,
     this.deletedAt,
