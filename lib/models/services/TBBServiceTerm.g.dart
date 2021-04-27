@@ -25,11 +25,15 @@ TBBServiceTerm _$TBBServiceTermFromJson(Map<String, dynamic> json) {
     createdAt: json['created_at'] as String,
     updatedAt: json['updated_at'] as String,
     deletedAt: json['deleted_at'] as String,
-  );
+  )..terms = (json['terms'] as List)
+      ?.map(
+          (e) => e == null ? null : TBBTerm.fromJson(e as Map<String, dynamic>))
+      ?.toList();
 }
 
 Map<String, dynamic> _$TBBServiceTermToJson(TBBServiceTerm instance) =>
     <String, dynamic>{
+      'terms': instance.terms?.map((e) => e?.toJson())?.toList(),
       'id': instance.id,
       'name': instance.name,
       'slug': instance.slug,

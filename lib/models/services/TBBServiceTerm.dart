@@ -1,5 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:tbbsdk/models/TBBTaxonomy.dart';
+import 'package:tbbsdk/models/TBBTerm.dart';
 
 
 /// This allows the `User` class to access private members in
@@ -11,7 +12,7 @@ part 'TBBServiceTerm.g.dart';
 /// JSON serialization logic to be generated.
 @JsonSerializable(
     fieldRename: FieldRename.snake, nullable: true, explicitToJson: true)
-class TBBServiceTerm {
+class TBBServiceTerm extends TBBTerm {
   String id;
   String name;
   String slug;
