@@ -3,6 +3,7 @@ import 'package:tbbsdk/models/TBBOptionalDocument.dart';
 import 'package:tbbsdk/models/TBBStoreSubscription.dart';
 import 'package:tbbsdk/models/TBBTerm.dart';
 import 'package:tbbsdk/models/TBBUser.dart';
+import 'package:tbbsdk/models/hyper/TBBHyperDetail.dart';
 import 'package:tbbsdk/models/services/TBBServiceDetail.dart';
 import 'package:tbbsdk/models/services/TBBServiceTerm.dart';
 import 'package:tbbsdk/utilities/PropValidator.dart';
@@ -42,6 +43,8 @@ class TBBStore {
   bool enabled;
   @JsonKey(name: "sr_service")
   TBBServiceDetail serviceDetail;
+  @JsonKey(name: "hy_shop")
+  TBBHyperDetail shopDetail;
   @JsonKey(name: "customer")
   TBBUser user;
   String createdAt;
@@ -70,6 +73,7 @@ class TBBStore {
       this.certificate,
       this.aadhar,
       this.serviceDetail,
+      this.shopDetail,
       this.gst,
       this.udyogAadhar,
       this.country,
