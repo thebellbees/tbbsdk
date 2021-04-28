@@ -44,6 +44,7 @@ const API_PATH_PARTNER_SERVICE_ORDER_COMPLETE = "/services/order/complete";
 //Hyper
 const API_PATH_PARTNER_CREATE_HYPER = "/accounts/create_hyper_shop";
 const API_PATH_HYPER_ALL = "/hyper/hyper/available_shops";
+const API_PATH_PARTNER_HYPER_OVERVIEW = "/hyper/home/overview";
 
 const API_PATH_PARTNER_INFO = "/accounts/info";
 const API_PATH_PARTNER_CREATE_STORE = "/accounts/create_store";

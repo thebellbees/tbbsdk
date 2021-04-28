@@ -5,6 +5,7 @@ import 'dart:convert';
 import 'package:flutter/widgets.dart';
 import 'package:http/http.dart' as http;
 import 'package:location/location.dart';
+import 'package:tbbsdk/models/Page/HyperOverview.dart';
 import 'package:tbbsdk/models/Page/ServiceOverview.dart';
 import 'package:tbbsdk/models/TBBCity.dart';
 import 'package:tbbsdk/models/TBBCountry.dart';
@@ -906,7 +907,7 @@ class TBBSdkPartner {
     }
   }
 
-  //StoreCategory
+  //Service Overview
 
   Future<ServiceOverview> serviceOverView() async {
     _printToLog("preparing store category");
@@ -1025,6 +1026,30 @@ class TBBSdkPartner {
     if (_response.statusCode >= 200 && _response.statusCode < 300) {
       TBBResponse response = TBBResponse.fromJson(json.decode(_response.body));
       return TBBHyperItem.fromJson(response.data);
+    } else {
+      throw new TBBError.fromJson(json.decode(_response.body));
+    }
+  }
+
+  //Hyper Overview
+
+  Future<HyperOverview> hyperOverView() async {
+    _printToLog("preparing store category");
+
+    // headers data
+    final headers = await _prepareRequestHeader();
+
+    // request
+    final _response = await http.get(
+      this.appServer + "/$appPath" + API_PATH_PARTNER_HYPER_OVERVIEW,
+      headers: headers,
+    );
+    _printHttpLog(response: _response);
+
+    //  response
+    if (_response.statusCode >= 200 && _response.statusCode < 300) {
+      TBBResponse response = TBBResponse.fromJson(json.decode(_response.body));
+      return HyperOverview.fromJson(response.data);
     } else {
       throw new TBBError.fromJson(json.decode(_response.body));
     }
