@@ -458,7 +458,7 @@ class TBBSdkPartner {
     _printToLog('body before');
     final body = {
       "store_type": store.storeType.toString(),
-      "sub_category_id": store.subCategory.id.toString(),
+      "category_id": store.category.id.toString(),
       "company": store.company.toString(),
       "phone": store.phone.toString(),
       "email": store.email.toString(),
@@ -524,7 +524,7 @@ class TBBSdkPartner {
     _printToLog('body before');
     final body = {
       "store_id": store.storeId.toString(),
-      "sub_category_id": store.subCategory.id.toString(),
+      "category_id": store.category.id.toString(),
       "enabled": serviceItem.enabled.toString(),
       "service_man_pic": serviceItem.detail.serviceManPic.toString(),
       "worker_one": serviceItem.detail.workerOne.toString(),
@@ -1001,7 +1001,7 @@ class TBBSdkPartner {
     _printToLog('body before');
     final body = {
       "store_id": store.storeId.toString(),
-      "sub_category_id": store.subCategory.id.toString(),
+      "category_id": store.category.id.toString(),
       "enabled": hyperItem.enabled.toString(),
       "shop_pic": hyperItem.detail.shopPic.toString(),
       "name": hyperItem.detail.name.toString(),

@@ -19,7 +19,7 @@ TBBStore _$TBBStoreFromJson(Map<String, dynamic> json) {
     createdAt: json['created_at'] as String,
     updatedAt: json['updated_at'] as String,
     deletedAt: json['deleted_at'] as String,
-    subCategory: json['sr_term'] == null
+    category: json['sr_term'] == null
         ? null
         : TBBTerm.fromJson(json['sr_term'] as Map<String, dynamic>),
     certificate: json['certificate'] as String,
@@ -63,7 +63,7 @@ Map<String, dynamic> _$TBBStoreToJson(TBBStore instance) => <String, dynamic>{
       'company': instance.company,
       'phone': instance.phone,
       'email': instance.email,
-      'sr_term': instance.subCategory?.toJson(),
+      'sr_term': instance.category?.toJson(),
       'state': instance.state,
       'pincode': instance.pincode,
       'country': instance.country,

@@ -31,7 +31,7 @@ class TBBStore {
   String phone;
   String email;
   @JsonKey(name: "sr_term")
-  TBBTerm subCategory;
+  TBBTerm category;
   String state;
   String pincode;
   String country;
@@ -69,7 +69,7 @@ class TBBStore {
       this.createdAt,
       this.updatedAt,
       this.deletedAt,
-      this.subCategory,
+      this.category,
       this.certificate,
       this.aadhar,
       this.serviceDetail,
