@@ -680,7 +680,7 @@ class TBBSdk {
     }
   }
 
-  Future<List<TBBFavouriteItem>> serviceFavourites(
+  Future<List<TBBFavouriteItem>> allFavourites(
       {int kilometer, int limit, int offset}) async {
     _printToLog("preparing getting list of available service");
 
