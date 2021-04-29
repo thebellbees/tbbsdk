@@ -45,6 +45,8 @@ const API_PATH_PARTNER_SERVICE_ORDER_COMPLETE = "/services/order/complete";
 const API_PATH_PARTNER_CREATE_HYPER = "/accounts/create_hyper_shop";
 const API_PATH_HYPER_ALL = "/hyper/hyper/available_shops";
 const API_PATH_PARTNER_HYPER_OVERVIEW = "/hyper/home/overview";
+const API_PATH_HYPER_ADD_TO_FAVOURITE = "/hyper/hyper/add_to_fav";
+const API_PATH_HYPER_GET_QUOTATION = "/hyper/hyper/get_quotation";
 
 const API_PATH_PARTNER_INFO = "/accounts/info";
 const API_PATH_PARTNER_CREATE_STORE = "/accounts/create_store";

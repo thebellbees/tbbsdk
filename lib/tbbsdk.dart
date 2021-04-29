@@ -9,6 +9,7 @@ import 'package:tbbsdk/constants/constants.dart';
 import 'package:tbbsdk/models/TBBAccessToken.dart';
 import 'package:tbbsdk/models/TBBTaxonomy.dart';
 import 'package:tbbsdk/models/helper_class.dart';
+import 'package:tbbsdk/models/hyper/TBBHyperDetail.dart';
 import 'package:tbbsdk/models/hyper/TBBHyperItem.dart';
 import 'package:tbbsdk/models/services/TBBFavouriteItem.dart';
 import 'package:tbbsdk/models/services/TBBServiceCartItem.dart';
@@ -873,6 +874,36 @@ class TBBSdk {
       TBBResponse response = TBBResponse.fromJson(json.decode(_response.body));
 
       return TBBHyperItem.listFromJson(response.data);
+    } else {
+      throw new TBBError.fromJson(json.decode(_response.body));
+    }
+  }
+
+  //Hyper Favourite
+
+  Future<bool> addHyperFavourite({TBBHyperDetail hyperDetail}) async {
+    _printToLog("preparing getting list of available service");
+
+    // headers data
+    final headers = await _prepareRequestHeader();
+
+    // request
+    final _response = await http.post(
+      this.appServer +
+          API_PATH_HYPER_ADD_TO_FAVOURITE +
+          "/${hyperDetail.id.toString()}",
+      headers: headers,
+    );
+
+    _printHttpLog(
+      response: _response,
+    );
+
+    //  response
+    if (_response.statusCode >= 200 && _response.statusCode < 300) {
+      TBBResponse response = TBBResponse.fromJson(json.decode(_response.body));
+
+      return response.data;
     } else {
       throw new TBBError.fromJson(json.decode(_response.body));
     }
