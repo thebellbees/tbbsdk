@@ -681,7 +681,7 @@ class TBBSdk {
     }
   }
 
-  Future<List<TBBFavouriteItem>> allFavourites(
+  Future<List<TBBFavouriteItem>> allFavourites(String storeType,
       {int kilometer, int limit, int offset}) async {
     _printToLog("preparing getting list of available service");
 
@@ -689,7 +689,7 @@ class TBBSdk {
     final headers = await _prepareRequestHeader();
 
     // body data
-    final Map<String, String> body = {"store_type": "services"};
+    final Map<String, String> body = {"store_type": storeType.toString()};
 
     if (kilometer != null) {
       body.addAll({"km": kilometer.toString()});
@@ -882,7 +882,7 @@ class TBBSdk {
   //Hyper Favourite
 
   Future<bool> addHyperFavourite({TBBHyperDetail hyperDetail}) async {
-    _printToLog("preparing getting list of available service");
+    _printToLog("preparing getting list of hyper favourite");
 
     // headers data
     final headers = await _prepareRequestHeader();
@@ -913,7 +913,7 @@ class TBBSdk {
 
   Future<TBBHyperDetail> getQuotation(
       {TBBHyperDetail hyperDetail, String listImage}) async {
-    _printToLog("preparing getting list of available hyper");
+    _printToLog("preparing getting quotation");
 
     // headers data
     final headers = await _prepareRequestHeader();
