@@ -56,7 +56,7 @@ class TBBHyperDetail {
   /// from a map. Pass the map to the generated `_$UserFromJson()` constructor.
   /// The constructor is named after the source class, in this case, User.
   factory TBBHyperDetail.fromJson(Map<String, dynamic> json) {
-    json['id'] = json['id'].toString();
+    json['id'] = json['id'] as String;
     json['store_id'] = json['store_id'].toString();
     return _$TBBHyperDetailFromJson(json);
   }
