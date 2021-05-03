@@ -120,13 +120,13 @@ class TBBSdk {
         (await _localDatabaseService.getSecureAccess('refresh_id')).toString();
 
     // if (expires > DateTime.now().millisecondsSinceEpoch) {
-     return {
-        'authorization': 'Bearer ' + accessId,
-        'X-Refresh-Token': refreshId,
+    return {
+      'authorization': 'Bearer ' + accessId,
+      'X-Refresh-Token': refreshId,
       // };
-    // } else {
-    //   // await refreshAccessToken();
-    //   // return await _prepareRequestHeader();
+      // } else {
+      //   // await refreshAccessToken();
+      //   // return await _prepareRequestHeader();
     };
   }
 
@@ -209,8 +209,11 @@ class TBBSdk {
       var token = TBBAccessToken.fromJson(response.data);
 
       if (token != null) {
-        await _localDatabaseService.updateSecureAccess(
-            {"access_id": token.accessId, "refresh_id": token.refreshId, "expires": token.expires});
+        await _localDatabaseService.updateSecureAccess({
+          "access_id": token.accessId,
+          "refresh_id": token.refreshId,
+          "expires": token.expires
+        });
       }
 
       return token;
@@ -288,8 +291,6 @@ class TBBSdk {
       "latitude": coordinates.latitude.toString(),
       "longitude": coordinates.longitude.toString(),
     };
-
-
 
     // request
     final _response = await http.post(
@@ -824,7 +825,6 @@ class TBBSdk {
     }
   }
 
-
   //Hyper
 
   //Available Hyper Shop
@@ -897,6 +897,44 @@ class TBBSdk {
 
     _printHttpLog(
       response: _response,
+    );
+
+    //  response
+    if (_response.statusCode >= 200 && _response.statusCode < 300) {
+      TBBResponse response = TBBResponse.fromJson(json.decode(_response.body));
+
+      return response.data;
+    } else {
+      throw new TBBError.fromJson(json.decode(_response.body));
+    }
+  }
+
+  // Get Quotation
+
+  Future<TBBHyperDetail> getQuotation(
+      {TBBHyperDetail hyperDetail, String listImage}) async {
+    _printToLog("preparing getting list of available hyper");
+
+    // headers data
+    final headers = await _prepareRequestHeader();
+
+    // body data
+    final body = {
+      "list_image": listImage.toString(),
+    };
+
+    // request
+    final _response = await http.post(
+      this.appServer +
+          API_PATH_HYPER_GET_QUOTATION +
+          "/${hyperDetail.id.toString()}",
+      headers: headers,
+      body: body,
+    );
+
+    _printHttpLog(
+      response: _response,
+      body: body,
     );
 
     //  response
