@@ -688,7 +688,7 @@ class TBBSdk {
     final headers = await _prepareRequestHeader();
 
     // request
-    final _response = await http.post(
+    final _response = await http.get(
       this.appServer + API_PATH_SERVICES_FAVOURITES_ALL,
       headers: headers,
     );
@@ -872,7 +872,7 @@ class TBBSdk {
     final headers = await _prepareRequestHeader();
 
     // request
-    final _response = await http.post(
+    final _response = await http.get(
       this.appServer + API_PATH_HYPER_FAVOURITES_ALL,
       headers: headers,
     );
