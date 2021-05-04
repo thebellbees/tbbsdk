@@ -20,7 +20,7 @@ class TBBHyperFavouriteItem {
   String storeType;
   String customerId;
   TBBUser customer;
-  @JsonKey(name: "hr_shop")
+  @JsonKey(name: "hy_shop")
   TBBHyperDetail hyperDetail;
   String createdAt;
   String updatedAt;
