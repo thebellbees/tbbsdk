@@ -962,8 +962,8 @@ class TBBSdk {
 
     // body data
     final body = {
-      "list_image": listImage != null ? listImage.toString() : null,
-      "list_data": listData != null ? jsonEncode(listData) : null,
+      "list_image": listImage != null && listImage.isNotEmpty ? listImage.toString() : null,
+      "list_data": listData != null && listData.isNotEmpty ? jsonEncode(listData) : null,
     };
 
     // request
