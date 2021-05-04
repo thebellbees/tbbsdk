@@ -1,7 +1,6 @@
 library tbbsdk;
 
 import 'dart:convert';
-
 import 'package:flutter/widgets.dart';
 import 'package:http/http.dart' as http;
 import 'package:location/location.dart';
@@ -10,6 +9,7 @@ import 'package:tbbsdk/models/TBBAccessToken.dart';
 import 'package:tbbsdk/models/TBBTaxonomy.dart';
 import 'package:tbbsdk/models/helper_class.dart';
 import 'package:tbbsdk/models/hyper/TBBHyperDetail.dart';
+import 'package:tbbsdk/models/hyper/TBBHyperFavouriteItem.dart';
 import 'package:tbbsdk/models/hyper/TBBHyperItem.dart';
 import 'package:tbbsdk/models/services/TBBServiceCartItem.dart';
 import 'package:tbbsdk/models/services/TBBServiceDetail.dart';
@@ -681,40 +681,20 @@ class TBBSdk {
     }
   }
 
-  Future<List<TBBServiceFavouriteItem>> allFavourites(String storeType,
-      {int kilometer, int limit, int offset}) async {
-    _printToLog("preparing getting list of available service");
+  Future<List<TBBServiceFavouriteItem>> allServiceFavourites() async {
+    _printToLog("preparing getting list of service favourites");
 
     // headers data
     final headers = await _prepareRequestHeader();
 
-    // body data
-    final Map<String, String> body = {"store_type": storeType.toString()};
-
-    if (kilometer != null) {
-      body.addAll({"km": kilometer.toString()});
-    }
-
-    // query data
-    String queryString = "";
-
-    if (limit != null) {
-      queryString = queryString + "&limit=$limit";
-    }
-    if (offset != null) {
-      queryString = queryString + "&offset=$offset";
-    }
-
     // request
     final _response = await http.post(
-      this.appServer + API_PATH_FAVOURITES_ALL,
+      this.appServer + API_PATH_SERVICES_FAVOURITES_ALL,
       headers: headers,
-      body: body,
     );
 
     _printHttpLog(
       response: _response,
-      body: body,
     );
 
     //  response
@@ -755,7 +735,9 @@ class TBBSdk {
     }
   }
 
-  Future<bool> removeFavourite({String favId}) async {
+  //Remove service favourite
+
+  Future<bool> removeServiceFavourite({String favId}) async {
     _printToLog("preparing getting list of available service");
 
     // headers data
@@ -763,7 +745,9 @@ class TBBSdk {
 
     // request
     final _response = await http.delete(
-      this.appServer + API_PATH_REMOVE_FROM_FAVOURITE + "/${favId.toString()}",
+      this.appServer +
+          API_PATH_SERVICES_REMOVE_FROM_FAVOURITE +
+          "/${favId.toString()}",
       headers: headers,
     );
 
@@ -881,6 +865,32 @@ class TBBSdk {
 
   //Hyper Favourite
 
+  Future<List<TBBHyperFavouriteItem>> allhyperFavourites() async {
+    _printToLog("preparing getting list of hyper favourites");
+
+    // headers data
+    final headers = await _prepareRequestHeader();
+
+    // request
+    final _response = await http.post(
+      this.appServer + API_PATH_HYPER_FAVOURITES_ALL,
+      headers: headers,
+    );
+
+    _printHttpLog(
+      response: _response,
+    );
+
+    //  response
+    if (_response.statusCode >= 200 && _response.statusCode < 300) {
+      TBBResponse response = TBBResponse.fromJson(json.decode(_response.body));
+
+      return TBBHyperFavouriteItem.listFromJson(response.data);
+    } else {
+      throw new TBBError.fromJson(json.decode(_response.body));
+    }
+  }
+
   Future<bool> addHyperFavourite({TBBHyperDetail hyperDetail}) async {
     _printToLog("preparing getting list of hyper favourite");
 
@@ -892,6 +902,36 @@ class TBBSdk {
       this.appServer +
           API_PATH_HYPER_ADD_TO_FAVOURITE +
           "/${hyperDetail.id.toString()}",
+      headers: headers,
+    );
+
+    _printHttpLog(
+      response: _response,
+    );
+
+    //  response
+    if (_response.statusCode >= 200 && _response.statusCode < 300) {
+      TBBResponse response = TBBResponse.fromJson(json.decode(_response.body));
+
+      return response.data;
+    } else {
+      throw new TBBError.fromJson(json.decode(_response.body));
+    }
+  }
+
+  //Remove hyper favourite
+
+  Future<bool> removeHyperFavourite({String favId}) async {
+    _printToLog("preparing getting list of available service");
+
+    // headers data
+    final headers = await _prepareRequestHeader();
+
+    // request
+    final _response = await http.delete(
+      this.appServer +
+          API_PATH_HYPER_REMOVE_FROM_FAVOURITE +
+          "/${favId.toString()}",
       headers: headers,
     );
 
