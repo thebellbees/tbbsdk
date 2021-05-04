@@ -952,7 +952,9 @@ class TBBSdk {
   // Get Quotation
 
   Future<TBBHyperDetail> getQuotation(
-      {TBBHyperDetail hyperDetail, String listImage}) async {
+      {TBBHyperDetail hyperDetail,
+      String listImage,
+      List<String> listData}) async {
     _printToLog("preparing getting quotation");
 
     // headers data
@@ -960,7 +962,8 @@ class TBBSdk {
 
     // body data
     final body = {
-      "list_image": listImage.toString(),
+      "list_image": listImage != null ? listImage.toString() : null,
+      "list_data": listData != null ? jsonEncode(listData) : null,
     };
 
     // request
