@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:tbbsdk/models/TBBUser.dart';
 
 import 'package:json_annotation/json_annotation.dart';
+import 'package:tbbsdk/models/hyper/TBBHyperDetail.dart';
 
 /// This allows the `User` class to access private members in
 /// the generated file. The value for this is *.g.dart, where
@@ -19,8 +20,8 @@ class TBBHyperFavouriteItem {
   String storeType;
   String customerId;
   TBBUser customer;
-  @JsonKey(name: "hyper_favourite_item")
-  Map<String, dynamic> item;
+  @JsonKey(name: "hr_shop")
+  TBBHyperDetail hyperDetail;
   String createdAt;
   String updatedAt;
   String deletedAt;
@@ -31,7 +32,7 @@ class TBBHyperFavouriteItem {
     this.storeType,
     this.customerId,
     this.customer,
-    this.item,
+    this.hyperDetail,
     this.createdAt,
     this.updatedAt,
     this.deletedAt,

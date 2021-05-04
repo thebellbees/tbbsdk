@@ -16,7 +16,9 @@ TBBHyperFavouriteItem _$TBBHyperFavouriteItemFromJson(
     customer: json['customer'] == null
         ? null
         : TBBUser.fromJson(json['customer'] as Map<String, dynamic>),
-    item: json['hyper_favourite_item'] as Map<String, dynamic>,
+    hyperDetail: json['hr_shop'] == null
+        ? null
+        : TBBHyperDetail.fromJson(json['hr_shop'] as Map<String, dynamic>),
     createdAt: json['created_at'] as String,
     updatedAt: json['updated_at'] as String,
     deletedAt: json['deleted_at'] as String,
@@ -31,7 +33,7 @@ Map<String, dynamic> _$TBBHyperFavouriteItemToJson(
       'store_type': instance.storeType,
       'customer_id': instance.customerId,
       'customer': instance.customer?.toJson(),
-      'hyper_favourite_item': instance.item,
+      'hr_shop': instance.hyperDetail?.toJson(),
       'created_at': instance.createdAt,
       'updated_at': instance.updatedAt,
       'deleted_at': instance.deletedAt,
