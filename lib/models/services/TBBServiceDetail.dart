@@ -1,4 +1,3 @@
-import 'package:tbbsdk/models/services/TBBFavouriteItem.dart';
 import 'package:tbbsdk/models/services/TBBServiceOrderReview.dart';
 import 'package:tbbsdk/models/services/TBBServiceTerm.dart';
 import 'package:tbbsdk/models/TBBStore.dart';
@@ -16,8 +15,7 @@ part 'TBBServiceDetail.g.dart';
 @JsonSerializable(
     fieldRename: FieldRename.snake, nullable: true, explicitToJson: true)
 class TBBServiceDetail {
-
-  @JsonKey(includeIfNull:true)
+  @JsonKey(includeIfNull: true)
   String id;
   String storeId;
   String name;

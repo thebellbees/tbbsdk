@@ -11,9 +11,9 @@ import 'package:tbbsdk/models/TBBTaxonomy.dart';
 import 'package:tbbsdk/models/helper_class.dart';
 import 'package:tbbsdk/models/hyper/TBBHyperDetail.dart';
 import 'package:tbbsdk/models/hyper/TBBHyperItem.dart';
-import 'package:tbbsdk/models/services/TBBFavouriteItem.dart';
 import 'package:tbbsdk/models/services/TBBServiceCartItem.dart';
 import 'package:tbbsdk/models/services/TBBServiceDetail.dart';
+import 'package:tbbsdk/models/services/TBBServiceFavouriteItem.dart';
 import 'package:tbbsdk/models/services/TBBServiceItem.dart';
 import 'package:tbbsdk/models/services/TBBServiceOrder.dart';
 import 'package:tbbsdk/models/TBBLocalState.dart';
@@ -681,7 +681,7 @@ class TBBSdk {
     }
   }
 
-  Future<List<TBBFavouriteItem>> allFavourites(String storeType,
+  Future<List<TBBServiceFavouriteItem>> allFavourites(String storeType,
       {int kilometer, int limit, int offset}) async {
     _printToLog("preparing getting list of available service");
 
@@ -721,7 +721,7 @@ class TBBSdk {
     if (_response.statusCode >= 200 && _response.statusCode < 300) {
       TBBResponse response = TBBResponse.fromJson(json.decode(_response.body));
 
-      return TBBFavouriteItem.listFromJson(response.data);
+      return TBBServiceFavouriteItem.listFromJson(response.data);
     } else {
       throw new TBBError.fromJson(json.decode(_response.body));
     }

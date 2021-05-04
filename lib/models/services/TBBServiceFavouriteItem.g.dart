@@ -1,13 +1,14 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'TBBFavouriteItem.dart';
+part of 'TBBServiceFavouriteItem.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-TBBFavouriteItem _$TBBFavouriteItemFromJson(Map<String, dynamic> json) {
-  return TBBFavouriteItem(
+TBBServiceFavouriteItem _$TBBServiceFavouriteItemFromJson(
+    Map<String, dynamic> json) {
+  return TBBServiceFavouriteItem(
     id: json['id'] as String,
     itemId: json['item_id'] as String,
     storeType: json['store_type'] as String,
@@ -22,7 +23,8 @@ TBBFavouriteItem _$TBBFavouriteItemFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$TBBFavouriteItemToJson(TBBFavouriteItem instance) =>
+Map<String, dynamic> _$TBBServiceFavouriteItemToJson(
+        TBBServiceFavouriteItem instance) =>
     <String, dynamic>{
       'id': instance.id,
       'item_id': instance.itemId,

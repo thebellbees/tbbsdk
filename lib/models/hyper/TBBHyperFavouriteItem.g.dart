@@ -1,13 +1,14 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'TBBHyperFavourite.dart';
+part of 'TBBHyperFavouriteItem.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-TBBHyperFavourite _$TBBHyperFavouriteFromJson(Map<String, dynamic> json) {
-  return TBBHyperFavourite(
+TBBHyperFavouriteItem _$TBBHyperFavouriteItemFromJson(
+    Map<String, dynamic> json) {
+  return TBBHyperFavouriteItem(
     id: json['id'] as String,
     itemId: json['item_id'] as String,
     storeType: json['store_type'] as String,
@@ -22,7 +23,8 @@ TBBHyperFavourite _$TBBHyperFavouriteFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$TBBHyperFavouriteToJson(TBBHyperFavourite instance) =>
+Map<String, dynamic> _$TBBHyperFavouriteItemToJson(
+        TBBHyperFavouriteItem instance) =>
     <String, dynamic>{
       'id': instance.id,
       'item_id': instance.itemId,
