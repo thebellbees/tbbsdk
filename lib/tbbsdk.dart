@@ -419,7 +419,7 @@ class TBBSdk {
       "pincode": address.pincode.toString(),
       "city": address.city.toString(),
       "state": address.state.toString(),
-      "is_default": address.isDefault.toString(),
+      "is_default": address.isDefault,
     };
 
     _printToLog('body works');
