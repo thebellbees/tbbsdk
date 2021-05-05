@@ -7,8 +7,8 @@ import 'package:http/http.dart' as http;
 import 'package:location/location.dart';
 import 'package:tbbsdk/models/Page/HyperOverview.dart';
 import 'package:tbbsdk/models/Page/ServiceOverview.dart';
-import 'package:tbbsdk/models/TBBCity.dart';
-import 'package:tbbsdk/models/TBBCountry.dart';
+import 'package:tbbsdk/models/account/TBBCity.dart';
+import 'package:tbbsdk/models/account/TBBCountry.dart';
 import 'package:tbbsdk/models/TBBPartnerLocalState.dart';
 import 'package:tbbsdk/models/TBBPartnerToken.dart';
 import 'package:tbbsdk/models/TBBPartnerUser.dart';
@@ -16,6 +16,7 @@ import 'package:tbbsdk/models/TBBSubscriptionPlan.dart';
 import 'package:tbbsdk/models/TBBTerm.dart';
 import 'package:tbbsdk/models/hyper/TBBHyperDetail.dart';
 import 'package:tbbsdk/models/hyper/TBBHyperItem.dart';
+import 'package:tbbsdk/models/hyper/TBBHyperItemRequest.dart';
 import 'package:tbbsdk/models/services/TBBServiceDetail.dart';
 import 'package:tbbsdk/models/services/TBBServiceItemRequest.dart';
 import 'package:tbbsdk/models/services/TBBServiceOrder.dart';
@@ -1055,4 +1056,35 @@ class TBBSdkPartner {
       throw new TBBError.fromJson(json.decode(_response.body));
     }
   }
+
+  //Hyper Request Items
+  Future<List<TBBHyperItemRequest>> hyperRequest() async {
+    _printToLog("preparing partner token");
+
+    // headers data
+    final headers = await _prepareRequestHeader();
+
+    final body = {
+      // 'limit': limit.toString(),
+      // 'offset': offset.toString(),
+      // 'status': status.toString(),
+    };
+
+    // request
+    final _response = await http.post(
+        this.appServer + "/$appPath" + API_PATH_PARTNER_HYPER_QUOTATION_REQUESTS,
+        headers: headers,
+        body: body);
+
+    _printHttpLog(response: _response, body: body);
+
+    //  response
+    if (_response.statusCode >= 200 && _response.statusCode < 300) {
+      TBBResponse response = TBBResponse.fromJson(json.decode(_response.body));
+      return TBBHyperItemRequest.listFromJson(response.data);
+    } else {
+      throw new TBBError.fromJson(json.decode(_response.body));
+    }
+  }
+
 }

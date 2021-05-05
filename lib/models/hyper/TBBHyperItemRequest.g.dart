@@ -9,7 +9,7 @@ part of 'TBBHyperItemRequest.dart';
 TBBHyperItemRequest _$TBBHyperItemRequestFromJson(Map<String, dynamic> json) {
   return TBBHyperItemRequest(
     id: json['id'] as String,
-    hyperId: json['hyper_id'] as String,
+    shopId: json['shop_id'] as String,
     hyperDetail: json['hy_shop'] == null
         ? null
         : TBBHyperDetail.fromJson(json['hy_shop'] as Map<String, dynamic>),
@@ -23,6 +23,12 @@ TBBHyperItemRequest _$TBBHyperItemRequestFromJson(Map<String, dynamic> json) {
     createdAt: json['created_at'] as String,
     updatedAt: json['updated_at'] as String,
     deletedAt: json['deleted_at'] as String,
+    listData: json['list_data'] as String,
+    listImage: json['list_image'] as String,
+    expired: json['expired'] as String,
+    note: json['note'] as String,
+    quoteRequested: json['quote_requested'] as String,
+    quoteSent: json['quote_sent'] as String,
   );
 }
 
@@ -30,8 +36,14 @@ Map<String, dynamic> _$TBBHyperItemRequestToJson(
         TBBHyperItemRequest instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'hyper_id': instance.hyperId,
+      'shop_id': instance.shopId,
       'customer_id': instance.customerId,
+      'list_data': instance.listData,
+      'list_image': instance.listImage,
+      'note': instance.note,
+      'expired': instance.expired,
+      'quote_requested': instance.quoteRequested,
+      'quote_sent': instance.quoteSent,
       'action': instance.action,
       'status': instance.status,
       'customer': instance.user?.toJson(),

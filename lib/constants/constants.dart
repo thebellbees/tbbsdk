@@ -35,6 +35,10 @@ const API_PATH_CUSTOMER_ORDERS = "/services/order/items";
 // Accounts
 
 const API_PATH_PARTNER_GET_STORES = "/accounts/stores";
+const API_PATH_ADDRESS_ALL = "/accounts/address/list";
+const API_PATH_ADDRESS_ADD = "/accounts/address";
+const API_PATH_ADDRESS_UPDATE = "/accounts/address";
+const API_PATH_ADDRESS_REMOVE = "/accounts/address";
 
 
 // Service

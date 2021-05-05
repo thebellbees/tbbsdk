@@ -2,7 +2,6 @@ import 'package:json_annotation/json_annotation.dart';
 import 'package:tbbsdk/models/TBBUser.dart';
 import 'package:tbbsdk/models/hyper/TBBHyperDetail.dart';
 
-
 /// This allows the `User` class to access private members in
 /// the generated file. The value for this is *.g.dart, where
 /// the star denotes the source file name.
@@ -14,8 +13,14 @@ part 'TBBHyperItemRequest.g.dart';
     fieldRename: FieldRename.snake, nullable: true, explicitToJson: true)
 class TBBHyperItemRequest {
   String id;
-  String hyperId;
+  String shopId;
   String customerId;
+  String listData;
+  String listImage;
+  String note;
+  String expired;
+  String quoteRequested;
+  String quoteSent;
   String action;
   String status;
   @JsonKey(name: "customer")
@@ -29,7 +34,7 @@ class TBBHyperItemRequest {
 
   TBBHyperItemRequest({
     this.id,
-    this.hyperId,
+    this.shopId,
     this.hyperDetail,
     this.customerId,
     this.totalRequestCount,
@@ -39,6 +44,12 @@ class TBBHyperItemRequest {
     this.createdAt,
     this.updatedAt,
     this.deletedAt,
+    this.listData,
+    this.listImage,
+    this.expired,
+    this.note,
+    this.quoteRequested,
+    this.quoteSent,
   });
 
   /// A necessary factory constructor for creating a new User instance
@@ -46,7 +57,11 @@ class TBBHyperItemRequest {
   /// The constructor is named after the source class, in this case, User.
   factory TBBHyperItemRequest.fromJson(Map<String, dynamic> json) {
     json['id'] = json['id'].toString();
-    json['hyper_id'] = json['hyper_id'].toString();
+    json['shop_id'] = json['shop_id'].toString();
+    json['list_data'] = json['list_data'].toString();
+    json['list_image'] = json['list_image'].toString();
+    json['quote_requested'] = json['quote_requested'].toString();
+    json['quote_sent'] = json['quote_sent'].toString();
     json['customer_id'] = json['customer_id'].toString();
     json['created_at'] = json['created_at'].toString();
     json['updated_at'] = json['updated_at'].toString();

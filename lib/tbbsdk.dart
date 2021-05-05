@@ -7,6 +7,7 @@ import 'package:location/location.dart';
 import 'package:tbbsdk/constants/constants.dart';
 import 'package:tbbsdk/models/TBBAccessToken.dart';
 import 'package:tbbsdk/models/TBBTaxonomy.dart';
+import 'package:tbbsdk/models/account/TBBAddress.dart';
 import 'package:tbbsdk/models/helper_class.dart';
 import 'package:tbbsdk/models/hyper/TBBHyperDetail.dart';
 import 'package:tbbsdk/models/hyper/TBBHyperFavouriteItem.dart';
@@ -393,6 +394,153 @@ class TBBSdk {
       throw new TBBError.fromJson(json.decode(_response.body));
     }
   }
+
+  //  Create Address
+
+  //Add address
+
+  Future<TBBAddress> addAddress({TBBAddress address}) async {
+    _printToLog("preparing create address");
+
+    // headers data
+    final headers = await _prepareRequestHeader();
+
+    // body data
+    _printToLog('body before');
+
+    // body data
+    _printToLog('body before');
+    final body = {
+      "name": address.name.toString(),
+      "label": address.label.toString(),
+      "address_line_1": address.addressLine1.toString(),
+      "address_line_2": address.addressLine1.toString(),
+      "phone": address.phone.toString(),
+      "pincode": address.pincode.toString(),
+      "city": address.city.toString(),
+      "state": address.state.toString(),
+      "is_default": address.isDefault.toString(),
+    };
+
+    _printToLog('body works');
+    // request
+    final _response = await http.post(this.appServer + API_PATH_ADDRESS_ADD,
+        headers: headers, body: body);
+
+    _printHttpLog(response: _response, body: body);
+
+    //  response
+    if (_response.statusCode >= 200 && _response.statusCode < 300) {
+      TBBResponse response = TBBResponse.fromJson(json.decode(_response.body));
+      return TBBAddress.fromJson(response.data);
+    } else {
+      throw new TBBError.fromJson(json.decode(_response.body));
+    }
+  }
+
+  //Update Address
+
+  Future<TBBAddress> updateAddress({TBBAddress address}) async {
+    _printToLog("preparing update address");
+
+    // headers data
+    final headers = await _prepareRequestHeader();
+
+    _printToLog('body works');
+    // request
+    final _response = await http.post(
+        this.appServer + API_PATH_ADDRESS_ADD + "/${address.id.toString()}",
+        headers: headers);
+
+    _printHttpLog(response: _response);
+
+    //  response
+    if (_response.statusCode >= 200 && _response.statusCode < 300) {
+      TBBResponse response = TBBResponse.fromJson(json.decode(_response.body));
+      return TBBAddress.fromJson(response.data);
+    } else {
+      throw new TBBError.fromJson(json.decode(_response.body));
+    }
+  }
+
+  Future<TBBAddress> removeAddress({TBBAddress address}) async {
+    _printToLog("preparing address remove");
+
+    // headers data
+    final headers = await _prepareRequestHeader();
+
+    _printToLog('body works');
+    // request
+    final _response = await http.delete(
+        this.appServer + API_PATH_ADDRESS_ADD + "/${address.id.toString()}",
+        headers: headers);
+
+    _printHttpLog(response: _response);
+
+    //  response
+    if (_response.statusCode >= 200 && _response.statusCode < 300) {
+      TBBResponse response = TBBResponse.fromJson(json.decode(_response.body));
+      return TBBAddress.fromJson(response.data);
+    } else {
+      throw new TBBError.fromJson(json.decode(_response.body));
+    }
+  }
+  //Address List
+
+  Future<List<TBBAddress>> availableAddress(
+      {String category, int kilometer, int limit, int offset}) async {
+    _printToLog("preparing getting list of available address");
+
+    // headers data
+    final headers = await _prepareRequestHeader();
+
+    // body data
+    final Map<String, String> body = {};
+
+    // if (category != null) {
+    //   body.addAll({"category": category.toString()});
+    // }
+    //
+    // if (kilometer != null) {
+    //   body.addAll({"km": kilometer.toString()});
+    // }
+
+    // query data
+    String queryString = "";
+
+    if (limit != null) {
+      queryString = queryString + "&limit=$limit";
+    }
+    if (offset != null) {
+      queryString = queryString + "&offset=$offset";
+    }
+
+    // request
+    final _response = await http.post(
+      this.appServer + API_PATH_ADDRESS_ALL,
+      headers: headers,
+      body: body,
+    );
+
+    _printHttpLog(
+      response: _response,
+      body: body,
+    );
+
+    //  response
+    if (_response.statusCode >= 200 && _response.statusCode < 300) {
+      TBBResponse response = TBBResponse.fromJson(json.decode(_response.body));
+
+      return TBBAddress.listFromJson(response.data);
+    } else {
+      throw new TBBError.fromJson(json.decode(_response.body));
+    }
+  }
+
+  //Remove Address
+
+
+
 
   //Customer Action
 
@@ -962,8 +1110,11 @@ class TBBSdk {
 
     // body data
     final body = {
-      "list_image": listImage != null && listImage.isNotEmpty ? listImage.toString() : null,
-      "list_data": listData != null && listData.isNotEmpty ? jsonEncode(listData) : null,
+      "list_image": listImage != null && listImage.isNotEmpty
+          ? listImage.toString()
+          : null,
+      "list_data":
+          listData != null && listData.isNotEmpty ? jsonEncode(listData) : null,
     };
 
     // request
