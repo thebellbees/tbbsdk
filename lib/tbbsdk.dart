@@ -519,12 +519,10 @@ class TBBSdk {
     final _response = await http.get(
       this.appServer + API_PATH_ADDRESS_ALL,
       headers: headers,
-      body: body,
     );
 
     _printHttpLog(
       response: _response,
-      body: body,
     );
 
     //  response
