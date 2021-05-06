@@ -516,7 +516,7 @@ class TBBSdk {
     }
 
     // request
-    final _response = await http.post(
+    final _response = await http.get(
       this.appServer + API_PATH_ADDRESS_ALL,
       headers: headers,
       body: body,
