@@ -28,7 +28,7 @@ class TBBAddress {
     this.label,
     this.name,
     this.phone,
-    this.isDefault,
+    this.isDefault = false,
     this.addressLine1,
     this.addressLine2,
     this.state,
