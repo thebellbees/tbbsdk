@@ -48,3 +48,18 @@ class CartList {
     return data;
   }
 }
+
+class ModelHelper {
+  static bool toBool(dynamic value) {
+    try {
+      if (value == 1 || value == true || value == "true") {
+        return true;
+      } else {
+        return false;
+      }
+    } catch (err) {
+      print(err);
+      return false;
+    }
+  }
+}

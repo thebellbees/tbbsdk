@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:tbbsdk/models/helper_class.dart';
 
 
 /// This allows the `User` class to access private members in
@@ -20,6 +21,7 @@ class TBBAddress {
   String addressLine1;
   String addressLine2;
   String state;
+  @JsonKey(fromJson: ModelHelper.toBool,toJson: ModelHelper.toBool)
   bool isDefault;
   String createdAt;
   String updatedAt;
