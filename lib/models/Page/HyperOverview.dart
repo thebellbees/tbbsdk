@@ -10,12 +10,12 @@ part 'HyperOverview.g.dart';
 @JsonSerializable(
     fieldRename: FieldRename.snake, nullable: true, explicitToJson: true)
 class HyperOverview {
-  num newJobsCount;
+  num newQuoatesCount;
   num totalOrdersCount;
   num completedOrdersCount;
 
   HyperOverview({
-    this.newJobsCount,
+    this.newQuoatesCount,
     this.totalOrdersCount,
     this.completedOrdersCount,
   });
@@ -24,7 +24,7 @@ class HyperOverview {
   /// from a map. Pass the map to the generated `_$UserFromJson()` constructor.
   /// The constructor is named after the source class, in this case, User.
   factory HyperOverview.fromJson(Map<String, dynamic> json) {
-    json['new_jobs_count'] = num.parse(json['new_jobs_count'].toString());
+    json['new_quoates_count'] = num.parse(json['new_quoates_count'].toString());
     json['total_orders_count'] =
         num.parse(json['total_orders_count'].toString());
     json['completed_orders_count'] =

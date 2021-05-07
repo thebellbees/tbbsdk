@@ -8,7 +8,7 @@ part of 'HyperOverview.dart';
 
 HyperOverview _$HyperOverviewFromJson(Map<String, dynamic> json) {
   return HyperOverview(
-    newJobsCount: json['new_jobs_count'] as num,
+    newQuoatesCount: json['new_quoates_count'] as num,
     totalOrdersCount: json['total_orders_count'] as num,
     completedOrdersCount: json['completed_orders_count'] as num,
   );
@@ -16,7 +16,7 @@ HyperOverview _$HyperOverviewFromJson(Map<String, dynamic> json) {
 
 Map<String, dynamic> _$HyperOverviewToJson(HyperOverview instance) =>
     <String, dynamic>{
-      'new_jobs_count': instance.newJobsCount,
+      'new_quoates_count': instance.newQuoatesCount,
       'total_orders_count': instance.totalOrdersCount,
       'completed_orders_count': instance.completedOrdersCount,
     };
