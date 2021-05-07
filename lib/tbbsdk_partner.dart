@@ -1057,17 +1057,20 @@ class TBBSdkPartner {
     }
   }
 
+
+
+
   //Hyper Request Items
-  Future<List<TBBHyperItemRequest>> hyperRequest() async {
+  Future<List<TBBHyperItemRequest>> hyperRequest({num limit, num offset, String status}) async {
     _printToLog("preparing partner token");
 
     // headers data
     final headers = await _prepareRequestHeader();
 
     final body = {
-      // 'limit': limit.toString(),
-      // 'offset': offset.toString(),
-      // 'status': status.toString(),
+      'limit': limit.toString(),
+      'offset': offset.toString(),
+      'status': status.toString(),
     };
 
     // request

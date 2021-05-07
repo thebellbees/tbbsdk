@@ -56,6 +56,7 @@ const API_PATH_PARTNER_CREATE_HYPER = "/accounts/create_hyper_shop";
 const API_PATH_PARTNER_HYPER_OVERVIEW = "/hyper/home/overview";
 const API_PATH_PARTNER_HYPER_QUOTATION_REQUESTS = "/hyper/quotation/items";
 
+
 const API_PATH_PARTNER_INFO = "/accounts/info";
 const API_PATH_PARTNER_CREATE_STORE = "/accounts/create_store";
 const API_PATH_PARTNER_SUBSCRIPTION_PLANS =
