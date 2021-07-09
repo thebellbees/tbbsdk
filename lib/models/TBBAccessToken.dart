@@ -13,7 +13,7 @@ part 'TBBAccessToken.g.dart';
     fieldRename: FieldRename.snake, nullable: true, explicitToJson: true)
 class TBBAccessToken {
   String accessId;
-  String expires;
+  String expires ;
   String authorizeType;
   String refreshId;
   String userId;

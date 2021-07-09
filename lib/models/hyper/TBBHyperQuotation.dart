@@ -1,48 +1,50 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:tbbsdk/models/TBBTaxonomy.dart';
+import 'package:tbbsdk/models/hyper/TBBQuotationItem.dart';
 
 /// This allows the `User` class to access private members in
 /// the generated file. The value for this is *.g.dart, where
 /// the star denotes the source file name.
-part 'TBBHyperOrderReview.g.dart';
+part 'TBBHyperQuotation.g.dart';
 
 /// An annotation for the code generator to know that this class needs the
 /// JSON serialization logic to be generated.
 @JsonSerializable(
     fieldRename: FieldRename.snake, nullable: true, explicitToJson: true)
-class TBBHyperOrderReview {
+class TBBHyperQuotation {
   String id;
-  String orderId;
-  String rate;
-  String review;
-  String createdAt;
-  String updatedAt;
-  String deletedAt;
+  String note;
+  String addressLineOne;
+  String addressLineTwo;
+  String state;
+  String city;
+  List<TBBQuotationItem> hyperQuotationItem;
+  String pincode;
 
-  TBBHyperOrderReview({
+  TBBHyperQuotation({
     this.id,
-    this.orderId,
-    this.rate,
-    this.review,
-    this.createdAt,
-    this.updatedAt,
-    this.deletedAt,
+    this.note,
+    this.addressLineOne,
+    this.addressLineTwo,
+    this.pincode,
+    this.state,
+    this.city,
+    this.hyperQuotationItem,
   });
 
   /// A necessary factory constructor for creating a new User instance
   /// from a map. Pass the map to the generated `_$UserFromJson()` constructor.
   /// The constructor is named after the source class, in this case, User.
-  factory TBBHyperOrderReview.fromJson(Map<String, dynamic> json) {
+  factory TBBHyperQuotation.fromJson(Map<String, dynamic> json) {
     json['id'] = json['id'].toString();
-    json['order_id'] = json['order_id'].toString();
-    json['rate'] = json['rate'].toString();
-    return _$TBBHyperOrderReviewFromJson(json);
+    return _$TBBHyperQuotationFromJson(json);
   }
 
-  static List<TBBHyperOrderReview> listFromJson(List<dynamic> listJson) {
+  static List<TBBHyperQuotation> listFromJson(List<dynamic> listJson) {
     Iterable l = listJson;
 
-    List<TBBHyperOrderReview> items = List<TBBHyperOrderReview>.from(
-        l.map((model) => TBBHyperOrderReview.fromJson(model)));
+    List<TBBHyperQuotation> items = List<TBBHyperQuotation>.from(
+        l.map((model) => TBBHyperQuotation.fromJson(model)));
 
     return items;
   }
@@ -50,7 +52,7 @@ class TBBHyperOrderReview {
   /// `toJson` is the convention for a class to declare support for serialization
   /// to JSON. The implementation simply calls the private, generated
   /// helper method `_$UserToJson`.
-  Map<String, dynamic> toJson() => _$TBBHyperOrderReviewToJson(this);
+  Map<String, dynamic> toJson() => _$TBBHyperQuotationToJson(this);
 
   @override
   toString() => this.toJson().toString();

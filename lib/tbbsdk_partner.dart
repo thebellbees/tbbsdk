@@ -17,6 +17,9 @@ import 'package:tbbsdk/models/TBBTerm.dart';
 import 'package:tbbsdk/models/hyper/TBBHyperDetail.dart';
 import 'package:tbbsdk/models/hyper/TBBHyperItem.dart';
 import 'package:tbbsdk/models/hyper/TBBHyperItemRequest.dart';
+import 'package:tbbsdk/models/hyper/TBBHyperQuotation.dart';
+import 'package:tbbsdk/models/hyper/TBBQuotationItem.dart';
+import 'package:tbbsdk/models/hyper/tbb_send_quotation.dart';
 import 'package:tbbsdk/models/services/TBBServiceDetail.dart';
 import 'package:tbbsdk/models/services/TBBServiceItemRequest.dart';
 import 'package:tbbsdk/models/services/TBBServiceOrder.dart';
@@ -506,7 +509,6 @@ class TBBSdkPartner {
     // headers data
     final headers = await _prepareRequestHeader();
 
-
     String locationsString = serviceItem.serviceLocations != null
         ? jsonEncode({
             "add": serviceItem.serviceLocations.map((e) => e.toJson()).toList()
@@ -825,7 +827,6 @@ class TBBSdkPartner {
     if (_response.statusCode >= 200 && _response.statusCode < 300) {
       TBBResponse response = TBBResponse.fromJson(json.decode(_response.body));
       return TBBTaxonomy.fromJson(response.data);
-
     } else {
       throw new TBBError.fromJson(json.decode(_response.body));
     }
@@ -1057,11 +1058,9 @@ class TBBSdkPartner {
     }
   }
 
-
-
-
   //Hyper Request Items
-  Future<List<TBBHyperItemRequest>> hyperRequest({num limit, num offset, String status}) async {
+  Future<List<TBBHyperItemRequest>> hyperRequest(
+      {num limit, num offset, String status}) async {
     _printToLog("preparing partner token");
 
     // headers data
@@ -1075,7 +1074,9 @@ class TBBSdkPartner {
 
     // request
     final _response = await http.post(
-        this.appServer + "/$appPath" + API_PATH_PARTNER_HYPER_QUOTATION_REQUESTS,
+        this.appServer +
+            "/$appPath" +
+            API_PATH_PARTNER_HYPER_QUOTATION_REQUESTS,
         headers: headers,
         body: body);
 
@@ -1090,4 +1091,39 @@ class TBBSdkPartner {
     }
   }
 
+  // Send Quotation
+
+  Future<TbbSendQuotation> sendQuotation(
+      {TbbSendQuotation quote, String quotId}) async {
+    _printToLog("preparing getting quotation");
+
+    // headers data
+    final headers = await _prepareRequestHeader();
+
+    // body data
+    final body = quote.toJson();
+
+    // request
+    final _response = await http.post(
+      this.appServer +
+          API_PATH_PARTNER_HYPER_SEND_QUOTATION +
+          "/${quotId.toString()}",
+      headers: headers,
+      body: body,
+    );
+
+    _printHttpLog(
+      response: _response,
+      body: body,
+    );
+
+    //  response
+    if (_response.statusCode >= 200 && _response.statusCode < 300) {
+      TBBResponse response = TBBResponse.fromJson(json.decode(_response.body));
+
+      return TbbSendQuotation.fromJson(response.data);
+    } else {
+      throw new TBBError.fromJson(json.decode(_response.body));
+    }
+  }
 }
