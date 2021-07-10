@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:json_annotation/json_annotation.dart';
 import 'package:tbbsdk/models/TBBUser.dart';
 import 'package:tbbsdk/models/hyper/TBBHyperDetail.dart';
@@ -17,6 +19,7 @@ class TBBHyperItemRequest {
   String customerId;
   String listData;
   String listImage;
+  Map<String, dynamic> addressData;
   String note;
   String expired;
   String quoteRequested;
@@ -36,6 +39,7 @@ class TBBHyperItemRequest {
     this.id,
     this.shopId,
     this.hyperDetail,
+    this.addressData,
     this.customerId,
     this.totalRequestCount,
     this.user,
@@ -60,6 +64,7 @@ class TBBHyperItemRequest {
     json['shop_id'] = json['shop_id'].toString();
     json['list_data'] = json['list_data'].toString();
     json['list_image'] = json['list_image'].toString();
+    json['address_data'] = jsonDecode(json['address_data']);
     json['quote_requested'] = json['quote_requested'].toString();
     json['quote_sent'] = json['quote_sent'].toString();
     json['customer_id'] = json['customer_id'].toString();
