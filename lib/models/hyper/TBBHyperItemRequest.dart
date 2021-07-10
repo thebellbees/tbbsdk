@@ -64,7 +64,7 @@ class TBBHyperItemRequest {
     json['shop_id'] = json['shop_id'].toString();
     json['list_data'] = json['list_data'].toString();
     json['list_image'] = json['list_image'].toString();
-    json['address_data'] = jsonDecode(json['address_data']);
+    json['address_data'] = json['address_data'] != null ? jsonDecode(json['address_data']) : null;
     json['quote_requested'] = json['quote_requested'].toString();
     json['quote_sent'] = json['quote_sent'].toString();
     json['customer_id'] = json['customer_id'].toString();
