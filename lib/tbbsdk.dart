@@ -1110,7 +1110,7 @@ class TBBSdk {
           : null,
       "list_data":
           listData != null && listData.isNotEmpty ? jsonEncode(listData) : null,
-      "address": address != null ? address : null
+      "address": address != null ? jsonEncode(address) : null
     };
 
     // request
