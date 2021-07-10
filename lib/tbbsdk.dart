@@ -537,9 +537,6 @@ class TBBSdk {
 
   //Remove Address
 
-
-
-
   //Customer Action
 
   Future<TBBServiceItem> serviceHire({TBBServiceItem serviceItem}) async {
@@ -1100,6 +1097,7 @@ class TBBSdk {
   Future<TBBHyperDetail> getQuotation(
       {TBBHyperDetail hyperDetail,
       String listImage,
+      Map<String, dynamic> address,
       List<String> listData}) async {
     _printToLog("preparing getting quotation");
 
@@ -1113,6 +1111,7 @@ class TBBSdk {
           : null,
       "list_data":
           listData != null && listData.isNotEmpty ? jsonEncode(listData) : null,
+      "address": address
     };
 
     // request
