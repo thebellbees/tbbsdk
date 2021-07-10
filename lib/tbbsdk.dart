@@ -1094,10 +1094,9 @@ class TBBSdk {
 
   // Get Quotation
 
-  Future<TBBHyperDetail> getQuotation(
+  Future<TBBHyperDetail> getQuotation(Map<String, dynamic> address,
       {TBBHyperDetail hyperDetail,
       String listImage,
-      Map<String, dynamic> address,
       List<String> listData}) async {
     _printToLog("preparing getting quotation");
 
