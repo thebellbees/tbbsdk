@@ -483,7 +483,7 @@ class TBBSdk {
     _printToLog('body works');
     // request
     final _response = await http.delete(
-        this.appServer + API_PATH_ADDRESS_ADD + "/${address.id.toString()}",
+        this.appServer + API_PATH_ADDRESS_REMOVE + "/${address.id.toString()}",
         headers: headers);
 
     _printHttpLog(response: _response);
