@@ -51,6 +51,8 @@ class TBBAddress {
     json['pincode'] = json['pincode'].toString();
     json['phone'] = json['phone'].toString();
     json['city'] = json['city'].toString();
+    json['address_line_1'] = json['address_line_1'].toString();
+    json['address_line_2'] = json['address_line_2'].toString();
     json['created_at'] = json['created_at'].toString();
     json['updated_at'] = json['updated_at'].toString();
     return _$TBBAddressFromJson(json);
