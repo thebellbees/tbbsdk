@@ -13,7 +13,7 @@ TBBHyperItemRequest _$TBBHyperItemRequestFromJson(Map<String, dynamic> json) {
     hyperDetail: json['hy_shop'] == null
         ? null
         : TBBHyperDetail.fromJson(json['hy_shop'] as Map<String, dynamic>),
-    addressData: json['address_data'] as Map<String, dynamic>,
+    addressData: ModelHelper.jsonParse(json['address_data']),
     customerId: json['customer_id'] as String,
     totalRequestCount: json['total_request_count'] as String,
     user: json['customer'] == null

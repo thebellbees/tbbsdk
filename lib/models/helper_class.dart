@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:tbbsdk/models/services/TBBServiceCartItem.dart';
 
 class TBBUserUpdate {
@@ -60,6 +62,14 @@ class ModelHelper {
     } catch (err) {
       print(err);
       return false;
+    }
+  }
+
+  static Map<String, dynamic> jsonParse(dynamic v) {
+    if (v != null && v.isNotEmpty) {
+      return jsonDecode(v) as Map<String, dynamic>;
+    } else {
+      return null;
     }
   }
 }

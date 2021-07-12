@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:json_annotation/json_annotation.dart';
 import 'package:tbbsdk/models/TBBUser.dart';
+import 'package:tbbsdk/models/helper_class.dart';
 import 'package:tbbsdk/models/hyper/TBBHyperDetail.dart';
 
 /// This allows the `User` class to access private members in
@@ -19,6 +20,7 @@ class TBBHyperItemRequest {
   String customerId;
   String listData;
   String listImage;
+  @JsonKey(fromJson: ModelHelper.jsonParse)
   Map<String, dynamic> addressData;
   String note;
   String expired;
@@ -64,7 +66,8 @@ class TBBHyperItemRequest {
     json['shop_id'] = json['shop_id'].toString();
     json['list_data'] = json['list_data'].toString();
     json['list_image'] = json['list_image'].toString();
-    json['address_data'] = json['address_data'] != null ? jsonDecode(json['address_data']) : null;
+    json['address_data'] =
+        json['address_data'] != null ? jsonDecode(json['address_data']) : null;
     json['quote_requested'] = json['quote_requested'].toString();
     json['quote_sent'] = json['quote_sent'].toString();
     json['customer_id'] = json['customer_id'].toString();
