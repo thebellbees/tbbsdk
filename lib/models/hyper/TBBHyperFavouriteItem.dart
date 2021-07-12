@@ -1,8 +1,6 @@
-import 'dart:convert';
-
-import 'package:tbbsdk/models/TBBUser.dart';
 
 import 'package:json_annotation/json_annotation.dart';
+import 'package:tbbsdk/models/TBBUser.dart';
 import 'package:tbbsdk/models/hyper/TBBHyperDetail.dart';
 
 /// This allows the `User` class to access private members in

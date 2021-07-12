@@ -1,8 +1,7 @@
+import 'package:json_annotation/json_annotation.dart';
+import 'package:tbbsdk/models/TBBStore.dart';
 import 'package:tbbsdk/models/services/TBBServiceOrderReview.dart';
 import 'package:tbbsdk/models/services/TBBServiceTerm.dart';
-import 'package:tbbsdk/models/TBBStore.dart';
-
-import 'package:json_annotation/json_annotation.dart';
 import 'package:tbbsdk/utilities/common_functions.dart';
 
 /// This allows the `User` class to access private members in

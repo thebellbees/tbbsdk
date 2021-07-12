@@ -1,12 +1,15 @@
 library tbbsdk;
 
 import 'dart:convert';
+
 import 'package:flutter/widgets.dart';
 import 'package:http/http.dart' as http;
 import 'package:location/location.dart';
 import 'package:tbbsdk/constants/constants.dart';
 import 'package:tbbsdk/models/TBBAccessToken.dart';
+import 'package:tbbsdk/models/TBBLocalState.dart';
 import 'package:tbbsdk/models/TBBTaxonomy.dart';
+import 'package:tbbsdk/models/TBBUser.dart';
 import 'package:tbbsdk/models/account/TBBAddress.dart';
 import 'package:tbbsdk/models/helper_class.dart';
 import 'package:tbbsdk/models/hyper/TBBHyperDetail.dart';
@@ -17,27 +20,25 @@ import 'package:tbbsdk/models/services/TBBServiceDetail.dart';
 import 'package:tbbsdk/models/services/TBBServiceFavouriteItem.dart';
 import 'package:tbbsdk/models/services/TBBServiceItem.dart';
 import 'package:tbbsdk/models/services/TBBServiceOrder.dart';
-import 'package:tbbsdk/models/TBBLocalState.dart';
 import 'package:tbbsdk/models/tbb_response.dart';
-import 'package:tbbsdk/models/TBBUser.dart';
 import 'package:tbbsdk/tbb_error.dart';
 import 'package:tbbsdk/utilities/local_database.dart';
 
+export './constants/constants.dart';
+export './models/TBBAccessToken.dart' show TBBAccessToken;
+export './models/TBBCustomer.dart' show TBBCustomer;
+export './models/TBBLocalState.dart' show TBBLocalState;
+export './models/TBBStore.dart' show TBBStore;
+export './models/TBBTaxonomy.dart' show TBBTaxonomy;
+export './models/TBBUser.dart' show TBBUser;
+export './models/helper_class.dart';
+export './models/services/TBBServiceItem.dart' show TBBServiceItem;
+export './models/services/TBBServiceTerm.dart' show TBBServiceTerm;
+export './models/tbb_response.dart' show TBBResponse;
+export './tbb_error.dart' show TBBError;
 // exports
 
 export './tbbsdk_partner.dart' show TBBSdkPartner;
-export './constants/constants.dart';
-export './models/TBBAccessToken.dart' show TBBAccessToken;
-export './models/helper_class.dart';
-export './models/TBBLocalState.dart' show TBBLocalState;
-export './models/tbb_response.dart' show TBBResponse;
-export './models/TBBUser.dart' show TBBUser;
-export './models/TBBTaxonomy.dart' show TBBTaxonomy;
-export './models/services/TBBServiceItem.dart' show TBBServiceItem;
-export './models/services/TBBServiceTerm.dart' show TBBServiceTerm;
-export './models/TBBCustomer.dart' show TBBCustomer;
-export './models/TBBStore.dart' show TBBStore;
-export './tbb_error.dart' show TBBError;
 
 extension StringExtension on String {
   String capitalize() {
@@ -113,8 +114,8 @@ class TBBSdk {
   }
 
   Future<Map<String, String>> _prepareRequestHeader() async {
-    int expires = int.parse(
-        (await _localDatabaseService.getSecureAccess('expires')).toString());
+    // int expires = int.parse(
+    //     (await _localDatabaseService.getSecureAccess('expires')).toString());
     String accessId =
         (await _localDatabaseService.getSecureAccess('access_id')).toString();
     String refreshId =
@@ -461,7 +462,8 @@ class TBBSdk {
     // request
     final _response = await http.post(
         this.appServer + API_PATH_ADDRESS_ADD + "/${address.id.toString()}",
-        headers: headers, body: body);
+        headers: headers,
+        body: body);
 
     _printHttpLog(response: _response);
 
@@ -474,7 +476,7 @@ class TBBSdk {
     }
   }
 
-  Future<TBBAddress> removeAddress({TBBAddress address}) async {
+  Future<bool> removeAddress({TBBAddress address}) async {
     _printToLog("preparing address remove");
 
     // headers data
@@ -491,7 +493,7 @@ class TBBSdk {
     //  response
     if (_response.statusCode >= 200 && _response.statusCode < 300) {
       TBBResponse response = TBBResponse.fromJson(json.decode(_response.body));
-      return TBBAddress.fromJson(response.data);
+      return ModelHelper.toBool(response.data);
     } else {
       throw new TBBError.fromJson(json.decode(_response.body));
     }
@@ -506,7 +508,7 @@ class TBBSdk {
     final headers = await _prepareRequestHeader();
 
     // body data
-    final Map<String, String> body = {};
+    // final Map<String, String> body = {};
 
     // if (category != null) {
     //   body.addAll({"category": category.toString()});

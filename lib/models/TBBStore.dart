@@ -5,7 +5,6 @@ import 'package:tbbsdk/models/TBBTerm.dart';
 import 'package:tbbsdk/models/TBBUser.dart';
 import 'package:tbbsdk/models/hyper/TBBHyperDetail.dart';
 import 'package:tbbsdk/models/services/TBBServiceDetail.dart';
-import 'package:tbbsdk/models/services/TBBServiceTerm.dart';
 import 'package:tbbsdk/utilities/PropValidator.dart';
 
 /// This allows the `User` class to access private members in

@@ -10,10 +10,10 @@ import 'package:tbbsdk/models/TBBPartnerUser.dart';
 import 'package:tbbsdk/tbbsdk.dart';
 import 'package:tbbsdk/utilities/local_database.dart';
 
+export './models/TBBPartnerLocalState.dart' show TBBPartnerLocalState;
 // exports
 
 export './models/TBBPartnerToken.dart' show TBBPartnerToken;
-export './models/TBBPartnerLocalState.dart' show TBBPartnerLocalState;
 export './models/TBBPartnerUser.dart' show TBBPartnerUser;
 
 extension StringExtension on String {

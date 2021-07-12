@@ -1,7 +1,6 @@
 
-import 'package:tbbsdk/models/TBBStore.dart';
-
 import 'package:json_annotation/json_annotation.dart';
+import 'package:tbbsdk/models/TBBStore.dart';
 import 'package:tbbsdk/models/hyper/TBBHyperOrderReview.dart';
 import 'package:tbbsdk/models/hyper/TBBHyperTerm.dart';
 import 'package:tbbsdk/utilities/common_functions.dart';
