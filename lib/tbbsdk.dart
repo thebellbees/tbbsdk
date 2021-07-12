@@ -447,10 +447,21 @@ class TBBSdk {
     final headers = await _prepareRequestHeader();
 
     _printToLog('body works');
+    var body = {
+      "name": address.name.toString(),
+      "label": address.label.toString(),
+      "address_line_1": address.addressLine1.toString(),
+      "address_line_2": address.addressLine2.toString(),
+      "phone": address.phone.toString(),
+      "pincode": address.pincode.toString(),
+      "city": address.city.toString(),
+      "state": address.state.toString(),
+      "is_default": address.isDefault.toString(),
+    };
     // request
     final _response = await http.post(
         this.appServer + API_PATH_ADDRESS_ADD + "/${address.id.toString()}",
-        headers: headers);
+        headers: headers, body: body);
 
     _printHttpLog(response: _response);
 
