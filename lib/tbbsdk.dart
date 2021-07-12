@@ -414,7 +414,7 @@ class TBBSdk {
       "name": address.name.toString(),
       "label": address.label.toString(),
       "address_line_1": address.addressLine1.toString(),
-      "address_line_2": address.addressLine1.toString(),
+      "address_line_2": address.addressLine2.toString(),
       "phone": address.phone.toString(),
       "pincode": address.pincode.toString(),
       "city": address.city.toString(),
