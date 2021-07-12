@@ -18,7 +18,9 @@ class TBBAddress {
   String city;
   String phone;
   String pincode;
+  @JsonKey(name: "address_line_1")
   String addressLine1;
+  @JsonKey(name: "address_line_2")
   String addressLine2;
   String state;
   @JsonKey(fromJson: ModelHelper.toBool,toJson: ModelHelper.toBool)
