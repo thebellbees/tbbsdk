@@ -12,6 +12,9 @@ TBBUser _$TBBUserFromJson(Map<String, dynamic> json) {
     firstName: json['first_name'] as String,
     lastName: json['last_name'] as String,
     email: json['email'] as String,
+    address: json['address'] == null
+        ? null
+        : TBBAddress.fromJson(json['address'] as Map<String, dynamic>),
     phone: json['phone'] as String,
     enabled: json['enabled'] as bool,
     image: json['image'] as String,
@@ -27,5 +30,6 @@ Map<String, dynamic> _$TBBUserToJson(TBBUser instance) => <String, dynamic>{
       'phone': instance.phone,
       'enabled': instance.enabled,
       'image': instance.image,
+      'address': instance.address?.toJson(),
       'user_meta': instance.userMeta,
     };

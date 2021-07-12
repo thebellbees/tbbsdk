@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:tbbsdk/models/account/TBBAddress.dart';
 
 /// This allows the `User` class to access private members in
 /// the generated file. The value for this is *.g.dart, where
@@ -17,6 +18,7 @@ class TBBUser {
   String phone;
   bool enabled;
   String image;
+  TBBAddress address;
   List userMeta;
 
   TBBUser(
@@ -24,6 +26,7 @@ class TBBUser {
       this.firstName,
       this.lastName,
       this.email,
+      this.address,
       this.phone,
       this.enabled,
       this.image,
