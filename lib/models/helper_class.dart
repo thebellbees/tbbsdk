@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:tbbsdk/models/hyper/TBBHyperCartItem.dart';
 import 'package:tbbsdk/models/services/TBBServiceCartItem.dart';
 
 class TBBUserUpdate {
@@ -46,6 +47,32 @@ class CartList {
     data['total_count'] = this.totalCount;
     data['items'] =
         data['items'] == null ? null : this.items.map((e) => e.toJson());
+
+    return data;
+  }
+}
+
+class HyperCartList {
+  String totalCount;
+  List<TBBHyperCartItem> items;
+
+  HyperCartList({
+    this.totalCount,
+    this.items,
+  });
+
+  HyperCartList.fromJson(Map<String, dynamic> json) {
+    totalCount = json['total_count'].toString();
+    items = json['items'] == null
+        ? null
+        : TBBHyperCartItem.listFromJson(json['items']);
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['total_count'] = this.totalCount;
+    data['items'] =
+    data['items'] == null ? null : this.items.map((e) => e.toJson());
 
     return data;
   }

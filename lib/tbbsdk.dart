@@ -629,7 +629,7 @@ class TBBSdk {
     }
   }
 
-  //Customer Service Order List
+  //Customer Service Cart List
 
   Future<CartList> serviceCartOrders({num limit, num offset}) async {
     _printToLog("preparing partner token");
@@ -1149,4 +1149,35 @@ class TBBSdk {
       throw new TBBError.fromJson(json.decode(_response.body));
     }
   }
+
+  //Customer Hyper Cart List
+
+  Future<HyperCartList> hyperCartOrders({num limit, num offset}) async {
+    _printToLog("preparing partner token");
+
+    // headers data
+    final headers = await _prepareRequestHeader();
+
+    final body = {
+      'limit': limit.toString(),
+      'offset': offset.toString(),
+    };
+
+    // request
+    final _response = await http.post(
+        this.appServer + API_PATH_HYPER_CART_ORDERS,
+        headers: headers,
+        body: body);
+
+    _printHttpLog(response: _response, body: body);
+
+    //  response
+    if (_response.statusCode >= 200 && _response.statusCode < 300) {
+      TBBResponse response = TBBResponse.fromJson(json.decode(_response.body));
+      return HyperCartList.fromJson(response.data);
+    } else {
+      throw new TBBError.fromJson(json.decode(_response.body));
+    }
+  }
+
 }

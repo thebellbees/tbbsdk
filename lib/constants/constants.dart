@@ -28,6 +28,7 @@ const API_PATH_HYPER_FAVOURITES_ALL = "/hyper/favourite/items";
 const API_PATH_HYPER_REMOVE_FROM_FAVOURITE = "/hyper/favourite/remove_from_fav";
 const API_PATH_HYPER_GET_QUOTATION = "/hyper/hyper/get_quotation";
 const API_PATH_HYPER_ALL = "/hyper/hyper/available_shops";
+const API_PATH_HYPER_CART_ORDERS = "/hyper/cart/items";
 const API_PATH_CUSTOMER_ORDERS = "/services/order/items";
 
 // PARTNER Server Endpoints
