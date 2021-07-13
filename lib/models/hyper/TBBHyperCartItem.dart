@@ -50,10 +50,8 @@ class TBBHyperCartItem {
 
   static List<TBBHyperCartItem> listFromJson(List<dynamic> listJson) {
     Iterable l = listJson;
-    List<TBBHyperCartItem> items = List<TBBHyperCartItem>.from(l.map(
-            (model) =>
-            TBBHyperCartItem.fromJson(model as Map<String, dynamic>)))
-        .toList();
+    List<TBBHyperCartItem> items = List<TBBHyperCartItem>.from(l.map((model) =>
+        TBBHyperCartItem.fromJson(model as Map<String, dynamic>))).toList();
     return items;
   }
 

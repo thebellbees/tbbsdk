@@ -15,7 +15,6 @@ class TBBOptionalDocument {
   String udyogAadharDoc;
   String certificateDoc;
 
-
   TBBOptionalDocument({
     this.aadharDoc,
     this.udyogAadharDoc,
@@ -37,8 +36,8 @@ class TBBOptionalDocument {
 
   static List<TBBOptionalDocument> listFromJson(List<dynamic> listJson) {
     Iterable l = listJson;
-    List<TBBOptionalDocument> items =
-    List<TBBOptionalDocument>.from(l.map((model) => TBBOptionalDocument.fromJson(model)));
+    List<TBBOptionalDocument> items = List<TBBOptionalDocument>.from(
+        l.map((model) => TBBOptionalDocument.fromJson(model)));
     return items;
   }
 

@@ -16,7 +16,8 @@ const API_PATH_TAXONOMY_TYPES = "/system/categories";
 const API_PATH_SERVICES_ALL = "/services/service/available_service";
 const API_PATH_SERVICES_ADD_TO_FAVOURITE = "/services/favourite/add_to_fav";
 const API_PATH_SERVICES_FAVOURITES_ALL = "/services/favourite/items";
-const API_PATH_SERVICES_REMOVE_FROM_FAVOURITE = "/services/favourite/remove_from_fav";
+const API_PATH_SERVICES_REMOVE_FROM_FAVOURITE =
+    "/services/favourite/remove_from_fav";
 const API_PATH_SERVICES_SEARCH = "/services/service/search";
 const API_PATH_SERVICE_ACTION_HIRE = "/services/service/hire_service";
 const API_PATH_SERVICE_ACTION_CALL = "/services/service/call_service";
@@ -40,7 +41,6 @@ const API_PATH_ADDRESS_ALL = "/accounts/address/list";
 const API_PATH_ADDRESS_ADD = "/accounts/address";
 const API_PATH_ADDRESS_UPDATE = "/accounts/address";
 const API_PATH_ADDRESS_REMOVE = "/accounts/address";
-
 
 // Service
 const API_PATH_PARTNER_SERVICES_OVERVIEW = "/services/home/overview";

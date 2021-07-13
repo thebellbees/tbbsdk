@@ -99,6 +99,7 @@ class TBBStore {
 
     return _$TBBStoreFromJson(json);
   }
+
   static List<TBBStore> listFromJson(List<dynamic> listJson) {
     Iterable l = listJson;
 

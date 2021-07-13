@@ -29,7 +29,6 @@ class TBBSubscriptionPlan {
     this.type,
     this.maxDayDuration,
     this.dayPrice,
-
     this.subscriptionVariants,
     this.createdAt,
     this.updatedAt,
@@ -47,6 +46,7 @@ class TBBSubscriptionPlan {
 
     return _$TBBSubscriptionPlanFromJson(json);
   }
+
   static List<TBBSubscriptionPlan> listFromJson(List<dynamic> listJson) {
     Iterable l = listJson;
 

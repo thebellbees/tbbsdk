@@ -22,7 +22,7 @@ class TBBAddress {
   @JsonKey(name: "address_line_2")
   String addressLine2;
   String state;
-  @JsonKey(fromJson: ModelHelper.toBool,toJson: ModelHelper.toBool)
+  @JsonKey(fromJson: ModelHelper.toBool, toJson: ModelHelper.toBool)
   bool isDefault;
   String createdAt;
   String updatedAt;
@@ -60,7 +60,7 @@ class TBBAddress {
   static List<TBBAddress> listFromJson(List<dynamic> listJson) {
     Iterable l = listJson;
     List<TBBAddress> items =
-    List<TBBAddress>.from(l.map((model) => TBBAddress.fromJson(model)));
+        List<TBBAddress>.from(l.map((model) => TBBAddress.fromJson(model)));
     return items;
   }
 

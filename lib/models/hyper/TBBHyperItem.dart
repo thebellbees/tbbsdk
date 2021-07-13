@@ -1,5 +1,3 @@
-
-
 import 'package:json_annotation/json_annotation.dart';
 import 'package:tbbsdk/models/hyper/TBBHyperDetail.dart';
 import 'package:tbbsdk/models/hyper/TBBHyperLocation.dart';
@@ -70,8 +68,8 @@ class TBBHyperItem {
   static List<TBBHyperItem> listFromJson(List<dynamic> listJson) {
     Iterable l = listJson;
 
-    List<TBBHyperItem> items = List<TBBHyperItem>.from(
-        l.map((model) => TBBHyperItem.fromJson(model)));
+    List<TBBHyperItem> items =
+        List<TBBHyperItem>.from(l.map((model) => TBBHyperItem.fromJson(model)));
 
     return items;
   }

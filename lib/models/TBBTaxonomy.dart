@@ -41,7 +41,8 @@ class TBBTaxonomy {
     json['icon'] = json['icon'].toString();
     json['taxonomy'] = json['taxonomy'].toString();
     json['terms'] = json['sr_terms'];
-    if( json['sr_terms'] == null || json['terms'] != null && json['terms'].length == 0){
+    if (json['sr_terms'] == null ||
+        json['terms'] != null && json['terms'].length == 0) {
       json['terms'] = json['hy_terms'];
     }
     return _$TBBTaxonomyFromJson(json);
@@ -50,11 +51,12 @@ class TBBTaxonomy {
   static List<TBBTaxonomy> listFromJson(List<dynamic> listJson) {
     Iterable l = listJson;
 
-    List<TBBTaxonomy> items = List<TBBTaxonomy>.from(
-        l.map((model) => TBBTaxonomy.fromJson(model)));
+    List<TBBTaxonomy> items =
+        List<TBBTaxonomy>.from(l.map((model) => TBBTaxonomy.fromJson(model)));
 
     return items;
   }
+
   /// `toJson` is the convention for a class to declare support for serialization
   /// to JSON. The implementation simply calls the private, generated
   /// helper method `_$UserToJson`.

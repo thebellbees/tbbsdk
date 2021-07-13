@@ -20,13 +20,8 @@ class TBBPartnerToken {
   TBBStore store;
   TBBStoreSubscription tbbStoreSubscription;
 
-  TBBPartnerToken({
-    this.accessId,
-    this.tokenId,
-    this.ownerId,
-    this.storeId,
-    this.store
-  });
+  TBBPartnerToken(
+      {this.accessId, this.tokenId, this.ownerId, this.storeId, this.store});
 
   /// A necessary factory constructor for creating a new User instance
   /// from a map. Pass the map to the generated `_$UserFromJson()` constructor.

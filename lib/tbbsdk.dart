@@ -498,6 +498,7 @@ class TBBSdk {
       throw new TBBError.fromJson(json.decode(_response.body));
     }
   }
+
   //Address List
 
   Future<List<TBBAddress>> availableAddress(
@@ -1179,5 +1180,4 @@ class TBBSdk {
       throw new TBBError.fromJson(json.decode(_response.body));
     }
   }
-
 }

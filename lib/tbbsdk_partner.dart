@@ -16,7 +16,7 @@ import 'package:tbbsdk/models/account/TBBCountry.dart';
 import 'package:tbbsdk/models/hyper/TBBHyperDetail.dart';
 import 'package:tbbsdk/models/hyper/TBBHyperItem.dart';
 import 'package:tbbsdk/models/hyper/TBBHyperItemRequest.dart';
-import 'package:tbbsdk/models/hyper/tbb_send_quotation.dart';
+import 'package:tbbsdk/models/hyper/TBBHyperSendQuotation.dart';
 import 'package:tbbsdk/models/services/TBBServiceDetail.dart';
 import 'package:tbbsdk/models/services/TBBServiceItemRequest.dart';
 import 'package:tbbsdk/models/services/TBBServiceOrder.dart';
@@ -1090,8 +1090,8 @@ class TBBSdkPartner {
 
   // Send Quotation
 
-  Future<TbbSendQuotation> sendQuotation(
-      {TbbSendQuotation quote, String quotId}) async {
+  Future<TBBHyperSendQuotation> sendQuotation(
+      {TBBHyperSendQuotation quote, String quotId}) async {
     _printToLog("preparing getting quotation");
 
     // headers data
@@ -1118,7 +1118,7 @@ class TBBSdkPartner {
     if (_response.statusCode >= 200 && _response.statusCode < 300) {
       TBBResponse response = TBBResponse.fromJson(json.decode(_response.body));
 
-      return TbbSendQuotation.fromJson(response.data);
+      return TBBHyperSendQuotation.fromJson(response.data);
     } else {
       throw new TBBError.fromJson(json.decode(_response.body));
     }

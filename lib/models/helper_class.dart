@@ -72,7 +72,7 @@ class HyperCartList {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['total_count'] = this.totalCount;
     data['items'] =
-    data['items'] == null ? null : this.items.map((e) => e.toJson());
+        data['items'] == null ? null : this.items.map((e) => e.toJson());
 
     return data;
   }

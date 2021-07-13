@@ -1,4 +1,3 @@
-
 import 'package:json_annotation/json_annotation.dart';
 import 'package:tbbsdk/models/TBBUser.dart';
 import 'package:tbbsdk/models/hyper/TBBHyperDetail.dart';
