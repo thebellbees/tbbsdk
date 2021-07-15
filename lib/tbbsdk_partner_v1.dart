@@ -15,6 +15,7 @@ export './models/TBBPartnerLocalState.dart' show TBBPartnerLocalState;
 
 export './models/TBBPartnerToken.dart' show TBBPartnerToken;
 export './models/TBBPartnerUser.dart' show TBBPartnerUser;
+export './packages/map_box/place_service.dart' show PlaceService;
 
 extension StringExtension on String {
   String capitalize() {

@@ -36,6 +36,7 @@ export './models/services/TBBServiceItem.dart' show TBBServiceItem;
 export './models/services/TBBServiceTerm.dart' show TBBServiceTerm;
 export './models/tbb_response.dart' show TBBResponse;
 export './tbb_error.dart' show TBBError;
+export './packages/map_box/place_service.dart' show PlaceService;
 // exports
 
 export './tbbsdk_partner.dart' show TBBSdkPartner;

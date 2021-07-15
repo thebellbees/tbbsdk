@@ -24,11 +24,13 @@ import 'package:tbbsdk/tbbsdk.dart';
 import 'package:tbbsdk/utilities/common_functions.dart';
 import 'package:tbbsdk/utilities/local_database.dart';
 
+
 export './models/TBBPartnerLocalState.dart' show TBBPartnerLocalState;
 // exports
 
 export './models/TBBPartnerToken.dart' show TBBPartnerToken;
 export './models/TBBPartnerUser.dart' show TBBPartnerUser;
+export './packages/map_box/place_service.dart' show PlaceService;
 
 extension StringExtension on String {
   String capitalize() {
