@@ -22,7 +22,7 @@ class PlaceService {
     return "$uri/$endpoint/$searchText$searchSuffix?access_token=$accessToken&autocomplete=$autocomplete&country=$country&language=$language&worldview=$worldview&types=$typesString";
   }
 
-  factory PlaceService.searchRegion(
+  factory PlaceService.searchState(
       {String searchText = "", String country, String language = "en"}) {
     return PlaceService(["region"],
         searchText: searchText, country: country, language: language);
@@ -34,7 +34,7 @@ class PlaceService {
   }
   factory PlaceService.searchCity(
       {String searchText = "", String country, String language = "en"}) {
-    return PlaceService(["city"],
+    return PlaceService(["locality"],
         searchText: searchText, country: country, language: language);
   }
 
