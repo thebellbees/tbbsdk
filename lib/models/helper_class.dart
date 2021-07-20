@@ -92,6 +92,15 @@ class ModelHelper {
     }
   }
 
+  static double toDouble(dynamic value) {
+    try {
+      return double.parse(value.toString());
+    } catch (err) {
+      print(err);
+      return 0;
+    }
+  }
+
   static Map<String, dynamic> jsonParse(dynamic v) {
     if (v != null && v.isNotEmpty) {
       return jsonDecode(v) as Map<String, dynamic>;
